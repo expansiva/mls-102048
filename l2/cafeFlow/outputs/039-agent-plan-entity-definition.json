@@ -1,0 +1,122 @@
+{
+  "savedAt": "2026-06-25T12:24:42.984Z",
+  "agentName": "agentPlanEntityDefinition",
+  "stepId": 39,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitEntityDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "entityDefinition": {
+            "entityId": "InventoryTransaction",
+            "title": "Movimentação de Estoque",
+            "description": "Registro imutável de entradas/saídas/ajustes de ingredientes, incluindo baixa automática por venda e ajustes manuais com motivo.",
+            "kind": "event",
+            "ownership": "moduleOwned",
+            "statusEnum": [
+              "posted",
+              "reversed"
+            ],
+            "fields": [
+              {
+                "fieldId": "inventoryTransactionId",
+                "type": "uuid",
+                "required": true,
+                "description": "Identificador único da movimentação de estoque."
+              },
+              {
+                "fieldId": "inventoryItemId",
+                "type": "uuid",
+                "required": true,
+                "description": "Referência ao ingrediente/insumo movimentado."
+              },
+              {
+                "fieldId": "orderId",
+                "type": "uuid",
+                "required": false,
+                "description": "Referência ao pedido origem em caso de baixa automática por venda."
+              },
+              {
+                "fieldId": "transactionType",
+                "type": "string",
+                "required": true,
+                "description": "Tipo da movimentação: entrada de estoque, baixa por venda ou ajuste manual.",
+                "enum": [
+                  "entrada",
+                  "baixaVenda",
+                  "ajuste"
+                ]
+              },
+              {
+                "fieldId": "quantityChange",
+                "type": "number",
+                "required": true,
+                "description": "Quantidade alterada no estoque. Positivo para entrada, negativo para baixa ou ajuste de redução."
+              },
+              {
+                "fieldId": "reason",
+                "type": "text",
+                "required": false,
+                "description": "Motivo do ajuste manual ou observação sobre a movimentação."
+              },
+              {
+                "fieldId": "status",
+                "type": "string",
+                "required": true,
+                "description": "Status do registro: lançado ou estornado.",
+                "enum": [
+                  "posted",
+                  "reversed"
+                ]
+              },
+              {
+                "fieldId": "recordedAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora em que a movimentação ocorreu efetivamente."
+              },
+              {
+                "fieldId": "createdBy",
+                "type": "string",
+                "required": false,
+                "description": "Identificador do usuário responsável pelo registro."
+              },
+              {
+                "fieldId": "createdAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora de criação do registro."
+              },
+              {
+                "fieldId": "updatedAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora da última atualização do registro."
+              }
+            ],
+            "rulesApplied": [
+              "inventoryDeductionHappensOnSaleEvent",
+              "inventoryCannotGoNegativeByDefault"
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Iniciando detalhamento da entidade InventoryTransaction do módulo cafeFlow",
+          "Mapeando campos identidade, referências (InventoryItem, Order), atributos de negócio e auditoria",
+          "Definindo enum transactionType com valores entrada, baixaVenda e ajuste conforme descrição do domínio",
+          "Aplicando regras inventoryDeductionHappensOnSaleEvent e inventoryCannotGoNegativeByDefault",
+          "Finalizando definição canônica com statusEnum [posted, reversed] e ownership moduleOwned"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 44,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

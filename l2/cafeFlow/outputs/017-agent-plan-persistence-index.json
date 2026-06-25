@@ -1,0 +1,285 @@
+{
+  "savedAt": "2026-06-25T12:25:08.901Z",
+  "agentName": "agentPlanPersistenceIndex",
+  "stepId": 17,
+  "planning": {
+    "planId": "plan-persistence-index",
+    "dependsOn": [
+      "plan-mdm",
+      "plan-horizontals",
+      "plan-plugins",
+      "plan-entity-definition"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPersistenceIndex",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "persistenceScope": {
+            "moduleId": "cafeFlow",
+            "newTablesRequired": true,
+            "metricsTablesRequired": true,
+            "excludedEntities": [
+              {
+                "entityId": "MenuItem",
+                "ownership": "mdmOwned",
+                "reason": "R_EXCLUDE_MDM_ENTITY"
+              },
+              {
+                "entityId": "MenuCategory",
+                "ownership": "mdmOwned",
+                "reason": "R_EXCLUDE_MDM_ENTITY"
+              },
+              {
+                "entityId": "InventoryItem",
+                "ownership": "mdmOwned",
+                "reason": "R_EXCLUDE_MDM_ENTITY"
+              },
+              {
+                "entityId": "Recipe",
+                "ownership": "mdmOwned",
+                "reason": "R_EXCLUDE_MDM_ENTITY"
+              },
+              {
+                "entityId": "RecipeIngredient",
+                "ownership": "mdmOwned",
+                "reason": "R_EXCLUDE_MDM_ENTITY"
+              }
+            ]
+          },
+          "tables": [
+            {
+              "ownership": "moduleOwned",
+              "tableKind": "transactional",
+              "tableId": "order",
+              "tableName": "order",
+              "title": "Pedido",
+              "purpose": "Persistir o ciclo de vida do pedido (mesa/takeout), vínculo com turno e timestamps operacionais, mantendo itens e snapshots necessários para cobrança/preparo sem depender de MDM em tempo real.",
+              "rootEntity": "Order",
+              "sourceEntities": [
+                "Order",
+                "OrderItem"
+              ],
+              "embeddedEntities": [
+                "OrderItem"
+              ],
+              "persistencePattern": "aggregateJsonDetails",
+              "detailsColumnRecommended": true,
+              "priority": "now",
+              "readsByArtifacts": [
+                "POS rápido",
+                "Tela da cozinha (KDS)",
+                "Dashboard (Hoje)",
+                "Relatório de fechamento de turno"
+              ],
+              "writesByArtifacts": [
+                "Fluxo: criar pedido e enviar à cozinha",
+                "Fluxo: atualizar status do pedido na cozinha",
+                "UC: Criar Pedido (POS)",
+                "UC: Alterar Status do Pedido",
+                "UC: Fechar Pedido e Baixar Estoque",
+                "L3 Handler: Criar Pedido",
+                "L3 Handler: Alterar Status do Pedido",
+                "L3 Handler: Fechar Turno e Gerar Relatório"
+              ],
+              "rulesApplied": [
+                "orderTypeMustBeTableOrTakeout",
+                "orderStatusTransitionsControlled",
+                "shiftMustBeOpenToCreateOrders",
+                "menuPriceIsSnapshottedOnOrderItem",
+                "metricsDerivedFromClosedOrders"
+              ],
+              "reason": "R_AGGREGATE_WITH_CHILD_COLLECTIONS"
+            },
+            {
+              "ownership": "moduleOwned",
+              "tableKind": "transactional",
+              "tableId": "diningTable",
+              "tableName": "dining_table",
+              "title": "Mesa",
+              "purpose": "Manter cadastro operacional de mesas (ativas/inativas) para pedidos do tipo mesa e para UX do POS/KDS.",
+              "rootEntity": "DiningTable",
+              "sourceEntities": [
+                "DiningTable"
+              ],
+              "embeddedEntities": [],
+              "persistencePattern": "singleEntity",
+              "detailsColumnRecommended": false,
+              "priority": "now",
+              "readsByArtifacts": [
+                "POS rápido",
+                "Tela da cozinha (KDS)"
+              ],
+              "writesByArtifacts": [
+                "UC: Criar Pedido (POS)",
+                "L3 Handler: Criar Pedido"
+              ],
+              "rulesApplied": [
+                "orderTypeMustBeTableOrTakeout"
+              ],
+              "reason": "R_SIMPLE_CRUD_ENTITY"
+            },
+            {
+              "ownership": "moduleOwned",
+              "tableKind": "transactional",
+              "tableId": "dailyShift",
+              "tableName": "daily_shift",
+              "title": "Turno Diário",
+              "purpose": "Persistir abertura/fechamento de turno, valores de caixa declarados, usuário responsável e status, servindo de âncora para pedidos e relatórios do dia/turno.",
+              "rootEntity": "DailyShift",
+              "sourceEntities": [
+                "DailyShift"
+              ],
+              "embeddedEntities": [],
+              "persistencePattern": "singleEntity",
+              "detailsColumnRecommended": true,
+              "priority": "now",
+              "readsByArtifacts": [
+                "Dashboard (Hoje)",
+                "Relatório de fechamento de turno",
+                "POS rápido"
+              ],
+              "writesByArtifacts": [
+                "Fluxo: abertura/fechamento de turno diário",
+                "UC: Abrir Turno",
+                "UC: Fechar Turno e Gerar Relatório",
+                "L3 Handler: Abrir Turno",
+                "L3 Handler: Fechar Turno e Gerar Relatório"
+              ],
+              "rulesApplied": [
+                "shiftMustBeOpenToCreateOrders",
+                "metricsDerivedFromClosedOrders"
+              ],
+              "reason": "R_TRANSACTIONAL_ROOT_ENTITY"
+            },
+            {
+              "ownership": "moduleOwned",
+              "tableKind": "transactional",
+              "tableId": "inventoryTransaction",
+              "tableName": "inventory_transaction",
+              "title": "Movimentação de Estoque",
+              "purpose": "Registrar eventos de movimentação de estoque (ajuste manual e baixa automática por venda), com rastreabilidade e possibilidade de reversão.",
+              "rootEntity": "InventoryTransaction",
+              "sourceEntities": [
+                "InventoryTransaction"
+              ],
+              "embeddedEntities": [],
+              "persistencePattern": "eventLog",
+              "detailsColumnRecommended": true,
+              "priority": "now",
+              "readsByArtifacts": [
+                "Gerenciamento de estoque (ingredientes)",
+                "Relatório de fechamento de turno",
+                "Dashboard (Hoje)"
+              ],
+              "writesByArtifacts": [
+                "Fluxo: ajuste de estoque",
+                "UC: Registrar Ajuste de Estoque",
+                "UC: Fechar Pedido e Baixar Estoque",
+                "L3 Handler: Registrar Ajuste de Estoque",
+                "L3 Handler: Fechar Pedido e Baixar Estoque"
+              ],
+              "rulesApplied": [
+                "inventoryDeductionHappensOnSaleEvent",
+                "inventoryCannotGoNegativeByDefault"
+              ],
+              "reason": "R_EVENT_SOURCING_FOR_AUDITABILITY"
+            },
+            {
+              "ownership": "moduleOwned",
+              "tableKind": "transactional",
+              "tableId": "inventoryBalanceSnapshot",
+              "tableName": "inventory_balance_snapshot",
+              "title": "Snapshot de Saldo de Estoque",
+              "purpose": "Persistir snapshots periódicos/por evento do saldo calculado por ingrediente para leituras rápidas (ex.: estoque baixo) e suporte a relatórios sem recalcular todo o histórico a cada consulta.",
+              "rootEntity": "InventoryBalanceSnapshot",
+              "sourceEntities": [
+                "InventoryBalanceSnapshot",
+                "InventoryTransaction"
+              ],
+              "embeddedEntities": [],
+              "persistencePattern": "readModel",
+              "detailsColumnRecommended": true,
+              "priority": "soon",
+              "readsByArtifacts": [
+                "Gerenciamento de estoque (ingredientes)",
+                "Dashboard (Hoje)"
+              ],
+              "writesByArtifacts": [
+                "UC: Fechar Pedido e Baixar Estoque",
+                "UC: Registrar Ajuste de Estoque",
+                "L3 Handler: Fechar Pedido e Baixar Estoque",
+                "L3 Handler: Registrar Ajuste de Estoque"
+              ],
+              "rulesApplied": [
+                "inventoryDeductionHappensOnSaleEvent",
+                "inventoryCannotGoNegativeByDefault"
+              ],
+              "reason": "R_READ_OPTIMIZED_PROJECTION"
+            },
+            {
+              "ownership": "moduleOwned",
+              "tableKind": "transactional",
+              "tableId": "aiInsightRun",
+              "tableName": "ai_insight_run",
+              "title": "Execução de Insight de IA",
+              "purpose": "Registrar solicitações e resultados (ou falhas) das execuções de IA para resumo de vendas e sugestões, incluindo parâmetros e referência temporal (dia/intervalo).",
+              "rootEntity": "AiInsightRun",
+              "sourceEntities": [
+                "AiInsightRun"
+              ],
+              "embeddedEntities": [],
+              "persistencePattern": "eventLog",
+              "detailsColumnRecommended": true,
+              "priority": "soon",
+              "readsByArtifacts": [
+                "Assistente IA (Resumo/Sugestões)"
+              ],
+              "writesByArtifacts": [
+                "Fluxo: gerar resumo de vendas do dia (IA)",
+                "Fluxo: sugerir itens para promover (7 dias)",
+                "UC: Gerar resumo de vendas do dia (IA)",
+                "UC: Gerar sugestões de promoção (IA)",
+                "L3 Handler: Gerar Resumo de Vendas (IA)",
+                "L3 Handler: Gerar Sugestões de Promoção (IA)"
+              ],
+              "rulesApplied": [
+                "aiUsesPlatformLlmProxy"
+              ],
+              "reason": "R_EVENT_LOG_FOR_ASYNC_PROCESSING"
+            }
+          ]
+        },
+        "questions": [
+          "O fechamento de pedido envolve pagamento? Se sim, a captura de pagamento fica em módulo horizontal (ex.: payments) e aqui manteríamos apenas campos de status/valores no Order; confirma?",
+          "Deseja rastrear múltiplas impressões/envios para cozinha por pedido (reenvio/itens adicionais)? Se sim, podemos precisar de um eventLog adicional de kitchen_ticket_event ou embutir no details do Order.",
+          "O snapshot de InventoryBalanceSnapshot deve ser por ingrediente+dia, por ingrediente+turno, ou por ingrediente+evento?"
+        ],
+        "trace": [
+          "T_SOURCE.finalPlan.ontologyEntities",
+          "T_SOURCE.finalPlan.approvedArtifacts.pages",
+          "T_SOURCE.finalPlan.approvedArtifacts.workflows",
+          "T_SOURCE.finalPlan.rules",
+          "R_EXCLUDE_MDM_ENTITY",
+          "R_AGGREGATE_WITH_CHILD_COLLECTIONS",
+          "R_SIMPLE_CRUD_ENTITY",
+          "R_TRANSACTIONAL_ROOT_ENTITY",
+          "R_EVENT_SOURCING_FOR_AUDITABILITY",
+          "R_READ_OPTIMIZED_PROJECTION",
+          "R_EVENT_LOG_FOR_ASYNC_PROCESSING",
+          "R_METRICS_TABLES_REQUIRED_TRUE"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 38,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

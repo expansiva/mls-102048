@@ -1,0 +1,75 @@
+{
+  "savedAt": "2026-06-25T12:25:24.612Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 44,
+  "planning": {
+    "planId": "plan-index-critic:persistenceIndex:1",
+    "dependsOn": [
+      "plan-persistence-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "E_TBL_INV_FEATURE",
+              "message": "Tabela parece inventada/fora do escopo do plano aprovado: não há páginas/workflows/UC aprovados que indiquem necessidade de persistir execuções/resultados de IA; o plano só prevê 'Assistente IA (Resumo/Sugestões)' como página, mas não define entidade/tabela operacional de runs nesta index.",
+              "path": "$.tables[5]"
+            },
+            {
+              "code": "E_WRITESBY_INVALID_ARTIFACT",
+              "message": "writesByArtifacts referencia UC/Handlers de IA que não aparecem em approvedArtifacts.usecaseEntities (ex.: 'UC: Gerar resumo de vendas do dia (IA)' existe, mas 'L3 Handler: Gerar Resumo de Vendas (IA)' e 'L3 Handler: Gerar Sugestões de Promoção (IA)' existem; ok. Porém o conjunto mistura nomes e não garante rastreabilidade consistente; faltam referências a artifacts aprovados para escrita/leitura conforme contrato.",
+              "path": "$.tables[5].writesByArtifacts"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "W_SQL_RESERVED_NAME",
+              "message": "tableId/tableName 'order' tende a conflitar com palavra reservada SQL; considerar renomear para 'sales_order'/'customer_order'.",
+              "path": "$.tables[0].tableName"
+            },
+            {
+              "code": "W_EMBEDDED_LIFECYCLE_CHECK",
+              "message": "OrderItem está como embedded em aggregateJsonDetails; ok se não tiver lifecycle/consulta independente. Se KDS/POS precisarem filtrar/atualizar item individualmente, pode exigir tabela própria ou projeção.",
+              "path": "$.tables[0]"
+            },
+            {
+              "code": "W_DININGTABLE_WRITES_SUSPICIOUS",
+              "message": "dining_table tem writesByArtifacts apontando para criação de pedido; criação de pedido tipicamente lê mesa, não escreve. Pode faltar UC/page de CRUD de mesas ou ajustar writesByArtifacts para refletir leitura.",
+              "path": "$.tables[1].writesByArtifacts"
+            },
+            {
+              "code": "W_READMODEL_KIND",
+              "message": "inventory_balance_snapshot usa persistencePattern readModel mas tableKind transactional; aceitável, porém esclarecer que é projeção derivada e como/quem escreve (job/handler) para não virar 'ninguém escreve'.",
+              "path": "$.tables[4]"
+            }
+          ]
+        },
+        "questions": [
+          "A persistência de execuções/resultado de IA (AiInsightRun) foi explicitamente aprovada como entidade/tabela no plano, ou a página de Assistente IA poderia operar sem armazenamento (somente chamada on-demand)?",
+          "Existe algum requisito de CRUD/configuração de mesas (DiningTable) ou elas são fixas/seeded? Se houver CRUD, quais artifacts (página/UC) aprovados fazem a escrita?",
+          "KDS precisa atualizar status por item (OrderItem) ou somente por pedido? Isso valida o padrão aggregateJsonDetails ou exige estrutura mais normalizada."
+        ],
+        "trace": [
+          "Checked ownership: all tables moduleOwned; excludedEntities lists MDM entities only.",
+          "Checked tableKind: all transactional; metricsTablesRequired kept true (not flagged).",
+          "Validated necessity vs approvedArtifacts/ontology/capabilities: Order, DiningTable, DailyShift, InventoryTransaction, InventoryBalanceSnapshot align; AiInsightRun questionable.",
+          "Cross-checked readsByArtifacts/writesByArtifacts coherence; flagged suspicious writes for dining_table; reserved name warning for order."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 39,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

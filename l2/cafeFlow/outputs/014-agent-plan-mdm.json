@@ -1,0 +1,123 @@
+{
+  "savedAt": "2026-06-25T12:23:39.835Z",
+  "agentName": "agentPlanMDM",
+  "stepId": 14,
+  "planning": {
+    "planId": "plan-mdm",
+    "dependsOn": [
+      "plan-finalize-solution-plan"
+    ],
+    "executionMode": "parallel_static",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitMdmPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "mdmDomains": [
+            {
+              "domainId": "menuItem",
+              "title": "Item do Cardápio e Categoria",
+              "masterEntities": [
+                "MenuItem",
+                "MenuCategory"
+              ],
+              "sourceOfTruth": "Plataforma MDM compartilhada (projeto 102034)",
+              "consumers": [
+                "posQuickOrderPage",
+                "menuManagementPage",
+                "kitchenDisplayPage",
+                "createOrderWorkflow",
+                "createOrderCommand",
+                "createOrderL3Handler",
+                "manageMenuItemCommand",
+                "manageMenuItemL3Handler",
+                "salesTodayMetricTable",
+                "topSellingItemsMetricTable",
+                "shiftSummaryMetricTable",
+                "generateAiPromoSuggestionsCommand",
+                "generateAiPromoSuggestionsL3Handler"
+              ],
+              "governanceRules": [
+                "Cada item deve pertencer a uma categoria ativa",
+                "Status permitido: active ou inactive",
+                "Preço deve ser maior ou igual a zero",
+                "Nome do item deve ser único por categoria dentro do tenant",
+                "Alterações de preço não afetam pedidos já fechados (snapshot no OrderItem)"
+              ]
+            },
+            {
+              "domainId": "inventoryItem",
+              "title": "Item de Estoque (Ingrediente/Insumo)",
+              "masterEntities": [
+                "InventoryItem"
+              ],
+              "sourceOfTruth": "Plataforma MDM compartilhada (projeto 102034)",
+              "consumers": [
+                "inventoryManagementPage",
+                "manageInventoryItemCommand",
+                "manageInventoryItemL3Handler",
+                "closeOrderAndDeductInventoryCommand",
+                "closeOrderL3Handler",
+                "postInventoryAdjustmentCommand",
+                "postInventoryAdjustmentL3Handler",
+                "lowStockMetricTable",
+                "generateAiPromoSuggestionsCommand",
+                "generateAiPromoSuggestionsL3Handler"
+              ],
+              "governanceRules": [
+                "Unidade de medida obrigatória e padronizada",
+                "Limiar de estoque baixo deve ser maior ou igual a zero",
+                "Status permitido: active ou inactive",
+                "Nome do ingrediente deve ser único dentro do tenant",
+                "Saldo atual é derivado das movimentações e não deve ser editado diretamente"
+              ]
+            },
+            {
+              "domainId": "recipe",
+              "title": "Receita e Consumo por Item do Cardápio",
+              "masterEntities": [
+                "Recipe",
+                "RecipeIngredient"
+              ],
+              "sourceOfTruth": "Plataforma MDM compartilhada (projeto 102034)",
+              "consumers": [
+                "menuManagementPage",
+                "manageMenuItemCommand",
+                "manageMenuItemL3Handler",
+                "closeOrderAndDeductInventoryCommand",
+                "closeOrderL3Handler",
+                "generateAiPromoSuggestionsCommand",
+                "generateAiPromoSuggestionsL3Handler"
+              ],
+              "governanceRules": [
+                "Apenas uma receita ativa por item do cardápio",
+                "Ingredientes da receita devem referenciar itens de estoque ativos",
+                "Quantidades consumidas devem ser maiores que zero",
+                "Status permitido: draft, active ou archived",
+                "Alterações na receita afetam apenas baixas futuras; pedidos fechados preservam histórico via OrderItem"
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Identificadas na ontologia as entidades kind=mdm: MenuItem, MenuCategory, InventoryItem, Recipe e RecipeIngredient.",
+          "Agrupadas em três domínios MDM: menuItem (cardápio e categoria), inventoryItem (ingredientes/insumos) e recipe (receita e consumo).",
+          "Definido sourceOfTruth na Plataforma MDM compartilhada (projeto 102034), conforme inventário de MDM da plataforma, sem propor novo módulo de persistência.",
+          "Mapeados os consumers de cada domínio: páginas (POS, KDS, gestão), workflows, comandos/L3 handlers, tabelas de métricas e usecases de IA que leem dados mestres.",
+          "Estabelecidas regras de governança por domínio cobrindo integridade referencial, status permitidos, unicidade por tenant e preservação de histórico em pedidos fechados.",
+          "Não foram identificadas entidades de cliente externo, localização ou ativo fora do escopo do MVP; os domínios cobrem todos os master data do CafeFlow."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 45,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

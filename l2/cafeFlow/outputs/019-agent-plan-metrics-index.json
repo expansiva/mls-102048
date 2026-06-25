@@ -1,0 +1,486 @@
+{
+  "savedAt": "2026-06-25T12:47:59.853Z",
+  "agentName": "agentPlanMetricsIndex",
+  "stepId": 19,
+  "planning": {
+    "planId": "plan-metrics-index",
+    "dependsOn": [
+      "plan-persistence-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitMetricsIndex",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "metricsPlan": {
+            "enabled": true,
+            "storageEngine": "postgresTimescaleDB",
+            "moduleId": "cafeFlow",
+            "title": "Plano de Métricas CafeFlow",
+            "description": "Métricas operacionais de vendas, estoque e turnos para gestão da cafeteria e lanchonete.",
+            "updateResponsibility": "layer_3_usecases",
+            "derivationSources": [
+              "baseTableUpdates",
+              "lifecycleTransitions",
+              "operationalRisks"
+            ]
+          },
+          "metricTables": [
+            {
+              "metricTableId": "salesTodayMetrics",
+              "tableName": "sales_today_metrics",
+              "title": "Vendas de Hoje",
+              "purpose": "Acompanhar vendas em tempo real para o dashboard do dia e decisões operacionais imediatas.",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "order",
+                "order_item"
+              ],
+              "sourceEntities": [
+                "Order",
+                "OrderItem"
+              ],
+              "sourceWriteEvents": [
+                "order_insert",
+                "order_update",
+                "order_item_insert",
+                "order_item_update"
+              ],
+              "timeColumn": "time",
+              "dimensions": [
+                {
+                  "dimensionId": "shiftId",
+                  "column": "shift_id",
+                  "type": "string",
+                  "description": "Turno diário"
+                },
+                {
+                  "dimensionId": "orderId",
+                  "column": "order_id",
+                  "type": "string",
+                  "description": "Pedido"
+                },
+                {
+                  "dimensionId": "diningTableId",
+                  "column": "dining_table_id",
+                  "type": "string",
+                  "description": "Mesa"
+                },
+                {
+                  "dimensionId": "menuItemId",
+                  "column": "menu_item_id",
+                  "type": "string",
+                  "description": "Item do cardápio"
+                },
+                {
+                  "dimensionId": "menuCategoryId",
+                  "column": "menu_category_id",
+                  "type": "string",
+                  "description": "Categoria do cardápio"
+                },
+                {
+                  "dimensionId": "orderType",
+                  "column": "order_type",
+                  "type": "string",
+                  "description": "Tipo do pedido (mesa/takeout)"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "totalSales",
+                  "column": "total_sales",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "unit": "BRL",
+                  "description": "Total de vendas"
+                },
+                {
+                  "measureId": "orderCount",
+                  "column": "order_count",
+                  "type": "numeric",
+                  "aggregation": "count",
+                  "unit": "orders",
+                  "description": "Quantidade de pedidos"
+                },
+                {
+                  "measureId": "itemsSold",
+                  "column": "items_sold",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "unit": "units",
+                  "description": "Unidades vendidas"
+                },
+                {
+                  "measureId": "avgTicket",
+                  "column": "avg_ticket",
+                  "type": "numeric",
+                  "aggregation": "avg",
+                  "unit": "BRL",
+                  "description": "Ticket médio"
+                }
+              ],
+              "aggregationWindows": [
+                "1m",
+                "5m",
+                "15m",
+                "1h",
+                "1d"
+              ],
+              "retentionPolicy": "30d",
+              "priority": "now",
+              "rulesApplied": [
+                "metricsDerivedFromClosedOrders",
+                "menuPriceIsSnapshottedOnOrderItem"
+              ],
+              "reason": "Base para o dashboard do dia e indicadores de vendas em tempo real."
+            },
+            {
+              "metricTableId": "topSellingItemsMetrics",
+              "tableName": "top_selling_items_metrics",
+              "title": "Itens Mais Vendidos",
+              "purpose": "Identificar itens mais vendidos para reposição, produção e sugestões de promoções.",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "order",
+                "order_item"
+              ],
+              "sourceEntities": [
+                "Order",
+                "OrderItem"
+              ],
+              "sourceWriteEvents": [
+                "order_insert",
+                "order_update",
+                "order_item_insert"
+              ],
+              "timeColumn": "time",
+              "dimensions": [
+                {
+                  "dimensionId": "menuItemId",
+                  "column": "menu_item_id",
+                  "type": "string",
+                  "description": "Item do cardápio"
+                },
+                {
+                  "dimensionId": "menuCategoryId",
+                  "column": "menu_category_id",
+                  "type": "string",
+                  "description": "Categoria do cardápio"
+                },
+                {
+                  "dimensionId": "shiftId",
+                  "column": "shift_id",
+                  "type": "string",
+                  "description": "Turno diário"
+                },
+                {
+                  "dimensionId": "orderId",
+                  "column": "order_id",
+                  "type": "string",
+                  "description": "Pedido"
+                },
+                {
+                  "dimensionId": "diningTableId",
+                  "column": "dining_table_id",
+                  "type": "string",
+                  "description": "Mesa"
+                },
+                {
+                  "dimensionId": "orderType",
+                  "column": "order_type",
+                  "type": "string",
+                  "description": "Tipo do pedido"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "quantitySold",
+                  "column": "quantity_sold",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "unit": "units",
+                  "description": "Quantidade vendida"
+                },
+                {
+                  "measureId": "revenue",
+                  "column": "revenue",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "unit": "BRL",
+                  "description": "Receita gerada"
+                },
+                {
+                  "measureId": "ordersCount",
+                  "column": "orders_count",
+                  "type": "numeric",
+                  "aggregation": "count",
+                  "unit": "orders",
+                  "description": "Número de pedidos"
+                }
+              ],
+              "aggregationWindows": [
+                "1h",
+                "1d",
+                "7d"
+              ],
+              "retentionPolicy": "90d",
+              "priority": "now",
+              "rulesApplied": [
+                "metricsDerivedFromClosedOrders"
+              ],
+              "reason": "Suportar análise de ranking de produtos e decisões de cardápio."
+            },
+            {
+              "metricTableId": "lowStockMetrics",
+              "tableName": "low_stock_metrics",
+              "title": "Estoque Baixo",
+              "purpose": "Monitorar níveis de estoque e alertar sobre ingredientes com quantidade crítica.",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "inventory_transaction",
+                "inventory_balance_snapshot"
+              ],
+              "sourceEntities": [
+                "InventoryTransaction",
+                "InventoryBalanceSnapshot"
+              ],
+              "sourceWriteEvents": [
+                "inventory_transaction_insert",
+                "inventory_balance_snapshot_insert",
+                "inventory_balance_snapshot_update"
+              ],
+              "timeColumn": "time",
+              "dimensions": [
+                {
+                  "dimensionId": "inventoryItemId",
+                  "column": "inventory_item_id",
+                  "type": "string",
+                  "description": "Item de estoque (ingrediente)"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "currentBalance",
+                  "column": "current_balance",
+                  "type": "numeric",
+                  "aggregation": "last",
+                  "unit": "units",
+                  "description": "Saldo atual"
+                },
+                {
+                  "measureId": "transactionVolume",
+                  "column": "transaction_volume",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "unit": "units",
+                  "description": "Volume movimentado no período"
+                }
+              ],
+              "aggregationWindows": [
+                "5m",
+                "15m",
+                "1h",
+                "1d"
+              ],
+              "retentionPolicy": "30d",
+              "priority": "now",
+              "rulesApplied": [
+                "inventoryCannotGoNegativeByDefault"
+              ],
+              "reason": "Evitar ruptura de insumos e garantir continuidade da produção."
+            },
+            {
+              "metricTableId": "shiftSummaryMetrics",
+              "tableName": "shift_summary_metrics",
+              "title": "Resumo do Turno",
+              "purpose": "Consolidar métricas do turno para fechamento, relatórios e análise de performance.",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "daily_shift",
+                "order",
+                "order_item"
+              ],
+              "sourceEntities": [
+                "DailyShift",
+                "Order",
+                "OrderItem"
+              ],
+              "sourceWriteEvents": [
+                "daily_shift_insert",
+                "daily_shift_update",
+                "order_insert",
+                "order_update"
+              ],
+              "timeColumn": "time",
+              "dimensions": [
+                {
+                  "dimensionId": "shiftId",
+                  "column": "shift_id",
+                  "type": "string",
+                  "description": "Turno diário"
+                },
+                {
+                  "dimensionId": "shiftStatus",
+                  "column": "shift_status",
+                  "type": "string",
+                  "description": "Status do turno"
+                },
+                {
+                  "dimensionId": "orderId",
+                  "column": "order_id",
+                  "type": "string",
+                  "description": "Pedido"
+                },
+                {
+                  "dimensionId": "diningTableId",
+                  "column": "dining_table_id",
+                  "type": "string",
+                  "description": "Mesa"
+                },
+                {
+                  "dimensionId": "menuItemId",
+                  "column": "menu_item_id",
+                  "type": "string",
+                  "description": "Item do cardápio"
+                },
+                {
+                  "dimensionId": "menuCategoryId",
+                  "column": "menu_category_id",
+                  "type": "string",
+                  "description": "Categoria do cardápio"
+                },
+                {
+                  "dimensionId": "orderType",
+                  "column": "order_type",
+                  "type": "string",
+                  "description": "Tipo do pedido"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "totalRevenue",
+                  "column": "total_revenue",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "unit": "BRL",
+                  "description": "Receita total"
+                },
+                {
+                  "measureId": "totalOrders",
+                  "column": "total_orders",
+                  "type": "numeric",
+                  "aggregation": "count",
+                  "unit": "orders",
+                  "description": "Total de pedidos"
+                },
+                {
+                  "measureId": "itemsSold",
+                  "column": "items_sold",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "unit": "units",
+                  "description": "Itens vendidos"
+                },
+                {
+                  "measureId": "cancelledCount",
+                  "column": "cancelled_count",
+                  "type": "numeric",
+                  "aggregation": "count",
+                  "unit": "orders",
+                  "description": "Pedidos cancelados"
+                },
+                {
+                  "measureId": "avgPreparationMinutes",
+                  "column": "avg_preparation_minutes",
+                  "type": "numeric",
+                  "aggregation": "avg",
+                  "unit": "minutes",
+                  "description": "Tempo médio de preparo"
+                }
+              ],
+              "aggregationWindows": [
+                "1d"
+              ],
+              "retentionPolicy": "1y",
+              "priority": "now",
+              "rulesApplied": [
+                "shiftMustBeOpenToCreateOrders",
+                "metricsDerivedFromClosedOrders"
+              ],
+              "reason": "Base para o relatório de fechamento de turno e análise histórica."
+            }
+          ],
+          "dashboardPages": [
+            {
+              "metricDashboardId": "managerMetricsDashboard",
+              "title": "Dashboard de Métricas do Gerente",
+              "actor": "managerOwner",
+              "accessPolicy": "admin-only",
+              "priority": "now",
+              "sources": [
+                "sales_today_metrics",
+                "top_selling_items_metrics",
+                "low_stock_metrics",
+                "shift_summary_metrics"
+              ],
+              "rulesApplied": [
+                "metricsDerivedFromClosedOrders"
+              ],
+              "description": "Painel administrativo consolidado com vendas, ranking de produtos, estoque e resumo do turno.",
+              "widgets": [
+                {
+                  "widgetId": "todaySalesWidget",
+                  "title": "Vendas de Hoje",
+                  "metricId": "totalSales",
+                  "type": "number",
+                  "sourceMetricTable": "salesTodayMetrics"
+                },
+                {
+                  "widgetId": "topItemsWidget",
+                  "title": "Itens Mais Vendidos",
+                  "metricId": "quantitySold",
+                  "type": "barChart",
+                  "sourceMetricTable": "topSellingItemsMetrics"
+                },
+                {
+                  "widgetId": "lowStockWidget",
+                  "title": "Alertas de Estoque",
+                  "metricId": "currentBalance",
+                  "type": "table",
+                  "sourceMetricTable": "lowStockMetrics"
+                },
+                {
+                  "widgetId": "shiftSummaryWidget",
+                  "title": "Resumo do Turno",
+                  "metricId": "totalRevenue",
+                  "type": "summary",
+                  "sourceMetricTable": "shiftSummaryMetrics"
+                }
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Analisadas as entidades da ontologia e as regras de negócio aprovadas para derivar métricas.",
+          "Mapeadas as tabelas transacionais fonte: order, order_item, daily_shift, inventory_transaction e inventory_balance_snapshot.",
+          "Definidas 4 tabelas de métricas operacionais em postgresTimescaleDB: vendas de hoje, itens mais vendidos, estoque baixo e resumo do turno.",
+          "Incluídas todas as dimensões de FK dos relacionamentos diretos das entidades fonte em cada tabela de métricas.",
+          "Configuradas janelas de agregação e políticas de retenção adequadas à volatilidade de cada métrica.",
+          "Criado o dashboard admin-only do gerente com widgets ligados às 4 tabelas de métricas.",
+          "Estabelecida a responsabilidade de atualização na camada layer_3_usecases e fontes de derivação aprovadas."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 42,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

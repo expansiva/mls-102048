@@ -1,0 +1,113 @@
+{
+  "savedAt": "2026-06-25T12:24:37.760Z",
+  "agentName": "agentPlanEntityDefinition",
+  "stepId": 41,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitEntityDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "entityDefinition": {
+            "entityId": "DailyShift",
+            "title": "Turno Diário",
+            "description": "Período operacional para consolidação de vendas, controle de abertura/fechamento e geração de relatório.",
+            "kind": "core",
+            "ownership": "moduleOwned",
+            "statusEnum": [
+              "open",
+              "closed"
+            ],
+            "lifecycleStates": [
+              "open",
+              "closed"
+            ],
+            "rulesApplied": [
+              "shiftMustBeOpenToCreateOrders"
+            ],
+            "fields": [
+              {
+                "fieldId": "dailyShiftId",
+                "type": "uuid",
+                "required": true,
+                "description": "Identificador único do turno diário"
+              },
+              {
+                "fieldId": "shiftDate",
+                "type": "date",
+                "required": true,
+                "description": "Data de referência do turno operacional"
+              },
+              {
+                "fieldId": "status",
+                "type": "string",
+                "required": true,
+                "enum": [
+                  "open",
+                  "closed"
+                ],
+                "description": "Situação atual do turno (aberto ou fechado)"
+              },
+              {
+                "fieldId": "openedAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora da abertura do turno"
+              },
+              {
+                "fieldId": "closedAt",
+                "type": "datetime",
+                "required": false,
+                "description": "Data e hora do fechamento do turno"
+              },
+              {
+                "fieldId": "openedBy",
+                "type": "string",
+                "required": false,
+                "description": "Nome do operador que abriu o turno"
+              },
+              {
+                "fieldId": "closedBy",
+                "type": "string",
+                "required": false,
+                "description": "Nome do operador que fechou o turno"
+              },
+              {
+                "fieldId": "closingNotes",
+                "type": "text",
+                "required": false,
+                "description": "Observações gerais registradas no fechamento do turno"
+              },
+              {
+                "fieldId": "createdAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora de criação do registro"
+              },
+              {
+                "fieldId": "updatedAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora da última atualização do registro"
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Mapeados campos identidade (dailyShiftId), negócio (shiftDate, status, openedAt, closedAt, openedBy, closedBy, closingNotes) e auditoria (createdAt, updatedAt) para DailyShift",
+          "Status enum definido como [open, closed] alinhado ao statusEnum e lifecycleStates do plano",
+          "Regra shiftMustBeOpenToCreateOrders aplicada à entidade",
+          "Verificados relacionamentos: DailyShift atua como lado 'one' em todos os relacionamentos informados, não exigindo campos de referência foreign-key"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 45,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
