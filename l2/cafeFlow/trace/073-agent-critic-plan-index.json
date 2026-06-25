@@ -1,0 +1,89 @@
+{
+  "savedAt": "2026-06-25T12:54:47.461Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 73,
+  "planning": {
+    "planId": "plan-index-critic:usecasePlan:4",
+    "dependsOn": [
+      "plan-usecase-entities"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "E-READ-001",
+              "message": "Entidade/tabela escrita sem usecase de leitura correspondente: daily_shift é escrita (openDailyShift, closeDailyShiftAndGenerateReport) mas não existe um usecase de leitura/listagem dedicado (ex.: getOpenShift/listShifts/getShiftById) com writesTables vazio.",
+              "path": "$.usecases"
+            },
+            {
+              "code": "E-READ-002",
+              "message": "Entidade/tabela escrita sem usecase de leitura correspondente: inventory_balance_snapshot é escrita (closeOrderAsSaleAndDeductInventory, postInventoryAdjustment) mas não existe um usecase read-only explícito para consultar/listar snapshots (apesar de operações citadas na entity).",
+              "path": "$.usecases"
+            },
+            {
+              "code": "E-READ-003",
+              "message": "Entidade/tabela escrita sem usecase de leitura correspondente: inventory_transaction é escrita (closeOrderAsSaleAndDeductInventory, postInventoryAdjustment) mas não existe usecase read-only para consultar movimentações; há apenas listInventoryTransactions que lê, ok, porém falta um getInventoryTransactionById (detalhe) se necessário para páginas/fluxos de auditoria; índice exige list/search, então ao menos 1 read existe — remover este erro se considerar suficiente.",
+              "path": "$.usecases"
+            },
+            {
+              "code": "E-LIFECYCLE-001",
+              "message": "Uso de operações de lifecycle declaradas na entity sem cobertura por usecases: ShiftAggregate.allowedOperations inclui getShiftById/getOpenShift/listShifts mas não há usecases correspondentes.",
+              "path": "$.usecaseEntities[?(@.usecaseEntityId=='ShiftAggregate')].allowedOperations"
+            },
+            {
+              "code": "E-LIFECYCLE-002",
+              "message": "AiInsightsAggregate.allowedOperations inclui markAiRunSucceeded/markAiRunFailed mas não há usecases que executem essas transições; requestAi* apenas cria ai_insight_run.",
+              "path": "$.usecaseEntities[?(@.usecaseEntityId=='AiInsightsAggregate')].allowedOperations"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "W-READ-ORDERITEM-001",
+              "message": "OrderAggregate.sourceTables inclui order_item mas nenhum usecase lista explicitamente order_item em writesTables/readsTables; presume-se que seja persistido via tabela order ou join implícito. Tornar explícito para rastreabilidade de writes/reads por tabela.",
+              "path": "$.usecaseEntities[?(@.usecaseEntityId=='OrderAggregate')].sourceTables"
+            },
+            {
+              "code": "W-LAYER1-001",
+              "message": "Requisito diz que somente L3 acessa layer_1_external; o índice não lista quaisquer tabelas layer_1_external nem usecases de integração (ex.: proxy LLM). Documentar explicitamente o acesso externo como dependência (não tabela) ou referenciar corretamente layer_1_external, se existir.",
+              "path": "$.backendArchitecture"
+            },
+            {
+              "code": "W-METRIC-001",
+              "message": "closeDailyShiftAndGenerateReport escreve métricas; verificar se isso está alinhado a 'metricsDerivedFromClosedOrders' e se há risco de dupla contagem em relação a closeOrderAsSaleAndDeductInventory que também escreve métricas. Pode precisar definir fonte de verdade / idempotência do update.",
+              "path": "$.usecases[?(@.usecaseId=='closeDailyShiftAndGenerateReport')].writesTables"
+            },
+            {
+              "code": "W-T014-001",
+              "message": "Requisito T-014: usecase só pode escrever tabela de métricas quando o write mapeia a measures/sourceWriteEvents. O índice não declara essa relação; adicionar metadados (ex.: sourceWriteEvent='OrderClosed', 'InventoryAdjusted', 'ShiftClosed') para cada write de métrica.",
+              "path": "$.usecases[*].writesTables"
+            }
+          ]
+        },
+        "questions": [
+          "Confirmar interpretação do contrato de READ COVERAGE: para inventory_transaction, o usecase listInventoryTransactions satisfaz o mínimo (list/search) ou é esperado também um 'get...ById' detalhado para páginas de auditoria? Se o mínimo for suficiente, removo o erro E-READ-003.",
+          "Existem páginas aprovadas que exigem listagem de turnos (histórico) ou consulta de turno aberto além do relatório? (Se sim, precisamos dos usecases de leitura de ShiftAggregate).",
+          "O processamento de AI marca succeeded/failed será feito por workflow/agent assíncrono? Se sim, precisamos de usecases dedicados para essas transições (markAiRunSucceeded/Failed) e quem é o actor (system/agent)."
+        ],
+        "trace": [
+          "Checagem de READ COVERAGE para todas as tabelas em writesTables: order, daily_shift, inventory_transaction, inventory_balance_snapshot, ai_insight_run, métricas.*. Identificados gaps de leitura para daily_shift e inventory_balance_snapshot.",
+          "Checagem de lifecycle: operações declaradas em allowedOperations sem usecase correspondente (ShiftAggregate, AiInsightsAggregate).",
+          "Checagem de T-014/metrics: writes a metric tables presentes, mas sem mapeamento explícito a eventos/medidas; também possível duplicidade de updates entre fechamento de pedido e fechamento de turno."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 74,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

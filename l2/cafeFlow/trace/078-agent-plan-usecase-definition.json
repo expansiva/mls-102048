@@ -1,0 +1,55 @@
+{
+  "savedAt": "2026-06-25T12:57:59.559Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 78,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "requestAiPromoSuggestions",
+            "commands": [
+              {
+                "commandId": "requestAiPromoSuggestions",
+                "input": [],
+                "output": [
+                  {
+                    "name": "insightId",
+                    "type": "string"
+                  },
+                  {
+                    "name": "runId",
+                    "type": "string"
+                  },
+                  {
+                    "name": "suggestions",
+                    "type": "string"
+                  },
+                  {
+                    "name": "createdAt",
+                    "type": "date"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Derivado do propósito de solicitar sugestões de promoção de 7 dias via proxy LLM e registrar a execução.",
+          "Entrada vazia, pois o usecase lê diretamente as métricas (top_selling_items_metrics) e o cardápio (menu_item) e aplica janela fixa de 7 dias.",
+          "Saída contempla insightId (entidade AiInsightsAggregate gerada), runId (registro em ai_insight_run), suggestions (conteúdo textual gerado pela IA) e createdAt (data da geração)."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 82,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

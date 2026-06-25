@@ -1,0 +1,65 @@
+{
+  "savedAt": "2026-06-25T12:48:20.776Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 60,
+  "planning": {
+    "planId": "plan-index-critic:metricsIndex:1",
+    "dependsOn": [
+      "plan-metrics-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": true,
+          "errors": [],
+          "warnings": [
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "Base tables list includes tables not in moduleTableIds (e.g., order_item, inventory_transaction, inventory_balance_snapshot, daily_shift). If those are intended, ensure they exist as base tables in the solution or align naming to existing module tables (OrderItem vs order_item, InventoryTransaction vs inventoryTransaction, etc.).",
+              "path": "metricTables"
+            },
+            {
+              "code": "metrics.dimensions.missingDirectOntologyFk",
+              "message": "T-013: each metric table should include dimensions for direct ontology FKs of its source entities. Some tables appear to include extra non-FK dims (menuCategoryId, orderType) but may be missing required direct relationships like MenuItem->MenuCategory, OrderItem->MenuItem, Order->DailyShift, Order->DiningTable (optional) consistently per source entity; validate and add any missing FK dimensions per source entity relationship map.",
+              "path": "metricTables[0..3].dimensions"
+            },
+            {
+              "code": "metrics.dimension.typeMismatch",
+              "message": "shiftSummaryMetrics.dimensions.orderId uses type 'text' while other tables use 'uuid' for order_id; prefer consistent FK type.",
+              "path": "metricTables[3].dimensions[3]"
+            },
+            {
+              "code": "dashboards.actorId.check",
+              "message": "Dashboard actor uses 'managerOwner' which is a valid finalPlan actorId; ensure accessPolicy format matches platform conventions (string ok).",
+              "path": "dashboardPages[0].actor"
+            },
+            {
+              "code": "metrics.timeColumn.eventTimestamp",
+              "message": "All metric tables use timeColumn 'event_timestamp' but source events vary; ensure the metric tables actually store this column and it is set from the L3 handler event time to avoid ambiguity (shift close vs order close vs inventory tx posted).",
+              "path": "metricTables[0..3].timeColumn"
+            }
+          ]
+        },
+        "questions": [
+          "Existe no modelo/base de dados do módulo uma tabela física separada para OrderItem (order_item) e para snapshots/transações de estoque com nomes snake_case, ou os nomes corretos são inventoryTransaction / inventoryBalanceSnapshot / dailyShift conforme moduleTableIds?",
+          "Pode compartilhar/confirmar o mapa de relacionamentos diretos da ontologia (FKs) entre Order, OrderItem, MenuItem, MenuCategory, DailyShift, DiningTable, InventoryTransaction, InventoryBalanceSnapshot para validar o cumprimento do T-013?"
+        ],
+        "trace": [
+          "Reviewed contract focus: table count vs approvedArtifacts.metricTables (4) matches; storageEngine ok; updateResponsibility layer_3_usecases ok; dashboard references metricTables ids ok; checked moduleTableIds vs sourceBaseTables; checked T-013 dimension coverage heuristically; checked type consistency for FK dims; checked dashboard actorId vs finalPlan actors."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 61,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

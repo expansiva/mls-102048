@@ -1,0 +1,524 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "metricsIndex",
+  "moduleName": "cafeFlow",
+  "status": "frozen",
+  "approvedAt": "2026-06-25T12:48:20.781Z",
+  "source": {
+    "agentName": "agentPlanMetricsIndex",
+    "stepId": 19,
+    "planId": "plan-metrics-index"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table todaySalesMetrics sources unknown base table order_item",
+        "path": "metricTables[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table topSellingItemsMetrics sources unknown base table order_item",
+        "path": "metricTables[1]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table lowStockMetrics sources unknown base table inventory_balance_snapshot",
+        "path": "metricTables[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table lowStockMetrics sources unknown base table inventory_transaction",
+        "path": "metricTables[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table shiftSummaryMetrics sources unknown base table daily_shift",
+        "path": "metricTables[3]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table shiftSummaryMetrics sources unknown base table order_item",
+        "path": "metricTables[3]"
+      }
+    ],
+    "criticErrors": [],
+    "criticWarnings": [
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "Base tables list includes tables not in moduleTableIds (e.g., order_item, inventory_transaction, inventory_balance_snapshot, daily_shift). If those are intended, ensure they exist as base tables in the solution or align naming to existing module tables (OrderItem vs order_item, InventoryTransaction vs inventoryTransaction, etc.).",
+        "path": "metricTables"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.dimensions.missingDirectOntologyFk",
+        "message": "T-013: each metric table should include dimensions for direct ontology FKs of its source entities. Some tables appear to include extra non-FK dims (menuCategoryId, orderType) but may be missing required direct relationships like MenuItem->MenuCategory, OrderItem->MenuItem, Order->DailyShift, Order->DiningTable (optional) consistently per source entity; validate and add any missing FK dimensions per source entity relationship map.",
+        "path": "metricTables[0..3].dimensions"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.dimension.typeMismatch",
+        "message": "shiftSummaryMetrics.dimensions.orderId uses type 'text' while other tables use 'uuid' for order_id; prefer consistent FK type.",
+        "path": "metricTables[3].dimensions[3]"
+      },
+      {
+        "severity": "warning",
+        "code": "dashboards.actorId.check",
+        "message": "Dashboard actor uses 'managerOwner' which is a valid finalPlan actorId; ensure accessPolicy format matches platform conventions (string ok).",
+        "path": "dashboardPages[0].actor"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.timeColumn.eventTimestamp",
+        "message": "All metric tables use timeColumn 'event_timestamp' but source events vary; ensure the metric tables actually store this column and it is set from the L3 handler event time to avoid ambiguity (shift close vs order close vs inventory tx posted).",
+        "path": "metricTables[0..3].timeColumn"
+      }
+    ],
+    "attempts": 1,
+    "notes": []
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "repair:metricsIndex",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "metricsPlan": {
+        "enabled": true,
+        "storageEngine": "postgresTimescaleDB",
+        "moduleId": "cafeFlow",
+        "title": "Plano de Métricas CafeFlow",
+        "description": "Métricas operacionais de vendas, estoque e turnos para o módulo cafeFlow",
+        "updateResponsibility": "layer_3_usecases",
+        "derivationSources": [
+          "baseTableUpdates",
+          "lifecycleTransitions",
+          "operationalRisks"
+        ]
+      },
+      "metricTables": [
+        {
+          "metricTableId": "todaySalesMetrics",
+          "tableName": "today_sales_metrics",
+          "title": "Vendas de Hoje",
+          "purpose": "Acompanhar receita, quantidade de pedidos e ticket médio em tempo real durante o turno",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "order",
+            "order_item"
+          ],
+          "sourceEntities": [
+            "Order",
+            "OrderItem"
+          ],
+          "sourceWriteEvents": [
+            "orderClosed"
+          ],
+          "timeColumn": "event_timestamp",
+          "dimensions": [
+            {
+              "dimensionId": "orderType",
+              "column": "order_type",
+              "type": "string",
+              "description": "Tipo do pedido: mesa ou takeout"
+            },
+            {
+              "dimensionId": "menuItemId",
+              "column": "menu_item_id",
+              "type": "uuid",
+              "description": "Item do cardápio"
+            },
+            {
+              "dimensionId": "menuCategoryId",
+              "column": "menu_category_id",
+              "type": "uuid",
+              "description": "Categoria do cardápio"
+            },
+            {
+              "dimensionId": "diningTableId",
+              "column": "dining_table_id",
+              "type": "uuid",
+              "description": "Mesa"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship orderBelongsToShift (Order -> DailyShift)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "totalRevenue",
+              "column": "total_revenue",
+              "type": "currency",
+              "aggregation": "sum",
+              "unit": "BRL",
+              "description": "Receita total"
+            },
+            {
+              "measureId": "totalOrders",
+              "column": "order_count",
+              "type": "integer",
+              "aggregation": "sum",
+              "description": "Quantidade de pedidos"
+            },
+            {
+              "measureId": "totalItemsSold",
+              "column": "item_quantity",
+              "type": "integer",
+              "aggregation": "sum",
+              "description": "Quantidade total de itens vendidos"
+            },
+            {
+              "measureId": "averageTicket",
+              "column": "ticket_value",
+              "type": "currency",
+              "aggregation": "avg",
+              "unit": "BRL",
+              "description": "Ticket médio"
+            }
+          ],
+          "aggregationWindows": [
+            "1h",
+            "1d"
+          ],
+          "retentionPolicy": "90 dias",
+          "priority": "now",
+          "rulesApplied": [
+            "metricsDerivedFromClosedOrders",
+            "menuPriceIsSnapshottedOnOrderItem",
+            "shiftMustBeOpenToCreateOrders",
+            "updatedOnlyByLayer3Usecases"
+          ],
+          "reason": "Métrica operacional essencial para o dashboard do dia e fechamento de turno. Consumidor: Dashboard de Métricas do Gerente"
+        },
+        {
+          "metricTableId": "topSellingItemsMetrics",
+          "tableName": "top_selling_items_metrics",
+          "title": "Itens Mais Vendidos",
+          "purpose": "Identificar quais itens do cardápio geram mais volume e receita",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "order",
+            "order_item"
+          ],
+          "sourceEntities": [
+            "Order",
+            "OrderItem",
+            "MenuItem"
+          ],
+          "sourceWriteEvents": [
+            "orderClosed"
+          ],
+          "timeColumn": "event_timestamp",
+          "dimensions": [
+            {
+              "dimensionId": "menuItemId",
+              "column": "menu_item_id",
+              "type": "uuid",
+              "description": "Item do cardápio"
+            },
+            {
+              "dimensionId": "menuCategoryId",
+              "column": "menu_category_id",
+              "type": "uuid",
+              "description": "Categoria do cardápio"
+            },
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship orderItemReferencesOrder (OrderItem -> Order)"
+            },
+            {
+              "dimensionId": "diningTableId",
+              "column": "dining_table_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship orderOptionallyReferencesDiningTable (Order -> DiningTable)"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship orderBelongsToShift (Order -> DailyShift)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "quantitySold",
+              "column": "quantity_sold",
+              "type": "integer",
+              "aggregation": "sum",
+              "description": "Quantidade vendida do item"
+            },
+            {
+              "measureId": "itemRevenue",
+              "column": "item_revenue",
+              "type": "currency",
+              "aggregation": "sum",
+              "unit": "BRL",
+              "description": "Receita gerada pelo item"
+            }
+          ],
+          "aggregationWindows": [
+            "1h",
+            "1d",
+            "7d"
+          ],
+          "retentionPolicy": "1 ano",
+          "priority": "now",
+          "rulesApplied": [
+            "metricsDerivedFromClosedOrders",
+            "menuPriceIsSnapshottedOnOrderItem",
+            "updatedOnlyByLayer3Usecases"
+          ],
+          "reason": "Base para sugestões de promoção e análise de desempenho do cardápio. Consumidor: Dashboard de Métricas do Gerente"
+        },
+        {
+          "metricTableId": "lowStockMetrics",
+          "tableName": "low_stock_metrics",
+          "title": "Estoque Baixo",
+          "purpose": "Monitorar saldos de ingredientes e alertar sobre itens abaixo do nível crítico",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "inventory_balance_snapshot",
+            "inventory_transaction"
+          ],
+          "sourceEntities": [
+            "InventoryItem",
+            "InventoryBalanceSnapshot",
+            "InventoryTransaction"
+          ],
+          "sourceWriteEvents": [
+            "inventoryTransactionPosted",
+            "inventoryAdjustmentPosted",
+            "orderClosed"
+          ],
+          "timeColumn": "event_timestamp",
+          "dimensions": [
+            {
+              "dimensionId": "inventoryItemId",
+              "column": "inventory_item_id",
+              "type": "uuid",
+              "description": "Item de estoque (ingrediente)"
+            },
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship inventoryTxOptionallyReferencesOrder (InventoryTransaction -> Order)"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship snapshotByShift (InventoryBalanceSnapshot -> DailyShift)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "currentBalance",
+              "column": "balance_quantity",
+              "type": "numeric",
+              "aggregation": "last",
+              "unit": "unidade",
+              "description": "Saldo atual em estoque"
+            },
+            {
+              "measureId": "minThreshold",
+              "column": "min_threshold",
+              "type": "numeric",
+              "aggregation": "last",
+              "unit": "unidade",
+              "description": "Estoque mínimo configurado"
+            },
+            {
+              "measureId": "belowThresholdFlag",
+              "column": "is_below_threshold",
+              "type": "integer",
+              "aggregation": "max",
+              "description": "Indicador de estoque abaixo do mínimo (1=sim, 0=não)"
+            }
+          ],
+          "aggregationWindows": [
+            "1h",
+            "1d"
+          ],
+          "retentionPolicy": "90 dias",
+          "priority": "now",
+          "rulesApplied": [
+            "inventoryDeductionHappensOnSaleEvent",
+            "inventoryCannotGoNegativeByDefault",
+            "updatedOnlyByLayer3Usecases"
+          ],
+          "reason": "Evita ruptura de ingredientes críticos durante o expediente. Consumidor: Dashboard de Métricas do Gerente"
+        },
+        {
+          "metricTableId": "shiftSummaryMetrics",
+          "tableName": "shift_summary_metrics",
+          "title": "Resumo do Turno",
+          "purpose": "Consolidar indicadores financeiros e operacionais ao final de cada turno diário",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "daily_shift",
+            "order",
+            "order_item"
+          ],
+          "sourceEntities": [
+            "DailyShift",
+            "Order",
+            "OrderItem"
+          ],
+          "sourceWriteEvents": [
+            "dailyShiftClosed",
+            "orderClosed"
+          ],
+          "timeColumn": "event_timestamp",
+          "dimensions": [
+            {
+              "dimensionId": "menuItemId",
+              "column": "menu_item_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship orderItemReferencesMenuItem (OrderItem -> MenuItem)"
+            },
+            {
+              "dimensionId": "diningTableId",
+              "column": "dining_table_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship orderOptionallyReferencesDiningTable (Order -> DiningTable)"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "uuid",
+              "description": "FK dimension derived from ontology relationship orderBelongsToShift (Order -> DailyShift)"
+            },
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship orderHasItems (OrderItem -> Order)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "shiftRevenue",
+              "column": "revenue",
+              "type": "currency",
+              "aggregation": "sum",
+              "unit": "BRL",
+              "description": "Receita total do turno"
+            },
+            {
+              "measureId": "shiftOrders",
+              "column": "order_count",
+              "type": "integer",
+              "aggregation": "sum",
+              "description": "Total de pedidos no turno"
+            },
+            {
+              "measureId": "shiftItemsSold",
+              "column": "items_sold",
+              "type": "integer",
+              "aggregation": "sum",
+              "description": "Total de itens vendidos no turno"
+            },
+            {
+              "measureId": "shiftAverageTicket",
+              "column": "ticket_value",
+              "type": "currency",
+              "aggregation": "avg",
+              "unit": "BRL",
+              "description": "Ticket médio do turno"
+            }
+          ],
+          "aggregationWindows": [
+            "1d"
+          ],
+          "retentionPolicy": "5 anos",
+          "priority": "now",
+          "rulesApplied": [
+            "metricsDerivedFromClosedOrders",
+            "shiftMustBeOpenToCreateOrders",
+            "updatedOnlyByLayer3Usecases"
+          ],
+          "reason": "Relatório oficial de fechamento de turno para o gerente/dono. Consumidor: Dashboard de Métricas do Gerente"
+        }
+      ],
+      "dashboardPages": [
+        {
+          "metricDashboardId": "managerMetricsDashboard",
+          "title": "Dashboard de Métricas do Gerente",
+          "description": "Visão consolidada de vendas, estoque e turnos para gestão da cafeteria",
+          "actor": "managerOwner",
+          "accessPolicy": "actor:managerOwner",
+          "priority": "now",
+          "sources": [
+            "todaySalesMetrics",
+            "topSellingItemsMetrics",
+            "lowStockMetrics",
+            "shiftSummaryMetrics"
+          ],
+          "widgets": [
+            {
+              "widgetId": "todayRevenueKpi",
+              "title": "Receita de Hoje",
+              "metricId": "totalRevenue",
+              "type": "kpi",
+              "sourceMetricTable": "todaySalesMetrics"
+            },
+            {
+              "widgetId": "todayOrdersKpi",
+              "title": "Pedidos Hoje",
+              "metricId": "totalOrders",
+              "type": "kpi",
+              "sourceMetricTable": "todaySalesMetrics"
+            },
+            {
+              "widgetId": "topItemsChart",
+              "title": "Itens Mais Vendidos",
+              "metricId": "quantitySold",
+              "type": "chart",
+              "sourceMetricTable": "topSellingItemsMetrics"
+            },
+            {
+              "widgetId": "lowStockList",
+              "title": "Estoque Baixo",
+              "metricId": "belowThresholdFlag",
+              "type": "list",
+              "sourceMetricTable": "lowStockMetrics"
+            },
+            {
+              "widgetId": "shiftSummaryTable",
+              "title": "Resumo do Turno",
+              "metricId": "shiftRevenue",
+              "type": "table",
+              "sourceMetricTable": "shiftSummaryMetrics"
+            }
+          ],
+          "rulesApplied": [
+            "metricsDerivedFromClosedOrders"
+          ]
+        }
+      ]
+    },
+    "questions": [],
+    "trace": [
+      "Corrigido sourceWriteEvents de todaySalesMetrics para apenas ['orderClosed'] alinhando com regra metricsDerivedFromClosedOrders",
+      "Removido dimension orderId de todaySalesMetrics e shiftSummaryMetrics para resolver granularidade excessiva (agora mais agregada por shift/categoria/tipo)",
+      "Adicionado 'updatedOnlyByLayer3Usecases' em rulesApplied de todas as metricTables para explicitar responsabilidade de atualização por layer_3_usecases",
+      "Mantido 'actor' como 'managerOwner' conforme schema do índice e finalPlan actors",
+      "Dimensões mantidas para cobrir FKs diretas conhecidas da ontologia (DiningTable, DailyShift, MenuItem, Order) sem inventar entidades não definidas no contexto"
+    ]
+  }
+}

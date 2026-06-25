@@ -1,0 +1,68 @@
+{
+  "savedAt": "2026-06-25T12:57:29.052Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 75,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "getAiInsightRun",
+            "commands": [
+              {
+                "commandId": "getAiInsightRun",
+                "input": [
+                  {
+                    "name": "runId",
+                    "type": "string",
+                    "required": true
+                  }
+                ],
+                "output": [
+                  {
+                    "name": "runId",
+                    "type": "string"
+                  },
+                  {
+                    "name": "status",
+                    "type": "string"
+                  },
+                  {
+                    "name": "content",
+                    "type": "string"
+                  },
+                  {
+                    "name": "requestedAt",
+                    "type": "date"
+                  },
+                  {
+                    "name": "completedAt",
+                    "type": "date"
+                  },
+                  {
+                    "name": "errorMessage",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Usecase getAiInsightRun é uma operação de leitura (sem writesTables) para consultar uma execução de insight de IA na tabela ai_insight_run.",
+          "Definido um único comando getAiInsightRun que recebe o identificador da execução (runId) e retorna os campos de status e conteúdo alinhados ao propósito e à entidade AiInsightsAggregate."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 86,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "savedAt": "2026-06-25T12:57:36.662Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 79,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "requestAiSalesSummary",
+            "commands": [
+              {
+                "commandId": "requestAiSalesSummary",
+                "input": [
+                  {
+                    "name": "targetDate",
+                    "type": "date",
+                    "required": false
+                  },
+                  {
+                    "name": "includeMetricsContext",
+                    "type": "boolean",
+                    "required": false
+                  }
+                ],
+                "output": [
+                  {
+                    "name": "runId",
+                    "type": "string"
+                  },
+                  {
+                    "name": "summary",
+                    "type": "string"
+                  },
+                  {
+                    "name": "status",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Definido comando único requestAiSalesSummary que encapsula a solicitação ao proxy LLM e o registro da execução.",
+          "Inputs: targetDate opcional para permitir resumo de dias específicos; includeMetricsContext opcional para controlar o enriquecimento do prompt com dados das tabelas de métricas.",
+          "Outputs: runId (identificador do registro em ai_insight_run), summary (texto gerado pela IA) e status (resultado da execução).",
+          "Leituras de today_sales_metrics, top_selling_items_metrics, menu_item e daily_shift suportam a montagem do contexto enviado ao LLM.",
+          "Escrita em ai_insight_run representa o registro da execução."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 86,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

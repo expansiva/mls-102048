@@ -1,0 +1,1176 @@
+{
+  "savedAt": "2026-06-25T12:51:06.471Z",
+  "agentName": "agentRepairPlanIndex",
+  "stepId": 68,
+  "planning": {
+    "planId": "plan-index-repair:usecasePlan:1",
+    "dependsOn": [
+      "plan-usecase-entities"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitRepairedUsecasePlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "backendArchitecture": {
+            "pattern": "BFF (layer_2_controllers) chamando Usecases (layer_3_usecases) que orquestram Entidades (layer_4_entities) e acesso a tabelas; métricas atualizadas junto às gravações transacionais",
+            "layer2Responsibility": "Expor endpoints BFF para POS/KDS/Dashboard; validar entrada superficial; autenticação/autorização; chamar exatamente um ou mais usecases L3; nunca acessar tabelas diretamente",
+            "layer3Responsibility": "Implementar regras de negócio e transições de estado; orquestrar gravações/leitura em tabelas moduleOwned e acesso a MDM; garantir consistência transacional; atualizar tabelas de métricas derivadas quando aplicável",
+            "layer1Responsibility": "Definir contratos de acesso a dados externos/MDM/LLM proxy; somente L3 pode tocar layer_1_external"
+          },
+          "usecaseEntities": [
+            {
+              "usecaseEntityId": "OrderAggregate",
+              "title": "Agregado de Pedido",
+              "purpose": "Manter o ciclo de vida do pedido (draft→…→closed/cancelled), itens, preços snapshot, vínculo com mesa/takeout e turno; base para POS, KDS e relatórios.",
+              "sourceTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order_item",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "dining_table",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "today_sales_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "shift_summary_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "menu_category",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "allowedOperations": [
+                "createDraftOrderWithItems",
+                "updateOrderItems",
+                "sendToKitchen",
+                "transitionKitchenStatus",
+                "markDelivered",
+                "closeAsSale",
+                "cancelOrder",
+                "getOrderById",
+                "listOrdersByStatus",
+                "listKitchenQueue",
+                "listOrdersForShift",
+                "listDiningTables",
+                "getShiftOpenIfAny"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "orderTypeMustBeTableOrTakeout",
+                "orderStatusTransitionsControlled",
+                "shiftMustBeOpenToCreateOrders",
+                "menuPriceIsSnapshottedOnOrderItem",
+                "metricsDerivedFromClosedOrders"
+              ]
+            },
+            {
+              "usecaseEntityId": "ShiftAggregate",
+              "title": "Agregado de Turno Diário",
+              "purpose": "Abrir/fechar turno diário, consolidar vendas e gerar dados para relatório e métricas do turno.",
+              "sourceTables": [
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order_item",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "shift_summary_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "today_sales_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "allowedOperations": [
+                "openShift",
+                "closeShift",
+                "getShiftById",
+                "getOpenShift",
+                "listShifts",
+                "getShiftCloseReport"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "shiftMustBeOpenToCreateOrders",
+                "metricsDerivedFromClosedOrders"
+              ]
+            },
+            {
+              "usecaseEntityId": "InventoryAggregate",
+              "title": "Agregado de Estoque (Movimentação e Saldos)",
+              "purpose": "Registrar ajustes manuais e baixas automáticas por venda, manter snapshots de saldo e atualizar métricas de estoque baixo.",
+              "sourceTables": [
+                {
+                  "tableName": "inventory_transaction",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_balance_snapshot",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "low_stock_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order_item",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe_ingredient",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "allowedOperations": [
+                "postInventoryAdjustment",
+                "deductInventoryFromClosedOrder",
+                "reverseInventoryTransaction",
+                "getInventorySnapshotByItem",
+                "listInventorySnapshots",
+                "listInventoryTransactions",
+                "getLowStockList"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "inventoryDeductionHappensOnSaleEvent",
+                "inventoryCannotGoNegativeByDefault",
+                "metricsDerivedFromClosedOrders"
+              ]
+            },
+            {
+              "usecaseEntityId": "MenuAndRecipeCatalog",
+              "title": "Catálogo de Cardápio e Receitas (MDM)",
+              "purpose": "Manter itens do cardápio, categorias e receitas/consumo por item via MDM; suportar consulta para POS e configuração de baixa de estoque.",
+              "sourceTables": [
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "menu_category",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe_ingredient",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "allowedOperations": [
+                "createMenuItem",
+                "updateMenuItem",
+                "deactivateMenuItem",
+                "listMenuItems",
+                "getMenuItem",
+                "listMenuCategories",
+                "upsertRecipeForMenuItem",
+                "getRecipeByMenuItem",
+                "listRecipes"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "bilingualUiViaPlatformI18n"
+              ]
+            },
+            {
+              "usecaseEntityId": "AiInsightsAggregate",
+              "title": "Execuções de Insights de IA",
+              "purpose": "Registrar e consultar execuções de insights de IA (às solicitações, sucesso/falha) e armazenar resultados para exibição no assistente.",
+              "sourceTables": [
+                {
+                  "tableName": "ai_insight_run",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order_item",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "today_sales_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "allowedOperations": [
+                "requestSalesSummary",
+                "requestPromoSuggestions",
+                "getAiInsightRun",
+                "listAiInsightRuns",
+                "markAiRunSucceeded",
+                "markAiRunFailed"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "aiUsesPlatformLlmProxy",
+                "metricsDerivedFromClosedOrders"
+              ]
+            }
+          ],
+          "usecases": [
+            {
+              "usecaseId": "createOrderDraft",
+              "title": "Criar pedido (rascunho)",
+              "purpose": "Criar um pedido draft para mesa ou takeout, vinculado ao turno aberto, com itens iniciais e preços snapshot.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "dining_table",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "menu_category",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "orderTypeMustBeTableOrTakeout",
+                "shiftMustBeOpenToCreateOrders",
+                "menuPriceIsSnapshottedOnOrderItem"
+              ]
+            },
+            {
+              "usecaseId": "addOrUpdateOrderItems",
+              "title": "Adicionar/editar itens do pedido",
+              "purpose": "Alterar itens e quantidades de um pedido em draft, mantendo snapshot de preço e consistência do total.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "menuPriceIsSnapshottedOnOrderItem",
+                "orderStatusTransitionsControlled"
+              ]
+            },
+            {
+              "usecaseId": "sendOrderToKitchen",
+              "title": "Enviar pedido para cozinha",
+              "purpose": "Transicionar pedido de draft para sentToKitchen e disponibilizar na fila do KDS.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "orderStatusTransitionsControlled",
+                "shiftMustBeOpenToCreateOrders"
+              ]
+            },
+            {
+              "usecaseId": "updateKitchenOrderStatus",
+              "title": "Atualizar status do pedido (cozinha)",
+              "purpose": "Cozinha atualiza status do pedido (sentToKitchen→inPreparation→ready) de forma controlada.",
+              "actor": "cook",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "orderStatusTransitionsControlled"
+              ]
+            },
+            {
+              "usecaseId": "markOrderDelivered",
+              "title": "Marcar pedido como entregue/retirado",
+              "purpose": "Transicionar pedido ready→delivered para mesa ou retirada.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "orderStatusTransitionsControlled"
+              ]
+            },
+            {
+              "usecaseId": "closeOrderAsSaleAndDeductInventory",
+              "title": "Fechar pedido (registrar venda) e baixar estoque",
+              "purpose": "Transicionar pedido delivered→closed, registrar evento de venda, efetuar baixa automática por receita e atualizar métricas derivadas.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate",
+                "InventoryAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate",
+                "InventoryAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "recipe",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe_ingredient",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "inventory_balance_snapshot",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_transaction",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_balance_snapshot",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "today_sales_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "low_stock_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "shift_summary_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "orderStatusTransitionsControlled",
+                "inventoryDeductionHappensOnSaleEvent",
+                "inventoryCannotGoNegativeByDefault",
+                "metricsDerivedFromClosedOrders"
+              ]
+            },
+            {
+              "usecaseId": "cancelOrder",
+              "title": "Cancelar pedido",
+              "purpose": "Cancelar pedido não fechado, respeitando transições; se já houver movimentação de estoque associada (ex.: venda), impedir ou exigir reversão.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_transaction",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "orderStatusTransitionsControlled"
+              ]
+            },
+            {
+              "usecaseId": "getOrderById",
+              "title": "Consultar pedido por id",
+              "purpose": "Obter detalhes do pedido e itens para POS/KDS/acompanhar status.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "dining_table",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "listOrdersByStatus",
+              "title": "Listar pedidos por status",
+              "purpose": "Listar pedidos (ex.: em aberto) filtrando por status e turno, para POS e acompanhamento.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "dining_table",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "listKitchenQueue",
+              "title": "Listar fila da cozinha (KDS)",
+              "purpose": "Exibir fila de pedidos enviados à cozinha e em preparação/prontos.",
+              "actor": "cook",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "listDiningTables",
+              "title": "Listar mesas",
+              "purpose": "Listar mesas ativas para seleção no POS.",
+              "actor": "attendantCashier",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "dining_table",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "openDailyShift",
+              "title": "Abrir turno diário",
+              "purpose": "Abrir um turno (open) para permitir criação de pedidos; registrar dados iniciais (ex.: caixa inicial) se aplicável.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "ShiftAggregate"
+              ],
+              "outputEntities": [
+                "ShiftAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "shiftMustBeOpenToCreateOrders"
+              ]
+            },
+            {
+              "usecaseId": "closeDailyShiftAndGenerateReport",
+              "title": "Fechar turno e gerar relatório",
+              "purpose": "Fechar o turno, consolidar vendas do período e preparar dados para relatório e métricas do turno.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "ShiftAggregate"
+              ],
+              "outputEntities": [
+                "ShiftAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "shift_summary_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "today_sales_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "metricsDerivedFromClosedOrders"
+              ]
+            },
+            {
+              "usecaseId": "getShiftCloseReport",
+              "title": "Obter relatório de fechamento de turno",
+              "purpose": "Consultar relatório consolidado do turno (vendas, itens, totais) para exibição/impressão.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "ShiftAggregate"
+              ],
+              "outputEntities": [
+                "ShiftAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "shift_summary_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "order",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "getTodayDashboardMetrics",
+              "title": "Obter métricas do dashboard de hoje",
+              "purpose": "Buscar métricas do dia (vendas, itens mais vendidos, alertas de estoque baixo) para o dashboard do gerente.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "OrderAggregate",
+                "InventoryAggregate",
+                "ShiftAggregate"
+              ],
+              "outputEntities": [
+                "OrderAggregate",
+                "InventoryAggregate",
+                "ShiftAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "today_sales_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "low_stock_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "upsertMenuItemAndRecipe",
+              "title": "Criar/editar/desativar item do cardápio e receita",
+              "purpose": "Manter item do cardápio e sua receita/ingredientes (consumo) via MDM, garantindo consistência para baixa automática.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "outputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe_ingredient",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "menu_category",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe_ingredient",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "listMenuItems",
+              "title": "Listar itens do cardápio",
+              "purpose": "Listar itens do cardápio (ativos/inativos), categorias e preços para POS e gestão.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "outputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "menu_category",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "getMenuItemWithRecipe",
+              "title": "Consultar item do cardápio com receita",
+              "purpose": "Obter detalhes de um item e sua receita/ingredientes para edição e validação.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "outputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "recipe_ingredient",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "upsertInventoryItem",
+              "title": "Criar/editar/desativar ingrediente (MDM)",
+              "purpose": "Manter cadastro de itens de estoque (ingredientes/insumos) via MDM.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "outputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "listInventoryItems",
+              "title": "Listar ingredientes (MDM)",
+              "purpose": "Listar itens de estoque (ingredientes) para gestão e composição de receitas.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "outputEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "postInventoryAdjustment",
+              "title": "Registrar ajuste manual de estoque",
+              "purpose": "Registrar uma movimentação manual (entrada/saída/contagem) e atualizar snapshot de saldo e métricas de estoque baixo.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "InventoryAggregate"
+              ],
+              "outputEntities": [
+                "InventoryAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "inventory_balance_snapshot",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "inventory_transaction",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_balance_snapshot",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "low_stock_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "inventoryCannotGoNegativeByDefault"
+              ]
+            },
+            {
+              "usecaseId": "listInventoryTransactions",
+              "title": "Listar movimentações de estoque",
+              "purpose": "Consultar movimentações de estoque (ajustes e baixas) para auditoria simples.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "InventoryAggregate"
+              ],
+              "outputEntities": [
+                "InventoryAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "inventory_transaction",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "listInventoryBalances",
+              "title": "Listar saldos de estoque (snapshots)",
+              "purpose": "Listar saldos atuais por ingrediente para acompanhamento.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "InventoryAggregate"
+              ],
+              "outputEntities": [
+                "InventoryAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "inventory_balance_snapshot",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "inventory_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "requestAiSalesSummary",
+              "title": "Gerar resumo de vendas do dia (IA)",
+              "purpose": "Solicitar ao proxy LLM um resumo de vendas do dia e registrar a execução; pode usar métricas como contexto.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "outputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "today_sales_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "daily_shift",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "ai_insight_run",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "aiUsesPlatformLlmProxy"
+              ]
+            },
+            {
+              "usecaseId": "requestAiPromoSuggestions",
+              "title": "Gerar sugestões de promoção (7 dias) (IA)",
+              "purpose": "Solicitar ao proxy LLM sugestões de itens para promover com base em histórico agregado (ex.: top itens) e registrar execução.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "outputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "top_selling_items_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "menu_item",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "ai_insight_run",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "aiUsesPlatformLlmProxy"
+              ]
+            },
+            {
+              "usecaseId": "getAiInsightRun",
+              "title": "Consultar execução de insight de IA",
+              "purpose": "Obter status e conteúdo de uma execução de insight de IA (requested/succeeded/failed).",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "outputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "ai_insight_run",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "listAiInsightRuns",
+              "title": "Listar execuções de insights de IA",
+              "purpose": "Listar execuções recentes para histórico e reabertura no assistente.",
+              "actor": "managerOwner",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "outputEntities": [
+                "AiInsightsAggregate"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "ai_insight_run",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            }
+          ],
+          "controllerRules": {
+            "bffMustCallUsecases": true,
+            "bffDirectTableAccessForbidden": true
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Corrigido erro usecase.writesTable.missing removendo referência a order_item (tabela ausente no persistence index) de writesTables em createOrderDraft e addOrUpdateOrderItems",
+          "Aplicado fix local em warnings removendo order_item de readsTables nos usecases afetados para consistência sem alterar escopo"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 62,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

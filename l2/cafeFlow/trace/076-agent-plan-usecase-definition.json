@@ -1,0 +1,63 @@
+{
+  "savedAt": "2026-06-25T12:57:47.636Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 76,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "listAiInsightRuns",
+            "commands": [
+              {
+                "commandId": "listAiInsightRuns",
+                "input": [
+                  {
+                    "name": "limit",
+                    "type": "number",
+                    "required": false
+                  },
+                  {
+                    "name": "statusFilter",
+                    "type": "string",
+                    "required": false
+                  },
+                  {
+                    "name": "fromDate",
+                    "type": "date",
+                    "required": false
+                  }
+                ],
+                "output": [
+                  {
+                    "name": "runs",
+                    "type": "AiInsightRun[]"
+                  },
+                  {
+                    "name": "totalCount",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Analisado propósito de listar execuções recentes de insights de IA para histórico e reabertura no assistente",
+          "Identificada leitura na tabela moduleOwned ai_insight_run sem gravações, caracterizando operação de consulta pura",
+          "Definido comando único listAiInsightRuns com filtros opcionais (limite, status e data inicial) e retorno contendo a lista de execuções e o total disponível"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 82,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "savedAt": "2026-06-25T12:57:36.557Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 77,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "listInventoryTransactions",
+            "commands": [
+              {
+                "commandId": "listInventoryTransactions",
+                "input": [
+                  {
+                    "name": "startDate",
+                    "type": "date",
+                    "required": false
+                  },
+                  {
+                    "name": "endDate",
+                    "type": "date",
+                    "required": false
+                  },
+                  {
+                    "name": "inventoryItemId",
+                    "type": "string",
+                    "required": false
+                  },
+                  {
+                    "name": "transactionType",
+                    "type": "string",
+                    "required": false
+                  },
+                  {
+                    "name": "page",
+                    "type": "number",
+                    "required": false
+                  },
+                  {
+                    "name": "pageSize",
+                    "type": "number",
+                    "required": false
+                  }
+                ],
+                "output": [
+                  {
+                    "name": "totalCount",
+                    "type": "number"
+                  },
+                  {
+                    "name": "transactions",
+                    "type": "InventoryTransaction"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Usecase somente-leitura para auditoria simples de movimentações de estoque (ajustes e baixas)",
+          "Um comando principal de listagem com filtros opcionais por período, item e tipo de transação",
+          "Paginação opcional via page e pageSize",
+          "Retorna totalCount e a lista de transações tipada como InventoryTransaction",
+          "Acesso de leitura às tabelas inventory_transaction (moduleOwned) e inventory_item (mdmOwned), sem gravações"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 82,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

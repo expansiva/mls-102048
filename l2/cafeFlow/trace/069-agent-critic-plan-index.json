@@ -1,0 +1,75 @@
+{
+  "savedAt": "2026-06-25T12:51:24.417Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 69,
+  "planning": {
+    "planId": "plan-index-critic:usecasePlan:2",
+    "dependsOn": [
+      "plan-usecase-entities"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "UC-READ-001",
+              "message": "Tabela moduleOwned escrita sem usecase de leitura correspondente (readsTables inclui a tabela e writesTables vazio): order_item.",
+              "path": "$.usecaseEntities[0].sourceTables[1]"
+            },
+            {
+              "code": "UC-READ-002",
+              "message": "Tabela moduleOwned escrita sem usecase de leitura correspondente: inventory_balance_snapshot não possui usecase read-only explícito (há listInventoryBalances, ok, mas falta getInventorySnapshotByItem conforme allowedOperations/necessidade de detalhe).",
+              "path": "$.usecaseEntities[2].sourceTables[1]"
+            },
+            {
+              "code": "UC-WRITE-ORDERITEM-001",
+              "message": "Usecases que alteram itens do pedido não escrevem order_item; apenas 'order'. Isso quebra cobertura de gravação em tabelas base e impede consistência do modelo transacional.",
+              "path": "$.usecases[0].writesTables"
+            },
+            {
+              "code": "UC-WRITE-ORDERITEM-002",
+              "message": "closeOrderAsSaleAndDeductInventory não grava order_item apesar de depender de itens para baixa/métricas; order_item fica sem cobertura de escrita por usecase.",
+              "path": "$.usecases[5].writesTables"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "UC-METRIC-001",
+              "message": "createOrderDraft/addOrUpdateOrderItems/cancelOrder escrevem tabela transacional 'order' mas não atualizam métricas; se métricas forem derivadas apenas no fechamento ok, porém a regra do contrato pede atualização junto às gravações transacionais quando aplicável—documentar explicitamente que só 'close' gera métricas.",
+              "path": "$.usecases"
+            },
+            {
+              "code": "UC-L1EXT-001",
+              "message": "Índice não mostra nenhuma referência a layer_1_external; para casos de IA, garantir que a chamada ao proxy LLM seja modelada como acesso layer_1_external (mesmo sem tabela) para cumprir a restrição de acesso somente via L3.",
+              "path": "$.usecases[23].rulesApplied"
+            }
+          ]
+        },
+        "questions": [
+          "Quais são as tabelas moduleOwned reais no schema L2/L4: order_item é uma tabela separada (normalizado) ou os itens estão embutidos em JSON dentro de order? Isso determina se os writesTables devem incluir order_item.",
+          "A operação getInventorySnapshotByItem é necessária como usecase separado (detalhe por item) ou listInventoryBalances cobre o requisito de leitura para inventory_balance_snapshot?",
+          "As métricas today_sales/top_selling/shift_summary/low_stock são atualizadas apenas no fechamento do pedido/turno, ou também em eventos intermediários (ex.: sendToKitchen, cancel)?"
+        ],
+        "trace": [
+          "Checked read coverage: identified moduleOwned tables appearing only in sourceTables and not in any read-only usecase readsTables with empty writesTables (order_item).",
+          "Checked write coverage: usecases that logically manage order items only write 'order' and never 'order_item'.",
+          "Checked metric update rule: only closeOrderAsSaleAndDeductInventory and closeDailyShift update metric tables; other transactional writes omit metrics -> warning pending event model clarification.",
+          "Checked layer_1_external restriction: IA usecases mention proxy rule but no explicit layer_1_external access modeled -> warning."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 63,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
