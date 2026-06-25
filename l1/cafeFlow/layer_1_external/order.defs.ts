@@ -1,0 +1,231 @@
+/// <mls fileReference="_102048_/l1/cafeFlow/layer_1_external/order.defs.ts" enhancement="_blank"/>
+
+export const orderTableDefinition = {
+  "schemaVersion": "2026-06-06",
+  "artifactType": "table",
+  "artifactId": "order",
+  "moduleName": "cafeFlow",
+  "status": "draft",
+  "source": {
+    "agentName": "agentPlanTableDefinition",
+    "stepId": 50,
+    "planId": ""
+  },
+  "data": {
+    "tableDefinition": {
+      "tableId": "order",
+      "tableName": "order",
+      "moduleId": "cafeFlow",
+      "title": "Pedido",
+      "purpose": "Persistir o ciclo de vida do pedido (mesa/takeout), vínculo com turno e timestamps operacionais, mantendo itens e snapshots necessários para cobrança/preparo sem depender de MDM em tempo real.",
+      "ownership": "moduleOwned",
+      "rootEntity": "Order",
+      "layer": "layer_1_external",
+      "tableKind": "transactional",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "primaryKey": true,
+          "description": "Identificador único do pedido"
+        },
+        {
+          "name": "order_number",
+          "type": "string",
+          "nullable": false,
+          "primaryKey": false,
+          "description": "Número sequencial ou código de exibição do pedido"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "nullable": false,
+          "primaryKey": false,
+          "description": "Tipo do pedido: mesa ou takeout"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "nullable": false,
+          "primaryKey": false,
+          "description": "Status atual do pedido no fluxo de preparo e atendimento"
+        },
+        {
+          "name": "dining_table_id",
+          "type": "uuid",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Referência à mesa (obrigatório apenas quando tipo for 'mesa')"
+        },
+        {
+          "name": "daily_shift_id",
+          "type": "uuid",
+          "nullable": false,
+          "primaryKey": false,
+          "description": "Referência ao turno diário em que o pedido foi criado"
+        },
+        {
+          "name": "customer_name",
+          "type": "string",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Nome do cliente (útil para takeout)"
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Observações gerais do pedido"
+        },
+        {
+          "name": "total_amount",
+          "type": "money",
+          "nullable": false,
+          "primaryKey": false,
+          "description": "Valor total do pedido calculado a partir dos itens"
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "nullable": false,
+          "primaryKey": false,
+          "description": "Data/hora de criação do pedido"
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "nullable": false,
+          "primaryKey": false,
+          "description": "Data/hora da última atualização do pedido"
+        },
+        {
+          "name": "sent_to_kitchen_at",
+          "type": "datetime",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Data/hora em que o pedido foi enviado para a cozinha"
+        },
+        {
+          "name": "ready_at",
+          "type": "datetime",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Data/hora em que o pedido ficou pronto para entrega"
+        },
+        {
+          "name": "delivered_at",
+          "type": "datetime",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Data/hora da entrega do pedido ao cliente"
+        },
+        {
+          "name": "closed_at",
+          "type": "datetime",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Data/hora do fechamento/pagamento do pedido"
+        },
+        {
+          "name": "cancelled_at",
+          "type": "datetime",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Data/hora do cancelamento do pedido"
+        },
+        {
+          "name": "cancellation_reason",
+          "type": "text",
+          "nullable": true,
+          "primaryKey": false,
+          "description": "Motivo do cancelamento, quando aplicável"
+        }
+      ],
+      "primaryKey": [
+        "id"
+      ],
+      "foreignRefs": [
+        {
+          "fieldName": "daily_shift_id",
+          "targetEntity": "DailyShift",
+          "targetOwnership": "moduleOwned",
+          "reason": "Liga pedido ao turno diário aberto"
+        },
+        {
+          "fieldName": "dining_table_id",
+          "targetEntity": "DiningTable",
+          "targetOwnership": "moduleOwned",
+          "reason": "Referência à mesa física para pedidos do tipo mesa"
+        }
+      ],
+      "indexes": [
+        {
+          "indexName": "idx_order_daily_shift_status",
+          "columns": [
+            "daily_shift_id",
+            "status"
+          ],
+          "unique": false,
+          "reason": "Busca rápida de pedidos por turno e status para KDS e dashboard"
+        },
+        {
+          "indexName": "idx_order_created_at",
+          "columns": [
+            "created_at"
+          ],
+          "unique": false,
+          "reason": "Filtros por data em relatórios e métricas"
+        },
+        {
+          "indexName": "idx_order_status",
+          "columns": [
+            "status"
+          ],
+          "unique": false,
+          "reason": "Filtragem por status em workflows de cozinha e POS"
+        }
+      ],
+      "detailsColumn": {
+        "enabled": true,
+        "columnName": "details",
+        "jsonSchemaRef": "OrderDetails",
+        "reason": "Armazena OrderItem[] e snapshots como JSONB para aggregate pattern"
+      },
+      "metricUpdatePolicy": {
+        "feedsMetrics": true,
+        "metricRefs": [
+          "salesTodayMetricTable",
+          "topSellingItemsMetricTable",
+          "shiftSummaryMetricTable"
+        ],
+        "updatedByLayer": "layer_3_usecases"
+      },
+      "accessPolicy": {
+        "directAccessAllowedFor": [
+          "layer_3_usecases"
+        ],
+        "forbiddenFor": [
+          "pages",
+          "layer_2_controllers",
+          "agents"
+        ]
+      },
+      "rulesApplied": [
+        "orderTypeMustBeTableOrTakeout",
+        "orderStatusTransitionsControlled",
+        "shiftMustBeOpenToCreateOrders",
+        "menuPriceIsSnapshottedOnOrderItem",
+        "metricsDerivedFromClosedOrders"
+      ]
+    },
+    "defsPlan": {
+      "fileName": "tables/order.defs.ts",
+      "exportName": "orderTableDefinition",
+      "saveAsDefs": true
+    }
+  }
+} as const;
+
+export default orderTableDefinition;
