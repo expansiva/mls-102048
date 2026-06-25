@@ -1,0 +1,260 @@
+{
+  "savedAt": "2026-06-25T13:13:35.890Z",
+  "agentName": "agentPlanPageDefinition",
+  "stepId": 100,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPageDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "pageDefinition": {
+            "pageId": "menuManagement",
+            "pageName": "Gerenciamento de cardápio",
+            "actor": "managerOwner",
+            "purpose": "Ver e organizar itens do cardápio por categorias, ativar/desativar itens e acessar edição e validações de receita.",
+            "capabilities": [
+              "manageMenuItems"
+            ],
+            "flowRefs": {
+              "experienceFlows": [
+                "menuManagement"
+              ],
+              "entityLifecycles": [],
+              "taskWorkflows": [],
+              "automations": []
+            },
+            "pluginRefs": [],
+            "mdmRefs": [
+              "menuItem",
+              "recipe"
+            ],
+            "pageInputs": [],
+            "navigationRefs": [
+              {
+                "direction": "outbound",
+                "pageId": "menuItemEditor",
+                "trigger": "Tocar em \"Novo item\" ou editar item"
+              },
+              {
+                "direction": "outbound",
+                "pageId": "menuValidation",
+                "trigger": "Abrir alerta/validação de item sem receita"
+              }
+            ],
+            "sections": [
+              {
+                "sectionName": "Filtros e organização",
+                "mode": "view",
+                "organisms": [
+                  {
+                    "organismName": "menuItemFilters",
+                    "purpose": "Filtrar itens por categoria, status e busca.",
+                    "userActions": [
+                      "Aplicar filtro por categoria",
+                      "Filtrar por status ativo/inativo",
+                      "Buscar por nome/SKU"
+                    ],
+                    "requiredEntities": [
+                      "MenuItem",
+                      "MenuCategory"
+                    ],
+                    "readsFields": [
+                      "MenuItem.menuItemId",
+                      "MenuItem.name",
+                      "MenuItem.status",
+                      "MenuItem.menuCategoryId",
+                      "MenuItem.sku",
+                      "MenuCategory.menuCategoryId",
+                      "MenuCategory.name"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": []
+                  }
+                ]
+              },
+              {
+                "sectionName": "Lista do cardápio",
+                "mode": "view",
+                "organisms": [
+                  {
+                    "organismName": "menuItemList",
+                    "purpose": "Exibir itens do cardápio com categoria, preço e status para seleção.",
+                    "userActions": [
+                      "Listar itens ativos/inativos",
+                      "Abrir item para editar"
+                    ],
+                    "requiredEntities": [
+                      "MenuItem",
+                      "MenuCategory",
+                      "Recipe"
+                    ],
+                    "readsFields": [
+                      "MenuItem.menuItemId",
+                      "MenuItem.name",
+                      "MenuItem.price",
+                      "MenuItem.status",
+                      "MenuItem.menuCategoryId",
+                      "MenuCategory.menuCategoryId",
+                      "MenuCategory.name",
+                      "Recipe.recipeId",
+                      "Recipe.status"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": []
+                  },
+                  {
+                    "organismName": "menuItemActions",
+                    "purpose": "Ações rápidas para criar e desativar itens do cardápio.",
+                    "userActions": [
+                      "Criar novo item",
+                      "Desativar item"
+                    ],
+                    "requiredEntities": [
+                      "MenuItem"
+                    ],
+                    "readsFields": [
+                      "MenuItem.menuItemId",
+                      "MenuItem.status"
+                    ],
+                    "writesFields": [
+                      "MenuItem.status"
+                    ],
+                    "rulesApplied": []
+                  }
+                ]
+              }
+            ]
+          },
+          "bffCommands": [
+            {
+              "commandName": "listMenuItems",
+              "purpose": "Carregar lista do cardápio para gestão.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "categoryId",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "status",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "search",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "menuItemId",
+                  "type": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "price",
+                  "type": "number"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "menuCategoryId",
+                  "type": "string"
+                },
+                {
+                  "name": "menuCategoryName",
+                  "type": "string"
+                },
+                {
+                  "name": "recipeId",
+                  "type": "string"
+                },
+                {
+                  "name": "recipeStatus",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "writesEntities": [],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "listMenuItems"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            },
+            {
+              "commandName": "deactivateMenuItem",
+              "purpose": "Desativar item do cardápio selecionado.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "menuItemId",
+                  "type": "string",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "menuItemId",
+                  "type": "string"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "writesEntities": [
+                "MenuAndRecipeCatalog"
+              ],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "deactivateMenuItem"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Page selector menuManagement resolved.",
+          "Capabilities mapped to list/filter/activate-deactivate actions.",
+          "Used listMenuItems usecase for menu list.",
+          "Added deactivate command to support primary action.",
+          "No page inputs required; navigation defined to editor and validation pages."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 86,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

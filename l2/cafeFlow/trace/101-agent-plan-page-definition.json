@@ -1,0 +1,152 @@
+{
+  "savedAt": "2026-06-25T13:14:26.572Z",
+  "agentName": "agentPlanPageDefinition",
+  "stepId": 101,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPageDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "pageDefinition": {
+            "pageId": "managerMetricsDashboard",
+            "pageName": "Dashboard de Métricas do Gerente",
+            "actor": "managerOwner",
+            "purpose": "Ver dashboards e tabelas de métricas habilitadas para o gerente em uma visão dedicada.",
+            "capabilities": [
+              "viewDashboardToday"
+            ],
+            "flowRefs": {
+              "experienceFlows": [],
+              "entityLifecycles": [
+                "dailyShiftLifecycle"
+              ],
+              "taskWorkflows": [],
+              "automations": []
+            },
+            "pluginRefs": [],
+            "mdmRefs": [],
+            "pageInputs": [],
+            "navigationRefs": [
+              {
+                "direction": "outbound",
+                "pageId": "dashboardToday",
+                "trigger": "Abrir visão \"Hoje\" para detalhes operacionais"
+              }
+            ],
+            "sections": [
+              {
+                "sectionName": "Visão geral das métricas do dia",
+                "mode": "view",
+                "organisms": [
+                  {
+                    "organismName": "tabelasDeMetricasDoDia",
+                    "purpose": "Exibir tabelas de vendas de hoje, itens mais vendidos, estoque baixo e resumo do turno.",
+                    "userActions": [
+                      "Explorar tabelas de métricas",
+                      "Alternar visões/tabelas"
+                    ],
+                    "requiredEntities": [
+                      "OrderAggregate",
+                      "InventoryAggregate",
+                      "ShiftAggregate"
+                    ],
+                    "readsFields": [
+                      "todaySalesMetrics.totalRevenue",
+                      "todaySalesMetrics.totalOrders",
+                      "todaySalesMetrics.totalItemsSold",
+                      "todaySalesMetrics.averageTicket",
+                      "topSellingItemsMetrics.menuItemId",
+                      "topSellingItemsMetrics.quantitySold",
+                      "topSellingItemsMetrics.itemRevenue",
+                      "lowStockMetrics.inventoryItemId",
+                      "lowStockMetrics.currentBalance",
+                      "lowStockMetrics.minThreshold",
+                      "lowStockMetrics.belowThresholdFlag",
+                      "shiftSummaryMetrics.shiftRevenue",
+                      "shiftSummaryMetrics.shiftOrders",
+                      "shiftSummaryMetrics.shiftItemsSold",
+                      "shiftSummaryMetrics.shiftAverageTicket"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "metricsDerivedFromClosedOrders"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "bffCommands": [
+            {
+              "commandName": "getTodayDashboardMetrics",
+              "purpose": "Abastecer as tabelas do dashboard de métricas do gerente.",
+              "kind": "query",
+              "input": [],
+              "output": [
+                {
+                  "name": "todaySalesMetrics",
+                  "type": "todaySalesMetricRow[]"
+                },
+                {
+                  "name": "topSellingItemsMetrics",
+                  "type": "topSellingItemsMetricRow[]"
+                },
+                {
+                  "name": "lowStockMetrics",
+                  "type": "lowStockMetricRow[]"
+                },
+                {
+                  "name": "shiftSummaryMetrics",
+                  "type": "shiftSummaryMetricRow[]"
+                },
+                {
+                  "name": "currentShiftId",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [
+                "OrderAggregate",
+                "InventoryAggregate",
+                "ShiftAggregate"
+              ],
+              "writesEntities": [],
+              "readsTables": [
+                "today_sales_metrics",
+                "top_selling_items_metrics",
+                "low_stock_metrics",
+                "daily_shift"
+              ],
+              "writesTables": [],
+              "usecaseRefs": [
+                "getTodayDashboardMetrics"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "metricsDerivedFromClosedOrders"
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Página selecionada: managerMetricsDashboard.",
+          "Capacidade principal: viewDashboardToday.",
+          "Usecase disponível reutilizado para leitura de métricas: getTodayDashboardMetrics.",
+          "Dashboard com tabela única de métricas agregadas e navegação para dashboardToday."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 103,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

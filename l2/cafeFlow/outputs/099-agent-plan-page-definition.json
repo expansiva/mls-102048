@@ -1,0 +1,340 @@
+{
+  "savedAt": "2026-06-25T13:15:01.330Z",
+  "agentName": "agentPlanPageDefinition",
+  "stepId": 99,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPageDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "pageDefinition": {
+            "pageId": "aiInsightError",
+            "pageName": "Falha no insight de IA",
+            "actor": "managerOwner",
+            "purpose": "Mostrar erro de execução de IA e permitir retentativa.",
+            "capabilities": [
+              "aiSalesSummary",
+              "aiPromoSuggestions"
+            ],
+            "flowRefs": {
+              "experienceFlows": [],
+              "entityLifecycles": [],
+              "taskWorkflows": [],
+              "automations": [
+                "aiInsightExecution"
+              ]
+            },
+            "pluginRefs": [],
+            "mdmRefs": [],
+            "pageInputs": [
+              {
+                "name": "aiInsightRunId",
+                "type": "uuid",
+                "required": true,
+                "sources": [
+                  "routeParam",
+                  "previousStepResult"
+                ],
+                "description": "Identificador da execução de insight com falha.",
+                "entityRef": "AiInsightRun",
+                "fieldRef": "aiInsightRunId"
+              },
+              {
+                "name": "insightType",
+                "type": "string",
+                "required": false,
+                "sources": [
+                  "routeParam",
+                  "queryParam",
+                  "previousStepResult"
+                ],
+                "description": "Tipo de insight solicitado para guiar a retentativa.",
+                "entityRef": "AiInsightRun",
+                "fieldRef": "insightType"
+              }
+            ],
+            "navigationRefs": [
+              {
+                "direction": "inbound",
+                "pageId": "aiAssistant",
+                "trigger": "Abrir execução com falha"
+              },
+              {
+                "direction": "outbound",
+                "pageId": "aiAssistant",
+                "trigger": "Após solicitar retentativa"
+              }
+            ],
+            "sections": [
+              {
+                "sectionName": "Mensagem de erro",
+                "mode": "view",
+                "organisms": [
+                  {
+                    "organismName": "aiInsightRunErrorPanel",
+                    "purpose": "Exibir status de falha, mensagem de erro e parâmetros da execução de IA.",
+                    "userActions": [
+                      "Ver mensagem de erro"
+                    ],
+                    "requiredEntities": [
+                      "AiInsightRun"
+                    ],
+                    "readsFields": [
+                      "aiInsightRunId",
+                      "status",
+                      "errorMessage",
+                      "insightType",
+                      "parameters",
+                      "timeWindowStart",
+                      "timeWindowEnd",
+                      "dailyShiftId",
+                      "language",
+                      "createdAt"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "aiUsesPlatformLlmProxy"
+                    ]
+                  }
+                ]
+              },
+              {
+                "sectionName": "Retentativa",
+                "mode": "action",
+                "organisms": [
+                  {
+                    "organismName": "aiInsightRetryActions",
+                    "purpose": "Permitir retentar o insight com os parâmetros da execução falhada.",
+                    "userActions": [
+                      "Tentar novamente resumo de vendas",
+                      "Tentar novamente sugestões de promoção"
+                    ],
+                    "requiredEntities": [
+                      "AiInsightRun"
+                    ],
+                    "readsFields": [
+                      "insightType",
+                      "parameters",
+                      "timeWindowStart",
+                      "timeWindowEnd",
+                      "dailyShiftId",
+                      "language"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "aiUsesPlatformLlmProxy"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "bffCommands": [
+            {
+              "commandName": "getAiInsightRun",
+              "purpose": "Carregar erro e detalhes da execução falhada.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "aiInsightRunId",
+                  "type": "uuid",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "aiInsightRunId",
+                  "type": "uuid"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "errorMessage",
+                  "type": "string"
+                },
+                {
+                  "name": "insightType",
+                  "type": "string"
+                },
+                {
+                  "name": "parameters",
+                  "type": "string"
+                },
+                {
+                  "name": "timeWindowStart",
+                  "type": "datetime"
+                },
+                {
+                  "name": "timeWindowEnd",
+                  "type": "datetime"
+                },
+                {
+                  "name": "dailyShiftId",
+                  "type": "uuid"
+                },
+                {
+                  "name": "language",
+                  "type": "string"
+                },
+                {
+                  "name": "createdAt",
+                  "type": "datetime"
+                },
+                {
+                  "name": "updatedAt",
+                  "type": "datetime"
+                }
+              ],
+              "readsEntities": [
+                "AiInsightRun"
+              ],
+              "writesEntities": [],
+              "readsTables": [
+                "ai_insight_run"
+              ],
+              "writesTables": [],
+              "usecaseRefs": [
+                "getAiInsightRun"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            },
+            {
+              "commandName": "requestAiSalesSummary",
+              "purpose": "Retentar resumo de vendas criando nova execução.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "dailyShiftId",
+                  "type": "uuid",
+                  "required": false
+                },
+                {
+                  "name": "timeWindowStart",
+                  "type": "datetime",
+                  "required": false
+                },
+                {
+                  "name": "timeWindowEnd",
+                  "type": "datetime",
+                  "required": false
+                },
+                {
+                  "name": "language",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "aiInsightRunId",
+                  "type": "uuid"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [],
+              "writesEntities": [
+                "AiInsightRun"
+              ],
+              "readsTables": [
+                "today_sales_metrics",
+                "top_selling_items_metrics",
+                "daily_shift"
+              ],
+              "writesTables": [
+                "ai_insight_run"
+              ],
+              "usecaseRefs": [
+                "requestAiSalesSummary"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "aiUsesPlatformLlmProxy"
+              ]
+            },
+            {
+              "commandName": "requestAiPromoSuggestions",
+              "purpose": "Retentar sugestões criando nova execução.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "timeWindowStart",
+                  "type": "datetime",
+                  "required": false
+                },
+                {
+                  "name": "timeWindowEnd",
+                  "type": "datetime",
+                  "required": false
+                },
+                {
+                  "name": "language",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "aiInsightRunId",
+                  "type": "uuid"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [],
+              "writesEntities": [
+                "AiInsightRun"
+              ],
+              "readsTables": [
+                "top_selling_items_metrics"
+              ],
+              "writesTables": [
+                "ai_insight_run"
+              ],
+              "usecaseRefs": [
+                "requestAiPromoSuggestions"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "aiUsesPlatformLlmProxy"
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Página aiInsightError planejada com leitura da execução falhada e ações de retentativa para resumo de vendas e sugestões de promoção.",
+          "BFF inclui consulta getAiInsightRun e comandos de retentativa alinhados aos usecases existentes.",
+          "Parâmetros de retentativa reutilizam campos do AiInsightRun exibidos na página."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 102,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
