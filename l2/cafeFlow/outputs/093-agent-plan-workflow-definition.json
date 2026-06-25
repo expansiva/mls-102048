@@ -1,0 +1,219 @@
+{
+  "savedAt": "2026-06-25T13:00:11.663Z",
+  "agentName": "agentPlanWorkflowDefinition",
+  "stepId": 93,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitWorkflowDefinitionPlan",
+      "arguments": {
+        "status": "needs_input",
+        "result": {
+          "workflowDefinition": {
+            "workflowId": "inventoryAdjustment",
+            "title": "Ajuste e controle de estoque",
+            "purpose": "Registrar movimentações de estoque, seja por ajustes manuais do gerente ou por baixa automática decorrente de vendas, mantendo snapshots de saldo atualizados para consulta e alertas.",
+            "executionMode": "entityLifecycle",
+            "createsTask": false,
+            "actors": [
+              "managerOwner",
+              "system"
+            ],
+            "states": [
+              {
+                "stateId": "initiated",
+                "description": "Movimentação iniciada; dados do ajuste manual ou da baixa automática coletados, aguardando consolidação no saldo."
+              },
+              {
+                "stateId": "posted",
+                "description": "Movimentação consolidada, saldo atualizado e métricas de estoque baixo derivadas."
+              },
+              {
+                "stateId": "reversed",
+                "description": "Movimentação estornada; saldo revertido e métricas recalculadas."
+              }
+            ],
+            "transitions": [
+              {
+                "from": "initiated",
+                "to": "posted",
+                "trigger": "postManualAdjustment",
+                "actor": "managerOwner",
+                "conditions": [
+                  "inventoryCannotGoNegativeByDefault"
+                ],
+                "actions": [
+                  "setInventoryTransactionStatusPosted",
+                  "setInventoryTransactionTypeAjuste",
+                  "upsertInventoryBalanceSnapshot",
+                  "upsertLowStockMetrics"
+                ],
+                "rulesApplied": [
+                  "inventoryCannotGoNegativeByDefault"
+                ]
+              },
+              {
+                "from": "initiated",
+                "to": "posted",
+                "trigger": "autoDeductOnSaleClose",
+                "actor": "system",
+                "conditions": [
+                  "inventoryDeductionHappensOnSaleEvent",
+                  "inventoryCannotGoNegativeByDefault"
+                ],
+                "actions": [
+                  "setInventoryTransactionStatusPosted",
+                  "setInventoryTransactionTypeBaixaVenda",
+                  "upsertInventoryBalanceSnapshot",
+                  "upsertLowStockMetrics"
+                ],
+                "rulesApplied": [
+                  "inventoryDeductionHappensOnSaleEvent",
+                  "inventoryCannotGoNegativeByDefault"
+                ]
+              },
+              {
+                "from": "posted",
+                "to": "reversed",
+                "trigger": "reverseTransaction",
+                "actor": "managerOwner",
+                "conditions": [],
+                "actions": [
+                  "setInventoryTransactionStatusReversed",
+                  "upsertInventoryBalanceSnapshot",
+                  "upsertLowStockMetrics"
+                ],
+                "rulesApplied": []
+              }
+            ],
+            "userActions": [
+              "postManualAdjustment",
+              "reverseTransaction",
+              "listInventoryTransactions",
+              "listInventoryBalances"
+            ],
+            "rulesApplied": [
+              "inventoryCannotGoNegativeByDefault",
+              "inventoryDeductionHappensOnSaleEvent"
+            ],
+            "requiredEntities": [
+              "InventoryTransaction",
+              "InventoryBalanceSnapshot"
+            ],
+            "persistenceRefs": [
+              "inventoryTransaction",
+              "inventoryBalanceSnapshot",
+              "lowStockMetrics"
+            ],
+            "usecaseRefs": [
+              "postInventoryAdjustment",
+              "listInventoryTransactions",
+              "listInventoryBalances",
+              "getInventorySnapshotByItem"
+            ],
+            "metricRefs": [
+              "lowStockMetrics"
+            ],
+            "moduleRefs": [
+              "cafeFlow"
+            ],
+            "pageRefsByModule": [],
+            "entityRefsByModule": [
+              {
+                "entity": "InventoryTransaction",
+                "moduleId": "cafeFlow"
+              },
+              {
+                "entity": "InventoryBalanceSnapshot",
+                "moduleId": "cafeFlow"
+              }
+            ],
+            "writesArtifacts": [
+              {
+                "moduleId": "cafeFlow",
+                "artifactType": "table",
+                "artifactId": "inventoryTransaction"
+              },
+              {
+                "moduleId": "cafeFlow",
+                "artifactType": "table",
+                "artifactId": "inventoryBalanceSnapshot"
+              },
+              {
+                "moduleId": "cafeFlow",
+                "artifactType": "metricTable",
+                "artifactId": "lowStockMetrics"
+              }
+            ],
+            "relatedAgents": [],
+            "relatedPlugins": [],
+            "relatedPages": [],
+            "workflowScope": "singleModule",
+            "taskConfig": {
+              "assigneeRules": [],
+              "slaRules": [],
+              "taskRoomRequired": false,
+              "taskTitleTemplate": ""
+            },
+            "implementationSuggestions": [
+              {
+                "suggestionId": "negativeStockGuard",
+                "title": "Bloqueio de saldo negativo por padrão",
+                "description": "Impedir que ajustes ou baixas deixem o saldo de um ingrediente negativo, respeitando a regra de negócio do MVP.",
+                "priority": "now",
+                "tradeoff": "Pode exigir override manual por gerente com registro de motivo em cenários de contagem física divergente."
+              },
+              {
+                "suggestionId": "lowStockAlert",
+                "title": "Alerta visual de estoque baixo",
+                "description": "Destacar ingredientes com saldo abaixo do mínimo definido no dashboard e na tela de estoque.",
+                "priority": "soon",
+                "tradeoff": "Requer atualização periódica da métrica lowStockMetrics; pode gerar ruído se o limiar estiver mal calibrado."
+              },
+              {
+                "suggestionId": "idempotencyTokenForAutoDeduction",
+                "title": "Token de idempotência na baixa automática",
+                "description": "Garantir que a baixa automática por pedido seja idempotente (não duplicada em reprocessamentos) usando orderId como chave única de deduplicação.",
+                "priority": "now",
+                "tradeoff": "Adiciona complexidade na camada de usecase, mas evita saldo incorreto em retries."
+              },
+              {
+                "suggestionId": "reversalAuditTrail",
+                "title": "Rastreabilidade completa de estornos",
+                "description": "Manter o registro original intacto e criar nova transação de reversão vinculada, em vez de apagar ou sobrescrever dados.",
+                "priority": "soon",
+                "tradeoff": "Aumenta volume de registros, mas preserva auditoria e facilita relatórios de fechamento."
+              }
+            ]
+          },
+          "defsPlan": {
+            "fileName": "workflows/inventoryAdjustment.defs.ts",
+            "exportName": "inventoryAdjustmentDef",
+            "saveAsDefs": true
+          }
+        },
+        "questions": [
+          "O estado intermediário 'initiated' deve ser visível na UI para ajustes manuais, ou a postagem ocorre em um único passo sem rascunho?",
+          "A reversão de transação deve ser permitida apenas no mesmo turno/dia, ou sem restrição temporal?",
+          "O actor 'system' para baixa automática deve ser modelado como agente interno ou como trigger externo do módulo de pedidos?"
+        ],
+        "trace": [
+          "Leitura do workflowIndexItem: executionMode=entityLifecycle, createsTask=false, actors=[managerOwner]",
+          "Adicionado actor 'system' para transição de baixa automática (autoDeductOnSaleClose), conforme capability autoInventoryDeduction e regra inventoryDeductionHappensOnSaleEvent",
+          "Mantidos executionMode e createsTask idênticos ao índice",
+          "Definidos estados initiated, posted, reversed refletindo ciclo de vida da InventoryTransaction",
+          "Transições mapeadas para usecases postInventoryAdjustment e deductInventoryFromClosedOrder",
+          "persistenceRefs, usecaseRefs e metricRefs alinhados ao índice",
+          "workflowScope=singleModule pois todas as tabelas/entidades escritas pertencem ao cafeFlow",
+          "relatedPages deixado vazio conforme regra (campo derivado)"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 76,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

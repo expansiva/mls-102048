@@ -1,0 +1,391 @@
+{
+  "savedAt": "2026-06-25T12:57:28.607Z",
+  "agentName": "agentRepairPlanIndex",
+  "stepId": 84,
+  "planning": {
+    "planId": "plan-index-repair:workflowIndex:1",
+    "dependsOn": [
+      "plan-workflow-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitRepairedWorkflowIndex",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "workflows": [
+            {
+              "workflowId": "orderLifecycle",
+              "title": "Ciclo de vida do pedido (POS → Cozinha → Entrega)",
+              "purpose": "Coordenar o fluxo completo de um pedido desde o rascunho no POS, passando pela fila da cozinha (KDS), até a entrega, retirada e fechamento como venda, incluindo a baixa automática de estoque por ingrediente.",
+              "executionMode": "entityLifecycle",
+              "createsTask": false,
+              "priority": "now",
+              "actors": [
+                "attendantCashier",
+                "cook"
+              ],
+              "relatedEntities": [
+                "Order",
+                "OrderItem",
+                "DiningTable",
+                "InventoryTransaction",
+                "InventoryBalanceSnapshot"
+              ],
+              "persistenceRefs": [
+                "order",
+                "inventoryTransaction",
+                "inventoryBalanceSnapshot",
+                "todaySalesMetrics",
+                "topSellingItemsMetrics",
+                "shiftSummaryMetrics"
+              ],
+              "usecaseRefs": [
+                "createOrderDraft",
+                "addOrUpdateOrderItems",
+                "sendOrderToKitchen",
+                "updateKitchenOrderStatus",
+                "markOrderDelivered",
+                "closeOrderAsSaleAndDeductInventory",
+                "cancelOrder",
+                "listKitchenQueue",
+                "getOrderById",
+                "listOrdersByStatus"
+              ],
+              "metricRefs": [
+                "todaySalesMetrics",
+                "topSellingItemsMetrics",
+                "shiftSummaryMetrics"
+              ],
+              "relatedCapabilities": [
+                "takeOrderPos",
+                "updateOrderStatusKitchen",
+                "trackOrderLifecycle",
+                "autoInventoryDeduction"
+              ],
+              "rulesApplied": [
+                "orderTypeMustBeTableOrTakeout",
+                "orderStatusTransitionsControlled",
+                "shiftMustBeOpenToCreateOrders",
+                "menuPriceIsSnapshottedOnOrderItem",
+                "inventoryDeductionHappensOnSaleEvent",
+                "inventoryCannotGoNegativeByDefault",
+                "metricsDerivedFromClosedOrders"
+              ],
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "kdsAutoRefresh",
+                  "title": "Atualização automática da fila KDS",
+                  "reason": "A tela da cozinha deve refletir novos pedidos e mudanças de status em tempo real sem recarregamento manual.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "inventoryDeductionOnClose",
+                  "title": "Baixa de estoque atômica no fechamento",
+                  "reason": "Garantir que a baixa de ingredientes ocorra na mesma transação do fechamento do pedido para evitar inconsistências entre venda e estoque.",
+                  "priority": "now"
+                }
+              ]
+            },
+            {
+              "workflowId": "dailyShiftLifecycle",
+              "title": "Abertura e fechamento de turno diário",
+              "purpose": "Controlar o ciclo de vida do turno diário, assegurando que apenas um turno esteja aberto por dia, validando pendências antes do fechamento e consolidando métricas e relatórios gerenciais.",
+              "executionMode": "entityLifecycle",
+              "createsTask": false,
+              "priority": "now",
+              "actors": [
+                "managerOwner"
+              ],
+              "relatedEntities": [
+                "DailyShift",
+                "Order"
+              ],
+              "persistenceRefs": [
+                "dailyShift",
+                "order",
+                "shiftSummaryMetrics",
+                "todaySalesMetrics",
+                "topSellingItemsMetrics"
+              ],
+              "usecaseRefs": [
+                "openDailyShift",
+                "closeDailyShiftAndGenerateReport",
+                "getShiftCloseReport",
+                "getTodayDashboardMetrics"
+              ],
+              "metricRefs": [
+                "shiftSummaryMetrics",
+                "todaySalesMetrics",
+                "topSellingItemsMetrics"
+              ],
+              "relatedCapabilities": [
+                "dailyShiftOpenClose",
+                "viewShiftCloseReport",
+                "viewDashboardToday"
+              ],
+              "rulesApplied": [
+                "shiftMustBeOpenToCreateOrders",
+                "metricsDerivedFromClosedOrders"
+              ],
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "blockOrdersIfNoShift",
+                  "title": "Bloqueio de pedidos sem turno aberto",
+                  "reason": "O POS deve impedir a criação de novos pedidos caso não exista um turno aberto no dia corrente.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "shiftCloseValidation",
+                  "title": "Validação de pedidos pendentes no fechamento",
+                  "reason": "Alertar o gerente se existirem pedidos em aberto (não entregues/fechados) antes de permitir o fechamento do turno.",
+                  "priority": "now"
+                }
+              ]
+            },
+            {
+              "workflowId": "inventoryAdjustment",
+              "title": "Ajuste e controle de estoque",
+              "purpose": "Registrar movimentações de estoque, seja por ajustes manuais do gerente ou por baixa automática decorrente de vendas, mantendo snapshots de saldo atualizados para consulta e alertas.",
+              "executionMode": "entityLifecycle",
+              "createsTask": false,
+              "priority": "now",
+              "actors": [
+                "managerOwner"
+              ],
+              "relatedEntities": [
+                "InventoryTransaction",
+                "InventoryBalanceSnapshot"
+              ],
+              "persistenceRefs": [
+                "inventoryTransaction",
+                "inventoryBalanceSnapshot",
+                "lowStockMetrics"
+              ],
+              "usecaseRefs": [
+                "postInventoryAdjustment",
+                "listInventoryTransactions",
+                "listInventoryBalances",
+                "getInventorySnapshotByItem"
+              ],
+              "metricRefs": [
+                "lowStockMetrics"
+              ],
+              "relatedCapabilities": [
+                "manageInventoryItems",
+                "autoInventoryDeduction"
+              ],
+              "rulesApplied": [
+                "inventoryCannotGoNegativeByDefault",
+                "inventoryDeductionHappensOnSaleEvent"
+              ],
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "negativeStockGuard",
+                  "title": "Bloqueio de saldo negativo por padrão",
+                  "reason": "Impedir que ajustes ou baixas deixem o saldo de um ingrediente negativo, respeitando a regra de negócio do MVP.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "lowStockAlert",
+                  "title": "Alerta visual de estoque baixo",
+                  "reason": "Destacar ingredientes com saldo abaixo do mínimo definido no dashboard e na tela de estoque.",
+                  "priority": "soon"
+                }
+              ]
+            },
+            {
+              "workflowId": "aiInsightExecution",
+              "title": "Execução de insights por IA",
+              "purpose": "Orquestrar a geração assíncrona de resumos de vendas e sugestões de promoção via proxy LLM da plataforma, rastreando o estado de cada execução e disponibilizando os resultados ao gerente.",
+              "executionMode": "automation",
+              "createsTask": false,
+              "priority": "soon",
+              "actors": [
+                "managerOwner"
+              ],
+              "relatedEntities": [
+                "AiInsightRun",
+                "Order"
+              ],
+              "persistenceRefs": [
+                "aiInsightRun",
+                "order"
+              ],
+              "usecaseRefs": [
+                "requestAiSalesSummary",
+                "requestAiPromoSuggestions",
+                "getAiInsightRun",
+                "listAiInsightRuns"
+              ],
+              "metricRefs": [],
+              "relatedCapabilities": [
+                "aiSalesSummary",
+                "aiPromoSuggestions"
+              ],
+              "rulesApplied": [
+                "aiUsesPlatformLlmProxy"
+              ],
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "asyncAiPolling",
+                  "title": "Polling ou notificação assíncrona para IA",
+                  "reason": "As chamadas ao LLM podem ter latência variável; o frontend deve acompanhar o status da execução via polling ou eventos.",
+                  "priority": "soon"
+                },
+                {
+                  "suggestionId": "aiCacheWindow",
+                  "title": "Cache de resultados IA por janela temporal",
+                  "reason": "Evitar reprocessamento idêntico dentro do mesmo dia para o mesmo tipo de insight, reduzindo custo e tempo de resposta.",
+                  "priority": "later"
+                }
+              ]
+            },
+            {
+              "workflowId": "posOrderTaking",
+              "title": "Montagem do pedido no POS",
+              "purpose": "Guiar o atendente no processo de montagem do pedido: seleção do tipo (mesa ou takeout), escolha de itens do cardápio e confirmação antes do envio à cozinha, com interface otimizada para touch.",
+              "executionMode": "uiState",
+              "createsTask": false,
+              "priority": "now",
+              "actors": [
+                "attendantCashier"
+              ],
+              "relatedEntities": [
+                "Order",
+                "OrderItem",
+                "DiningTable"
+              ],
+              "persistenceRefs": [
+                "order"
+              ],
+              "usecaseRefs": [
+                "createOrderDraft",
+                "addOrUpdateOrderItems",
+                "sendOrderToKitchen",
+                "listDiningTables"
+              ],
+              "metricRefs": [],
+              "relatedCapabilities": [
+                "takeOrderPos"
+              ],
+              "rulesApplied": [
+                "orderTypeMustBeTableOrTakeout",
+                "shiftMustBeOpenToCreateOrders",
+                "menuPriceIsSnapshottedOnOrderItem"
+              ],
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "largeTouchTargets",
+                  "title": "Componentes grandes otimizados para touch",
+                  "reason": "O POS é tablet-first; botões, cards e controles devem ter áreas de toque amplas para operação rápida.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "tableStatusVisual",
+                  "title": "Indicador visual de ocupação de mesas",
+                  "reason": "Facilitar a escolha de mesas livres diretamente na tela de seleção de tipo de pedido.",
+                  "priority": "soon"
+                }
+              ]
+            },
+            {
+              "workflowId": "menuManagement",
+              "title": "Gerenciamento de cardápio e receitas",
+              "purpose": "Permitir ao gerente cadastrar e manter itens do cardápio, categorias e receitas com consumo de ingredientes, vinculando cada item do cardápio aos insumos necessários para a baixa de estoque.",
+              "executionMode": "uiState",
+              "createsTask": false,
+              "priority": "now",
+              "actors": [
+                "managerOwner"
+              ],
+              "relatedEntities": [
+                "MenuItem",
+                "MenuCategory",
+                "Recipe",
+                "RecipeIngredient"
+              ],
+              "persistenceRefs": [
+                "menuItem",
+                "menuCategory",
+                "recipe",
+                "recipeIngredient"
+              ],
+              "usecaseRefs": [
+                "upsertMenuItemAndRecipe",
+                "listMenuItems",
+                "getMenuItemWithRecipe"
+              ],
+              "metricRefs": [],
+              "relatedCapabilities": [
+                "manageMenuItems"
+              ],
+              "rulesApplied": [
+                "menuPriceIsSnapshottedOnOrderItem"
+              ],
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "recipeValidation",
+                  "title": "Validação de receita completa",
+                  "reason": "Alertar se um item ativo do cardápio não possuir receita definida, pois isso impede a baixa automática de estoque no fechamento do pedido.",
+                  "priority": "now"
+                }
+              ]
+            },
+            {
+              "workflowId": "inventoryItemManagement",
+              "title": "Gerenciamento de ingredientes",
+              "purpose": "Cadastrar e manter os ingredientes e insumos utilizados nas receitas do cardápio e nas movimentações de estoque, definindo unidades de medida e saldos iniciais.",
+              "executionMode": "uiState",
+              "createsTask": false,
+              "priority": "now",
+              "actors": [
+                "managerOwner"
+              ],
+              "relatedEntities": [
+                "InventoryItem"
+              ],
+              "persistenceRefs": [
+                "inventoryItem"
+              ],
+              "usecaseRefs": [
+                "upsertInventoryItem",
+                "listInventoryItems"
+              ],
+              "metricRefs": [],
+              "relatedCapabilities": [
+                "manageInventoryItems"
+              ],
+              "rulesApplied": [
+                "inventoryCannotGoNegativeByDefault"
+              ],
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "unitOfMeasureStandard",
+                  "title": "Padronização de unidade de medida",
+                  "reason": "Garantir que receitas e ajustes de estoque usem unidades compatíveis para cálculo correto de saldo e baixa automática.",
+                  "priority": "now"
+                }
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Corrigido executionMode de orderLifecycle para entityLifecycle e createsTask para false conforme erro WFI-EXECMODE-001 e WFI-TASK-001",
+          "Adicionado tabelas de módulo em persistenceRefs de menuManagement conforme WFI-PERSIST-001",
+          "Adicionado tabela em persistenceRefs de inventoryItemManagement conforme WFI-PERSIST-002"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 85,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

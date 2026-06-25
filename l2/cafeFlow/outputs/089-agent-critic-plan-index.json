@@ -1,0 +1,63 @@
+{
+  "savedAt": "2026-06-25T12:58:30.612Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 89,
+  "planning": {
+    "planId": "plan-index-critic:workflowIndex:3",
+    "dependsOn": [
+      "plan-workflow-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "WF-PERSIST-001",
+              "message": "persistenceRefs inclui tabela que não está no superset permitido (moduleTableIds ∪ metricTableIds): \"dailyShift\" é a tabela do módulo correta para turno; mas o workflow usa \"dailyShift\" só no dailyShiftLifecycle. O problema real está em outros workflows: menuManagement e inventoryItemManagement têm persistenceRefs vazio apesar de escreverem entidades do domínio (MenuItem/Recipe/InventoryItem), porém essas tabelas não existem em moduleTableIds — indica item inventado ou omissão de tabelas do módulo no índice.",
+              "path": "$.workflows[5].persistenceRefs"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "WF-SCOPE-001",
+              "message": "Workflow \"orderLifecycle\" menciona \"Entrega\" no título/purpose, mas a regra do MVP restringe a mesa/takeout (sem delivery). Pode gerar confusão de escopo; considerar ajustar para \"entrega/retirada\" apenas.",
+              "path": "$.workflows[0].title"
+            },
+            {
+              "code": "WF-MODE-001",
+              "message": "\"aiInsightExecution\" está como automation, mas actors inclui managerOwner; se é automação assíncrona disparada pelo gerente, executionMode automation é ok, porém pode ser modelado como taskWorkflow/automation + createTask dependendo de como o acompanhamento é feito. Clarificar.",
+              "path": "$.workflows[3]"
+            },
+            {
+              "code": "WF-NECESSARY-001",
+              "message": "Workflows \"menuManagement\" e \"inventoryItemManagement\" são uiState e parecem duplicar capabilities/usecases (CRUD) sem coordenação multi-step além de UI. Aceitável, mas verificar se são realmente necessários como workflows ou poderiam ser cobertos por páginas + usecases.",
+              "path": "$.workflows[5]"
+            }
+          ]
+        },
+        "questions": [
+          "As tabelas persistentes para MenuItem/MenuCategory/Recipe/RecipeIngredient/InventoryItem são MDM/horizontal fora do módulo? Se sim, esses workflows não deveriam existir ou deveriam referenciar apenas moduleTableIds; se não, faltam esses tableIds em moduleTableIds e, portanto, no persistenceRefs."
+        ],
+        "trace": [
+          "Checked actors against finalPlan.actorIds: all OK.",
+          "Checked executionMode values: all in allowed set.",
+          "Checked metric tables: whenever present in metricRefs also present in persistenceRefs (OK).",
+          "Found persistenceRefs empty for workflows that imply writes to entities whose tables are not in moduleTableIds; treated as index-level scope/ownership violation per persistence superset contract."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 76,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

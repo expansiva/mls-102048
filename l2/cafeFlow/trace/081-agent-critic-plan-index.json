@@ -1,0 +1,74 @@
+{
+  "savedAt": "2026-06-25T12:56:29.566Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 81,
+  "planning": {
+    "planId": "plan-index-critic:workflowIndex:1",
+    "dependsOn": [
+      "plan-workflow-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "WFI-EXECMODE-001",
+              "message": "executionMode=taskWorkflow e createsTask=true, mas o fluxo descreve principalmente transições de estado de entidades (pedido) e coordenação POS/KDS; não há tarefas explícitas atribuídas/geridas. Para esse escopo parece mais entityLifecycle (ou taskWorkflow com modelagem de Task).",
+              "path": "$.workflows[0]"
+            },
+            {
+              "code": "WFI-TASK-001",
+              "message": "createsTask=true sem evidência de criação/coordenação de tarefas para equipe/gestores/agentes; nenhum Task/Job/Assignment em relatedEntities/persistenceRefs/usecaseRefs.",
+              "path": "$.workflows[0]"
+            },
+            {
+              "code": "WFI-PERSIST-001",
+              "message": "Workflow de Gerenciamento de cardápio e receitas tem persistenceRefs vazio, mas relatedEntities incluem MenuItem/MenuCategory/Recipe/RecipeIngredient; persistenceRefs deve conter o superset de tabelas do módulo que o workflow escreve.",
+              "path": "$.workflows[5].persistenceRefs"
+            },
+            {
+              "code": "WFI-PERSIST-002",
+              "message": "Workflow de Gerenciamento de ingredientes tem persistenceRefs vazio, mas relatedEntities incluem InventoryItem; persistenceRefs deve conter as tabelas do módulo que o workflow escreve.",
+              "path": "$.workflows[6].persistenceRefs"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "WFI-WORKFLOW-SCOPE-001",
+              "message": "aiInsightExecution combina dois workflows aprovados (\"gerar resumo\" e \"sugerir promoções\") em um só. Modelagem é aceitável, mas pode dificultar rastreio/telemetria por tipo de insight; considerar separar por fluxo aprovado.",
+              "path": "$.workflows[3]"
+            },
+            {
+              "code": "WFI-PERSIST-METRIC-001",
+              "message": "Verificar se todos os workflows que alimentam lowStockMetrics/shiftSummaryMetrics/todaySalesMetrics/topSellingItemsMetrics incluem essas tabelas em metricRefs e persistenceRefs apenas quando realmente escrevem. Ex.: inventoryAdjustment inclui lowStockMetrics — ok se o ajuste recalcula/escreve a métrica; caso seja só leitura, remover de persistenceRefs/metricRefs.",
+              "path": "$.workflows"
+            }
+          ]
+        },
+        "questions": [
+          "orderLifecycle realmente cria/coordena tarefas (ex.: tickets/itens de preparo atribuídos)? Se sim, qual entidade/tabela de Task e quais use cases a gerenciam?",
+          "As tabelas de domínio para cardápio e ingredientes (menuItem, menuCategory, recipe, recipeIngredient, inventoryItem) existem no módulo? Se sim, quais são seus tableIds para preencher persistenceRefs corretamente?",
+          "inventoryAdjustment escreve lowStockMetrics diretamente (materializada) ou apenas lê e calcula on-the-fly?"
+        ],
+        "trace": [
+          "Checked actors against finalPlan.actorIds: attendantCashier/cook/managerOwner ok.",
+          "Checked executionMode/createsTask consistency per contract.",
+          "Checked persistenceRefs completeness vs relatedEntities and moduleTableIds/metricTableIds."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 83,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

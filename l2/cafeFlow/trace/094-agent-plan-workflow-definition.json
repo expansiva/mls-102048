@@ -1,0 +1,194 @@
+{
+  "savedAt": "2026-06-25T12:59:53.629Z",
+  "agentName": "agentPlanWorkflowDefinition",
+  "stepId": 94,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitWorkflowDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "workflowDefinition": {
+            "workflowId": "aiInsightExecution",
+            "title": "Execução de insights por IA",
+            "purpose": "Orquestrar a geração assíncrona de resumos de vendas e sugestões de promoção via proxy LLM da plataforma, rastreando o estado de cada execução e disponibilizando os resultados ao gerente.",
+            "executionMode": "automation",
+            "createsTask": false,
+            "actors": [
+              "managerOwner"
+            ],
+            "states": [
+              {
+                "stateId": "requested",
+                "description": "Execução de insight solicitada e aguardando resposta do proxy LLM"
+              },
+              {
+                "stateId": "succeeded",
+                "description": "Insight gerado com sucesso e resultado disponível para consulta"
+              },
+              {
+                "stateId": "failed",
+                "description": "Falha na geração do insight com registro do erro"
+              }
+            ],
+            "transitions": [
+              {
+                "from": "",
+                "to": "requested",
+                "trigger": "requestSalesSummary",
+                "actor": "managerOwner",
+                "actions": [
+                  "createAiInsightRun",
+                  "setInsightTypeDailySummary",
+                  "setStatusRequested"
+                ],
+                "conditions": [],
+                "rulesApplied": [
+                  "aiUsesPlatformLlmProxy"
+                ]
+              },
+              {
+                "from": "",
+                "to": "requested",
+                "trigger": "requestPromoSuggestions",
+                "actor": "managerOwner",
+                "actions": [
+                  "createAiInsightRun",
+                  "setInsightTypeMenuSuggestion",
+                  "setStatusRequested"
+                ],
+                "conditions": [],
+                "rulesApplied": [
+                  "aiUsesPlatformLlmProxy"
+                ]
+              },
+              {
+                "from": "requested",
+                "to": "succeeded",
+                "trigger": "llmProxySucceeded",
+                "actor": "managerOwner",
+                "actions": [
+                  "setStatusSucceeded",
+                  "storeResultText"
+                ],
+                "conditions": [],
+                "rulesApplied": []
+              },
+              {
+                "from": "requested",
+                "to": "failed",
+                "trigger": "llmProxyFailed",
+                "actor": "managerOwner",
+                "actions": [
+                  "setStatusFailed",
+                  "storeErrorMessage"
+                ],
+                "conditions": [],
+                "rulesApplied": []
+              }
+            ],
+            "userActions": [
+              "requestAiSalesSummary",
+              "requestAiPromoSuggestions",
+              "getAiInsightRun",
+              "listAiInsightRuns"
+            ],
+            "requiredEntities": [
+              "AiInsightRun",
+              "Order"
+            ],
+            "rulesApplied": [
+              "aiUsesPlatformLlmProxy"
+            ],
+            "persistenceRefs": [
+              "aiInsightRun",
+              "order"
+            ],
+            "usecaseRefs": [
+              "requestAiSalesSummary",
+              "requestAiPromoSuggestions",
+              "getAiInsightRun",
+              "listAiInsightRuns"
+            ],
+            "metricRefs": [],
+            "moduleRefs": [
+              "cafeFlow"
+            ],
+            "workflowScope": "singleModule",
+            "pageRefsByModule": [],
+            "entityRefsByModule": [
+              {
+                "entity": "AiInsightRun",
+                "moduleId": "cafeFlow"
+              },
+              {
+                "entity": "Order",
+                "moduleId": "cafeFlow"
+              }
+            ],
+            "writesArtifacts": [
+              {
+                "moduleId": "cafeFlow",
+                "artifactType": "table",
+                "artifactId": "aiInsightRun"
+              }
+            ],
+            "relatedAgents": [],
+            "relatedPages": [],
+            "relatedPlugins": [],
+            "taskConfig": {
+              "assigneeRules": [],
+              "slaRules": [],
+              "taskRoomRequired": false,
+              "taskTitleTemplate": ""
+            },
+            "implementationSuggestions": [
+              {
+                "suggestionId": "asyncAiPolling",
+                "title": "Polling ou notificação assíncrona para IA",
+                "description": "As chamadas ao LLM podem ter latência variável; o frontend deve acompanhar o status da execução via polling ou eventos.",
+                "priority": "soon",
+                "tradeoff": "Aumenta tráfego de rede leve ou exige infraestrutura de eventos, mas garante UX responsiva sem bloqueio."
+              },
+              {
+                "suggestionId": "aiCacheWindow",
+                "title": "Cache de resultados IA por janela temporal",
+                "description": "Evitar reprocessamento idêntico dentro do mesmo dia para o mesmo tipo de insight, reduzindo custo e tempo de resposta.",
+                "priority": "later",
+                "tradeoff": "Economia de tokens e latência, mas aumenta complexidade de invalidação e consistência."
+              },
+              {
+                "suggestionId": "automationWithoutTask",
+                "title": "Execução como automação sem tarefa",
+                "description": "O workflow rastreia o ciclo de vida da execução de IA de forma autônoma; o gerente consulta resultados via listagem/polling, não necessitando de tarefa atribuída.",
+                "priority": "now",
+                "tradeoff": "Reduz ruído na caixa de tarefas, porém exige que o usuário navegue até a tela de insights para acompanhar conclusão."
+              }
+            ]
+          },
+          "defsPlan": {
+            "fileName": "workflows/aiInsightExecution.defs.ts",
+            "exportName": "aiInsightExecutionDef",
+            "saveAsDefs": true
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Mantido executionMode como automation e createsTask como false conforme índice do workflow",
+          "Estados alinhados ao ciclo de vida da entidade AiInsightRun: requested, succeeded, failed",
+          "Transições iniciais separadas por tipo de insight (requestSalesSummary e requestPromoSuggestions) para refletir as capabilities do módulo",
+          "Regra aiUsesPlatformLlmProxy aplicada nas transições de solicitação conforme regra de arquitetura",
+          "Escopo definido como singleModule pois todas as entidades e artefatos escritos pertencem ao cafeFlow",
+          "Sugestões do índice convertidas (asyncAiPolling, aiCacheWindow) e adicionada explicação sobre ausência de tarefa (automationWithoutTask)"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 76,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
