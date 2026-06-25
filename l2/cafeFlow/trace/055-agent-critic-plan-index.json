@@ -1,0 +1,95 @@
+{
+  "savedAt": "2026-06-25T12:28:09.430Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 55,
+  "planning": {
+    "planId": "plan-index-critic:metricsIndex:1",
+    "dependsOn": [
+      "plan-metrics-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "metrics.t013.missingDimensions.order_dailyShift_fk",
+              "message": "T-013: métricas derivadas de Order devem incluir dimensões para FKs de relacionamentos diretos da ontologia. Falta uma dimensão clara e consistente para DailyShift (e/ou há duplicidade/confusão shiftId vs dailyShiftId) em tabelas que têm Order como fonte; padronizar FK (ex.: dailyShiftId) e remover/explicar shiftId.",
+              "path": "metricTables[0].dimensions"
+            },
+            {
+              "code": "metrics.t013.missingDimensions.orderitem_order_fk",
+              "message": "T-013: métricas derivadas de OrderItem devem incluir a FK para Order como dimensão (OrderItem -> Order). Em lowStockMetrics e shiftSummaryMetrics há orderId, mas em topSellingItemsMetrics a origem inclui OrderItem e MenuItem e ainda assim a modelagem é por item; garantir que o relacionamento OrderItem->Order esteja explicitamente coberto e não apenas inferido por Order.",
+              "path": "metricTables[1].sourceEntities"
+            },
+            {
+              "code": "metrics.table.consumer.missing",
+              "message": "Cada tabela de métricas precisa indicar claramente seu consumidor/dashboard. Hoje só o dashboard referencia as tabelas; falta um campo na tabela (ex.: consumers/dashboardIds) ou referência explícita ao dashboard/relatório aprovado para atender o contrato.",
+              "path": "metricTables[*]"
+            },
+            {
+              "code": "metrics.dashboard.actorId.field",
+              "message": "Dashboards devem mirar um actorId do plano final. O campo usado é 'actor' e não 'actorId'; isso quebra o contrato de referência ao ator.",
+              "path": "dashboardPages[0].actor"
+            },
+            {
+              "code": "metrics.dashboard.sources.referenceScope",
+              "message": "Dashboard deve referenciar apenas metricTables deste índice via identificadores consistentes. 'sources' usa ids, mas não há validação de que correspondem a metricTableId e não tableName; explicitar o tipo/contrato (metricTableIds) para evitar referência quebrada.",
+              "path": "dashboardPages[0].sources"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "Fontes incluem base tables fora de moduleTableIds (ex.: order_item, inventory_transaction, inventory_balance_snapshot). Se existem no módulo, incluir em moduleTableIds ou alinhar nomes (snake/camel).",
+              "path": "metricTables[0].sourceBaseTables"
+            },
+            {
+              "code": "metrics.dimensions.type.inconsistent",
+              "message": "Tipos de colunas FK variam entre uuid e text para ids (ex.: diningTableId, orderId, menuItemId). Padronizar para uuid (ou justificar) para facilitar joins e reduzir bugs.",
+              "path": "metricTables[*].dimensions"
+            },
+            {
+              "code": "metrics.plan.updateResponsibility",
+              "message": "updateResponsibility está no nível do plano, mas não há indicação por tabela de que updates são feitos por L3 handlers/event processors; considerar adicionar mapping usecase->metricTable para reforçar a regra 'nunca por pages'.",
+              "path": "metricsPlan.updateResponsibility"
+            },
+            {
+              "code": "metrics.duplication.shiftDimensions",
+              "message": "Existem tanto shiftId quanto dailyShiftId em várias tabelas, e as descrições sugerem que ambos representam o turno diário. Isso pode duplicar cardinalidade e confundir consumidores.",
+              "path": "metricTables[*].dimensions"
+            },
+            {
+              "code": "metrics.measures.avgTicket.definition",
+              "message": "averageTicket/ticket_value como avg pode ficar incorreto se granularidade não for por pedido (ex.: por item). Garantir medida calculada corretamente (receita/pedidos) ou registrar por ordem antes do avg.",
+              "path": "metricTables[0].measures"
+            }
+          ]
+        },
+        "questions": [
+          "Qual é a ontologia exata entre Order e DailyShift? Existe também entidade Shift separada, ou 'shiftId' deveria ser 'dailyShiftId' em todo lugar?",
+          "Os ids nas tabelas base são uuid? (Order.id, MenuItem.id, DiningTable.id, DailyShift.id, InventoryItem.id)",
+          "Há necessidade de dashboards adicionais aprovados (ex.: página 'Relatório de fechamento de turno') ou o dashboard único cobre ambos? Se há relatório separado, ele deve ser consumidor explícito de shiftSummaryMetrics."
+        ],
+        "trace": [
+          "Checked contract: storageEngine ok for all metricTables; updateResponsibility at plan level ok.",
+          "Validated dashboard actor against finalPlan actors: uses 'managerOwner' but field name mismatch.",
+          "Applied T-013 dimension rule against declared sourceEntities; flagged inconsistent/missing direct FK dimensions and shift dimension ambiguity.",
+          "Checked consumer requirement: metricTables lack explicit consumer linkage; only implicit via dashboard sources."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 50,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

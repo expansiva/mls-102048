@@ -1,0 +1,78 @@
+{
+  "savedAt": "2026-06-25T12:24:17.213Z",
+  "agentName": "agentPlanEntityDefinition",
+  "stepId": 38,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitEntityDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "entityDefinition": {
+            "entityId": "DiningTable",
+            "title": "Mesa",
+            "description": "Identificador operacional de mesa para pedidos no salão; simples e configurável para operação local.",
+            "kind": "supporting",
+            "ownership": "moduleOwned",
+            "statusEnum": [
+              "active",
+              "inactive"
+            ],
+            "rulesApplied": [],
+            "fields": [
+              {
+                "fieldId": "diningTableId",
+                "type": "uuid",
+                "required": true,
+                "description": "Identificador único da mesa"
+              },
+              {
+                "fieldId": "tableNumber",
+                "type": "string",
+                "required": true,
+                "description": "Número ou identificador operacional da mesa (ex: 1, A1, 10)"
+              },
+              {
+                "fieldId": "status",
+                "type": "string",
+                "required": true,
+                "enum": [
+                  "active",
+                  "inactive"
+                ],
+                "description": "Estado operacional da mesa"
+              },
+              {
+                "fieldId": "createdAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora de criação do registro"
+              },
+              {
+                "fieldId": "updatedAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora da última atualização do registro"
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Selecionada entidade DiningTable para definição detalhada",
+          "Mapeados campos identidade (diningTableId), operacional (tableNumber), status e auditoria (createdAt/updatedAt)",
+          "Verificado relacionamento orderOptionallyReferencesDiningTable: DiningTable é lado 'one', portanto não requer campo de referência para Order",
+          "Aplicado statusEnum ['active', 'inactive'] ao campo status e ao nível da entidade",
+          "Nenhuma regra aplicável no contexto fornecido"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 44,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

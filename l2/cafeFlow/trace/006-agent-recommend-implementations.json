@@ -1,0 +1,347 @@
+{
+  "savedAt": "2026-06-25T12:16:33.339Z",
+  "agentName": "agentRecommendImplementations",
+  "stepId": 6,
+  "planning": {
+    "planId": "req-recommend-implementations",
+    "dependsOn": [
+      "req-discover-scope"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitImplementationRecommendations",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "recommendations": [
+            {
+              "recommendationId": "menuItemMdm",
+              "artifactType": "mdm",
+              "title": "MDM: Item do Cardápio",
+              "description": "Governança de dados mestres para itens do cardápio, incluindo nome, categoria, preço e vínculo com ingredientes/insumos.",
+              "reason": "Entidade central utilizada no POS, no controle de estoque e nos relatórios; necessária para garantir consistência de preços e categorias.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "inventoryItemMdm",
+              "artifactType": "mdm",
+              "title": "MDM: Item de Estoque (Ingrediente/Insumo)",
+              "description": "Governança de ingredientes e insumos com unidade de medida, quantidade disponível e limiar de alerta para estoque baixo.",
+              "reason": "Base para a baixa automática de estoque e para os alertas de estoque baixo no dashboard.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "recipeMappingMdm",
+              "artifactType": "mdm",
+              "title": "MDM: Receita/Consumo por Item do Cardápio",
+              "description": "Mapeamento de cada item do cardápio para os ingredientes necessários e suas respectivas quantidades consumidas por venda.",
+              "reason": "Essencial para executar a baixa automática de estoque no momento da venda.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "menuItemMdm",
+                "inventoryItemMdm"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "coreUsecaseEntities",
+              "artifactType": "usecaseEntity",
+              "title": "Entidades de Caso de Uso Core",
+              "description": "Planejamento das entidades de caso de uso para comandos de criação de pedidos, atualização de status, baixa de estoque, ajustes de inventário e abertura/fechamento de turno.",
+              "reason": "O escopo contém escritas, workflows de ciclo de vida, atualizações de métricas e comandos de backend que precisam de entidades de caso de uso bem definidas.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "createOrderWorkflow",
+                "kitchenStatusWorkflow",
+                "inventoryAdjustmentWorkflow",
+                "shiftOpenCloseWorkflow"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "createOrderWorkflow",
+              "artifactType": "workflow",
+              "title": "Fluxo: Criar Pedido e Enviar à Cozinha",
+              "description": "Fluxo orientado a touch para criação de pedidos mesa/takeout, adição de itens, observações, confirmação e roteamento para a cozinha.",
+              "reason": "Núcleo do atendimento rápido; envolve escrita do pedido e início do ciclo de vida.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "menuItemMdm",
+                "recipeMappingMdm"
+              ],
+              "requiresClientDecision": true
+            },
+            {
+              "recommendationId": "kitchenStatusWorkflow",
+              "artifactType": "workflow",
+              "title": "Fluxo: Atualizar Status do Pedido na Cozinha",
+              "description": "Transições controladas de status dos pedidos na fila da cozinha (ex: recebido, preparando, pronto) para sincronizar atendimento e retirada.",
+              "reason": "Coordenação entre cozinha e atendimento depende de estados claros e atualizações em tempo real.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "createOrderWorkflow"
+              ],
+              "requiresClientDecision": true
+            },
+            {
+              "recommendationId": "inventoryAdjustmentWorkflow",
+              "artifactType": "workflow",
+              "title": "Fluxo: Ajuste de Estoque",
+              "description": "Registro de ajustes manuais de saldo de ingredientes (perdas, recebimentos, correções) com motivo e responsável.",
+              "reason": "Mantém a consistência dos saldos de estoque além da baixa automática.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "inventoryItemMdm"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "shiftOpenCloseWorkflow",
+              "artifactType": "workflow",
+              "title": "Fluxo: Abertura e Fechamento de Turno Diário",
+              "description": "Ciclo de vida do turno diário com início, consolidação de vendas/itens e geração de relatório de fechamento.",
+              "reason": "Fechamento de turno é requisito chave para o Gerente/Dono acompanhar a operação diária.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [],
+              "requiresClientDecision": true
+            },
+            {
+              "recommendationId": "aiGenerateSalesSummaryWorkflow",
+              "artifactType": "workflow",
+              "title": "Fluxo: Gerar Resumo de Vendas do Dia (IA)",
+              "description": "Coleta dos dados do turno atual e geração de resumo textual via LLM, com suporte a pt-BR e en.",
+              "reason": "Funcionalidade de IA solicitada para auxiliar o Gerente/Dono na análise diária.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "dependencies": [
+                "salesInsightsAgent",
+                "shiftOpenCloseWorkflow"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "aiGeneratePromoSuggestionsWorkflow",
+              "artifactType": "workflow",
+              "title": "Fluxo: Sugerir Itens para Promover (7 dias)",
+              "description": "Agregação de vendas dos últimos 7 dias e geração de sugestões de promoção via LLM.",
+              "reason": "Funcionalidade de IA solicitada para otimizar decisões de marketing e estoque.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "dependencies": [
+                "salesInsightsAgent"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "salesInsightsAgent",
+              "artifactType": "agent",
+              "title": "Agente de Insights de Vendas",
+              "description": "Agente que orquestra chamadas ao proxy de LLM da plataforma para gerar resumos de vendas e sugestões de promoção.",
+              "reason": "Implementa as funcionalidades de IA solicitadas de forma desacoplada, reutilizando a infraestrutura de LLM da plataforma.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "dependencies": [],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "posQuickOrderPage",
+              "artifactType": "page",
+              "title": "POS Rápido",
+              "description": "Interface otimizada para tablets e telas touch de lançamento rápido de pedidos para mesa ou takeout.",
+              "reason": "Tela chave para o Atendente/Caixa realizar atendimento rápido com mínimo de toques.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "createOrderWorkflow",
+                "menuItemMdm"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "kitchenDisplayPage",
+              "artifactType": "page",
+              "title": "Tela da Cozinha (KDS)",
+              "description": "Visualização dedicada da fila de pedidos e controles para atualização de status de preparo.",
+              "reason": "Tela essencial para o Cozinheiro acompanhar e coordenar a produção em tempo real.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "kitchenStatusWorkflow"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "menuManagementPage",
+              "artifactType": "page",
+              "title": "Gerenciamento de Cardápio",
+              "description": "Tela para cadastro, edição e organização de itens do cardápio, categorias, preços e definição de receitas.",
+              "reason": "Tela chave para o Gerente/Dono configurar o cardápio e o vínculo com ingredientes.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "menuItemMdm",
+                "recipeMappingMdm"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "inventoryManagementPage",
+              "artifactType": "page",
+              "title": "Gerenciamento de Estoque",
+              "description": "Tela para cadastro de ingredientes, ajustes de saldo, visualização de alertas de estoque baixo e histórico de movimentações.",
+              "reason": "Controle simples de estoque por ingrediente conforme escopo do CafeFlow.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "inventoryItemMdm",
+                "inventoryAdjustmentWorkflow"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "shiftCloseReportPage",
+              "artifactType": "page",
+              "title": "Relatório de Fechamento de Turno",
+              "description": "Tela de fechamento do turno diário com resumo de vendas, totais por item/categoria e visualização do relatório gerado.",
+              "reason": "Tela chave solicitada para o Gerente/Dono fechar o dia e revisar totais.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "shiftOpenCloseWorkflow",
+                "shiftSummaryMetricTable"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "dashboardPage",
+              "artifactType": "page",
+              "title": "Dashboard (Hoje)",
+              "description": "Dashboard consolidado com vendas do dia, itens mais vendidos e alertas de estoque baixo, otimizado para tablet.",
+              "reason": "Visão central para o Gerente/Dono acompanhar a operação em tempo real.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "managerOwnerMetricDashboard"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "aiAssistantPage",
+              "artifactType": "page",
+              "title": "Assistente IA",
+              "description": "Interface para acionar a geração de resumo de vendas do dia e sugestões de itens para promover baseados nos últimos 7 dias.",
+              "reason": "UI necessária para expor as funcionalidades do agente de IA ao Gerente/Dono.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "dependencies": [
+                "salesInsightsAgent"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "salesTodayMetricTable",
+              "artifactType": "metricTable",
+              "title": "Tabela de Métricas: Vendas de Hoje",
+              "description": "Agregação de receita e quantidade de pedidos do dia atual para exibição no dashboard.",
+              "reason": "Métrica básica solicitada para o dashboard inicial.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "topSellingItemsMetricTable",
+              "artifactType": "metricTable",
+              "title": "Tabela de Métricas: Itens Mais Vendidos",
+              "description": "Ranking de itens do cardápio por quantidade vendida e receita, com janela temporal configurável.",
+              "reason": "Métrica básica solicitada para o dashboard inicial.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "menuItemMdm"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "lowStockMetricTable",
+              "artifactType": "metricTable",
+              "title": "Tabela de Métricas: Alertas de Estoque Baixo",
+              "description": "Lista de ingredientes com saldo atual abaixo do limiar definido no cadastro.",
+              "reason": "Métrica básica solicitada para o dashboard inicial.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "inventoryItemMdm"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "shiftSummaryMetricTable",
+              "artifactType": "metricTable",
+              "title": "Tabela de Métricas: Resumo do Turno",
+              "description": "Métricas consolidadas de fechamento de turno, incluindo total de pedidos, receita e breakdown por categoria.",
+              "reason": "Necessário para alimentar o relatório de fechamento de turno.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "shiftOpenCloseWorkflow"
+              ],
+              "requiresClientDecision": false
+            },
+            {
+              "recommendationId": "managerOwnerMetricDashboard",
+              "artifactType": "metricDashboard",
+              "title": "Dashboard de Métricas do Gerente",
+              "description": "Dashboard consolidado de métricas operacionais (vendas, itens mais vendidos, estoque baixo e resumo de turno) para o Gerente/Dono.",
+              "reason": "O cliente aceitou dashboard inicial básico de métricas; este artefato consolida as tabelas de métricas em uma visão unificada.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "dependencies": [
+                "salesTodayMetricTable",
+                "topSellingItemsMetricTable",
+                "lowStockMetricTable",
+                "shiftSummaryMetricTable"
+              ],
+              "requiresClientDecision": false
+            }
+          ]
+        },
+        "questions": [
+          "Quais status do Pedido você quer no MVP e qual evento marca a venda (pagamento/entrega/fechamento)?",
+          "A baixa automática de estoque deve ocorrer quando o pedido é enviado à cozinha ou apenas quando o pedido é finalizado/pago?",
+          "O CafeFlow no MVP é para uma única loja por conta ou deve suportar múltiplas lojas/unidades?",
+          "No fechamento de turno, você precisa registrar também contagem de caixa (dinheiro/cartão) ou apenas resumo de vendas por itens?",
+          "Para o assistente IA, as sugestões devem considerar apenas volume de vendas ou também estoque atual (ex.: promover itens com insumo perto de vencer/alto estoque)?"
+        ],
+        "trace": [
+          "Escopo descoberto inclui entidades: Item do Cardápio, Pedido, Turno Diário, Item de Estoque; telas: Dashboard, POS, KDS, gerenciamento, fechamento; funcionalidades IA: resumo e sugestões.",
+          "Esclarecimento confirmou: papéis (Atendente/Caixa, Cozinheiro, Gerente/Dono), suporte pt-BR/en, dashboard básico, estilo touch, MVP mesa/takeout, estoque por ingrediente com baixa automática.",
+          "Recomendações priorizam: MDMs core (cardápio, estoque, receita), workflows operacionais (pedido, cozinha, estoque, turno), telas essenciais (POS, KDS, dashboard, gerenciamento), métricas básicas e dashboard consolidado para o Gerente/Dono.",
+          "Funcionalidades de IA (agente, fluxos e tela) priorizadas como 'soon' após a base operacional estar estável.",
+          "Decisões pendentes: status do pedido, momento da baixa de estoque, suporte a multi-loja, contagem de caixa no fechamento e critérios das sugestões de IA."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 34,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

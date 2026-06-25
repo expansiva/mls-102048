@@ -1,0 +1,386 @@
+{
+  "savedAt": "2026-06-25T12:14:39.410Z",
+  "agentName": "agentDiscoverSolutionScope",
+  "stepId": 5,
+  "planning": {
+    "planId": "req-discover-scope",
+    "dependsOn": [
+      "req-clarification-answer"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitSolutionScopeDraft",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "domain": "cafeFlow",
+          "summary": "Aplicativo CafeFlow para cafeterias e lanchonetes pequenas, com POS rápido para criação e acompanhamento de pedidos (mesa/takeout), tela de cozinha, controle simples de estoque por ingrediente e fechamento de turno, incluindo dashboard de métricas básicas e assistente de IA para resumo/sugestões de promoção.",
+          "actors": [
+            {
+              "actorId": "attendantCashier",
+              "title": "Atendente/Caixa",
+              "description": "Registra pedidos rapidamente no POS, acompanha status e finaliza vendas para mesa ou takeout."
+            },
+            {
+              "actorId": "cook",
+              "title": "Cozinheiro",
+              "description": "Visualiza fila de pedidos e atualiza status de preparo para coordenar a cozinha."
+            },
+            {
+              "actorId": "managerOwner",
+              "title": "Gerente/Dono",
+              "description": "Configura cardápio, controla estoque por ingrediente, acompanha vendas/relatórios e fecha turnos."
+            }
+          ],
+          "capabilities": [
+            {
+              "capabilityId": "takeOrderPos",
+              "title": "Lançar pedido no POS",
+              "description": "Criar pedido para mesa ou takeout, adicionar itens do cardápio, quantidades e observações; enviar para cozinha.",
+              "actor": "attendantCashier",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "updateOrderStatusKitchen",
+              "title": "Atualizar status do pedido (cozinha)",
+              "description": "Ver pedidos em fila e mudar status (ex.: recebido, preparando, pronto) para sincronizar atendimento e retirada/mesa.",
+              "actor": "cook",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "trackOrderLifecycle",
+              "title": "Acompanhar status do pedido",
+              "description": "Acompanhar andamento e priorização; visualizar pedidos ativos por mesa/takeout.",
+              "actor": "attendantCashier",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "manageMenuItems",
+              "title": "Gerenciar itens do cardápio",
+              "description": "CRUD de item do cardápio com categoria, preço e mapeamento de ingredientes/insumos consumidos por venda.",
+              "actor": "managerOwner",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "manageInventoryItems",
+              "title": "Gerenciar itens de estoque (ingredientes)",
+              "description": "CRUD de ingredientes/insumos com unidade, quantidade disponível e limiar de estoque baixo; ajustes manuais.",
+              "actor": "managerOwner",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "autoInventoryDeduction",
+              "title": "Baixa automática de estoque por ingrediente",
+              "description": "Ao confirmar/vender um item do cardápio, descontar automaticamente os insumos conforme a receita associada.",
+              "actor": "managerOwner",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "dailyShiftOpenClose",
+              "title": "Abrir e fechar turno diário",
+              "description": "Iniciar turno, registrar totais do período e executar fechamento com resumo de vendas/itens e divergências simples.",
+              "actor": "managerOwner",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "viewDashboardToday",
+              "title": "Ver dashboard do dia",
+              "description": "Exibir vendas de hoje, itens mais vendidos e alertas de estoque baixo (métricas básicas).",
+              "actor": "managerOwner",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "viewShiftCloseReport",
+              "title": "Relatório de fechamento de turno",
+              "description": "Gerar e visualizar relatório de fechamento do turno com totais e breakdown por item/categoria.",
+              "actor": "managerOwner",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "aiSalesSummary",
+              "title": "Assistente IA: resumo de vendas do dia",
+              "description": "Gerar texto de resumo do desempenho do dia com base em vendas e eventos do turno.",
+              "actor": "managerOwner",
+              "priority": "soon"
+            },
+            {
+              "capabilityId": "aiPromoSuggestions",
+              "title": "Assistente IA: sugestões de itens para promover (7 dias)",
+              "description": "Sugerir itens para promoção com base nos últimos 7 dias (tendências, margem/estoque baixo/alto).",
+              "actor": "managerOwner",
+              "priority": "soon"
+            },
+            {
+              "capabilityId": "bilingualUi",
+              "title": "Interface bilíngue",
+              "description": "Suporte a Português (pt-BR) e Inglês (en) para UI e conteúdos do assistente.",
+              "actor": "managerOwner",
+              "priority": "now"
+            }
+          ],
+          "artifactSignals": {
+            "pages": [
+              {
+                "signal": "dashboardPage",
+                "title": "Dashboard (Hoje)",
+                "actor": "managerOwner",
+                "reason": "Tela chave solicitada: vendas de hoje, itens mais vendidos e estoque baixo; precisa ser otimizada para tablet/touch.",
+                "priority": "now"
+              },
+              {
+                "signal": "posQuickOrderPage",
+                "title": "POS rápido",
+                "actor": "attendantCashier",
+                "reason": "Tela chave para atendimento rápido: lançamento de pedido mesa/takeout e envio para cozinha com mínimo de toques.",
+                "priority": "now"
+              },
+              {
+                "signal": "kitchenDisplayPage",
+                "title": "Tela da cozinha (KDS)",
+                "actor": "cook",
+                "reason": "Coordenação de cozinha requer uma visualização dedicada da fila e estados dos pedidos.",
+                "priority": "now"
+              },
+              {
+                "signal": "menuManagementPage",
+                "title": "Gerenciamento de cardápio",
+                "actor": "managerOwner",
+                "reason": "CRUD de itens do cardápio e definição de categorias/preços e vínculo com ingredientes para baixa automática.",
+                "priority": "now"
+              },
+              {
+                "signal": "inventoryManagementPage",
+                "title": "Gerenciamento de estoque (ingredientes)",
+                "actor": "managerOwner",
+                "reason": "Controle simples de estoque por ingrediente com ajustes e alertas de baixo estoque.",
+                "priority": "now"
+              },
+              {
+                "signal": "shiftCloseReportPage",
+                "title": "Relatório de fechamento de turno",
+                "actor": "managerOwner",
+                "reason": "Tela chave solicitada para fechamento de turno diário e revisão de totais.",
+                "priority": "now"
+              },
+              {
+                "signal": "aiAssistantPage",
+                "title": "Assistente IA (Resumo/Sugestões)",
+                "actor": "managerOwner",
+                "reason": "UI para acionar geração de resumo diário e sugestões de promoção baseadas em 7 dias.",
+                "priority": "soon"
+              }
+            ],
+            "workflows": [
+              {
+                "signal": "createOrderWorkflow",
+                "title": "Fluxo: criar pedido e enviar à cozinha",
+                "actor": "attendantCashier",
+                "reason": "Há escrita e transição de estados do Pedido; fluxo orientado a toque com confirmação e roteamento para cozinha.",
+                "priority": "now"
+              },
+              {
+                "signal": "kitchenStatusWorkflow",
+                "title": "Fluxo: atualizar status do pedido na cozinha",
+                "actor": "cook",
+                "reason": "Mudanças de status são o núcleo da coordenação de cozinha; precisa de transições controladas e atualização em tempo real.",
+                "priority": "now"
+              },
+              {
+                "signal": "inventoryAdjustmentWorkflow",
+                "title": "Fluxo: ajuste de estoque",
+                "actor": "managerOwner",
+                "reason": "Estoques exigem ajustes manuais (perdas/recebimento) e registro de motivo para manter consistência.",
+                "priority": "now"
+              },
+              {
+                "signal": "shiftOpenCloseWorkflow",
+                "title": "Fluxo: abertura/fechamento de turno diário",
+                "actor": "managerOwner",
+                "reason": "Turno Diário tem ciclo de vida; fechamento consolida métricas e gera relatório.",
+                "priority": "now"
+              },
+              {
+                "signal": "aiGenerateSalesSummaryWorkflow",
+                "title": "Fluxo: gerar resumo de vendas do dia (IA)",
+                "actor": "managerOwner",
+                "reason": "Requer coleta de dados do dia e geração via LLM, com opção de idioma pt-BR/en.",
+                "priority": "soon"
+              },
+              {
+                "signal": "aiGeneratePromoSuggestionsWorkflow",
+                "title": "Fluxo: sugerir itens para promover (7 dias)",
+                "actor": "managerOwner",
+                "reason": "Requer agregação de 7 dias e geração via LLM; pode incluir filtros (estoque alto/baixo, top sellers).",
+                "priority": "soon"
+              }
+            ],
+            "plugins": [],
+            "agents": [
+              {
+                "signal": "salesInsightsAgent",
+                "title": "Agente de Insights de Vendas",
+                "actor": "managerOwner",
+                "reason": "Funcionalidade LLM solicitada (resumo do dia e sugestões 7 dias) se encaixa como agente que orquestra agregações e prompt/idioma.",
+                "priority": "soon"
+              }
+            ],
+            "horizontalModules": [],
+            "mdm": [
+              {
+                "signal": "menuItemMdm",
+                "title": "MDM: Item do Cardápio",
+                "actor": "managerOwner",
+                "reason": "Item do Cardápio é entidade mestre usada no POS e em relatórios; precisa governança de campos (categoria, preço) e versionamento básico para consistência.",
+                "priority": "now",
+                "mdmKind": "masterData"
+              },
+              {
+                "signal": "inventoryItemMdm",
+                "title": "MDM: Item de Estoque (Ingrediente/Insumo)",
+                "actor": "managerOwner",
+                "reason": "Baixa automática por ingrediente depende de cadastro consistente de insumos, unidades e limites; necessário para alertas de estoque baixo e relatórios.",
+                "priority": "now",
+                "mdmKind": "masterData"
+              },
+              {
+                "signal": "recipeMappingMdm",
+                "title": "MDM: Receita/Consumo por item",
+                "actor": "managerOwner",
+                "reason": "Para descontar automaticamente insumos por venda, é necessário manter a relação item do cardápio -> ingredientes e quantidades como dado mestre.",
+                "priority": "now",
+                "mdmKind": "masterData"
+              }
+            ],
+            "metrics": [
+              {
+                "signal": "salesTodayMetrics",
+                "title": "Métricas: vendas de hoje",
+                "actor": "managerOwner",
+                "reason": "Dashboard inicial básico pede visão de vendas do dia; requer agregações por período/turno.",
+                "priority": "now"
+              },
+              {
+                "signal": "topSellingItemsMetrics",
+                "title": "Métricas: itens mais vendidos",
+                "actor": "managerOwner",
+                "reason": "Parte do dashboard; exige contagem/receita por item e janela temporal (hoje/7 dias).",
+                "priority": "now"
+              },
+              {
+                "signal": "lowStockMetrics",
+                "title": "Métricas: alertas de estoque baixo",
+                "actor": "managerOwner",
+                "reason": "Dashboard pede itens com estoque baixo; depende de limites no MDM de ingredientes e do saldo atual.",
+                "priority": "now"
+              },
+              {
+                "signal": "shiftSummaryMetrics",
+                "title": "Métricas: resumo do turno",
+                "actor": "managerOwner",
+                "reason": "Fechamento de turno requer totais consolidados (nº pedidos, receita total, breakdown).",
+                "priority": "now"
+              }
+            ],
+            "usecases": [
+              {
+                "signal": "createOrderCommand",
+                "title": "UC: Criar Pedido (POS)",
+                "actor": "attendantCashier",
+                "reason": "Escrita do Pedido e itens; necessita validações (mesa/takeout) e persistência.",
+                "priority": "now"
+              },
+              {
+                "signal": "changeOrderStatusCommand",
+                "title": "UC: Alterar Status do Pedido",
+                "actor": "cook",
+                "reason": "Transições de estado do pedido e atualização de telas; pode exigir bloqueio/concorrência simples.",
+                "priority": "now"
+              },
+              {
+                "signal": "closeOrderAndDeductInventoryCommand",
+                "title": "UC: Confirmar venda e baixar estoque",
+                "actor": "attendantCashier",
+                "reason": "Ao finalizar/confirmar pedido, deve atualizar métricas e descontar ingredientes conforme receita, mantendo consistência de saldos.",
+                "priority": "now"
+              },
+              {
+                "signal": "manageMenuItemCommand",
+                "title": "UC: Manter Item do Cardápio e receita",
+                "actor": "managerOwner",
+                "reason": "CRUD e vínculo com ingredientes; garante que POS e baixa automática funcionem.",
+                "priority": "now"
+              },
+              {
+                "signal": "manageInventoryItemCommand",
+                "title": "UC: Manter Item de Estoque",
+                "actor": "managerOwner",
+                "reason": "CRUD de insumos e ajustes; impacta alertas de baixo estoque.",
+                "priority": "now"
+              },
+              {
+                "signal": "openShiftCommand",
+                "title": "UC: Abrir Turno",
+                "actor": "managerOwner",
+                "reason": "Início do Turno Diário para contabilização e recorte de relatórios.",
+                "priority": "now"
+              },
+              {
+                "signal": "closeShiftCommand",
+                "title": "UC: Fechar Turno e gerar relatório",
+                "actor": "managerOwner",
+                "reason": "Consolida dados e gera relatório de fechamento solicitado; atualiza métricas.",
+                "priority": "now"
+              },
+              {
+                "signal": "generateAiSalesSummaryCommand",
+                "title": "UC: Gerar resumo de vendas do dia (IA)",
+                "actor": "managerOwner",
+                "reason": "Orquestra agregação do dia, seleção de idioma e chamada ao LLM.",
+                "priority": "soon"
+              },
+              {
+                "signal": "generateAiPromoSuggestionsCommand",
+                "title": "UC: Gerar sugestões de promoção (IA)",
+                "actor": "managerOwner",
+                "reason": "Orquestra agregação 7 dias e geração de recomendações via LLM.",
+                "priority": "soon"
+              }
+            ]
+          },
+          "businessRisks": [
+            "Baixa automática por ingrediente pode gerar inconsistências se houver cancelamentos/alterações de pedido após preparo; é necessário definir quando ocorre a baixa (ex.: ao finalizar pagamento vs. ao enviar para cozinha).",
+            "Operação em tablet/touch exige UX muito otimizada; fluxos longos podem reduzir velocidade no atendimento.",
+            "Relatórios de turno dependem de uma definição clara de 'turno' (horário, usuário responsável, reabertura) para evitar divergências.",
+            "Sugestões do assistente IA podem induzir decisões ruins se os dados de 7 dias forem poucos/ruidosos; é preciso explicar critérios e permitir revisão."
+          ],
+          "missingContext": [
+            "Definição exata de status do Pedido (ex.: novo, em preparo, pronto, entregue, cancelado) e quais transições são permitidas.",
+            "Momento exato de contabilização de venda e baixa de estoque (no envio à cozinha, no pagamento, ou no fechamento do pedido).",
+            "Se há necessidade de múltiplos atendentes/cozinheiros simultâneos por loja e como segmentar por turno/estação.",
+            "Se o MVP precisa suportar múltiplas unidades/lojas ou apenas uma loja por conta."
+          ]
+        },
+        "questions": [
+          "Quais status do Pedido você quer no MVP e qual evento marca a venda (pagamento/entrega/fechamento)?",
+          "A baixa automática de estoque deve ocorrer quando o pedido é enviado à cozinha ou apenas quando o pedido é finalizado/pago?",
+          "O CafeFlow no MVP é para uma única loja por conta ou deve suportar múltiplas lojas/unidades?",
+          "No fechamento de turno, você precisa registrar também contagem de caixa (dinheiro/cartão) ou apenas resumo de vendas por itens?",
+          "Para o assistente IA, as sugestões devem considerar apenas volume de vendas ou também estoque atual (ex.: promover itens com insumo perto de vencer/alto estoque)?"
+        ],
+        "trace": [
+          "Prompt inicial definiu entidades: Item do Cardápio, Pedido, Turno Diário, Item de Estoque; telas: Dashboard, POS, gerenciamento, fechamento; incluiu IA para resumo/sugestões; foco em rapidez/cozinha/estoque.",
+          "Esclarecimento adicionou: papéis (Atendente/Caixa, Gerente/Dono, Cozinheiro), suporte pt-BR/en, dashboard inicial básico, estilo touch/alto contraste, MVP apenas mesa e takeout, estoque por ingrediente com baixa automática."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 34,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

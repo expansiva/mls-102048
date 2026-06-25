@@ -1,0 +1,113 @@
+{
+  "savedAt": "2026-06-25T12:21:09.548Z",
+  "agentName": "agentBlueprintReview",
+  "stepId": 10,
+  "planning": {
+    "planId": "plan-blueprint-review",
+    "dependsOn": [
+      "plan-solution-blueprint"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitBlueprintReview",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "issues": [
+            {
+              "severity": "error",
+              "code": "L3_USECASE_PLANNING_MISSING",
+              "message": "Há comandos de escrita e mudanças de ciclo de vida (Order/DailyShift/InventoryTransaction/AiInsightRun), mas não há planejamento explícito de layer_3 (BFF/handlers) para orquestração, idempotência, concorrência e atualização de métricas/estoque.",
+              "path": "$.result.artifactPlan.usecaseEntities",
+              "evidence": [
+                "usecaseEntities incluem createOrderCommand, changeOrderStatusCommand, closeOrderAndDeductInventoryCommand, openShiftCommand, closeShiftCommand, generateAi*Command; todos são writes/stateChange.",
+                "Regras citam idempotência e estorno (inventoryDeductionHappensOnSaleEvent), mas não existe artefato/planejamento para isso na camada L3."
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "SALE_EVENT_UNDECIDED_BLOCKS_DOMAIN",
+              "message": "O evento que marca a venda e dispara baixa/métricas não está decidido; isso bloqueia modelagem consistente do workflow/UC e tabelas de métricas baseadas em closed orders.",
+              "path": "$.result.questions",
+              "evidence": [
+                "Pergunta em aberto: 'Qual evento marca a venda e dispara métricas/baixa automática'",
+                "Regras: inventoryDeductionHappensOnSaleEvent + metricsDerivedFromClosedOrders dependem dessa decisão."
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "WORKFLOW_TO_UC_MISMATCH",
+              "message": "O workflow 'inventoryAdjustmentWorkflow' referencia 'manageInventoryItemCommand', mas o ajuste manual de estoque está descrito como criação de InventoryTransaction; pode gerar ambiguidade de responsabilidade entre CRUD de ingrediente e posting de transação.",
+              "path": "$.result.artifactPlan.workflows[2].references",
+              "evidence": [
+                "workflow inventoryAdjustmentWorkflow references: manageInventoryItemCommand",
+                "userAction postInventoryAdjustment é create InventoryTransaction",
+                "UC manageInventoryItemCommand mistura CRUD e ajustes."
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "SHIFT_CLOSE_REPORT_SCOPE_UNCLEAR",
+              "message": "Relatório de fechamento de turno existe, mas não está claro se inclui fechamento de caixa por forma de pagamento; se for necessário, faltam entidades/workflows/metrics para meios de pagamento.",
+              "path": "$.result.questions",
+              "evidence": [
+                "Pergunta em aberto sobre contagem de caixa por meio de pagamento",
+                "Nenhuma entidade Payment/PaymentMethod/CashCount presente; Order não tem relação de pagamentos no MAP."
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "MULTI_LOCATION_SCOPE_UNCONFIRMED",
+              "message": "Escopo multi-loja não confirmado. Se multi-loja for necessário, faltam entidades e relacionamentos (Store/Location) e impacto em MDM/estoque/turnos/métricas.",
+              "path": "$.result.questions",
+              "evidence": [
+                "Pergunta em aberto: 'única loja por conta ou múltiplas lojas/unidades?'",
+                "Entidades atuais não incluem Store/Location; relacionamentos e metric tables assumem único contexto."
+              ]
+            },
+            {
+              "severity": "info",
+              "code": "ORDER_STATUS_DEFINITION_PENDING",
+              "message": "Há statusEnum/lifecycleStates de Order definidos, mas as transições permitidas do MVP ainda não foram confirmadas; isso afeta rules/workflows de status.",
+              "path": "$.result.questions",
+              "evidence": [
+                "Pergunta em aberto sobre status/transições do Pedido",
+                "Rule orderStatusTransitionsControlled depende do grafo de transições."
+              ]
+            }
+          ],
+          "recommendedFixes": [
+            "Adicionar planejamento de layer_3 para cada UC de escrita (createOrderCommand, changeOrderStatusCommand, closeOrderAndDeductInventoryCommand, openShiftCommand, closeShiftCommand, generateAiSalesSummaryCommand, generateAiPromoSuggestionsCommand), incluindo orquestração BFF, idempotência, concorrência e atualização de métricas/estoque.",
+            "Decidir e registrar no blueprint o evento de venda único que dispara baixa automática e atualização de métricas (ex.: ao fechar/pagar o pedido), e alinhar workflow/UC/rules a essa decisão.",
+            "Separar responsabilidades: criar um usecaseEntity específico para 'Registrar Ajuste de Estoque' (ex.: postInventoryAdjustmentCommand) e referenciá-lo no inventoryAdjustmentWorkflow, mantendo manageInventoryItemCommand focado em CRUD de InventoryItem.",
+            "Confirmar se o MVP exige fechamento de caixa por meio de pagamento; se sim, adicionar entidades core/event para pagamentos/contagem de caixa e uma metricTable para totais por PaymentMethod no shift close report.",
+            "Confirmar escopo de loja única vs multi-loja; se multi-loja, adicionar um MDM de Store/Location e relacionar DailyShift, Order, InventoryItem/Transaction e métricas a Store.",
+            "Confirmar o conjunto de status do Pedido e o grafo de transições permitidas do MVP e alinhar kitchenStatusWorkflow/trackOrderLifecycle às transições."
+          ]
+        },
+        "questions": [
+          "Qual evento único vai marcar a venda no MVP (e portanto disparar baixa automática e alimentar métricas): enviar para cozinha, marcar entregue/retirado, ou fechar/pagar o pedido?",
+          "O MVP precisa de fechamento de caixa por meio de pagamento (dinheiro/cartão/pix) ou apenas resumo por itens/categorias?",
+          "O sistema é para uma única loja por conta ou precisa suportar múltiplas lojas/unidades desde o MVP?",
+          "Você confirma os status do Pedido no MVP e as transições permitidas (incluindo quando 'cancelled' é permitido e se 'delivered' é antes de 'closed' ou se são o mesmo estado)?",
+          "Para ajuste manual de estoque, você quer um fluxo/UC separado de 'Registrar ajuste' distinto do CRUD de ingredientes, ou prefere manter tudo no mesmo UC?"
+        ],
+        "trace": [
+          "Revisão detectou writes/stateChange e necessidade de layer_3 para orquestração e consistência.",
+          "Bloqueio principal: decisão do evento de venda único para baixa/métricas.",
+          "Escopo ainda depende de decisões: multi-loja e fechamento de caixa por pagamento.",
+          "Pequena inconsistência de referências: workflow de ajuste de estoque aponta para UC genérico de inventário."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 35,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

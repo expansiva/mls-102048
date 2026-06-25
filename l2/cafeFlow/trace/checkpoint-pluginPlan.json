@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "pluginPlan",
+  "moduleName": "cafeFlow",
+  "status": "frozen",
+  "approvedAt": "2026-06-25T12:23:29.197Z",
+  "source": {
+    "agentName": "agentPlanPlugins",
+    "stepId": 16,
+    "planId": "plan-plugins"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [],
+    "criticErrors": [],
+    "criticWarnings": [],
+    "attempts": 1,
+    "notes": [
+      "critic skipped: empty or disabled index"
+    ]
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "11-plan-plugins",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "plugins": []
+    },
+    "questions": [],
+    "trace": [
+      "Nenhuma decisão de plugin foi aceita e o catálogo de plugins está vazio. As funcionalidades aprovadas (POS, KDS, estoque, turno e assistente IA via proxy LLM interno da plataforma) não justificam a integração com plugins externos neste momento."
+    ]
+  }
+}

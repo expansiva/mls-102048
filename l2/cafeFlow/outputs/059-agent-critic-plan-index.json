@@ -1,0 +1,97 @@
+{
+  "savedAt": "2026-06-25T12:30:58.723Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 59,
+  "planning": {
+    "planId": "plan-index-critic:metricsIndex:3",
+    "dependsOn": [
+      "plan-metrics-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "metrics.plan.storageEngine.scope",
+              "message": "storageEngine is set at metricsPlan level; contract requires postgresTimescaleDB for every metric table (already true), but plan-level field may be ignored/unsupported and creates ambiguity about enforcement.",
+              "path": "metricsPlan.storageEngine"
+            },
+            {
+              "code": "metrics.dimensions.missing_fk_direct_relationships",
+              "message": "todaySalesMetrics is sourced from Order and OrderItem but lacks order_id dimension (direct relationship OrderItem -> Order).",
+              "path": "metricTables[0].dimensions"
+            },
+            {
+              "code": "metrics.dimensions.missing_fk_direct_relationships",
+              "message": "todaySalesMetrics includes MenuItem/MenuCategory dimensions implying joins, but sourceEntities omit MenuItem/MenuCategory; if they are direct relationships of OrderItem they should be declared as sourceEntities and FK dims should reflect ontology consistently.",
+              "path": "metricTables[0].sourceEntities"
+            },
+            {
+              "code": "metrics.dimensions.missing_fk_direct_relationships",
+              "message": "topSellingItemsMetrics sources include MenuItem but lacks direct FK dims for MenuItem's direct ontology relationships (e.g., menu_category_id if MenuItem -> MenuCategory is direct). Dimension exists, but ensure it's FK from MenuItem not derived; ontology relationship not stated; ambiguity is a contract-level miss for T-013.",
+              "path": "metricTables[1].dimensions"
+            },
+            {
+              "code": "metrics.dimensions.missing_fk_direct_relationships",
+              "message": "lowStockMetrics sourced from InventoryTransaction and InventoryBalanceSnapshot but missing direct FK dims such as inventory_transaction_id / inventory_balance_snapshot_id (if modeled as entities) and lacks clear FK dims for InventoryTransaction -> InventoryItem (only inventoryItemId present, ok) and InventoryTransaction -> DailyShift (not present if exists). T-013 requires FKs of source entities’ direct relationships; relationships not fully covered.",
+              "path": "metricTables[2].dimensions"
+            },
+            {
+              "code": "metrics.dimensions.missing_fk_direct_relationships",
+              "message": "shiftSummaryMetrics uses source entities DailyShift, Order, OrderItem but includes menuItemId and diningTableId while omitting menuCategoryId (if MenuItem -> MenuCategory direct) and uses orderId type text inconsistent with other UUID FKs; also missing orderType dimension if Order has it as direct attribute used in dashboards.",
+              "path": "metricTables[3]"
+            },
+            {
+              "code": "metrics.dashboard.actorId",
+              "message": "dashboardPages[0].actor uses field 'actor' not 'actorId'; contract says dashboards must target a final plan actorId.",
+              "path": "dashboardPages[0].actor"
+            },
+            {
+              "code": "metrics.dashboard.sources.reference",
+              "message": "dashboard sources reference metricTableIds; OK, but widgets' metricId fields are measureIds without qualification; if schema expects fully qualified IDs this can break. Ensure consistent referencing contract.",
+              "path": "dashboardPages[0].widgets"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "Several sourceBaseTables are flagged unknown (order_item, daily_shift, inventory_balance_snapshot, inventory_transaction). Ensure they match moduleTableIds: order, diningTable, dailyShift, inventoryTransaction, inventoryBalanceSnapshot.",
+              "path": "metricTables"
+            },
+            {
+              "code": "metrics.naming.tableName.convention",
+              "message": "Base tables use snake_case but moduleTableIds include camelCase for some (dailyShift etc.). Consider aligning sourceBaseTables to approved module table ids or define mapping clearly.",
+              "path": "metricTables[*].sourceBaseTables"
+            },
+            {
+              "code": "metrics.redundant.dimensions",
+              "message": "shiftSummaryMetrics includes menuItemId and orderId dimensions which may explode cardinality for a 'summary' table; consider separate fact tables vs summary grain.",
+              "path": "metricTables[3].dimensions"
+            }
+          ]
+        },
+        "questions": [
+          "Quais são as relações diretas (FKs) na ontologia entre: OrderItem->MenuItem, MenuItem->MenuCategory, Order->DailyShift, InventoryTransaction->DailyShift/Order/InventoryItem, InventoryBalanceSnapshot->DailyShift/InventoryItem? (para validar T-013)",
+          "Os IDs de base table devem usar moduleTableIds (order, dailyShift, inventoryTransaction...) ou nomes físicos snake_case? Qual é o contrato esperado para sourceBaseTables?",
+          "O schema de dashboard widget.metricId referencia measureId simples ou exige qualificação (ex.: todaySalesMetrics.totalRevenue)?"
+        ],
+        "trace": [
+          "checked contract focus items: metric count vs approved artifacts (4 ok); storageEngine per table (all postgresTimescaleDB ok); updateResponsibility layer_3_usecases (plan-level ok); dashboard references metric tables in index (ok); validated actorId field and T-013 dimensions coverage; incorporated deterministic warnings without contradiction."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 54,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

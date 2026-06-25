@@ -1,0 +1,62 @@
+{
+  "savedAt": "2026-06-25T12:26:48.043Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 48,
+  "planning": {
+    "planId": "plan-index-critic:persistenceIndex:3",
+    "dependsOn": [
+      "plan-persistence-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": true,
+          "errors": [],
+          "warnings": [
+            {
+              "code": "W_DETAILS_PATTERN_ORDERITEM_LIFECYCLE",
+              "message": "Order inclui OrderItem como embeddedEntities com aggregateJsonDetails. Confirme que OrderItem não precisa de ciclo de vida/consulta independente (ex.: reimpressão por item, métricas por item em tempo real, auditoria de alterações) e que sempre será lido junto com Order; caso contrário, considerar tabela filha order_item.",
+              "path": "$.tables[0].embeddedEntities"
+            },
+            {
+              "code": "W_DININGTABLE_WRITES_MISMATCH",
+              "message": "diningTable indica writesByArtifacts apenas via 'Criar Pedido', mas o propósito diz 'cadastro operacional de mesas (ativas/inativas)'. Se houver CRUD/ativação de mesa, faltam artefatos/UC/fluxo de escrita; se não houver, ajustar propósito/readsByArtifacts.",
+              "path": "$.tables[1].writesByArtifacts"
+            },
+            {
+              "code": "W_DAILYSHIFT_DETAILS_RECOMMENDED",
+              "message": "dailyShift usa singleEntity mas detailsColumnRecommended=true. Se não houver payload variável/aninhado (ex.: breakdowns, auditoria), preferir colunas explícitas e detailsColumnRecommended=false; se houver, explicitar o que vai em details para evitar 'blob' desnecessário.",
+              "path": "$.tables[2].detailsColumnRecommended"
+            },
+            {
+              "code": "W_INVENTORY_BALANCE_SNAPSHOT_DERIVATION",
+              "message": "inventoryBalanceSnapshot (readModel) é escrito por UC/handlers de ajuste/fechamento. Se for projeção derivada de InventoryTransaction, considerar que a escrita direta deveria ser por job/projection handler e não pelo UC; esclarecer como a consistência/idempotência é garantida.",
+              "path": "$.tables[4].writesByArtifacts"
+            },
+            {
+              "code": "W_AIINSIGHTRUN_SCOPE_JUSTIFICATION",
+              "message": "aiInsightRun é 'soon' e parece necessário para histórico/auditoria da página de IA, mas verifique se realmente precisa persistir o resultado completo (pode ser grande/sensível). Talvez persistir metadados + referência, ou política de retenção/anonimização.",
+              "path": "$.tables[5]"
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Checked contract focus: all tables ownership=moduleOwned; MDM entities only in excludedEntities; all tableKind=transactional; metricsTablesRequired=true retained; each table maps to ontology entities and approved artifacts/workflows/UC/handlers; flagged only non-blocking modeling concerns re embedded child lifecycle, write/read alignment, and details blob usage."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 42,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

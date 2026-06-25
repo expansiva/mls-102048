@@ -1,0 +1,207 @@
+{
+  "savedAt": "2026-06-25T12:27:58.845Z",
+  "agentName": "agentPlanTableDefinition",
+  "stepId": 54,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitTableDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "tableDefinition": {
+            "tableId": "aiInsightRun",
+            "tableName": "ai_insight_run",
+            "moduleId": "cafeFlow",
+            "title": "Execução de Insight IA",
+            "purpose": "Registrar execuções do assistente IA (resumo de vendas, sugestões de promoções), incluindo parâmetros, resultado, modelo e timestamps para histórico, auditoria e suporte a páginas de IA.",
+            "ownership": "moduleOwned",
+            "rootEntity": "AiInsightRun",
+            "layer": "layer_1_external",
+            "tableKind": "transactional",
+            "columns": [
+              {
+                "name": "ai_insight_run_id",
+                "type": "uuid",
+                "nullable": false,
+                "primaryKey": true,
+                "description": "Identificador único da execução de insight de IA"
+              },
+              {
+                "name": "daily_shift_id",
+                "type": "uuid",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Referência ao turno diário quando o insight está relacionado a um turno específico"
+              },
+              {
+                "name": "insight_type",
+                "type": "string",
+                "nullable": false,
+                "primaryKey": false,
+                "description": "Categoria do insight solicitado"
+              },
+              {
+                "name": "parameters",
+                "type": "text",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Parâmetros adicionais da solicitação em formato JSON ou texto livre"
+              },
+              {
+                "name": "time_window_start",
+                "type": "datetime",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Início da janela temporal dos dados analisados"
+              },
+              {
+                "name": "time_window_end",
+                "type": "datetime",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Fim da janela temporal dos dados analisados"
+              },
+              {
+                "name": "language",
+                "type": "string",
+                "nullable": false,
+                "primaryKey": false,
+                "description": "Idioma solicitado para o insight e do resultado gerado"
+              },
+              {
+                "name": "prompt_version",
+                "type": "string",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Versão do prompt ou do modelo utilizado"
+              },
+              {
+                "name": "prompt_text",
+                "type": "text",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Texto completo do prompt enviado ao serviço de IA"
+              },
+              {
+                "name": "result_text",
+                "type": "text",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Resposta/resultado gerado pelo modelo de IA"
+              },
+              {
+                "name": "status",
+                "type": "string",
+                "nullable": false,
+                "primaryKey": false,
+                "description": "Status atual da execução do insight"
+              },
+              {
+                "name": "error_message",
+                "type": "text",
+                "nullable": true,
+                "primaryKey": false,
+                "description": "Detalhes do erro quando a execução falha"
+              },
+              {
+                "name": "created_at",
+                "type": "datetime",
+                "nullable": false,
+                "primaryKey": false,
+                "description": "Data e hora de criação do registro"
+              },
+              {
+                "name": "updated_at",
+                "type": "datetime",
+                "nullable": false,
+                "primaryKey": false,
+                "description": "Data e hora da última atualização do registro"
+              }
+            ],
+            "primaryKey": [
+              "ai_insight_run_id"
+            ],
+            "foreignRefs": [
+              {
+                "fieldName": "daily_shift_id",
+                "targetEntity": "DailyShift",
+                "targetOwnership": "moduleOwned",
+                "reason": "Referência opcional a turno para insights relacionados a fechamento de turno"
+              }
+            ],
+            "indexes": [
+              {
+                "indexName": "idx_ai_insight_run_status_created",
+                "columns": [
+                  "status",
+                  "created_at"
+                ],
+                "unique": false,
+                "reason": "Busca comum por status e data para histórico e auditoria"
+              },
+              {
+                "indexName": "idx_ai_insight_run_type_window",
+                "columns": [
+                  "insight_type",
+                  "time_window_start",
+                  "time_window_end"
+                ],
+                "unique": false,
+                "reason": "Suporte a consultas por tipo de insight e janela temporal"
+              },
+              {
+                "indexName": "idx_ai_insight_run_shift",
+                "columns": [
+                  "daily_shift_id"
+                ],
+                "unique": false,
+                "reason": "Lookup por turno diário"
+              }
+            ],
+            "detailsColumn": {
+              "enabled": false,
+              "reason": "Não recomendado para esta tabela de log de eventos; campos estruturados já estão em colunas físicas"
+            },
+            "metricUpdatePolicy": {
+              "feedsMetrics": false,
+              "metricRefs": [],
+              "updatedByLayer": "layer_3_usecases"
+            },
+            "accessPolicy": {
+              "directAccessAllowedFor": [
+                "layer_3_usecases"
+              ],
+              "forbiddenFor": [
+                "pages",
+                "layer_2_controllers",
+                "agents"
+              ]
+            },
+            "rulesApplied": [
+              "aiUsesPlatformLlmProxy",
+              "bilingualUiViaPlatformI18n"
+            ]
+          },
+          "defsPlan": {
+            "fileName": "tables/aiInsightRun.defs.ts",
+            "exportName": "aiInsightRunTableDefinition",
+            "saveAsDefs": true
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Tabela aiInsightRun definida como moduleOwned transactional em layer_1_external seguindo contexto de AiInsightRun e regras de acesso L3",
+          "Colunas físicas para PK, foreign refs, status, datas e campos de filtro comuns",
+          "Sem detailsColumn pois não recomendado; indexes para lookups de BFF/workflows"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 56,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

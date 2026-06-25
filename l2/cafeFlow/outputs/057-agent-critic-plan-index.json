@@ -1,0 +1,90 @@
+{
+  "savedAt": "2026-06-25T12:29:28.552Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 57,
+  "planning": {
+    "planId": "plan-index-critic:metricsIndex:2",
+    "dependsOn": [
+      "plan-metrics-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "metrics.dimension.missing_direct_fk",
+              "message": "Para métricas de vendas por pedido/itens (Order/OrderItem), falta dimensão obrigatória de relacionamento direto Order -> Attendant/Cashier (se existir no modelo) ou pelo menos Customer/Payment/Store; como o contexto não define essas entidades, a tabela inclui dimensões 'orderId' (granularidade alta) mas não garante todas as FKs diretas conhecidas (T-013) além de DiningTable e DailyShift.",
+              "path": "metricTables[0].dimensions"
+            },
+            {
+              "code": "metrics.sourceWriteEvents.inconsistent_with_rule_closed_only",
+              "message": "A tabela todaySalesMetrics declara eventos de escrita orderCreated/orderItemAdded e orderCancelled, mas a regra aplicada diz que métricas derivam apenas de pedidos fechados; isso conflita com a fonte/atualização e pode gerar contagem/receita antes do fechamento.",
+              "path": "metricTables[0].sourceWriteEvents"
+            },
+            {
+              "code": "metrics.metricTable.granularity_mismatch",
+              "message": "todaySalesMetrics e shiftSummaryMetrics incluem dimension orderId/menuItemId ao mesmo tempo que medidas agregadas (totalRevenue, shiftRevenue etc.), o que torna a tabela mais fato-detalhe do que métrica agregada; falta clareza se a intenção é armazenar eventos por item/pedido ou agregações por janela. Isso impacta dashboards e retenção.",
+              "path": "metricTables[0]"
+            },
+            {
+              "code": "metrics.dashboard.actorId.invalid_or_not_finalPlan",
+              "message": "Dashboard usa campo 'actor' com valor managerOwner, mas contrato exige target a final plan actorId e consistência de naming ('actorId'); verificar schema: deveria ser actorId=managerOwner. Como está, pode ser interpretado como string solta fora do contrato.",
+              "path": "dashboardPages[0].actor"
+            },
+            {
+              "code": "metrics.update_responsibility.table_missing_or_misplaced",
+              "message": "Contrato: métricas são atualizadas apenas por layer_3_usecases. O plano define updateResponsibility no metricsPlan, mas não explicita em cada metricTable (ou reference a L3 handlers) nem impede atualizações por páginas; falta vínculo por tabela/handler.",
+              "path": "metricsPlan.updateResponsibility"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "Referências a base tables não aparecem em moduleTableIds (order_item, inventory_balance_snapshot, daily_shift, inventory_transaction). Pode ser naming inconsistente (camelCase vs snake_case) ou tabelas faltantes no módulo.",
+              "path": "metricTables"
+            },
+            {
+              "code": "metrics.dashboard.sources.redundant",
+              "message": "dashboardPages[0].sources duplica informação já presente em widgets.sourceMetricTable; ok, mas pode divergir com o tempo.",
+              "path": "dashboardPages[0].sources"
+            },
+            {
+              "code": "metrics.lowStock.source_events.questionable",
+              "message": "lowStockMetrics inclui orderClosed como evento de fonte; estoque baixo normalmente deriva de InventoryTransaction/BalanceSnapshot. Manter apenas eventos de estoque reduz acoplamento com vendas.",
+              "path": "metricTables[2].sourceWriteEvents"
+            }
+          ],
+          "notes": [
+            "Verificar T-013 com ontologia real: garantir dimensões para todas as FKs diretas (Order -> DiningTable?, DailyShift, talvez Attendant/User) e OrderItem -> Order, MenuItem; InventoryTransaction -> InventoryItem, DailyShift?, Order?; BalanceSnapshot -> InventoryItem, DailyShift. Ajustar granularidade: ou fato-evento (1 linha por order_item/tx) ou agregados por janela/shift."
+          ]
+        },
+        "questions": [
+          "Quais são as relações diretas (FKs) de Order e InventoryTransaction no seu modelo (ex.: attendantId, paymentMethodId, storeId)?",
+          "O schema permite métricas como fatos por evento (order_closed, inventory_tx_posted) ou exige tabelas já agregadas por janela?",
+          "O campo correto no schema de dashboards é 'actorId' ou 'actor'?"
+        ],
+        "trace": [
+          "contractFocus: validate metric count vs approvedArtifacts.metricTables (4) -> ok",
+          "checked storageEngine all metricTables -> ok",
+          "checked dashboards reference only local metricTables -> ok",
+          "checked updateResponsibility placement and enforcement -> issue",
+          "checked rule metricsDerivedFromClosedOrders vs sourceWriteEvents -> conflict in todaySalesMetrics",
+          "checked T-013 dimensions vs stated ontology notes -> potential missing required direct FK dims; limited by context"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 52,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
