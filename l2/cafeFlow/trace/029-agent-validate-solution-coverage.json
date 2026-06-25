@@ -1,0 +1,673 @@
+{
+  "savedAt": "2026-06-25T13:17:25.084Z",
+  "agentName": "agentValidateSolutionCoverage",
+  "stepId": 29,
+  "planning": {
+    "planId": "plan-validate-solution-coverage",
+    "dependsOn": [
+      "plan-mdm",
+      "plan-horizontals",
+      "plan-plugins",
+      "plan-persistence-index",
+      "plan-table-definition",
+      "plan-metrics-index",
+      "plan-metric-table-definition",
+      "plan-usecase-entities",
+      "plan-usecase-definition",
+      "plan-workflow-definition",
+      "plan-agents",
+      "plan-page-definition",
+      "plan-entity-definition",
+      "plan-user-journeys",
+      "plan-ui-consolidation"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitSolutionCoverageValidation",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "summary": {
+            "passed": false,
+            "errorCount": 65,
+            "warningCount": 0
+          },
+          "issues": [
+            {
+              "severity": "error",
+              "code": "page.def.incomplete",
+              "message": "page aiPromoSuggestions definition is incomplete; pending questions: Qual é a entidade/registro que representa o “plano interno” de promoção e quais campos devem ser gravados ao marcar itens como “promover hoje” (ex.: promoPlanId, data, lista de menuItemIds, observações)? | Existe um usecase já definido para criar/atualizar esse plano (ex.: createPromoPlan/markItemsForPromotion) e quais tabelas moduleOwned ele grava? | As sugestões da IA vêm estruturadas com IDs de MenuItem (para seleção direta) ou apenas texto? Precisamos de um usecase adicional para mapear nomes para menuItemId?",
+              "path": "pageDefinition.aiPromoSuggestions",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "page.readCommand.missing",
+              "message": "page shiftOpen declares only write bffCommands (no kind:\"query\") and no metricRefs — it has no data source to display",
+              "path": "pageDefinition.shiftOpen",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism inventoryDeductionBlock.InventoryDeductionBlockedNotice references unknown entity OrderAggregate",
+              "path": "pageDefinition.inventoryDeductionBlock.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism inventoryDeductionBlock.OrderItemsSummary references unknown entity OrderAggregate",
+              "path": "pageDefinition.inventoryDeductionBlock.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism inventoryDeductionBlock.InsufficientIngredientsList references unknown entity InventoryAggregate",
+              "path": "pageDefinition.inventoryDeductionBlock.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism inventoryNegativeGuard.negativeStockExplanation references unknown entity InventoryAggregate",
+              "path": "pageDefinition.inventoryNegativeGuard.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism inventoryNegativeGuard.inventorySnapshotSummary references unknown entity InventoryAggregate",
+              "path": "pageDefinition.inventoryNegativeGuard.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand managerMetricsDashboard.getTodayDashboardMetrics references unknown entity OrderAggregate",
+              "path": "pageDefinition.managerMetricsDashboard.bffCommands.getTodayDashboardMetrics.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand managerMetricsDashboard.getTodayDashboardMetrics references unknown entity InventoryAggregate",
+              "path": "pageDefinition.managerMetricsDashboard.bffCommands.getTodayDashboardMetrics.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand managerMetricsDashboard.getTodayDashboardMetrics references unknown entity ShiftAggregate",
+              "path": "pageDefinition.managerMetricsDashboard.bffCommands.getTodayDashboardMetrics.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism managerMetricsDashboard.tabelasDeMetricasDoDia references unknown entity OrderAggregate",
+              "path": "pageDefinition.managerMetricsDashboard.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism managerMetricsDashboard.tabelasDeMetricasDoDia references unknown entity InventoryAggregate",
+              "path": "pageDefinition.managerMetricsDashboard.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "organism managerMetricsDashboard.tabelasDeMetricasDoDia references unknown entity ShiftAggregate",
+              "path": "pageDefinition.managerMetricsDashboard.requiredEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand menuItemEditor.getMenuItemWithRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.menuItemEditor.bffCommands.getMenuItemWithRecipe.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand menuItemEditor.upsertMenuItemAndRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.menuItemEditor.bffCommands.upsertMenuItemAndRecipe.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand menuItemEditor.upsertMenuItemAndRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.menuItemEditor.bffCommands.upsertMenuItemAndRecipe.writesEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand menuManagement.listMenuItems references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.menuManagement.bffCommands.listMenuItems.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand menuManagement.deactivateMenuItem references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.menuManagement.bffCommands.deactivateMenuItem.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand menuManagement.deactivateMenuItem references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.menuManagement.bffCommands.deactivateMenuItem.writesEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand menuValidation.listMenuItems references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.menuValidation.bffCommands.listMenuItems.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand posMenuPicker.listMenuItems references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.posMenuPicker.bffCommands.listMenuItems.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand recipeEditor.listInventoryItems references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.recipeEditor.bffCommands.listInventoryItems.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand recipeEditor.getMenuItemWithRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.recipeEditor.bffCommands.getMenuItemWithRecipe.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand recipeEditor.upsertMenuItemAndRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.recipeEditor.bffCommands.upsertMenuItemAndRecipe.readsEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "bffCommand recipeEditor.upsertMenuItemAndRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "pageDefinition.recipeEditor.bffCommands.upsertMenuItemAndRecipe.writesEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase createOrderDraft references unknown entity OrderAggregate",
+              "path": "usecase.createOrderDraft.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase createOrderDraft references unknown entity OrderAggregate",
+              "path": "usecase.createOrderDraft.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase addOrUpdateOrderItems references unknown entity OrderAggregate",
+              "path": "usecase.addOrUpdateOrderItems.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase addOrUpdateOrderItems references unknown entity OrderAggregate",
+              "path": "usecase.addOrUpdateOrderItems.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase sendOrderToKitchen references unknown entity OrderAggregate",
+              "path": "usecase.sendOrderToKitchen.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase sendOrderToKitchen references unknown entity OrderAggregate",
+              "path": "usecase.sendOrderToKitchen.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase updateKitchenOrderStatus references unknown entity OrderAggregate",
+              "path": "usecase.updateKitchenOrderStatus.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase updateKitchenOrderStatus references unknown entity OrderAggregate",
+              "path": "usecase.updateKitchenOrderStatus.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase markOrderDelivered references unknown entity OrderAggregate",
+              "path": "usecase.markOrderDelivered.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase markOrderDelivered references unknown entity OrderAggregate",
+              "path": "usecase.markOrderDelivered.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase closeOrderAsSaleAndDeductInventory references unknown entity OrderAggregate",
+              "path": "usecase.closeOrderAsSaleAndDeductInventory.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase closeOrderAsSaleAndDeductInventory references unknown entity InventoryAggregate",
+              "path": "usecase.closeOrderAsSaleAndDeductInventory.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase closeOrderAsSaleAndDeductInventory references unknown entity OrderAggregate",
+              "path": "usecase.closeOrderAsSaleAndDeductInventory.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase closeOrderAsSaleAndDeductInventory references unknown entity InventoryAggregate",
+              "path": "usecase.closeOrderAsSaleAndDeductInventory.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase cancelOrder references unknown entity OrderAggregate",
+              "path": "usecase.cancelOrder.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase cancelOrder references unknown entity OrderAggregate",
+              "path": "usecase.cancelOrder.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getOrderById references unknown entity OrderAggregate",
+              "path": "usecase.getOrderById.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getOrderById references unknown entity OrderAggregate",
+              "path": "usecase.getOrderById.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listOrdersByStatus references unknown entity OrderAggregate",
+              "path": "usecase.listOrdersByStatus.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listOrdersByStatus references unknown entity OrderAggregate",
+              "path": "usecase.listOrdersByStatus.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listKitchenQueue references unknown entity OrderAggregate",
+              "path": "usecase.listKitchenQueue.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listKitchenQueue references unknown entity OrderAggregate",
+              "path": "usecase.listKitchenQueue.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listDiningTables references unknown entity OrderAggregate",
+              "path": "usecase.listDiningTables.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listDiningTables references unknown entity OrderAggregate",
+              "path": "usecase.listDiningTables.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase openDailyShift references unknown entity ShiftAggregate",
+              "path": "usecase.openDailyShift.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase openDailyShift references unknown entity ShiftAggregate",
+              "path": "usecase.openDailyShift.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase closeDailyShiftAndGenerateReport references unknown entity ShiftAggregate",
+              "path": "usecase.closeDailyShiftAndGenerateReport.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase closeDailyShiftAndGenerateReport references unknown entity ShiftAggregate",
+              "path": "usecase.closeDailyShiftAndGenerateReport.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getShiftCloseReport references unknown entity ShiftAggregate",
+              "path": "usecase.getShiftCloseReport.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getShiftCloseReport references unknown entity ShiftAggregate",
+              "path": "usecase.getShiftCloseReport.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getTodayDashboardMetrics references unknown entity OrderAggregate",
+              "path": "usecase.getTodayDashboardMetrics.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getTodayDashboardMetrics references unknown entity InventoryAggregate",
+              "path": "usecase.getTodayDashboardMetrics.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getTodayDashboardMetrics references unknown entity ShiftAggregate",
+              "path": "usecase.getTodayDashboardMetrics.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getTodayDashboardMetrics references unknown entity OrderAggregate",
+              "path": "usecase.getTodayDashboardMetrics.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getTodayDashboardMetrics references unknown entity InventoryAggregate",
+              "path": "usecase.getTodayDashboardMetrics.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getTodayDashboardMetrics references unknown entity ShiftAggregate",
+              "path": "usecase.getTodayDashboardMetrics.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase upsertMenuItemAndRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.upsertMenuItemAndRecipe.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase upsertMenuItemAndRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.upsertMenuItemAndRecipe.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listMenuItems references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.listMenuItems.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listMenuItems references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.listMenuItems.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getMenuItemWithRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.getMenuItemWithRecipe.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getMenuItemWithRecipe references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.getMenuItemWithRecipe.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase upsertInventoryItem references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.upsertInventoryItem.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase upsertInventoryItem references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.upsertInventoryItem.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listInventoryItems references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.listInventoryItems.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listInventoryItems references unknown entity MenuAndRecipeCatalog",
+              "path": "usecase.listInventoryItems.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase postInventoryAdjustment references unknown entity InventoryAggregate",
+              "path": "usecase.postInventoryAdjustment.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase postInventoryAdjustment references unknown entity InventoryAggregate",
+              "path": "usecase.postInventoryAdjustment.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listInventoryTransactions references unknown entity InventoryAggregate",
+              "path": "usecase.listInventoryTransactions.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listInventoryTransactions references unknown entity InventoryAggregate",
+              "path": "usecase.listInventoryTransactions.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listInventoryBalances references unknown entity InventoryAggregate",
+              "path": "usecase.listInventoryBalances.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listInventoryBalances references unknown entity InventoryAggregate",
+              "path": "usecase.listInventoryBalances.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getInventorySnapshotByItem references unknown entity InventoryAggregate",
+              "path": "usecase.getInventorySnapshotByItem.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getInventorySnapshotByItem references unknown entity InventoryAggregate",
+              "path": "usecase.getInventorySnapshotByItem.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase requestAiSalesSummary references unknown entity AiInsightsAggregate",
+              "path": "usecase.requestAiSalesSummary.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase requestAiSalesSummary references unknown entity AiInsightsAggregate",
+              "path": "usecase.requestAiSalesSummary.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase requestAiPromoSuggestions references unknown entity AiInsightsAggregate",
+              "path": "usecase.requestAiPromoSuggestions.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase requestAiPromoSuggestions references unknown entity AiInsightsAggregate",
+              "path": "usecase.requestAiPromoSuggestions.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getAiInsightRun references unknown entity AiInsightsAggregate",
+              "path": "usecase.getAiInsightRun.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase getAiInsightRun references unknown entity AiInsightsAggregate",
+              "path": "usecase.getAiInsightRun.outputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listAiInsightRuns references unknown entity AiInsightsAggregate",
+              "path": "usecase.listAiInsightRuns.inputEntities",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "entity.ref.unknown",
+              "message": "usecase listAiInsightRuns references unknown entity AiInsightsAggregate",
+              "path": "usecase.listAiInsightRuns.outputEntities",
+              "evidence": []
+            }
+          ],
+          "readyToSaveDefs": false
+        },
+        "questions": [
+          "Você irá definir as entidades agregadas (OrderAggregate, InventoryAggregate, ShiftAggregate, MenuAndRecipeCatalog, AiInsightsAggregate) para cobrir todos os paths de input/output de usecases, organisms e bffCommands referenciados?",
+          "Deseja detalhar o plano de promoções sugerido pela IA (promoPlan) como entidade/moduleOwned, com usecase próprio para gravação/seleção de itens promocionais?",
+          "Deseja que eu gere sugestões de nomes e estrutura para essas entidades agregadas, ou você irá fornecer?",
+          "Deseja que eu gere sugestões de mapeamento entre nomes de menuItem (texto) e menuItemId para integração com sugestões da IA?"
+        ],
+        "trace": [
+          "Validação de cobertura: 65 erros críticos de referência de entidade agregada (OrderAggregate, InventoryAggregate, ShiftAggregate, MenuAndRecipeCatalog, AiInsightsAggregate) em usecases, organisms e bffCommands.",
+          "Página aiPromoSuggestions está incompleta e requer definição de entidade/plano de promoções.",
+          "Página shiftOpen não possui comando de leitura nem fonte de dados.",
+          "Nenhum erro de regras de enum, MDM, ou constraints de tabelas/metrics.",
+          "readyToSaveDefs = false pois há erros bloqueantes de referência de entidade e definição de página."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 102,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
