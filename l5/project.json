@@ -18,5 +18,37 @@
   "reasons": {},
   "services": [],
   "links": [],
-  "servicesConfigEnabled": false
+  "servicesConfigEnabled": false,
+  "modules": [
+    {
+      "moduleName": "_traceTemp",
+      "module": {
+        "moduleName": "cafeFlow",
+        "title": "CafeFlow",
+        "purpose": "Aplicativo profissional para cafeterias e lanchonetes pequenas operarem um POS rápido (mesa/takeout), coordenação de cozinha (KDS), controle simples de estoque por ingrediente com baixa automática, e fechamento de turno com métricas e relatórios; inclui assistente IA para insights de vendas.",
+        "businessDomain": "Food service operations (small cafés & snack bars)",
+        "languages": [
+          "pt-BR",
+          "en"
+        ],
+        "visualStyle": {
+          "tone": "Interface limpa e profissional, alto contraste",
+          "layout": "Tablet-first, touch-optimized, poucos cliques/toques, componentes grandes",
+          "palette": [
+            "#111827",
+            "#F9FAFB",
+            "#F59E0B",
+            "#10B981",
+            "#EF4444"
+          ]
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "projectId": "102034",
+      "kind": "mdm-infrastructure"
+    }
+  ]
 }
