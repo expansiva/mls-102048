@@ -52,7 +52,16 @@ export const cafeFlowViewShiftReportByDailyShiftIdHandler: BffHandler = async ({
   return ok(toContractOutput(result));
 };
 
+// Canonical BFF route from l4 (bffName): dispatches to the variant matching the provided params.
+export const cafeFlowViewShiftReportHandler: BffHandler = async (args) => {
+  const params = (args.request.params ?? {}) as { shiftCloseReportId?: string; dailyShiftId?: string };
+  if (params.shiftCloseReportId) return cafeFlowViewShiftReportByIdHandler(args);
+  if (params.dailyShiftId) return cafeFlowViewShiftReportByDailyShiftIdHandler(args);
+  throw new AppError('VALIDATION_ERROR', 'shiftCloseReportId or dailyShiftId is required', 400, { fields: ['shiftCloseReportId', 'dailyShiftId'] });
+};
+
 export const routes: ControllerRoute[] = [
+  { key: 'cafeFlow.shiftLifecycle.viewShiftReport', handler: cafeFlowViewShiftReportHandler },
   { key: 'cafeFlow.shiftLifecycle.viewShiftReportById', handler: cafeFlowViewShiftReportByIdHandler },
   { key: 'cafeFlow.shiftLifecycle.viewShiftReportByDailyShiftId', handler: cafeFlowViewShiftReportByDailyShiftIdHandler },
 ];

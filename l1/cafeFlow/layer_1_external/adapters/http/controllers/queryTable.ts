@@ -38,9 +38,17 @@ export const cafeFlowQueryTablesHandler: BffHandler = async ({ request, ctx }) =
   return ok(output);
 };
 
+// Canonical BFF route from l4 (bffName): dispatches to the variant matching the provided params.
+export const cafeFlowQueryTableHandler: BffHandler = async (args) => {
+  const params = (args.request.params ?? {}) as { tableId?: string };
+  if (params.tableId) return cafeFlowQueryTableByIdHandler(args);
+  return cafeFlowQueryTablesHandler(args);
+};
+
 // ── Routes ────────────────────────────────────────────────────────────
 
 export const routes: ControllerRoute[] = [
+  { key: 'cafeFlow.queryTable.queryTable', handler: cafeFlowQueryTableHandler },
   { key: 'cafeFlow.queryTable.queryTableById', handler: cafeFlowQueryTableByIdHandler },
   { key: 'cafeFlow.queryTable.queryTables', handler: cafeFlowQueryTablesHandler },
 ];

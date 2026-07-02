@@ -30,9 +30,19 @@ export const viewShiftReportController = {
         "usecaseRef": "viewShiftReportByDailyShiftId",
         "inputTypeName": "ViewShiftReportByDailyShiftIdInput",
         "kind": "view"
+      },
+      {
+        "handlerName": "cafeFlowViewShiftReportHandler",
+        "command": "viewShiftReport",
+        "usecaseRef": "viewShiftReportById | viewShiftReportByDailyShiftId",
+        "kind": "dispatcher"
       }
     ],
     "routes": [
+      {
+        "key": "cafeFlow.shiftLifecycle.viewShiftReport",
+        "handlerName": "cafeFlowViewShiftReportHandler"
+      },
       {
         "key": "cafeFlow.shiftLifecycle.viewShiftReportById",
         "handlerName": "cafeFlowViewShiftReportByIdHandler"

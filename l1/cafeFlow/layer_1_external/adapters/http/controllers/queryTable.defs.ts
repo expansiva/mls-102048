@@ -30,9 +30,19 @@ export const queryTableController = {
         "usecaseRef": "queryTables",
         "inputTypeName": "QueryTablesInput",
         "kind": "query"
+      },
+      {
+        "handlerName": "cafeFlowQueryTableHandler",
+        "command": "queryTable",
+        "usecaseRef": "queryTableById | queryTables",
+        "kind": "dispatcher"
       }
     ],
     "routes": [
+      {
+        "key": "cafeFlow.queryTable.queryTable",
+        "handlerName": "cafeFlowQueryTableHandler"
+      },
       {
         "key": "cafeFlow.queryTable.queryTableById",
         "handlerName": "cafeFlowQueryTableByIdHandler"

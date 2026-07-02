@@ -24,6 +24,18 @@
   "services": [],
   "links": [],
   "servicesConfigEnabled": false,
+  "masters": {
+    "frontend": {
+      "masterProject": 102020,
+      "agentFolder": "agentChangeFrontend",
+      "runtimeProject": 102033
+    },
+    "backend": {
+      "masterProject": 102021,
+      "agentFolder": "agentChangeBackend",
+      "runtimeProject": 102034
+    }
+  },
   "modules": [
     {
       "moduleName": "cafeFlow",
@@ -45,9 +57,11 @@
           "cafeFlow.orderLifecycle.updateOrderStatus",
           "cafeFlow.queryMenuItem.queryMenuItem",
           "cafeFlow.queryStockItem.queryStockItem",
+          "cafeFlow.queryTable.queryTable",
           "cafeFlow.queryTable.queryTableById",
           "cafeFlow.queryTable.queryTables",
           "cafeFlow.shiftLifecycle.viewDashboard",
+          "cafeFlow.shiftLifecycle.viewShiftReport",
           "cafeFlow.shiftLifecycle.viewShiftReportByDailyShiftId",
           "cafeFlow.shiftLifecycle.viewShiftReportById",
           "cafeFlow.updateMenuItem.updateMenuItem",
