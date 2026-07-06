@@ -1,0 +1,370 @@
+cafe-flow-messages-aside-102048 {
+  --collab-messages-width: 100%;
+  --cm-green: #008f4c;
+  --cm-green-dark: #007a3d;
+  --cm-green-soft: #aee8c4;
+  --cm-green-avatar: #cfe9d8;
+  --cm-chat-bg: #eef5f0;
+  --cm-panel-bg: #ffffff;
+  --cm-panel-muted: #f3f7f4;
+  --cm-input-bg: #ffffff;
+  --cm-border: #e2e7e3;
+  --cm-border-soft: rgba(0, 0, 0, 0.08);
+  --cm-text: #111827;
+  --cm-text-muted: #5b635f;
+  --cm-text-on-green: #ffffff;
+  --cm-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --cm-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.12);
+  --cm-radius-sm: 8px;
+  --cm-radius-md: 12px;
+  --cm-radius-pill: 9999px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  color: var(--cm-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+cafe-flow-messages-aside-102048 aside {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid #e2e8f0;
+  background: var(--cm-panel-bg);
+}
+
+cafe-flow-messages-aside-102048 collab-messages-102025 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--cm-panel-bg);
+  color: var(--cm-text);
+}
+
+cafe-flow-messages-aside-102048 collab-messages-tab-menu-102025 {
+  display: block;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+cafe-flow-messages-aside-102048 .tab-menu {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 52px;
+  min-height: 52px;
+  background: var(--cm-green-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--cm-shadow-sm);
+}
+
+cafe-flow-messages-aside-102048 .menu-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  height: 52px;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+}
+
+cafe-flow-messages-aside-102048 .menu-item svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+cafe-flow-messages-aside-102048 .menu-item:hover,
+cafe-flow-messages-aside-102048 .menu-item.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+cafe-flow-messages-aside-102048 .menu-item.active {
+  padding: 0 16px;
+}
+
+cafe-flow-messages-aside-102048 .item-label {
+  max-width: 92px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+cafe-flow-messages-aside-102048 .separator {
+  width: 1px;
+  height: 20px;
+  flex: 0 0 auto;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+cafe-flow-messages-aside-102048 .spacer {
+  flex: 1 1 auto;
+}
+
+cafe-flow-messages-aside-102048 .alert-notification {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 12px;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-radius-md);
+  background: #f8fafc;
+  color: var(--cm-text);
+  box-shadow: var(--cm-shadow-sm);
+}
+
+cafe-flow-messages-aside-102048 .alert-notification > svg {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+cafe-flow-messages-aside-102048 .alert-notification button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cm-text-muted);
+  cursor: pointer;
+}
+
+cafe-flow-messages-aside-102048 collab-messages-chat-102025 {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--cm-panel-bg);
+  color: var(--cm-text);
+}
+
+cafe-flow-messages-aside-102048 collab-messages-chat-102025 .header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 58px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--cm-border);
+  background: var(--cm-panel-bg);
+  color: var(--cm-text);
+}
+
+cafe-flow-messages-aside-102048 collab-messages-chat-102025 .header > span {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+cafe-flow-messages-aside-102048 .header-title,
+cafe-flow-messages-aside-102048 .thread-name,
+cafe-flow-messages-aside-102048 .thread-group-name,
+cafe-flow-messages-aside-102048 .last-message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+cafe-flow-messages-aside-102048 .header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+cafe-flow-messages-aside-102048 .header-actions span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  color: var(--cm-green-dark);
+  cursor: pointer;
+}
+
+cafe-flow-messages-aside-102048 .header-actions span:hover {
+  background: rgba(0, 143, 76, 0.08);
+}
+
+cafe-flow-messages-aside-102048 collab-messages-filter-102025 {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+cafe-flow-messages-aside-102048 collab-messages-filter-102025 .container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-radius-pill);
+  background: var(--cm-panel-muted);
+  box-sizing: border-box;
+}
+
+cafe-flow-messages-aside-102048 collab-messages-filter-102025 .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: var(--cm-text-muted);
+}
+
+cafe-flow-messages-aside-102048 collab-messages-filter-102025 input {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  margin-left: 8px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--cm-text);
+  font: inherit;
+}
+
+cafe-flow-messages-aside-102048 .thread-list,
+cafe-flow-messages-aside-102048 .group-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+cafe-flow-messages-aside-102048 .thread-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--cm-panel-bg);
+}
+
+cafe-flow-messages-aside-102048 .thread-item,
+cafe-flow-messages-aside-102048 .group-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px;
+  border-bottom: 1px solid var(--cm-border);
+  cursor: pointer;
+}
+
+cafe-flow-messages-aside-102048 .thread-item:hover,
+cafe-flow-messages-aside-102048 .group-title:hover {
+  background: var(--cm-panel-muted);
+}
+
+cafe-flow-messages-aside-102048 .thread-item-avatar,
+cafe-flow-messages-aside-102048 .thread-group-avatar {
+  display: inline-flex;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--cm-green-avatar);
+  color: var(--cm-green-dark);
+}
+
+cafe-flow-messages-aside-102048 .thread-item-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+cafe-flow-messages-aside-102048 .thread-content,
+cafe-flow-messages-aside-102048 .thread-group-content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+cafe-flow-messages-aside-102048 .thread-item-header,
+cafe-flow-messages-aside-102048 .thread-group-item-header,
+cafe-flow-messages-aside-102048 .thread-summary,
+cafe-flow-messages-aside-102048 .thread-group-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+cafe-flow-messages-aside-102048 .thread-name,
+cafe-flow-messages-aside-102048 .thread-group-name {
+  flex: 1 1 auto;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+cafe-flow-messages-aside-102048 .last-update,
+cafe-flow-messages-aside-102048 .last-group-update,
+cafe-flow-messages-aside-102048 .last-message {
+  color: var(--cm-text-muted);
+  font-size: 12px;
+}
+
+cafe-flow-messages-aside-102048 .last-message {
+  flex: 1 1 auto;
+}
+
+cafe-flow-messages-aside-102048 .unread-count,
+cafe-flow-messages-aside-102048 .notification-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--cm-green);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+cafe-flow-messages-aside-102048 .loading,
+cafe-flow-messages-aside-102048 collab-messages-chat-102025 > div[style*="padding"] {
+  padding: 16px;
+  color: var(--cm-text-muted);
+  font-size: 14px;
+}
+
+cafe-flow-messages-aside-102048 svg {
+  max-width: 100%;
+}

@@ -75,6 +75,35 @@
     {
       "projectId": "102034",
       "kind": "mdm-infrastructure"
+    },
+    {
+      "projectId": "102025",
+      "kind": "collab-messages-frontend"
+    },
+    {
+      "projectId": "102036",
+      "kind": "collab-messages-runtime"
     }
-  ]
+  ],
+  "customize": {
+    "clientShell": {
+      "mode": "spa",
+      "activeProfile": "production",
+      "regions": {
+        "aside": {
+          "activeProfile": "messages",
+          "profiles": {
+            "messages": {
+              "renderer": {
+                "entrypoint": "/_102048_/l2/cafeFlow/messagesAside.js",
+                "source": "l2/cafeFlow/messagesAside.ts",
+                "tag": "cafe-flow-messages-aside-102048"
+              },
+              "widthPx": 400
+            }
+          }
+        }
+      }
+    }
+  }
 }
