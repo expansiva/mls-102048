@@ -1,0 +1,141 @@
+{
+  "savedAt": "2026-07-12T13:11:12.293Z",
+  "stepId": "e3-entity-Client",
+  "agentName": "agentNs3Ontology",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "entityId": "Client",
+      "title": "Client",
+      "description": "A customer of the construction company who owns one or more projects, receives invoices, and approves or rejects change orders.",
+      "kind": "mdm",
+      "ownership": "moduleOwned",
+      "fields": [
+        {
+          "fieldId": "clientId",
+          "type": "uuid",
+          "required": true,
+          "description": "Unique identifier for the client record."
+        },
+        {
+          "fieldId": "name",
+          "type": "string",
+          "required": true,
+          "description": "Full name of the client contact person."
+        },
+        {
+          "fieldId": "companyName",
+          "type": "string",
+          "required": false,
+          "description": "Legal name of the client's organization, if applicable."
+        },
+        {
+          "fieldId": "email",
+          "type": "string",
+          "required": true,
+          "description": "Primary email address used to send shareable project links and invoices."
+        },
+        {
+          "fieldId": "phone",
+          "type": "string",
+          "required": false,
+          "description": "Contact phone number for the client."
+        },
+        {
+          "fieldId": "portalAccessEnabled",
+          "type": "boolean",
+          "required": true,
+          "description": "Indicates whether the client may log in to the portal using platform authentication to view project information."
+        },
+        {
+          "fieldId": "billingAddress",
+          "type": "text",
+          "required": false,
+          "description": "Postal address used on informational invoices sent to the client."
+        },
+        {
+          "fieldId": "createdAt",
+          "type": "datetime",
+          "required": true,
+          "description": "Timestamp when the client record was created."
+        },
+        {
+          "fieldId": "updatedAt",
+          "type": "datetime",
+          "required": true,
+          "description": "Timestamp when the client record was last modified."
+        }
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "entityId": "Client",
+        "title": "Client",
+        "description": "A customer of the construction company who owns one or more projects, receives invoices, and approves or rejects change orders.",
+        "kind": "mdm",
+        "ownership": "moduleOwned",
+        "fields": [
+          {
+            "fieldId": "clientId",
+            "type": "uuid",
+            "required": true,
+            "description": "Unique identifier for the client record."
+          },
+          {
+            "fieldId": "name",
+            "type": "string",
+            "required": true,
+            "description": "Full name of the client contact person."
+          },
+          {
+            "fieldId": "companyName",
+            "type": "string",
+            "required": false,
+            "description": "Legal name of the client's organization, if applicable."
+          },
+          {
+            "fieldId": "email",
+            "type": "string",
+            "required": true,
+            "description": "Primary email address used to send shareable project links and invoices."
+          },
+          {
+            "fieldId": "phone",
+            "type": "string",
+            "required": false,
+            "description": "Contact phone number for the client."
+          },
+          {
+            "fieldId": "portalAccessEnabled",
+            "type": "boolean",
+            "required": true,
+            "description": "Indicates whether the client may log in to the portal using platform authentication to view project information."
+          },
+          {
+            "fieldId": "billingAddress",
+            "type": "text",
+            "required": false,
+            "description": "Postal address used on informational invoices sent to the client."
+          },
+          {
+            "fieldId": "createdAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Timestamp when the client record was created."
+          },
+          {
+            "fieldId": "updatedAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Timestamp when the client record was last modified."
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}
