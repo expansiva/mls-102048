@@ -1,0 +1,883 @@
+{
+  "savedAt": "2026-07-12T13:17:05.398Z",
+  "stepId": "e5-workflows-operations",
+  "agentName": "agentNs3Behavior",
+  "attempt": 2,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-11-ns3-e5-v2",
+      "moduleName": "buildFlowFsm",
+      "createdAt": "2026-07-12T13:17:05.386Z",
+      "workflows": [
+        {
+          "workflowId": "projectLifecycle",
+          "title": "Project Lifecycle",
+          "actorId": "companyAdmin",
+          "primaryEntity": "Project",
+          "featureRefs": [
+            "projectManagement",
+            "dashboardOverview"
+          ],
+          "operationIds": [
+            "createProject",
+            "updateProjectStatus"
+          ]
+        },
+        {
+          "workflowId": "workTaskLifecycle",
+          "title": "Work Task Lifecycle",
+          "actorId": "projectManager",
+          "primaryEntity": "WorkTask",
+          "featureRefs": [
+            "taskAssignment"
+          ],
+          "operationIds": [
+            "createTask",
+            "assignTask",
+            "updateTaskStatus"
+          ]
+        },
+        {
+          "workflowId": "changeOrderLifecycle",
+          "title": "Change Order Lifecycle",
+          "actorId": "projectManager",
+          "primaryEntity": "ChangeOrder",
+          "featureRefs": [
+            "changeOrderManagement"
+          ],
+          "operationIds": [
+            "createChangeOrder",
+            "sendChangeOrder",
+            "reviewChangeOrder"
+          ]
+        },
+        {
+          "workflowId": "invoiceLifecycle",
+          "title": "Invoice Lifecycle",
+          "actorId": "companyAdmin",
+          "primaryEntity": "Invoice",
+          "featureRefs": [
+            "invoiceGeneration"
+          ],
+          "operationIds": [
+            "generateInvoice",
+            "issueInvoice"
+          ]
+        },
+        {
+          "workflowId": "statusReportLifecycle",
+          "title": "Status Report Lifecycle",
+          "actorId": "projectManager",
+          "primaryEntity": "StatusReport",
+          "featureRefs": [
+            "statusReportGeneration"
+          ],
+          "operationIds": [
+            "generateStatusReport",
+            "shareStatusReport"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "operationId": "createProject",
+          "title": "Create a new project",
+          "actorId": "companyAdmin",
+          "entity": "Project",
+          "kind": "create",
+          "featureRefs": [
+            "projectManagement"
+          ],
+          "workflowId": "projectLifecycle"
+        },
+        {
+          "operationId": "updateProjectStatus",
+          "title": "Update project status",
+          "actorId": "companyAdmin",
+          "entity": "Project",
+          "kind": "update",
+          "featureRefs": [
+            "projectManagement",
+            "dashboardOverview"
+          ],
+          "workflowId": "projectLifecycle"
+        },
+        {
+          "operationId": "updateProject",
+          "title": "Edit project details",
+          "actorId": "companyAdmin",
+          "entity": "Project",
+          "kind": "update",
+          "featureRefs": [
+            "projectManagement"
+          ]
+        },
+        {
+          "operationId": "viewProject",
+          "title": "View project detail",
+          "actorId": "companyAdmin",
+          "entity": "Project",
+          "kind": "view",
+          "featureRefs": [
+            "projectDetailView",
+            "delayRiskIdentification"
+          ]
+        },
+        {
+          "operationId": "viewDashboard",
+          "title": "Review project dashboard",
+          "actorId": "companyAdmin",
+          "entity": "Project",
+          "kind": "query",
+          "featureRefs": [
+            "dashboardOverview",
+            "delayRiskIdentification"
+          ]
+        },
+        {
+          "operationId": "createTask",
+          "title": "Create a work task",
+          "actorId": "projectManager",
+          "entity": "WorkTask",
+          "kind": "create",
+          "featureRefs": [
+            "taskAssignment"
+          ],
+          "workflowId": "workTaskLifecycle"
+        },
+        {
+          "operationId": "assignTask",
+          "title": "Assign worker and due date to task",
+          "actorId": "projectManager",
+          "entity": "WorkTask",
+          "kind": "update",
+          "featureRefs": [
+            "taskAssignment"
+          ],
+          "workflowId": "workTaskLifecycle"
+        },
+        {
+          "operationId": "updateTaskStatus",
+          "title": "Update task status",
+          "actorId": "fieldWorker",
+          "entity": "WorkTask",
+          "kind": "update",
+          "featureRefs": [
+            "taskAssignment"
+          ],
+          "workflowId": "workTaskLifecycle"
+        },
+        {
+          "operationId": "updateTask",
+          "title": "Edit task details or reassign",
+          "actorId": "projectManager",
+          "entity": "WorkTask",
+          "kind": "update",
+          "featureRefs": [
+            "taskAssignment"
+          ]
+        },
+        {
+          "operationId": "browseTasks",
+          "title": "Browse assigned tasks",
+          "actorId": "fieldWorker",
+          "entity": "WorkTask",
+          "kind": "query",
+          "featureRefs": [
+            "taskAssignment"
+          ]
+        },
+        {
+          "operationId": "createChangeOrder",
+          "title": "Create a change order",
+          "actorId": "projectManager",
+          "entity": "ChangeOrder",
+          "kind": "create",
+          "featureRefs": [
+            "changeOrderManagement"
+          ],
+          "workflowId": "changeOrderLifecycle"
+        },
+        {
+          "operationId": "sendChangeOrder",
+          "title": "Send change order to client",
+          "actorId": "projectManager",
+          "entity": "ChangeOrder",
+          "kind": "update",
+          "featureRefs": [
+            "changeOrderManagement"
+          ],
+          "workflowId": "changeOrderLifecycle"
+        },
+        {
+          "operationId": "reviewChangeOrder",
+          "title": "Approve or reject change order",
+          "actorId": "client",
+          "entity": "ChangeOrder",
+          "kind": "update",
+          "featureRefs": [
+            "changeOrderManagement"
+          ],
+          "workflowId": "changeOrderLifecycle"
+        },
+        {
+          "operationId": "generateInvoice",
+          "title": "Generate invoice from job costs",
+          "actorId": "companyAdmin",
+          "entity": "Invoice",
+          "kind": "create",
+          "featureRefs": [
+            "invoiceGeneration"
+          ],
+          "workflowId": "invoiceLifecycle"
+        },
+        {
+          "operationId": "issueInvoice",
+          "title": "Issue and send invoice to client",
+          "actorId": "companyAdmin",
+          "entity": "Invoice",
+          "kind": "update",
+          "featureRefs": [
+            "invoiceGeneration"
+          ],
+          "workflowId": "invoiceLifecycle"
+        },
+        {
+          "operationId": "viewInvoice",
+          "title": "Review invoice details",
+          "actorId": "client",
+          "entity": "Invoice",
+          "kind": "view",
+          "featureRefs": [
+            "invoiceGeneration"
+          ]
+        },
+        {
+          "operationId": "generateStatusReport",
+          "title": "Generate AI status report",
+          "actorId": "projectManager",
+          "entity": "StatusReport",
+          "kind": "create",
+          "featureRefs": [
+            "statusReportGeneration"
+          ],
+          "workflowId": "statusReportLifecycle"
+        },
+        {
+          "operationId": "shareStatusReport",
+          "title": "Share status report with client",
+          "actorId": "projectManager",
+          "entity": "StatusReport",
+          "kind": "update",
+          "featureRefs": [
+            "statusReportGeneration"
+          ],
+          "workflowId": "statusReportLifecycle"
+        },
+        {
+          "operationId": "viewStatusReport",
+          "title": "View status report",
+          "actorId": "client",
+          "entity": "StatusReport",
+          "kind": "view",
+          "featureRefs": [
+            "statusReportGeneration"
+          ]
+        },
+        {
+          "operationId": "browseClients",
+          "title": "Browse clients",
+          "actorId": "companyAdmin",
+          "entity": "Client",
+          "kind": "query",
+          "featureRefs": [
+            "projectManagement"
+          ]
+        },
+        {
+          "operationId": "createClient",
+          "title": "Create a client",
+          "actorId": "companyAdmin",
+          "entity": "Client",
+          "kind": "create",
+          "featureRefs": [
+            "projectManagement"
+          ]
+        },
+        {
+          "operationId": "updateClient",
+          "title": "Edit client details",
+          "actorId": "companyAdmin",
+          "entity": "Client",
+          "kind": "update",
+          "featureRefs": [
+            "projectManagement"
+          ]
+        },
+        {
+          "operationId": "createTimeLog",
+          "title": "Log hours worked on a task",
+          "actorId": "fieldWorker",
+          "entity": "TimeLog",
+          "kind": "create",
+          "featureRefs": [
+            "timeLogging"
+          ]
+        },
+        {
+          "operationId": "voidTimeLog",
+          "title": "Void a time log",
+          "actorId": "projectManager",
+          "entity": "TimeLog",
+          "kind": "update",
+          "featureRefs": [
+            "timeLogging"
+          ]
+        },
+        {
+          "operationId": "createMaterialUsage",
+          "title": "Record materials used on-site",
+          "actorId": "fieldWorker",
+          "entity": "MaterialUsage",
+          "kind": "create",
+          "featureRefs": [
+            "materialTracking"
+          ]
+        },
+        {
+          "operationId": "voidMaterialUsage",
+          "title": "Void a material usage record",
+          "actorId": "projectManager",
+          "entity": "MaterialUsage",
+          "kind": "update",
+          "featureRefs": [
+            "materialTracking"
+          ]
+        }
+      ],
+      "managedEntities": [
+        {
+          "entity": "Client",
+          "deletionPolicy": "immutable",
+          "reason": "Clients are referenced by projects and invoices and must be retained for historical and financial accuracy."
+        },
+        {
+          "entity": "Project",
+          "deletionPolicy": "immutable",
+          "reason": "Projects are retained for historical job costing, billing, and audit purposes."
+        },
+        {
+          "entity": "WorkTask",
+          "deletionPolicy": "immutable",
+          "reason": "Work tasks are retained for project history and job costing audit trail."
+        },
+        {
+          "entity": "TimeLog",
+          "deletionPolicy": "inactivate",
+          "inactivationState": "voided",
+          "reason": "Time logs are voided rather than deleted to preserve audit trail."
+        },
+        {
+          "entity": "MaterialUsage",
+          "deletionPolicy": "inactivate",
+          "inactivationState": "voided",
+          "reason": "Material usage records are voided rather than deleted to preserve audit trail."
+        }
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-11-ns3-e5-v2",
+        "moduleName": "buildFlowFsm",
+        "createdAt": "2026-07-12T13:17:05.386Z",
+        "workflows": [
+          {
+            "workflowId": "projectLifecycle",
+            "title": "Project Lifecycle",
+            "actorId": "companyAdmin",
+            "primaryEntity": "Project",
+            "featureRefs": [
+              "projectManagement",
+              "dashboardOverview"
+            ],
+            "operationIds": [
+              "createProject",
+              "updateProjectStatus"
+            ]
+          },
+          {
+            "workflowId": "workTaskLifecycle",
+            "title": "Work Task Lifecycle",
+            "actorId": "projectManager",
+            "primaryEntity": "WorkTask",
+            "featureRefs": [
+              "taskAssignment"
+            ],
+            "operationIds": [
+              "createTask",
+              "assignTask",
+              "updateTaskStatus"
+            ]
+          },
+          {
+            "workflowId": "changeOrderLifecycle",
+            "title": "Change Order Lifecycle",
+            "actorId": "projectManager",
+            "primaryEntity": "ChangeOrder",
+            "featureRefs": [
+              "changeOrderManagement"
+            ],
+            "operationIds": [
+              "createChangeOrder",
+              "sendChangeOrder",
+              "reviewChangeOrder"
+            ]
+          },
+          {
+            "workflowId": "invoiceLifecycle",
+            "title": "Invoice Lifecycle",
+            "actorId": "companyAdmin",
+            "primaryEntity": "Invoice",
+            "featureRefs": [
+              "invoiceGeneration"
+            ],
+            "operationIds": [
+              "generateInvoice",
+              "issueInvoice"
+            ]
+          },
+          {
+            "workflowId": "statusReportLifecycle",
+            "title": "Status Report Lifecycle",
+            "actorId": "projectManager",
+            "primaryEntity": "StatusReport",
+            "featureRefs": [
+              "statusReportGeneration"
+            ],
+            "operationIds": [
+              "generateStatusReport",
+              "shareStatusReport"
+            ]
+          }
+        ],
+        "operations": [
+          {
+            "operationId": "createProject",
+            "title": "Create a new project",
+            "actorId": "companyAdmin",
+            "entity": "Project",
+            "kind": "create",
+            "featureRefs": [
+              "projectManagement"
+            ],
+            "workflowId": "projectLifecycle"
+          },
+          {
+            "operationId": "updateProjectStatus",
+            "title": "Update project status",
+            "actorId": "companyAdmin",
+            "entity": "Project",
+            "kind": "update",
+            "featureRefs": [
+              "projectManagement",
+              "dashboardOverview"
+            ],
+            "workflowId": "projectLifecycle"
+          },
+          {
+            "operationId": "updateProject",
+            "title": "Edit project details",
+            "actorId": "companyAdmin",
+            "entity": "Project",
+            "kind": "update",
+            "featureRefs": [
+              "projectManagement"
+            ]
+          },
+          {
+            "operationId": "viewProject",
+            "title": "View project detail",
+            "actorId": "companyAdmin",
+            "entity": "Project",
+            "kind": "view",
+            "featureRefs": [
+              "projectDetailView",
+              "delayRiskIdentification"
+            ]
+          },
+          {
+            "operationId": "viewDashboard",
+            "title": "Review project dashboard",
+            "actorId": "companyAdmin",
+            "entity": "Project",
+            "kind": "query",
+            "featureRefs": [
+              "dashboardOverview",
+              "delayRiskIdentification"
+            ]
+          },
+          {
+            "operationId": "createTask",
+            "title": "Create a work task",
+            "actorId": "projectManager",
+            "entity": "WorkTask",
+            "kind": "create",
+            "featureRefs": [
+              "taskAssignment"
+            ],
+            "workflowId": "workTaskLifecycle"
+          },
+          {
+            "operationId": "assignTask",
+            "title": "Assign worker and due date to task",
+            "actorId": "projectManager",
+            "entity": "WorkTask",
+            "kind": "update",
+            "featureRefs": [
+              "taskAssignment"
+            ],
+            "workflowId": "workTaskLifecycle"
+          },
+          {
+            "operationId": "updateTaskStatus",
+            "title": "Update task status",
+            "actorId": "fieldWorker",
+            "entity": "WorkTask",
+            "kind": "update",
+            "featureRefs": [
+              "taskAssignment"
+            ],
+            "workflowId": "workTaskLifecycle"
+          },
+          {
+            "operationId": "updateTask",
+            "title": "Edit task details or reassign",
+            "actorId": "projectManager",
+            "entity": "WorkTask",
+            "kind": "update",
+            "featureRefs": [
+              "taskAssignment"
+            ]
+          },
+          {
+            "operationId": "browseTasks",
+            "title": "Browse assigned tasks",
+            "actorId": "fieldWorker",
+            "entity": "WorkTask",
+            "kind": "query",
+            "featureRefs": [
+              "taskAssignment"
+            ]
+          },
+          {
+            "operationId": "createChangeOrder",
+            "title": "Create a change order",
+            "actorId": "projectManager",
+            "entity": "ChangeOrder",
+            "kind": "create",
+            "featureRefs": [
+              "changeOrderManagement"
+            ],
+            "workflowId": "changeOrderLifecycle"
+          },
+          {
+            "operationId": "sendChangeOrder",
+            "title": "Send change order to client",
+            "actorId": "projectManager",
+            "entity": "ChangeOrder",
+            "kind": "update",
+            "featureRefs": [
+              "changeOrderManagement"
+            ],
+            "workflowId": "changeOrderLifecycle"
+          },
+          {
+            "operationId": "reviewChangeOrder",
+            "title": "Approve or reject change order",
+            "actorId": "client",
+            "entity": "ChangeOrder",
+            "kind": "update",
+            "featureRefs": [
+              "changeOrderManagement"
+            ],
+            "workflowId": "changeOrderLifecycle"
+          },
+          {
+            "operationId": "generateInvoice",
+            "title": "Generate invoice from job costs",
+            "actorId": "companyAdmin",
+            "entity": "Invoice",
+            "kind": "create",
+            "featureRefs": [
+              "invoiceGeneration"
+            ],
+            "workflowId": "invoiceLifecycle"
+          },
+          {
+            "operationId": "issueInvoice",
+            "title": "Issue and send invoice to client",
+            "actorId": "companyAdmin",
+            "entity": "Invoice",
+            "kind": "update",
+            "featureRefs": [
+              "invoiceGeneration"
+            ],
+            "workflowId": "invoiceLifecycle"
+          },
+          {
+            "operationId": "viewInvoice",
+            "title": "Review invoice details",
+            "actorId": "client",
+            "entity": "Invoice",
+            "kind": "view",
+            "featureRefs": [
+              "invoiceGeneration"
+            ]
+          },
+          {
+            "operationId": "generateStatusReport",
+            "title": "Generate AI status report",
+            "actorId": "projectManager",
+            "entity": "StatusReport",
+            "kind": "create",
+            "featureRefs": [
+              "statusReportGeneration"
+            ],
+            "workflowId": "statusReportLifecycle"
+          },
+          {
+            "operationId": "shareStatusReport",
+            "title": "Share status report with client",
+            "actorId": "projectManager",
+            "entity": "StatusReport",
+            "kind": "update",
+            "featureRefs": [
+              "statusReportGeneration"
+            ],
+            "workflowId": "statusReportLifecycle"
+          },
+          {
+            "operationId": "viewStatusReport",
+            "title": "View status report",
+            "actorId": "client",
+            "entity": "StatusReport",
+            "kind": "view",
+            "featureRefs": [
+              "statusReportGeneration"
+            ]
+          },
+          {
+            "operationId": "browseClients",
+            "title": "Browse clients",
+            "actorId": "companyAdmin",
+            "entity": "Client",
+            "kind": "query",
+            "featureRefs": [
+              "projectManagement"
+            ]
+          },
+          {
+            "operationId": "createClient",
+            "title": "Create a client",
+            "actorId": "companyAdmin",
+            "entity": "Client",
+            "kind": "create",
+            "featureRefs": [
+              "projectManagement"
+            ]
+          },
+          {
+            "operationId": "updateClient",
+            "title": "Edit client details",
+            "actorId": "companyAdmin",
+            "entity": "Client",
+            "kind": "update",
+            "featureRefs": [
+              "projectManagement"
+            ]
+          },
+          {
+            "operationId": "createTimeLog",
+            "title": "Log hours worked on a task",
+            "actorId": "fieldWorker",
+            "entity": "TimeLog",
+            "kind": "create",
+            "featureRefs": [
+              "timeLogging"
+            ]
+          },
+          {
+            "operationId": "voidTimeLog",
+            "title": "Void a time log",
+            "actorId": "projectManager",
+            "entity": "TimeLog",
+            "kind": "update",
+            "featureRefs": [
+              "timeLogging"
+            ]
+          },
+          {
+            "operationId": "createMaterialUsage",
+            "title": "Record materials used on-site",
+            "actorId": "fieldWorker",
+            "entity": "MaterialUsage",
+            "kind": "create",
+            "featureRefs": [
+              "materialTracking"
+            ]
+          },
+          {
+            "operationId": "voidMaterialUsage",
+            "title": "Void a material usage record",
+            "actorId": "projectManager",
+            "entity": "MaterialUsage",
+            "kind": "update",
+            "featureRefs": [
+              "materialTracking"
+            ]
+          }
+        ],
+        "managedEntities": [
+          {
+            "entity": "Client",
+            "deletionPolicy": "immutable",
+            "reason": "Clients are referenced by projects and invoices and must be retained for historical and financial accuracy."
+          },
+          {
+            "entity": "Project",
+            "deletionPolicy": "immutable",
+            "reason": "Projects are retained for historical job costing, billing, and audit purposes."
+          },
+          {
+            "entity": "WorkTask",
+            "deletionPolicy": "immutable",
+            "reason": "Work tasks are retained for project history and job costing audit trail."
+          },
+          {
+            "entity": "TimeLog",
+            "deletionPolicy": "inactivate",
+            "inactivationState": "voided",
+            "reason": "Time logs are voided rather than deleted to preserve audit trail."
+          },
+          {
+            "entity": "MaterialUsage",
+            "deletionPolicy": "inactivate",
+            "inactivationState": "voided",
+            "reason": "Material usage records are voided rather than deleted to preserve audit trail."
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        {
+          "severity": "warning",
+          "code": "classification.managedEntity.create.missing",
+          "message": "entity \"Project\" is under management but has no standalone create operation",
+          "path": "Project"
+        },
+        {
+          "severity": "warning",
+          "code": "classification.managedEntity.create.missing",
+          "message": "entity \"WorkTask\" is under management but has no standalone create operation",
+          "path": "WorkTask"
+        }
+      ],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+        "flowId": "agentNewSolution3",
+        "moduleName": "buildFlowFsm",
+        "createdAt": "2026-07-12T13:06:12.551Z",
+        "updatedAt": "2026-07-12T13:17:05.392Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-12T13:06:12.566Z",
+            "dirty": false,
+            "inputsHash": "djb2:eec1ac80",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-12T13:06:12.552Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-12T13:06:12.566Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-12T13:06:12.551Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-12T13:09:31.470Z",
+            "dirty": false,
+            "inputsHash": "djb2:0f782f3e",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-12T13:06:57.651Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-12T13:09:31.470Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-12T13:09:31.470Z",
+            "dirty": false,
+            "approvedAt": "2026-07-12T13:09:31.470Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "approved",
+            "updatedAt": "2026-07-12T13:11:25.236Z",
+            "dirty": false,
+            "inputsHash": "djb2:b8ff3639",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-12T13:10:56.300Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-12T13:11:25.236Z",
+            "approvedBy": "auto"
+          },
+          "e4-actors-rules-refs": {
+            "status": "approved",
+            "updatedAt": "2026-07-12T13:12:32.915Z",
+            "dirty": false,
+            "inputsHash": "djb2:70bcc757",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-12T13:12:32.915Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-12T13:12:32.915Z",
+            "approvedBy": "auto"
+          },
+          "e5-workflows-operations": {
+            "status": "pending",
+            "updatedAt": "2026-07-12T13:17:05.392Z",
+            "dirty": false,
+            "inputsHash": "djb2:70bcc757",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-12T13:17:05.392Z",
+              "errors": [],
+              "warnings": [
+                "classification.managedEntity.create.missing Project: entity \"Project\" is under management but has no standalone create operation",
+                "classification.managedEntity.create.missing WorkTask: entity \"WorkTask\" is under management but has no standalone create operation"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

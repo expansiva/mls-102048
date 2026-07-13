@@ -1,0 +1,31 @@
+{
+  "savedAt": "2026-07-12T13:22:01.337Z",
+  "stepId": "e7-validation-summary",
+  "agentName": "agentNs3Validation",
+  "attempt": 1,
+  "payload": {
+    "report": {
+      "passed": true,
+      "counts": {
+        "entities": 9,
+        "workflows": 5,
+        "operations": 26,
+        "workspaces": 12
+      },
+      "errors": [],
+      "warnings": [
+        {
+          "severity": "warning",
+          "code": "capability.multiowned",
+          "message": "capability 'workTaskLifecycle' is owned by 2 workspaces (fieldWorkerWorkspace, workTaskLifecycle)"
+        },
+        {
+          "severity": "warning",
+          "code": "capability.multiowned",
+          "message": "capability 'changeOrderLifecycle' is owned by 2 workspaces (changeOrderLifecycle, clientChangeOrderReview)"
+        }
+      ]
+    },
+    "todoOwners": 31
+  }
+}
