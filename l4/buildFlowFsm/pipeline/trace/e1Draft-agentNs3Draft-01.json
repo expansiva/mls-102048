@@ -1,0 +1,222 @@
+{
+  "savedAt": "2026-07-12T13:06:12.565Z",
+  "stepId": "e1-draft",
+  "agentName": "agentNs3Draft",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-05-ns3-e1-v1",
+      "moduleName": "buildFlowFsm",
+      "moduleTitle": "BuildFlow FSM",
+      "userLanguage": "en",
+      "sourcePrompt": "Generate a professional app called BuildFlow FSM for US construction, remodeling and field service companies. Core entities: Project (name, client, address, status, budget, start/end dates), WorkTask (project, assigned_to, description, status, due), Material/Inventory usage, TimeLog (worker, task, hours), ChangeOrder, Invoice. Key screens: Dashboard (active projects, budget vs actual, upcoming tasks), Project list + detail (Gantt-ish timeline or task list), Task assignment & daily log entry, Materials tracking per project, Client billing summary. LLM feature: On project detail, \"Generate Status Report\" button that creates a professional summary from tasks, time logs and materials. Also suggests \"tasks at risk of delay\". Focus: Job costing, field team coordination and client communication — specific to construction/field service.",
+      "problem": "US construction, remodeling, and field service companies struggle to coordinate field teams, track actual job costs against budgets, manage material usage, and keep clients informed. Disjointed spreadsheets and paper logs lead to budget overruns, missed deadlines, and poor client communication. BuildFlow FSM provides a unified project hub where managers assign work, workers log time and materials in the field, and the office generates accurate invoices and professional status reports—including AI-powered delay risk alerts—so every job stays profitable and transparent.",
+      "actors": [
+        {
+          "actorId": "companyAdmin",
+          "name": "Company Admin / Owner",
+          "assumption": "Sets up projects, defines budgets, manages client billing, and oversees overall job costing and profitability."
+        },
+        {
+          "actorId": "projectManager",
+          "name": "Project Manager",
+          "assumption": "Plans work, assigns tasks to field workers, monitors timeline and budget vs actual, and communicates project status to clients."
+        },
+        {
+          "actorId": "fieldWorker",
+          "name": "Field Worker",
+          "assumption": "Executes assigned tasks, logs daily hours against tasks, and records materials used on-site."
+        },
+        {
+          "actorId": "client",
+          "name": "Client",
+          "assumption": "Views project progress, receives and approves change orders, gets invoices, and reads LLM-generated status reports."
+        }
+      ],
+      "scope": {
+        "in": [
+          "Project lifecycle management with budget, timeline, status, and client linkage",
+          "WorkTask creation, assignment to workers, status tracking, and due dates",
+          "Field time logging linked to tasks and workers for job costing",
+          "Material and inventory usage tracking per project with associated costs",
+          "Change order creation, tracking, and client approval workflow",
+          "Invoice generation and client billing summary based on time and materials",
+          "Dashboard with active projects, budget vs actual, and upcoming/overdue tasks",
+          "Project detail view with task list/timeline and consolidated cost summary",
+          "LLM-powered status report generation from tasks, time logs, and materials",
+          "Delay risk identification and suggestions based on task status and due dates"
+        ],
+        "out": [
+          "Full accounting general ledger, payroll processing, or tax calculation",
+          "Advanced project scheduling with critical-path method (CPM)",
+          "Payment gateway integration, collections, or merchant processing",
+          "Equipment or fleet asset management",
+          "CRM, lead tracking, sales quoting, or marketing automation",
+          "Multi-location warehouse inventory, purchase orders, or procurement",
+          "Offline-first mobile synchronization",
+          "External accounting software integrations (e.g., QuickBooks)"
+        ]
+      },
+      "openQuestions": [
+        {
+          "questionId": "changeOrderApproval",
+          "question": "Do change orders require a formal client e-signature, or is in-app approval status sufficient?",
+          "classification": "assumed",
+          "impact": "Determines whether a simple status field or a document signing flow is needed.",
+          "defaultAnswer": "In-app approval status is sufficient; e-signature is out of scope for this phase."
+        },
+        {
+          "questionId": "externalAccountingSync",
+          "question": "Should invoices or time logs integrate with external accounting software (e.g., QuickBooks)?",
+          "classification": "assumed",
+          "impact": "Affects whether built-in invoicing is standalone or requires sync APIs and mapping.",
+          "defaultAnswer": "No external accounting integration in this phase; CSV export can be used if needed."
+        },
+        {
+          "questionId": "materialProcurementDepth",
+          "question": "Should material tracking include vendor purchase orders and stock levels, or only project usage and cost?",
+          "classification": "assumed",
+          "impact": "Determines the scope of the inventory management capability within the module.",
+          "defaultAnswer": "Track usage and cost per project only; procurement and multi-warehouse stock are out of scope."
+        }
+      ],
+      "assumptions": [
+        "Platform provides authentication, authorization, RBAC, tenant isolation, file storage, and LLM proxy.",
+        "All financial figures are handled in USD; tax logic is excluded from this module.",
+        "Workers have an hourly cost rate available in their platform user profile.",
+        "The Gantt-ish timeline is a simplified task sequence view, not a CPM scheduling engine.",
+        "Clients can receive reports and invoices via shareable links or email; portal login uses platform auth when enabled.",
+        "Job costing is calculated as (time log hours × worker rate) + material costs + approved change order amounts.",
+        "Photos and documents attached to projects or tasks rely on platform file storage."
+      ],
+      "createdAt": "2026-07-12"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-05-ns3-e1-v1",
+        "moduleName": "buildFlowFsm",
+        "moduleTitle": "BuildFlow FSM",
+        "userLanguage": "en",
+        "sourcePrompt": "Generate a professional app called BuildFlow FSM for US construction, remodeling and field service companies. Core entities: Project (name, client, address, status, budget, start/end dates), WorkTask (project, assigned_to, description, status, due), Material/Inventory usage, TimeLog (worker, task, hours), ChangeOrder, Invoice. Key screens: Dashboard (active projects, budget vs actual, upcoming tasks), Project list + detail (Gantt-ish timeline or task list), Task assignment & daily log entry, Materials tracking per project, Client billing summary. LLM feature: On project detail, \"Generate Status Report\" button that creates a professional summary from tasks, time logs and materials. Also suggests \"tasks at risk of delay\". Focus: Job costing, field team coordination and client communication — specific to construction/field service.",
+        "problem": "US construction, remodeling, and field service companies struggle to coordinate field teams, track actual job costs against budgets, manage material usage, and keep clients informed. Disjointed spreadsheets and paper logs lead to budget overruns, missed deadlines, and poor client communication. BuildFlow FSM provides a unified project hub where managers assign work, workers log time and materials in the field, and the office generates accurate invoices and professional status reports—including AI-powered delay risk alerts—so every job stays profitable and transparent.",
+        "actors": [
+          {
+            "actorId": "companyAdmin",
+            "name": "Company Admin / Owner",
+            "assumption": "Sets up projects, defines budgets, manages client billing, and oversees overall job costing and profitability."
+          },
+          {
+            "actorId": "projectManager",
+            "name": "Project Manager",
+            "assumption": "Plans work, assigns tasks to field workers, monitors timeline and budget vs actual, and communicates project status to clients."
+          },
+          {
+            "actorId": "fieldWorker",
+            "name": "Field Worker",
+            "assumption": "Executes assigned tasks, logs daily hours against tasks, and records materials used on-site."
+          },
+          {
+            "actorId": "client",
+            "name": "Client",
+            "assumption": "Views project progress, receives and approves change orders, gets invoices, and reads LLM-generated status reports."
+          }
+        ],
+        "scope": {
+          "in": [
+            "Project lifecycle management with budget, timeline, status, and client linkage",
+            "WorkTask creation, assignment to workers, status tracking, and due dates",
+            "Field time logging linked to tasks and workers for job costing",
+            "Material and inventory usage tracking per project with associated costs",
+            "Change order creation, tracking, and client approval workflow",
+            "Invoice generation and client billing summary based on time and materials",
+            "Dashboard with active projects, budget vs actual, and upcoming/overdue tasks",
+            "Project detail view with task list/timeline and consolidated cost summary",
+            "LLM-powered status report generation from tasks, time logs, and materials",
+            "Delay risk identification and suggestions based on task status and due dates"
+          ],
+          "out": [
+            "Full accounting general ledger, payroll processing, or tax calculation",
+            "Advanced project scheduling with critical-path method (CPM)",
+            "Payment gateway integration, collections, or merchant processing",
+            "Equipment or fleet asset management",
+            "CRM, lead tracking, sales quoting, or marketing automation",
+            "Multi-location warehouse inventory, purchase orders, or procurement",
+            "Offline-first mobile synchronization",
+            "External accounting software integrations (e.g., QuickBooks)"
+          ]
+        },
+        "openQuestions": [
+          {
+            "questionId": "changeOrderApproval",
+            "question": "Do change orders require a formal client e-signature, or is in-app approval status sufficient?",
+            "classification": "assumed",
+            "impact": "Determines whether a simple status field or a document signing flow is needed.",
+            "defaultAnswer": "In-app approval status is sufficient; e-signature is out of scope for this phase."
+          },
+          {
+            "questionId": "externalAccountingSync",
+            "question": "Should invoices or time logs integrate with external accounting software (e.g., QuickBooks)?",
+            "classification": "assumed",
+            "impact": "Affects whether built-in invoicing is standalone or requires sync APIs and mapping.",
+            "defaultAnswer": "No external accounting integration in this phase; CSV export can be used if needed."
+          },
+          {
+            "questionId": "materialProcurementDepth",
+            "question": "Should material tracking include vendor purchase orders and stock levels, or only project usage and cost?",
+            "classification": "assumed",
+            "impact": "Determines the scope of the inventory management capability within the module.",
+            "defaultAnswer": "Track usage and cost per project only; procurement and multi-warehouse stock are out of scope."
+          }
+        ],
+        "assumptions": [
+          "Platform provides authentication, authorization, RBAC, tenant isolation, file storage, and LLM proxy.",
+          "All financial figures are handled in USD; tax logic is excluded from this module.",
+          "Workers have an hourly cost rate available in their platform user profile.",
+          "The Gantt-ish timeline is a simplified task sequence view, not a CPM scheduling engine.",
+          "Clients can receive reports and invoices via shareable links or email; portal login uses platform auth when enabled.",
+          "Job costing is calculated as (time log hours × worker rate) + material costs + approved change order amounts.",
+          "Photos and documents attached to projects or tasks rely on platform file storage."
+        ],
+        "createdAt": "2026-07-12"
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+        "flowId": "agentNewSolution3",
+        "moduleName": "buildFlowFsm",
+        "createdAt": "2026-07-12T13:06:12.551Z",
+        "updatedAt": "2026-07-12T13:06:12.552Z",
+        "steps": {
+          "e1-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-12T13:06:12.552Z",
+            "dirty": false,
+            "inputsHash": "djb2:eec1ac80",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-12T13:06:12.552Z",
+              "errors": [],
+              "warnings": []
+            }
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-12T13:06:12.551Z"
+          },
+          "e2-journeys": {
+            "status": "pending",
+            "updatedAt": "2026-07-12T13:06:12.551Z"
+          },
+          "checkpoint-journeys": {
+            "status": "pending",
+            "updatedAt": "2026-07-12T13:06:12.551Z"
+          }
+        }
+      }
+    }
+  }
+}

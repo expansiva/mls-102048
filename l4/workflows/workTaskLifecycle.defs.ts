@@ -1,0 +1,93 @@
+/// <mls fileReference="_102048_/l4/workflows/workTaskLifecycle.defs.ts" enhancement="_blank"/>
+
+export const workflowWorkTaskLifecycle = {
+  "workflowId": "workTaskLifecycle",
+  "title": "Work Task Lifecycle",
+  "executionMode": "sequential",
+  "trigger": "A project manager creates a new work task in draft state for a project.",
+  "actors": [
+    "projectManager",
+    "fieldWorker"
+  ],
+  "states": [
+    "draft",
+    "assigned",
+    "inProgress",
+    "completed",
+    "cancelled"
+  ],
+  "transitions": [
+    {
+      "from": "draft",
+      "to": "assigned",
+      "on": "assignTask",
+      "by": "projectManager",
+      "guard": "Due date must fall within the project start and end dates"
+    },
+    {
+      "from": "assigned",
+      "to": "inProgress",
+      "on": "updateTaskStatus",
+      "by": "fieldWorker",
+      "guard": "Task must be assigned to a worker before it can be started"
+    },
+    {
+      "from": "inProgress",
+      "to": "completed",
+      "on": "updateTaskStatus",
+      "by": "fieldWorker"
+    },
+    {
+      "from": "assigned",
+      "to": "cancelled",
+      "on": "updateTaskStatus",
+      "by": "projectManager"
+    },
+    {
+      "from": "inProgress",
+      "to": "cancelled",
+      "on": "updateTaskStatus",
+      "by": "projectManager"
+    }
+  ],
+  "operationIds": [
+    "createTask",
+    "assignTask",
+    "updateTaskStatus"
+  ],
+  "entities": [
+    "WorkTask",
+    "Project"
+  ],
+  "rulesApplied": [
+    "taskRequiresWorkerAssignment",
+    "taskDueDateWithinProject",
+    "timelineIsSimplified",
+    "delayRiskCalculation"
+  ],
+  "story": {
+    "actor": "projectManager",
+    "goal": "Create work tasks, assign them to field workers with due dates, and track their progress through to completion.",
+    "steps": [
+      "The project manager opens the project detail view and creates individual work tasks with clear descriptions of what needs to be done.",
+      "The project manager assigns each task to a specific field worker and sets a due date that falls within the project start and end dates.",
+      "The field worker starts working on the assigned task and updates its status to in progress so the PM and dashboard reflect current progress.",
+      "The field worker completes the work and marks the task as completed, recording hours and materials along the way.",
+      "The project manager reviews the simplified task timeline and delay risk suggestions to ensure the project stays on track."
+    ],
+    "outcome": "All work tasks are created, assigned to field workers, and progress through to completion with full timeline and budget visibility for the project."
+  },
+  "pageId": "workTaskLifecycle",
+  "capabilities": [
+    {
+      "capabilityId": "workTaskLifecycle",
+      "title": "Work Task Lifecycle",
+      "actor": "projectManager",
+      "priority": "now"
+    }
+  ],
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default workflowWorkTaskLifecycle;
