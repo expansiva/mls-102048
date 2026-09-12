@@ -1,0 +1,278 @@
+{
+  "savedAt": "2026-07-12T13:18:03.155Z",
+  "stepId": "e5-operation-updateTaskStatus",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "updateTaskStatus",
+      "title": "Update task status",
+      "actor": "fieldWorker",
+      "entity": "WorkTask",
+      "kind": "update",
+      "reads": [
+        "WorkTask"
+      ],
+      "writes": [
+        "WorkTask"
+      ],
+      "rulesApplied": [
+        "taskRequiresWorkerAssignment"
+      ],
+      "story": {
+        "actor": "fieldWorker",
+        "goal": "Mark an assigned work task as in progress or completed so the project manager and dashboard reflect current progress.",
+        "steps": [
+          "The field worker selects a task from their assigned task list.",
+          "The field worker chooses the new status (inProgress or completed).",
+          "The system verifies the task is assigned to the field worker before allowing the transition.",
+          "The system updates the task status and records the appropriate timestamp (startedAt or completedAt)."
+        ],
+        "outcome": "The task status is updated with the correct timestamp, and the project manager and dashboard reflect the current progress."
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "WorkTask",
+        "keyField": "WorkTask.workTaskId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "WorkTask.workTaskId",
+          "WorkTask.title",
+          "WorkTask.status",
+          "WorkTask.startedAt",
+          "WorkTask.completedAt",
+          "WorkTask.updatedAt"
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "workTaskId",
+          "fieldRef": "WorkTask.workTaskId",
+          "required": true,
+          "source": "selectedEntity",
+          "description": "The work task selected by the field worker whose status will be updated."
+        },
+        {
+          "inputId": "status",
+          "fieldRef": "WorkTask.status",
+          "required": true,
+          "source": "userInput",
+          "description": "The new lifecycle status chosen by the field worker — inProgress or completed."
+        },
+        {
+          "inputId": "actorId",
+          "fieldRef": "WorkTask.assignedWorkerId",
+          "required": true,
+          "source": "actorSession",
+          "description": "The authenticated field worker's identity, used to verify they are the assigned worker for this task."
+        },
+        {
+          "inputId": "startedAt",
+          "fieldRef": "WorkTask.startedAt",
+          "required": false,
+          "source": "systemDefault",
+          "description": "Server-side timestamp recorded when the task transitions to inProgress."
+        },
+        {
+          "inputId": "completedAt",
+          "fieldRef": "WorkTask.completedAt",
+          "required": false,
+          "source": "systemDefault",
+          "description": "Server-side timestamp recorded when the task transitions to completed."
+        },
+        {
+          "inputId": "updatedAt",
+          "fieldRef": "WorkTask.updatedAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Server-side timestamp refreshed on every update."
+        }
+      ],
+      "contextResolution": [
+        {
+          "targetRef": "WorkTask.workTaskId",
+          "source": "selectedEntity",
+          "originRef": "WorkTask.workTaskId",
+          "description": "The work task currently selected by the field worker in the assigned task list."
+        },
+        {
+          "targetRef": "WorkTask.assignedWorkerId",
+          "source": "actorSession",
+          "originRef": "actorSession.actorId",
+          "description": "The authenticated field worker's actor id from the session, matched against the task's assignedWorkerId to confirm ownership."
+        },
+        {
+          "targetRef": "WorkTask.startedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Server-side current timestamp set when the task transitions to inProgress."
+        },
+        {
+          "targetRef": "WorkTask.completedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Server-side current timestamp set when the task transitions to completed."
+        },
+        {
+          "targetRef": "WorkTask.updatedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Server-side current timestamp recorded on every task update."
+        }
+      ],
+      "acceptanceAssertions": [
+        "After confirmation the work task exists with status set to the chosen value (inProgress or completed).",
+        "If the task has no assignedWorkerId, the transition to inProgress is rejected per the taskRequiresWorkerAssignment rule.",
+        "When the task transitions to inProgress, startedAt is set to the current server timestamp.",
+        "When the task transitions to completed, completedAt is set to the current server timestamp.",
+        "The updatedAt field is refreshed to the current server timestamp after the update.",
+        "The field worker can only update tasks where assignedWorkerId matches their session actor id."
+      ],
+      "pageId": "workTaskLifecycle",
+      "commandName": "updateTaskStatus",
+      "bffName": "buildFlowFsm.workTaskLifecycle.updateTaskStatus",
+      "capability": {
+        "capabilityId": "workTaskLifecycle",
+        "title": "Work Task Lifecycle",
+        "actor": "fieldWorker",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "updateTaskStatus",
+        "title": "Update task status",
+        "actor": "fieldWorker",
+        "entity": "WorkTask",
+        "kind": "update",
+        "reads": [
+          "WorkTask"
+        ],
+        "writes": [
+          "WorkTask"
+        ],
+        "rulesApplied": [
+          "taskRequiresWorkerAssignment"
+        ],
+        "story": {
+          "actor": "fieldWorker",
+          "goal": "Mark an assigned work task as in progress or completed so the project manager and dashboard reflect current progress.",
+          "steps": [
+            "The field worker selects a task from their assigned task list.",
+            "The field worker chooses the new status (inProgress or completed).",
+            "The system verifies the task is assigned to the field worker before allowing the transition.",
+            "The system updates the task status and records the appropriate timestamp (startedAt or completedAt)."
+          ],
+          "outcome": "The task status is updated with the correct timestamp, and the project manager and dashboard reflect the current progress."
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "WorkTask",
+          "keyField": "WorkTask.workTaskId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "WorkTask.workTaskId",
+            "WorkTask.title",
+            "WorkTask.status",
+            "WorkTask.startedAt",
+            "WorkTask.completedAt",
+            "WorkTask.updatedAt"
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "workTaskId",
+            "fieldRef": "WorkTask.workTaskId",
+            "required": true,
+            "source": "selectedEntity",
+            "description": "The work task selected by the field worker whose status will be updated."
+          },
+          {
+            "inputId": "status",
+            "fieldRef": "WorkTask.status",
+            "required": true,
+            "source": "userInput",
+            "description": "The new lifecycle status chosen by the field worker — inProgress or completed."
+          },
+          {
+            "inputId": "actorId",
+            "fieldRef": "WorkTask.assignedWorkerId",
+            "required": true,
+            "source": "actorSession",
+            "description": "The authenticated field worker's identity, used to verify they are the assigned worker for this task."
+          },
+          {
+            "inputId": "startedAt",
+            "fieldRef": "WorkTask.startedAt",
+            "required": false,
+            "source": "systemDefault",
+            "description": "Server-side timestamp recorded when the task transitions to inProgress."
+          },
+          {
+            "inputId": "completedAt",
+            "fieldRef": "WorkTask.completedAt",
+            "required": false,
+            "source": "systemDefault",
+            "description": "Server-side timestamp recorded when the task transitions to completed."
+          },
+          {
+            "inputId": "updatedAt",
+            "fieldRef": "WorkTask.updatedAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Server-side timestamp refreshed on every update."
+          }
+        ],
+        "contextResolution": [
+          {
+            "targetRef": "WorkTask.workTaskId",
+            "source": "selectedEntity",
+            "originRef": "WorkTask.workTaskId",
+            "description": "The work task currently selected by the field worker in the assigned task list."
+          },
+          {
+            "targetRef": "WorkTask.assignedWorkerId",
+            "source": "actorSession",
+            "originRef": "actorSession.actorId",
+            "description": "The authenticated field worker's actor id from the session, matched against the task's assignedWorkerId to confirm ownership."
+          },
+          {
+            "targetRef": "WorkTask.startedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Server-side current timestamp set when the task transitions to inProgress."
+          },
+          {
+            "targetRef": "WorkTask.completedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Server-side current timestamp set when the task transitions to completed."
+          },
+          {
+            "targetRef": "WorkTask.updatedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Server-side current timestamp recorded on every task update."
+          }
+        ],
+        "acceptanceAssertions": [
+          "After confirmation the work task exists with status set to the chosen value (inProgress or completed).",
+          "If the task has no assignedWorkerId, the transition to inProgress is rejected per the taskRequiresWorkerAssignment rule.",
+          "When the task transitions to inProgress, startedAt is set to the current server timestamp.",
+          "When the task transitions to completed, completedAt is set to the current server timestamp.",
+          "The updatedAt field is refreshed to the current server timestamp after the update.",
+          "The field worker can only update tasks where assignedWorkerId matches their session actor id."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "savedAt": "2026-07-12T13:18:13.966Z",
+  "stepId": "e5-operation-createTimeLog",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "createTimeLog",
+      "title": "Log hours worked on a task",
+      "actor": "fieldWorker",
+      "entity": "TimeLog",
+      "kind": "create",
+      "reads": [
+        "WorkTask"
+      ],
+      "writes": [
+        "TimeLog"
+      ],
+      "rulesApplied": [
+        "timeLogRequiresTaskAndWorker",
+        "workerRateFromProfile"
+      ],
+      "story": {
+        "actor": "fieldWorker",
+        "goal": "After completing work on a task, the field worker logs the hours spent so that labor costs are captured for job costing.",
+        "steps": [
+          "The field worker selects the work task they worked on",
+          "The system resolves the worker identity and hourly cost rate from the platform user profile",
+          "The field worker enters the date worked and the number of hours",
+          "The system creates a time log entry with status posted, linked to the task and worker",
+          "The time log is persisted and becomes available for job costing and budget vs actual comparison"
+        ],
+        "outcome": "A new time log entry exists with status posted, linked to the selected work task and the field worker, capturing hours and the worker's hourly cost rate for labor cost calculation."
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "TimeLog",
+        "keyField": "TimeLog.timeLogId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "TimeLog.timeLogId",
+          "TimeLog.workTaskId",
+          "TimeLog.workerId",
+          "TimeLog.logDate",
+          "TimeLog.hours",
+          "TimeLog.workerRate",
+          "TimeLog.status",
+          "TimeLog.createdAt"
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "workTaskId",
+          "fieldRef": "TimeLog.workTaskId",
+          "required": true,
+          "source": "selectedEntity",
+          "description": "The work task the field worker is logging hours against."
+        },
+        {
+          "inputId": "workerId",
+          "fieldRef": "TimeLog.workerId",
+          "required": true,
+          "source": "actorSession",
+          "description": "The identifier of the field worker recording the hours, resolved from the authenticated session."
+        },
+        {
+          "inputId": "logDate",
+          "fieldRef": "TimeLog.logDate",
+          "required": true,
+          "source": "userInput",
+          "description": "The calendar date on which the work was performed."
+        },
+        {
+          "inputId": "hours",
+          "fieldRef": "TimeLog.hours",
+          "required": true,
+          "source": "userInput",
+          "description": "Number of hours worked on the task for this log entry."
+        },
+        {
+          "inputId": "workerRate",
+          "fieldRef": "TimeLog.workerRate",
+          "required": true,
+          "source": "actorSession",
+          "description": "Hourly cost rate of the worker sourced from the platform user profile at the time of logging."
+        },
+        {
+          "inputId": "timeLogId",
+          "fieldRef": "TimeLog.timeLogId",
+          "required": true,
+          "source": "systemDefault",
+          "description": "System-generated unique identifier for the new time log entry."
+        },
+        {
+          "inputId": "status",
+          "fieldRef": "TimeLog.status",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Initial lifecycle state of the time log, set to posted on creation."
+        },
+        {
+          "inputId": "createdAt",
+          "fieldRef": "TimeLog.createdAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp when the time log entry is created."
+        }
+      ],
+      "contextResolution": [
+        {
+          "targetRef": "TimeLog.workTaskId",
+          "source": "selectedEntity",
+          "originRef": "WorkTask.workTaskId",
+          "description": "The work task currently selected in the UI is resolved from the selected entity context, providing the workTaskId to link the time log to."
+        },
+        {
+          "targetRef": "TimeLog.workerId",
+          "source": "actorSession",
+          "originRef": "actorSession.actorId",
+          "description": "The field worker's identifier is resolved from the authenticated actor session, ensuring the time log is attributed to the logged-in worker."
+        },
+        {
+          "targetRef": "TimeLog.workerRate",
+          "source": "actorSession",
+          "originRef": "actorSession.actorId",
+          "description": "The worker's hourly cost rate is fetched from the platform user profile using the actor session identity, as the module does not maintain its own rate table."
+        },
+        {
+          "targetRef": "TimeLog.timeLogId",
+          "source": "systemDefault",
+          "originRef": "systemDefault.uuid",
+          "description": "A new UUID is generated by the system to serve as the unique identifier for the time log entry."
+        },
+        {
+          "targetRef": "TimeLog.status",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "The status is set to posted by default when a new time log is created, indicating the entry is active for job costing."
+        },
+        {
+          "targetRef": "TimeLog.createdAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "The current timestamp is captured from the system clock at the moment of creation."
+        }
+      ],
+      "acceptanceAssertions": [
+        "After confirmation the TimeLog exists with status posted",
+        "The created TimeLog is linked to a valid WorkTask via workTaskId and to the field worker via workerId",
+        "The created TimeLog has workerRate populated from the platform user profile, not from module-maintained data",
+        "The created TimeLog has hours and logDate matching the values entered by the field worker",
+        "The created TimeLog has a system-generated timeLogId and a createdAt timestamp",
+        "A TimeLog without a workTaskId or workerId cannot be saved"
+      ],
+      "pageId": "createTimeLog",
+      "commandName": "createTimeLog",
+      "bffName": "buildFlowFsm.createTimeLog.createTimeLog",
+      "capability": {
+        "capabilityId": "createTimeLog",
+        "title": "Log hours worked on a task",
+        "actor": "fieldWorker",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "createTimeLog",
+        "title": "Log hours worked on a task",
+        "actor": "fieldWorker",
+        "entity": "TimeLog",
+        "kind": "create",
+        "reads": [
+          "WorkTask"
+        ],
+        "writes": [
+          "TimeLog"
+        ],
+        "rulesApplied": [
+          "timeLogRequiresTaskAndWorker",
+          "workerRateFromProfile"
+        ],
+        "story": {
+          "actor": "fieldWorker",
+          "goal": "After completing work on a task, the field worker logs the hours spent so that labor costs are captured for job costing.",
+          "steps": [
+            "The field worker selects the work task they worked on",
+            "The system resolves the worker identity and hourly cost rate from the platform user profile",
+            "The field worker enters the date worked and the number of hours",
+            "The system creates a time log entry with status posted, linked to the task and worker",
+            "The time log is persisted and becomes available for job costing and budget vs actual comparison"
+          ],
+          "outcome": "A new time log entry exists with status posted, linked to the selected work task and the field worker, capturing hours and the worker's hourly cost rate for labor cost calculation."
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "TimeLog",
+          "keyField": "TimeLog.timeLogId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "TimeLog.timeLogId",
+            "TimeLog.workTaskId",
+            "TimeLog.workerId",
+            "TimeLog.logDate",
+            "TimeLog.hours",
+            "TimeLog.workerRate",
+            "TimeLog.status",
+            "TimeLog.createdAt"
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "workTaskId",
+            "fieldRef": "TimeLog.workTaskId",
+            "required": true,
+            "source": "selectedEntity",
+            "description": "The work task the field worker is logging hours against."
+          },
+          {
+            "inputId": "workerId",
+            "fieldRef": "TimeLog.workerId",
+            "required": true,
+            "source": "actorSession",
+            "description": "The identifier of the field worker recording the hours, resolved from the authenticated session."
+          },
+          {
+            "inputId": "logDate",
+            "fieldRef": "TimeLog.logDate",
+            "required": true,
+            "source": "userInput",
+            "description": "The calendar date on which the work was performed."
+          },
+          {
+            "inputId": "hours",
+            "fieldRef": "TimeLog.hours",
+            "required": true,
+            "source": "userInput",
+            "description": "Number of hours worked on the task for this log entry."
+          },
+          {
+            "inputId": "workerRate",
+            "fieldRef": "TimeLog.workerRate",
+            "required": true,
+            "source": "actorSession",
+            "description": "Hourly cost rate of the worker sourced from the platform user profile at the time of logging."
+          },
+          {
+            "inputId": "timeLogId",
+            "fieldRef": "TimeLog.timeLogId",
+            "required": true,
+            "source": "systemDefault",
+            "description": "System-generated unique identifier for the new time log entry."
+          },
+          {
+            "inputId": "status",
+            "fieldRef": "TimeLog.status",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Initial lifecycle state of the time log, set to posted on creation."
+          },
+          {
+            "inputId": "createdAt",
+            "fieldRef": "TimeLog.createdAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp when the time log entry is created."
+          }
+        ],
+        "contextResolution": [
+          {
+            "targetRef": "TimeLog.workTaskId",
+            "source": "selectedEntity",
+            "originRef": "WorkTask.workTaskId",
+            "description": "The work task currently selected in the UI is resolved from the selected entity context, providing the workTaskId to link the time log to."
+          },
+          {
+            "targetRef": "TimeLog.workerId",
+            "source": "actorSession",
+            "originRef": "actorSession.actorId",
+            "description": "The field worker's identifier is resolved from the authenticated actor session, ensuring the time log is attributed to the logged-in worker."
+          },
+          {
+            "targetRef": "TimeLog.workerRate",
+            "source": "actorSession",
+            "originRef": "actorSession.actorId",
+            "description": "The worker's hourly cost rate is fetched from the platform user profile using the actor session identity, as the module does not maintain its own rate table."
+          },
+          {
+            "targetRef": "TimeLog.timeLogId",
+            "source": "systemDefault",
+            "originRef": "systemDefault.uuid",
+            "description": "A new UUID is generated by the system to serve as the unique identifier for the time log entry."
+          },
+          {
+            "targetRef": "TimeLog.status",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "The status is set to posted by default when a new time log is created, indicating the entry is active for job costing."
+          },
+          {
+            "targetRef": "TimeLog.createdAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "The current timestamp is captured from the system clock at the moment of creation."
+          }
+        ],
+        "acceptanceAssertions": [
+          "After confirmation the TimeLog exists with status posted",
+          "The created TimeLog is linked to a valid WorkTask via workTaskId and to the field worker via workerId",
+          "The created TimeLog has workerRate populated from the platform user profile, not from module-maintained data",
+          "The created TimeLog has hours and logDate matching the values entered by the field worker",
+          "The created TimeLog has a system-generated timeLogId and a createdAt timestamp",
+          "A TimeLog without a workTaskId or workerId cannot be saved"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

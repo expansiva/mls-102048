@@ -1,0 +1,214 @@
+{
+  "savedAt": "2026-07-12T13:18:13.947Z",
+  "stepId": "e5-operation-sendChangeOrder",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "sendChangeOrder",
+      "title": "Send change order to client",
+      "actor": "projectManager",
+      "entity": "ChangeOrder",
+      "kind": "update",
+      "reads": [
+        "ChangeOrder",
+        "Project"
+      ],
+      "writes": [
+        "ChangeOrder"
+      ],
+      "rulesApplied": [
+        "changeOrderInAppApproval",
+        "changeOrderRequiresProject",
+        "approvedChangeOrdersOnly"
+      ],
+      "story": {
+        "actor": "projectManager",
+        "goal": "Send a draft change order to the client for in-app approval so there is a record of the client agreeing to the scope and cost change.",
+        "steps": [
+          "The project manager selects a draft change order from the project's change order list.",
+          "The system verifies the change order is in draft status and is linked to a project.",
+          "The system transitions the change order status to sent and records the sentAt timestamp.",
+          "The client receives a notification with a shareable link or email to review and approve or reject the change order."
+        ],
+        "outcome": "The change order is now in sent status, awaiting the client's in-app approval or rejection."
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "ChangeOrder",
+        "keyField": "ChangeOrder.changeOrderId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "ChangeOrder.changeOrderId",
+          "ChangeOrder.status",
+          "ChangeOrder.sentAt",
+          "ChangeOrder.updatedAt"
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "changeOrderId",
+          "fieldRef": "ChangeOrder.changeOrderId",
+          "required": true,
+          "source": "selectedEntity",
+          "description": "The change order the project manager selected to send to the client."
+        },
+        {
+          "inputId": "sentAt",
+          "fieldRef": "ChangeOrder.sentAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp recorded when the change order is sent to the client."
+        },
+        {
+          "inputId": "updatedAt",
+          "fieldRef": "ChangeOrder.updatedAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp of the last modification, updated when the change order is sent."
+        }
+      ],
+      "contextResolution": [
+        {
+          "targetRef": "ChangeOrder.changeOrderId",
+          "source": "selectedEntity",
+          "originRef": "ChangeOrder.changeOrderId",
+          "description": "The change order selected by the project manager from the project's change order list, resolved from the current selection context."
+        },
+        {
+          "targetRef": "ChangeOrder.sentAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "The current server timestamp captured at the moment the send action is executed."
+        },
+        {
+          "targetRef": "ChangeOrder.updatedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "The current server timestamp captured at the moment the send action is executed, used to update the record's last-modified timestamp."
+        }
+      ],
+      "acceptanceAssertions": [
+        "After sending, the change order exists with status set to sent.",
+        "After sending, the change order has a non-null sentAt timestamp equal to the current server time.",
+        "Only a change order with status draft can be sent; sending a change order in any other status is rejected.",
+        "The change order must be linked to a project (projectId is non-null) before it can be sent.",
+        "After sending, the change order does not require an e-signature; in-app approval status is sufficient for the client to approve or reject.",
+        "A sent change order does not affect job costing or invoicing until the client approves it in-app."
+      ],
+      "pageId": "changeOrderLifecycle",
+      "commandName": "sendChangeOrder",
+      "bffName": "buildFlowFsm.changeOrderLifecycle.sendChangeOrder",
+      "capability": {
+        "capabilityId": "changeOrderLifecycle",
+        "title": "Change Order Lifecycle",
+        "actor": "projectManager",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "sendChangeOrder",
+        "title": "Send change order to client",
+        "actor": "projectManager",
+        "entity": "ChangeOrder",
+        "kind": "update",
+        "reads": [
+          "ChangeOrder",
+          "Project"
+        ],
+        "writes": [
+          "ChangeOrder"
+        ],
+        "rulesApplied": [
+          "changeOrderInAppApproval",
+          "changeOrderRequiresProject",
+          "approvedChangeOrdersOnly"
+        ],
+        "story": {
+          "actor": "projectManager",
+          "goal": "Send a draft change order to the client for in-app approval so there is a record of the client agreeing to the scope and cost change.",
+          "steps": [
+            "The project manager selects a draft change order from the project's change order list.",
+            "The system verifies the change order is in draft status and is linked to a project.",
+            "The system transitions the change order status to sent and records the sentAt timestamp.",
+            "The client receives a notification with a shareable link or email to review and approve or reject the change order."
+          ],
+          "outcome": "The change order is now in sent status, awaiting the client's in-app approval or rejection."
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "ChangeOrder",
+          "keyField": "ChangeOrder.changeOrderId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "ChangeOrder.changeOrderId",
+            "ChangeOrder.status",
+            "ChangeOrder.sentAt",
+            "ChangeOrder.updatedAt"
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "changeOrderId",
+            "fieldRef": "ChangeOrder.changeOrderId",
+            "required": true,
+            "source": "selectedEntity",
+            "description": "The change order the project manager selected to send to the client."
+          },
+          {
+            "inputId": "sentAt",
+            "fieldRef": "ChangeOrder.sentAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp recorded when the change order is sent to the client."
+          },
+          {
+            "inputId": "updatedAt",
+            "fieldRef": "ChangeOrder.updatedAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp of the last modification, updated when the change order is sent."
+          }
+        ],
+        "contextResolution": [
+          {
+            "targetRef": "ChangeOrder.changeOrderId",
+            "source": "selectedEntity",
+            "originRef": "ChangeOrder.changeOrderId",
+            "description": "The change order selected by the project manager from the project's change order list, resolved from the current selection context."
+          },
+          {
+            "targetRef": "ChangeOrder.sentAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "The current server timestamp captured at the moment the send action is executed."
+          },
+          {
+            "targetRef": "ChangeOrder.updatedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "The current server timestamp captured at the moment the send action is executed, used to update the record's last-modified timestamp."
+          }
+        ],
+        "acceptanceAssertions": [
+          "After sending, the change order exists with status set to sent.",
+          "After sending, the change order has a non-null sentAt timestamp equal to the current server time.",
+          "Only a change order with status draft can be sent; sending a change order in any other status is rejected.",
+          "The change order must be linked to a project (projectId is non-null) before it can be sent.",
+          "After sending, the change order does not require an e-signature; in-app approval status is sufficient for the client to approve or reject.",
+          "A sent change order does not affect job costing or invoicing until the client approves it in-app."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

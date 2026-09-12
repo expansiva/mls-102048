@@ -1,0 +1,265 @@
+/// <mls fileReference="_102048_/l4/buildFlowFsm/journeys/buildFlowFsmJourneys.defs.ts" enhancement="_blank"/>
+
+export const buildFlowFsmJourneys = {
+  "moduleName": "buildFlowFsm",
+  "note": "Consolidated navigation map derived from workflows/operations stories (view, not source).",
+  "workspaces": [
+    {
+      "workspaceId": "projectManagement",
+      "title": "Project Management & Dashboard",
+      "actor": "companyAdmin",
+      "kind": "workflow",
+      "entity": "Project",
+      "operationIds": [
+        "createProject",
+        "updateProjectStatus",
+        "updateProject",
+        "viewProject",
+        "viewDashboard"
+      ],
+      "purpose": "Create and manage projects, review the dashboard for portfolio health, and drill into project details for cost and delay risk analysis.",
+      "workflowId": "projectLifecycle"
+    },
+    {
+      "workspaceId": "clientManagement",
+      "title": "Client Management",
+      "actor": "companyAdmin",
+      "kind": "entityManagement",
+      "entity": "Client",
+      "operationIds": [
+        "browseClients",
+        "createClient",
+        "updateClient"
+      ],
+      "purpose": "Maintain client records with contact details and portal access for project linkage and billing."
+    },
+    {
+      "workspaceId": "invoiceLifecycle",
+      "title": "Invoice Generation",
+      "actor": "companyAdmin",
+      "kind": "workflow",
+      "entity": "Invoice",
+      "operationIds": [
+        "generateInvoice",
+        "issueInvoice"
+      ],
+      "purpose": "Generate invoices from accumulated job costs and issue them to clients for payment.",
+      "workflowId": "invoiceLifecycle"
+    },
+    {
+      "workspaceId": "workTaskLifecycle",
+      "title": "Task Planning & Assignment",
+      "actor": "projectManager",
+      "kind": "workflow",
+      "entity": "WorkTask",
+      "operationIds": [
+        "createTask",
+        "assignTask",
+        "updateTask"
+      ],
+      "purpose": "Break down projects into work tasks, assign field workers with due dates, and adjust task details as needed.",
+      "workflowId": "workTaskLifecycle"
+    },
+    {
+      "workspaceId": "changeOrderLifecycle",
+      "title": "Change Order Management",
+      "actor": "projectManager",
+      "kind": "workflow",
+      "entity": "ChangeOrder",
+      "operationIds": [
+        "createChangeOrder",
+        "sendChangeOrder"
+      ],
+      "purpose": "Document scope changes with cost impact and send change orders to clients for in-app approval.",
+      "workflowId": "changeOrderLifecycle"
+    },
+    {
+      "workspaceId": "statusReportLifecycle",
+      "title": "AI Status Report",
+      "actor": "projectManager",
+      "kind": "workflow",
+      "entity": "StatusReport",
+      "operationIds": [
+        "generateStatusReport",
+        "shareStatusReport"
+      ],
+      "purpose": "Generate AI-powered status reports from project data and share them with clients to keep them informed.",
+      "workflowId": "statusReportLifecycle"
+    },
+    {
+      "workspaceId": "pmTimeLogManagement",
+      "title": "Time Log Corrections",
+      "actor": "projectManager",
+      "kind": "operation",
+      "entity": "TimeLog",
+      "operationIds": [
+        "voidTimeLog"
+      ],
+      "purpose": "Review and void posted time log entries to correct job costing inaccuracies."
+    },
+    {
+      "workspaceId": "pmMaterialUsageManagement",
+      "title": "Material Usage Corrections",
+      "actor": "projectManager",
+      "kind": "operation",
+      "entity": "MaterialUsage",
+      "operationIds": [
+        "voidMaterialUsage"
+      ],
+      "purpose": "Review and void posted material usage records to correct job costing inaccuracies."
+    },
+    {
+      "workspaceId": "fieldWorkerWorkspace",
+      "title": "My Tasks & Daily Logs",
+      "actor": "fieldWorker",
+      "kind": "workflow",
+      "entity": "WorkTask",
+      "operationIds": [
+        "browseTasks",
+        "updateTaskStatus",
+        "createTimeLog",
+        "createMaterialUsage"
+      ],
+      "purpose": "View assigned tasks, log hours and materials worked on-site, and update task status throughout the day.",
+      "workflowId": "workTaskLifecycle"
+    },
+    {
+      "workspaceId": "clientChangeOrderReview",
+      "title": "Change Order Review",
+      "actor": "client",
+      "kind": "workflow",
+      "entity": "ChangeOrder",
+      "operationIds": [
+        "reviewChangeOrder"
+      ],
+      "purpose": "Review proposed scope changes and cost impacts, then approve or reject change orders in-app.",
+      "workflowId": "changeOrderLifecycle"
+    },
+    {
+      "workspaceId": "clientInvoiceView",
+      "title": "Invoice Review",
+      "actor": "client",
+      "kind": "operation",
+      "entity": "Invoice",
+      "operationIds": [
+        "viewInvoice"
+      ],
+      "purpose": "Review itemized invoice breakdown including labor, materials, and approved change order amounts."
+    },
+    {
+      "workspaceId": "clientStatusReportView",
+      "title": "Project Status Report",
+      "actor": "client",
+      "kind": "operation",
+      "entity": "StatusReport",
+      "operationIds": [
+        "viewStatusReport"
+      ],
+      "purpose": "Read shared AI-generated status reports to stay informed on project progress, costs, and risks."
+    }
+  ],
+  "landings": [
+    {
+      "actorId": "companyAdmin",
+      "workspaceId": "projectManagement",
+      "reason": "The admin starts by reviewing the project dashboard for portfolio health and managing active projects."
+    },
+    {
+      "actorId": "projectManager",
+      "workspaceId": "workTaskLifecycle",
+      "reason": "The PM begins by planning and assigning tasks to field workers, then monitors progress throughout the day."
+    },
+    {
+      "actorId": "fieldWorker",
+      "workspaceId": "fieldWorkerWorkspace",
+      "reason": "The field worker opens their assigned task list to see what work is due and begin logging hours and materials."
+    },
+    {
+      "actorId": "client",
+      "workspaceId": "clientStatusReportView",
+      "reason": "The client starts by reading the latest shared status report to understand project progress and costs."
+    }
+  ],
+  "navigationEdges": [
+    {
+      "from": "projectManagement",
+      "to": "clientManagement",
+      "operationId": "createProject",
+      "description": "When creating a project, the admin may need to browse or create a client to link to the project."
+    },
+    {
+      "from": "projectManagement",
+      "to": "workTaskLifecycle",
+      "operationId": "updateProjectStatus",
+      "description": "Activating a project enables the PM to begin planning and assigning tasks."
+    },
+    {
+      "from": "projectManagement",
+      "to": "invoiceLifecycle",
+      "operationId": "generateInvoice",
+      "description": "From the project detail view, the admin generates an invoice from accumulated job costs."
+    },
+    {
+      "from": "workTaskLifecycle",
+      "to": "fieldWorkerWorkspace",
+      "operationId": "assignTask",
+      "description": "Assigned tasks appear in the field worker's task list for execution."
+    },
+    {
+      "from": "fieldWorkerWorkspace",
+      "to": "workTaskLifecycle",
+      "operationId": "updateTaskStatus",
+      "description": "Field worker status updates are visible to the PM for timeline and delay risk monitoring."
+    },
+    {
+      "from": "workTaskLifecycle",
+      "to": "changeOrderLifecycle",
+      "operationId": "createChangeOrder",
+      "description": "The PM initiates a change order from the project context to document a scope change."
+    },
+    {
+      "from": "changeOrderLifecycle",
+      "to": "clientChangeOrderReview",
+      "operationId": "sendChangeOrder",
+      "description": "Sending a change order makes it available for the client to review and approve or reject."
+    },
+    {
+      "from": "clientChangeOrderReview",
+      "to": "changeOrderLifecycle",
+      "operationId": "reviewChangeOrder",
+      "description": "The client's approval or rejection decision notifies the PM to proceed or adjust."
+    },
+    {
+      "from": "workTaskLifecycle",
+      "to": "statusReportLifecycle",
+      "operationId": "generateStatusReport",
+      "description": "The PM generates an AI status report from project task and cost data."
+    },
+    {
+      "from": "statusReportLifecycle",
+      "to": "clientStatusReportView",
+      "operationId": "shareStatusReport",
+      "description": "Sharing a status report makes it available for the client to read."
+    },
+    {
+      "from": "invoiceLifecycle",
+      "to": "clientInvoiceView",
+      "operationId": "issueInvoice",
+      "description": "Issuing an invoice makes it available for the client to review the billing breakdown."
+    },
+    {
+      "from": "workTaskLifecycle",
+      "to": "pmTimeLogManagement",
+      "operationId": "voidTimeLog",
+      "description": "The PM corrects inaccurate time log entries from the task management context."
+    },
+    {
+      "from": "workTaskLifecycle",
+      "to": "pmMaterialUsageManagement",
+      "operationId": "voidMaterialUsage",
+      "description": "The PM corrects inaccurate material usage records from the task management context."
+    }
+  ]
+} as const;
+
+export default buildFlowFsmJourneys;

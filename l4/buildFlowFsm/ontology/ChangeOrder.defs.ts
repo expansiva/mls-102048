@@ -1,0 +1,118 @@
+/// <mls fileReference="_102048_/l4/buildFlowFsm/ontology/ChangeOrder.defs.ts" enhancement="_blank"/>
+
+export const buildFlowFsmEntityChangeOrder = {
+  "entityId": "ChangeOrder",
+  "title": "Change Order",
+  "description": "A documented scope change on a project with a cost impact, sent to the client for in-app approval before it affects job costing and invoicing.",
+  "kind": "core",
+  "ownership": "moduleOwned",
+  "fields": [
+    {
+      "fieldId": "changeOrderId",
+      "type": "uuid",
+      "required": true,
+      "description": "Primary identifier for the change order record."
+    },
+    {
+      "fieldId": "projectId",
+      "type": "uuid",
+      "required": true,
+      "description": "Reference to the project this change order belongs to."
+    },
+    {
+      "fieldId": "title",
+      "type": "string",
+      "required": true,
+      "description": "Short title summarizing the scope change."
+    },
+    {
+      "fieldId": "scopeDescription",
+      "type": "text",
+      "required": true,
+      "description": "Detailed description of the scope change being requested."
+    },
+    {
+      "fieldId": "amount",
+      "type": "money",
+      "required": true,
+      "description": "Cost impact of the change order in USD; only included in invoicing and job costing when approved."
+    },
+    {
+      "fieldId": "status",
+      "type": "string",
+      "required": true,
+      "description": "In-app approval status of the change order; determines whether it affects job costing and invoicing.",
+      "enum": [
+        "draft",
+        "sent",
+        "approved",
+        "rejected",
+        "cancelled"
+      ]
+    },
+    {
+      "fieldId": "sentAt",
+      "type": "datetime",
+      "required": false,
+      "description": "Timestamp when the change order was sent to the client for approval."
+    },
+    {
+      "fieldId": "approvedAt",
+      "type": "datetime",
+      "required": false,
+      "description": "Timestamp when the client approved the change order in-app."
+    },
+    {
+      "fieldId": "rejectedAt",
+      "type": "datetime",
+      "required": false,
+      "description": "Timestamp when the client rejected the change order in-app."
+    },
+    {
+      "fieldId": "cancelledAt",
+      "type": "datetime",
+      "required": false,
+      "description": "Timestamp when the change order was cancelled."
+    },
+    {
+      "fieldId": "rejectionReason",
+      "type": "text",
+      "required": false,
+      "description": "Reason provided by the client when rejecting the change order."
+    },
+    {
+      "fieldId": "cancellationReason",
+      "type": "text",
+      "required": false,
+      "description": "Reason recorded when the change order is cancelled internally."
+    },
+    {
+      "fieldId": "createdAt",
+      "type": "datetime",
+      "required": true,
+      "description": "Timestamp when the change order record was created."
+    },
+    {
+      "fieldId": "updatedAt",
+      "type": "datetime",
+      "required": true,
+      "description": "Timestamp of the last modification to the change order record."
+    }
+  ],
+  "statusEnum": [
+    "draft",
+    "sent",
+    "approved",
+    "rejected",
+    "cancelled"
+  ],
+  "lifecycleStates": [
+    "draft",
+    "sent",
+    "approved",
+    "rejected",
+    "cancelled"
+  ]
+} as const;
+
+export default buildFlowFsmEntityChangeOrder;

@@ -1,0 +1,28 @@
+{
+  "savedAt": "2026-07-12T23:45:41.699Z",
+  "outcome": "failed",
+  "reason": "repair budget exhausted (1/1)",
+  "l1Defs": 81,
+  "findings": [
+    "materialization stale -> buildFlowFsm/layer_1_external/adapters/http/controllers/assigntask.ts is older than its .defs.ts (failed worker masked by a previous run's output)",
+    "materialization stale -> buildFlowFsm/layer_1_external/adapters/http/controllers/generatestatusreport.ts is older than its .defs.ts (failed worker masked by a previous run's output)"
+  ],
+  "unmapped": [],
+  "warnings": [],
+  "repairHistory": [
+    "2026-07-12T23:41:07.990Z :: _102048_/l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts :: attempt 1 :: rulesApplied 'changeOrderInAppApproval' not present in generated .ts",
+    "2026-07-12T23:41:16.113Z :: _102048_/l1/buildFlowFsm/layer_2_application/usecases/browseTasks.defs.ts :: attempt 1 :: rulesApplied 'delayRiskCalculation' not present in generated .ts",
+    "2026-07-12T23:42:27.352Z :: _102048_/l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts :: attempt 1 :: compiler: TS2339: Property 'getById' does not exist on type 'ITimeLogRepository'.",
+    "2026-07-12T23:44:27.535Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/assignTask.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/workTaskLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:44:29.591Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createChangeOrder.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/changeOrderLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:44:33.680Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTask.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/workTaskLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:44:44.215Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateInvoice.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/invoiceLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:44:52.858Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateStatusReport.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/statusReportLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:44:55.216Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/issueInvoice.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/invoiceLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:44:55.588Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/sendChangeOrder.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/changeOrderLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:44:56.857Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/shareStatusReport.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/statusReportLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:45:40.856Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/assignTask.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/workTaskLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+    "2026-07-12T23:45:40.961Z :: _102048_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateStatusReport.defs.ts :: attempt 1 :: compiler: TS2792: Cannot find module '/_102048_/l2/buildFlowFsm/web/contracts/statusReportLifecycle.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?"
+  ],
+  "globalAttempts": 1
+}

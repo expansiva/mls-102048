@@ -1,0 +1,224 @@
+{
+  "savedAt": "2026-07-12T13:18:26.837Z",
+  "stepId": "e5-operation-voidMaterialUsage",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "voidMaterialUsage",
+      "title": "Void a material usage record",
+      "actor": "projectManager",
+      "entity": "MaterialUsage",
+      "kind": "update",
+      "reads": [
+        "MaterialUsage",
+        "Project"
+      ],
+      "writes": [
+        "MaterialUsage"
+      ],
+      "rulesApplied": [
+        "materialUsageRequiresProject"
+      ],
+      "story": {
+        "actor": "projectManager",
+        "goal": "Void a posted material usage record that was entered in error so that its costs no longer count against the project budget.",
+        "steps": [
+          "The project manager selects a posted material usage record from the project's material tracking list.",
+          "The system loads the record and confirms its current status is 'posted'.",
+          "The project manager enters a void reason and confirms the void action.",
+          "The system sets the record status to 'voided', records the voidedAt timestamp and the void reason, preserving the original project linkage for audit purposes."
+        ],
+        "outcome": "The material usage record is marked as voided with a timestamp and reason; its costs are excluded from budget variance calculations while the record is retained for audit."
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "MaterialUsage",
+        "keyField": "MaterialUsage.materialUsageId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "MaterialUsage.materialUsageId",
+          "MaterialUsage.status",
+          "MaterialUsage.voidedAt",
+          "MaterialUsage.voidReason"
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "materialUsageId",
+          "fieldRef": "MaterialUsage.materialUsageId",
+          "required": true,
+          "source": "selectedEntity",
+          "description": "The material usage record selected by the project manager to be voided."
+        },
+        {
+          "inputId": "voidReason",
+          "fieldRef": "MaterialUsage.voidReason",
+          "required": true,
+          "source": "userInput",
+          "description": "Text reason explaining why the material usage record is being voided."
+        },
+        {
+          "inputId": "voidedAt",
+          "fieldRef": "MaterialUsage.voidedAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp recorded when the void action is executed."
+        },
+        {
+          "inputId": "actorId",
+          "fieldRef": "MaterialUsage.materialUsageId",
+          "required": true,
+          "source": "actorSession",
+          "description": "The project manager performing the void, used for audit attribution."
+        }
+      ],
+      "contextResolution": [
+        {
+          "targetRef": "MaterialUsage.materialUsageId",
+          "source": "selectedEntity",
+          "originRef": "MaterialUsage.materialUsageId",
+          "description": "The single material usage record the project manager selected from the project's material tracking list; resolved from the selected entity context in the workspace."
+        },
+        {
+          "targetRef": "MaterialUsage.voidedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "The current server timestamp captured at the moment the void command is processed."
+        },
+        {
+          "targetRef": "actorSession.actorId",
+          "source": "actorSession",
+          "originRef": "actorSession.actorId",
+          "description": "The authenticated project manager's actor id from the session, used to attribute the void action for audit."
+        }
+      ],
+      "acceptanceAssertions": [
+        "After confirmation the material usage record exists with status set to 'voided'.",
+        "The voidedAt field is populated with the timestamp at which the void was executed.",
+        "The voidReason field contains the reason text provided by the project manager.",
+        "Only a material usage record whose current status is 'posted' can be voided; a record already 'voided' cannot be voided again.",
+        "The voided material usage record retains its original projectId linkage so the audit trail remains intact.",
+        "The material usage record remains in the system after voiding (append-only audit policy) and is not deleted."
+      ],
+      "pageId": "voidMaterialUsage",
+      "commandName": "voidMaterialUsage",
+      "bffName": "buildFlowFsm.voidMaterialUsage.voidMaterialUsage",
+      "capability": {
+        "capabilityId": "voidMaterialUsage",
+        "title": "Void a material usage record",
+        "actor": "projectManager",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "voidMaterialUsage",
+        "title": "Void a material usage record",
+        "actor": "projectManager",
+        "entity": "MaterialUsage",
+        "kind": "update",
+        "reads": [
+          "MaterialUsage",
+          "Project"
+        ],
+        "writes": [
+          "MaterialUsage"
+        ],
+        "rulesApplied": [
+          "materialUsageRequiresProject"
+        ],
+        "story": {
+          "actor": "projectManager",
+          "goal": "Void a posted material usage record that was entered in error so that its costs no longer count against the project budget.",
+          "steps": [
+            "The project manager selects a posted material usage record from the project's material tracking list.",
+            "The system loads the record and confirms its current status is 'posted'.",
+            "The project manager enters a void reason and confirms the void action.",
+            "The system sets the record status to 'voided', records the voidedAt timestamp and the void reason, preserving the original project linkage for audit purposes."
+          ],
+          "outcome": "The material usage record is marked as voided with a timestamp and reason; its costs are excluded from budget variance calculations while the record is retained for audit."
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "MaterialUsage",
+          "keyField": "MaterialUsage.materialUsageId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "MaterialUsage.materialUsageId",
+            "MaterialUsage.status",
+            "MaterialUsage.voidedAt",
+            "MaterialUsage.voidReason"
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "materialUsageId",
+            "fieldRef": "MaterialUsage.materialUsageId",
+            "required": true,
+            "source": "selectedEntity",
+            "description": "The material usage record selected by the project manager to be voided."
+          },
+          {
+            "inputId": "voidReason",
+            "fieldRef": "MaterialUsage.voidReason",
+            "required": true,
+            "source": "userInput",
+            "description": "Text reason explaining why the material usage record is being voided."
+          },
+          {
+            "inputId": "voidedAt",
+            "fieldRef": "MaterialUsage.voidedAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp recorded when the void action is executed."
+          },
+          {
+            "inputId": "actorId",
+            "fieldRef": "MaterialUsage.materialUsageId",
+            "required": true,
+            "source": "actorSession",
+            "description": "The project manager performing the void, used for audit attribution."
+          }
+        ],
+        "contextResolution": [
+          {
+            "targetRef": "MaterialUsage.materialUsageId",
+            "source": "selectedEntity",
+            "originRef": "MaterialUsage.materialUsageId",
+            "description": "The single material usage record the project manager selected from the project's material tracking list; resolved from the selected entity context in the workspace."
+          },
+          {
+            "targetRef": "MaterialUsage.voidedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "The current server timestamp captured at the moment the void command is processed."
+          },
+          {
+            "targetRef": "actorSession.actorId",
+            "source": "actorSession",
+            "originRef": "actorSession.actorId",
+            "description": "The authenticated project manager's actor id from the session, used to attribute the void action for audit."
+          }
+        ],
+        "acceptanceAssertions": [
+          "After confirmation the material usage record exists with status set to 'voided'.",
+          "The voidedAt field is populated with the timestamp at which the void was executed.",
+          "The voidReason field contains the reason text provided by the project manager.",
+          "Only a material usage record whose current status is 'posted' can be voided; a record already 'voided' cannot be voided again.",
+          "The voided material usage record retains its original projectId linkage so the audit trail remains intact.",
+          "The material usage record remains in the system after voiding (append-only audit policy) and is not deleted."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

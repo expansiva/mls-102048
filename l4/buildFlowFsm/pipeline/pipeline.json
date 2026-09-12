@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+  "flowId": "agentNewSolution3",
+  "moduleName": "buildFlowFsm",
+  "createdAt": "2026-07-12T13:06:12.551Z",
+  "updatedAt": "2026-07-12T13:22:01.337Z",
+  "steps": {
+    "e1-draft": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:06:12.566Z",
+      "dirty": false,
+      "inputsHash": "djb2:eec1ac80",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-12T13:06:12.552Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-12T13:06:12.566Z",
+      "approvedBy": "auto"
+    },
+    "checkpoint-draft": {
+      "status": "pending",
+      "updatedAt": "2026-07-12T13:06:12.551Z"
+    },
+    "e2-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:09:31.470Z",
+      "dirty": false,
+      "inputsHash": "djb2:0f782f3e",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-12T13:06:57.651Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-12T13:09:31.470Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "checkpoint-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:09:31.470Z",
+      "dirty": false,
+      "approvedAt": "2026-07-12T13:09:31.470Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "e3-ontology": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:11:25.236Z",
+      "dirty": false,
+      "inputsHash": "djb2:b8ff3639",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-12T13:10:56.300Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-12T13:11:25.236Z",
+      "approvedBy": "auto"
+    },
+    "e4-actors-rules-refs": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:12:32.915Z",
+      "dirty": false,
+      "inputsHash": "djb2:70bcc757",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-12T13:12:32.915Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-12T13:12:32.915Z",
+      "approvedBy": "auto"
+    },
+    "e5-workflows-operations": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:20:29.670Z",
+      "dirty": false,
+      "inputsHash": "djb2:70bcc757",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-12T13:17:05.392Z",
+        "errors": [],
+        "warnings": [
+          "classification.managedEntity.create.missing Project: entity \"Project\" is under management but has no standalone create operation",
+          "classification.managedEntity.create.missing WorkTask: entity \"WorkTask\" is under management but has no standalone create operation"
+        ]
+      },
+      "approvedAt": "2026-07-12T13:20:29.670Z",
+      "approvedBy": "auto"
+    },
+    "e6-journey-map": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:22:00.929Z",
+      "dirty": false,
+      "inputsHash": "djb2:a2da840f",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-12T13:22:00.928Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-12T13:22:00.929Z",
+      "approvedBy": "auto"
+    },
+    "e7-validation-summary": {
+      "status": "approved",
+      "updatedAt": "2026-07-12T13:22:01.337Z",
+      "dirty": false,
+      "inputsHash": "djb2:43d78240",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-12T13:22:01.337Z",
+        "errors": [],
+        "warnings": [
+          "capability.multiowned: capability 'workTaskLifecycle' is owned by 2 workspaces (fieldWorkerWorkspace, workTaskLifecycle)",
+          "capability.multiowned: capability 'changeOrderLifecycle' is owned by 2 workspaces (changeOrderLifecycle, clientChangeOrderReview)"
+        ]
+      },
+      "approvedAt": "2026-07-12T13:22:01.337Z",
+      "approvedBy": "auto"
+    }
+  }
+}

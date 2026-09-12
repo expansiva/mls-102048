@@ -1,0 +1,447 @@
+{
+  "savedAt": "2026-07-12T13:19:12.424Z",
+  "stepId": "e5-operation-generateInvoice",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "generateInvoice",
+      "title": "Generate invoice from job costs",
+      "actor": "companyAdmin",
+      "entity": "Invoice",
+      "kind": "create",
+      "reads": [
+        "Project",
+        "TimeLog",
+        "MaterialUsage",
+        "ChangeOrder",
+        "Client"
+      ],
+      "writes": [
+        "Invoice"
+      ],
+      "rulesApplied": [
+        "invoiceCalculation",
+        "allFiguresUsdNoTax",
+        "approvedChangeOrdersOnly",
+        "invoiceIsInformational"
+      ],
+      "story": {
+        "actor": "companyAdmin",
+        "goal": "Generate an invoice from accumulated project costs — labor, materials, and approved change orders — so it can be delivered to the client for payment.",
+        "steps": [
+          "The admin selects a project that has accumulated time logs, material usage, and approved change orders.",
+          "The system computes the billing summary: labor cost from approved time logs, material cost from material usage records, and change order amount from approved change orders only.",
+          "The admin reviews the consolidated cost breakdown and confirms the figures are accurate.",
+          "The admin optionally provides a client email and internal notes, then confirms generation.",
+          "The system creates the invoice in draft status with all calculated amounts in USD."
+        ],
+        "outcome": "A new invoice record exists in draft status with laborCost, materialCost, changeOrderAmount, and totalAmount calculated from project data, ready to be reviewed and issued to the client."
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "Invoice",
+        "keyField": "Invoice.invoiceId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "Invoice.invoiceId",
+          "Invoice.status",
+          "Invoice.laborCost",
+          "Invoice.materialCost",
+          "Invoice.changeOrderAmount",
+          "Invoice.totalAmount",
+          "Invoice.currency",
+          "Invoice.createdAt"
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "projectId",
+          "fieldRef": "Invoice.projectId",
+          "required": true,
+          "source": "selectedEntity",
+          "description": "The project to generate an invoice for, selected by the admin on the billing summary screen."
+        },
+        {
+          "inputId": "clientEmail",
+          "fieldRef": "Invoice.clientEmail",
+          "required": false,
+          "source": "userInput",
+          "description": "Optional email address for delivering the invoice to the client."
+        },
+        {
+          "inputId": "notes",
+          "fieldRef": "Invoice.notes",
+          "required": false,
+          "source": "userInput",
+          "description": "Optional internal notes about the invoice."
+        },
+        {
+          "inputId": "invoiceId",
+          "fieldRef": "Invoice.invoiceId",
+          "required": true,
+          "source": "systemDefault",
+          "description": "System-generated unique identifier for the new invoice record."
+        },
+        {
+          "inputId": "status",
+          "fieldRef": "Invoice.status",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Initial lifecycle status of the invoice, always set to draft on creation."
+        },
+        {
+          "inputId": "currency",
+          "fieldRef": "Invoice.currency",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Currency code for all monetary figures, always USD."
+        },
+        {
+          "inputId": "createdAt",
+          "fieldRef": "Invoice.createdAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp when the invoice record is created."
+        },
+        {
+          "inputId": "updatedAt",
+          "fieldRef": "Invoice.updatedAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp when the invoice record is last updated, set to creation time."
+        },
+        {
+          "inputId": "laborCost",
+          "fieldRef": "Invoice.laborCost",
+          "required": true,
+          "source": "previousStepOutput",
+          "description": "Total labor cost accumulated from approved time logs on the project."
+        },
+        {
+          "inputId": "materialCost",
+          "fieldRef": "Invoice.materialCost",
+          "required": true,
+          "source": "previousStepOutput",
+          "description": "Total material cost accumulated from material usage records on the project."
+        },
+        {
+          "inputId": "changeOrderAmount",
+          "fieldRef": "Invoice.changeOrderAmount",
+          "required": true,
+          "source": "previousStepOutput",
+          "description": "Total amount from approved change orders on the project."
+        },
+        {
+          "inputId": "totalAmount",
+          "fieldRef": "Invoice.totalAmount",
+          "required": true,
+          "source": "previousStepOutput",
+          "description": "Calculated total of labor cost plus material cost plus approved change order amounts."
+        }
+      ],
+      "contextResolution": [
+        {
+          "targetRef": "Invoice.projectId",
+          "source": "selectedEntity",
+          "originRef": "Project.projectId",
+          "description": "Resolved from the project the admin selected on the billing summary screen; the backend reads the selected project context."
+        },
+        {
+          "targetRef": "Invoice.invoiceId",
+          "source": "systemDefault",
+          "originRef": "systemDefault.uuid",
+          "description": "Backend generates a new UUID for the invoice record at creation time."
+        },
+        {
+          "targetRef": "Invoice.status",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "New invoices always start in draft status per the invoice lifecycle; the backend sets this constant at creation time."
+        },
+        {
+          "targetRef": "Invoice.currency",
+          "source": "systemDefault",
+          "originRef": "systemDefault.locale",
+          "description": "Currency is always USD per domain rule allFiguresUsdNoTax; the backend sets this constant regardless of locale."
+        },
+        {
+          "targetRef": "Invoice.createdAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Backend sets the creation timestamp to the current server time."
+        },
+        {
+          "targetRef": "Invoice.updatedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Backend sets the last-updated timestamp to the current server time at creation."
+        },
+        {
+          "targetRef": "Invoice.laborCost",
+          "source": "previousStepOutput",
+          "originRef": "TimeLog.totalCost",
+          "description": "Backend sums the cost of all approved time logs for the project to compute total labor cost."
+        },
+        {
+          "targetRef": "Invoice.materialCost",
+          "source": "previousStepOutput",
+          "originRef": "MaterialUsage.totalCost",
+          "description": "Backend sums the cost of all material usage records for the project to compute total material cost."
+        },
+        {
+          "targetRef": "Invoice.changeOrderAmount",
+          "source": "previousStepOutput",
+          "originRef": "ChangeOrder.amount",
+          "description": "Backend sums amounts from change orders with approved status only for the project, excluding pending or rejected change orders."
+        },
+        {
+          "targetRef": "Invoice.totalAmount",
+          "source": "previousStepOutput",
+          "originRef": "Invoice.totalAmount",
+          "description": "Backend calculates totalAmount as laborCost plus materialCost plus changeOrderAmount per the invoiceCalculation rule."
+        }
+      ],
+      "acceptanceAssertions": [
+        "After generation the invoice exists with status draft and a system-generated invoiceId.",
+        "The invoice totalAmount equals laborCost plus materialCost plus changeOrderAmount.",
+        "The invoice laborCost is the sum of all approved time log costs for the selected project.",
+        "The invoice materialCost is the sum of all material usage costs for the selected project.",
+        "The invoice changeOrderAmount includes only change orders with approved status; pending or rejected change orders are excluded.",
+        "All monetary figures on the invoice are expressed in USD with currency set to usd.",
+        "No tax calculation is performed or stored on the invoice.",
+        "The invoice is informational and does not initiate or process any payment.",
+        "The invoice is associated with the selected project via projectId."
+      ]
+    },
+    "gate": {
+      "ok": false,
+      "artifact": {
+        "operationId": "generateInvoice",
+        "title": "Generate invoice from job costs",
+        "actor": "companyAdmin",
+        "entity": "Invoice",
+        "kind": "create",
+        "reads": [
+          "Project",
+          "TimeLog",
+          "MaterialUsage",
+          "ChangeOrder",
+          "Client"
+        ],
+        "writes": [
+          "Invoice"
+        ],
+        "rulesApplied": [
+          "invoiceCalculation",
+          "allFiguresUsdNoTax",
+          "approvedChangeOrdersOnly",
+          "invoiceIsInformational"
+        ],
+        "story": {
+          "actor": "companyAdmin",
+          "goal": "Generate an invoice from accumulated project costs — labor, materials, and approved change orders — so it can be delivered to the client for payment.",
+          "steps": [
+            "The admin selects a project that has accumulated time logs, material usage, and approved change orders.",
+            "The system computes the billing summary: labor cost from approved time logs, material cost from material usage records, and change order amount from approved change orders only.",
+            "The admin reviews the consolidated cost breakdown and confirms the figures are accurate.",
+            "The admin optionally provides a client email and internal notes, then confirms generation.",
+            "The system creates the invoice in draft status with all calculated amounts in USD."
+          ],
+          "outcome": "A new invoice record exists in draft status with laborCost, materialCost, changeOrderAmount, and totalAmount calculated from project data, ready to be reviewed and issued to the client."
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "Invoice",
+          "keyField": "Invoice.invoiceId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "Invoice.invoiceId",
+            "Invoice.status",
+            "Invoice.laborCost",
+            "Invoice.materialCost",
+            "Invoice.changeOrderAmount",
+            "Invoice.totalAmount",
+            "Invoice.currency",
+            "Invoice.createdAt"
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "projectId",
+            "fieldRef": "Invoice.projectId",
+            "required": true,
+            "source": "selectedEntity",
+            "description": "The project to generate an invoice for, selected by the admin on the billing summary screen."
+          },
+          {
+            "inputId": "clientEmail",
+            "fieldRef": "Invoice.clientEmail",
+            "required": false,
+            "source": "userInput",
+            "description": "Optional email address for delivering the invoice to the client."
+          },
+          {
+            "inputId": "notes",
+            "fieldRef": "Invoice.notes",
+            "required": false,
+            "source": "userInput",
+            "description": "Optional internal notes about the invoice."
+          },
+          {
+            "inputId": "invoiceId",
+            "fieldRef": "Invoice.invoiceId",
+            "required": true,
+            "source": "systemDefault",
+            "description": "System-generated unique identifier for the new invoice record."
+          },
+          {
+            "inputId": "status",
+            "fieldRef": "Invoice.status",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Initial lifecycle status of the invoice, always set to draft on creation."
+          },
+          {
+            "inputId": "currency",
+            "fieldRef": "Invoice.currency",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Currency code for all monetary figures, always USD."
+          },
+          {
+            "inputId": "createdAt",
+            "fieldRef": "Invoice.createdAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp when the invoice record is created."
+          },
+          {
+            "inputId": "updatedAt",
+            "fieldRef": "Invoice.updatedAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp when the invoice record is last updated, set to creation time."
+          },
+          {
+            "inputId": "laborCost",
+            "fieldRef": "Invoice.laborCost",
+            "required": true,
+            "source": "previousStepOutput",
+            "description": "Total labor cost accumulated from approved time logs on the project."
+          },
+          {
+            "inputId": "materialCost",
+            "fieldRef": "Invoice.materialCost",
+            "required": true,
+            "source": "previousStepOutput",
+            "description": "Total material cost accumulated from material usage records on the project."
+          },
+          {
+            "inputId": "changeOrderAmount",
+            "fieldRef": "Invoice.changeOrderAmount",
+            "required": true,
+            "source": "previousStepOutput",
+            "description": "Total amount from approved change orders on the project."
+          },
+          {
+            "inputId": "totalAmount",
+            "fieldRef": "Invoice.totalAmount",
+            "required": true,
+            "source": "previousStepOutput",
+            "description": "Calculated total of labor cost plus material cost plus approved change order amounts."
+          }
+        ],
+        "contextResolution": [
+          {
+            "targetRef": "Invoice.projectId",
+            "source": "selectedEntity",
+            "originRef": "Project.projectId",
+            "description": "Resolved from the project the admin selected on the billing summary screen; the backend reads the selected project context."
+          },
+          {
+            "targetRef": "Invoice.invoiceId",
+            "source": "systemDefault",
+            "originRef": "systemDefault.uuid",
+            "description": "Backend generates a new UUID for the invoice record at creation time."
+          },
+          {
+            "targetRef": "Invoice.status",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "New invoices always start in draft status per the invoice lifecycle; the backend sets this constant at creation time."
+          },
+          {
+            "targetRef": "Invoice.currency",
+            "source": "systemDefault",
+            "originRef": "systemDefault.locale",
+            "description": "Currency is always USD per domain rule allFiguresUsdNoTax; the backend sets this constant regardless of locale."
+          },
+          {
+            "targetRef": "Invoice.createdAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Backend sets the creation timestamp to the current server time."
+          },
+          {
+            "targetRef": "Invoice.updatedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Backend sets the last-updated timestamp to the current server time at creation."
+          },
+          {
+            "targetRef": "Invoice.laborCost",
+            "source": "previousStepOutput",
+            "originRef": "TimeLog.totalCost",
+            "description": "Backend sums the cost of all approved time logs for the project to compute total labor cost."
+          },
+          {
+            "targetRef": "Invoice.materialCost",
+            "source": "previousStepOutput",
+            "originRef": "MaterialUsage.totalCost",
+            "description": "Backend sums the cost of all material usage records for the project to compute total material cost."
+          },
+          {
+            "targetRef": "Invoice.changeOrderAmount",
+            "source": "previousStepOutput",
+            "originRef": "ChangeOrder.amount",
+            "description": "Backend sums amounts from change orders with approved status only for the project, excluding pending or rejected change orders."
+          },
+          {
+            "targetRef": "Invoice.totalAmount",
+            "source": "previousStepOutput",
+            "originRef": "Invoice.totalAmount",
+            "description": "Backend calculates totalAmount as laborCost plus materialCost plus changeOrderAmount per the invoiceCalculation rule."
+          }
+        ],
+        "acceptanceAssertions": [
+          "After generation the invoice exists with status draft and a system-generated invoiceId.",
+          "The invoice totalAmount equals laborCost plus materialCost plus changeOrderAmount.",
+          "The invoice laborCost is the sum of all approved time log costs for the selected project.",
+          "The invoice materialCost is the sum of all material usage costs for the selected project.",
+          "The invoice changeOrderAmount includes only change orders with approved status; pending or rejected change orders are excluded.",
+          "All monetary figures on the invoice are expressed in USD with currency set to usd.",
+          "No tax calculation is performed or stored on the invoice.",
+          "The invoice is informational and does not initiate or process any payment.",
+          "The invoice is associated with the selected project via projectId."
+        ]
+      },
+      "errors": [
+        {
+          "severity": "error",
+          "code": "operation.context.origin.unknown",
+          "message": "operation generateInvoice: previousStepOutput originRef field \"totalCost\" does not exist in TimeLog defs",
+          "path": "Invoice.laborCost"
+        }
+      ],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "retryContext": "operation.context.origin.unknown Invoice.laborCost: operation generateInvoice: previousStepOutput originRef field \"totalCost\" does not exist in TimeLog defs"
+    },
+    "retryContext": "operation.context.origin.unknown Invoice.laborCost: operation generateInvoice: previousStepOutput originRef field \"totalCost\" does not exist in TimeLog defs"
+  },
+  "error": "operation.context.origin.unknown: operation generateInvoice: previousStepOutput originRef field \"totalCost\" does not exist in TimeLog defs"
+}

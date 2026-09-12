@@ -1,0 +1,3735 @@
+{
+  "schemaVersion": 1,
+  "project": 102048,
+  "selectedAt": "2026-07-13T00:57:13.071Z",
+  "lastSyncAt": "2026-07-13T00:57:13.071Z",
+  "syncMode": "manual",
+  "files": {
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/assignTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/assignTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "cc94aa9e721c986c39b3ff2ea5a08e43fa4de38813e9f833e7b7f0c6427bd16a",
+      "diskHash": "",
+      "diskSize": 4270,
+      "diskLastModified": 1783904198712,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/assignTask.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/assignTask.ts",
+      "versionRef": "0",
+      "browserHash": "3457083779673a66f65046d042263b28e75a444e153457c9408f93de51406925",
+      "diskHash": "",
+      "diskSize": 1938,
+      "diskLastModified": 1783904198713,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseClients.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseClients.defs.ts",
+      "versionRef": "0",
+      "browserHash": "140093b84a9008fc8496b2897a890c062fbb3d52c467fbc5b5fffcb2437ddc94",
+      "diskHash": "",
+      "diskSize": 2810,
+      "diskLastModified": 1783904198713,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseClients.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseClients.ts",
+      "versionRef": "0",
+      "browserHash": "b533deed9f322a8b6b5699a30316ce8264cc7f60af4e6d7b9c39bedb82fc86b9",
+      "diskHash": "",
+      "diskSize": 1021,
+      "diskLastModified": 1783904198713,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseTasks.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseTasks.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e640f296f1f48f1303646e66424a43bef489a782ea01c34547f5c43597974601",
+      "diskHash": "",
+      "diskSize": 3036,
+      "diskLastModified": 1783904198713,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseTasks.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/browseTasks.ts",
+      "versionRef": "0",
+      "browserHash": "c1695959b93229c91964c8de8a7cb4a5d4e4d6437011c31cabbd3c2937800cf4",
+      "diskHash": "",
+      "diskSize": 852,
+      "diskLastModified": 1783904199423,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createChangeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "65fecc7121ba91aa7dd2a7533e1bc0e0754caf67041f46758e36e96ca3e0c24e",
+      "diskHash": "",
+      "diskSize": 5906,
+      "diskLastModified": 1783904199423,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createChangeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createChangeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "fdd6eb00d69abf840ebbfbbf9b1aa1cbee3fd1860f3ceb16a9ca898a2230fb48",
+      "diskHash": "",
+      "diskSize": 2199,
+      "diskLastModified": 1783904199423,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createClient.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createClient.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6df853d513cafc0333210989459e929ce331a83b975c2038235c9a5c49635850",
+      "diskHash": "",
+      "diskSize": 5460,
+      "diskLastModified": 1783904199423,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createClient.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createClient.ts",
+      "versionRef": "0",
+      "browserHash": "9f8d1686d1da18e9da6ba674e9b200151432fbb446e62d496dadab69131e48b0",
+      "diskHash": "",
+      "diskSize": 1509,
+      "diskLastModified": 1783904199423,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createMaterialUsage.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createMaterialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "127c0ab61db448f32b39aac0c6eee7e51be5c3666aee052f21823979e71879d7",
+      "diskHash": "",
+      "diskSize": 6370,
+      "diskLastModified": 1783904199749,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createMaterialUsage.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createMaterialUsage.ts",
+      "versionRef": "0",
+      "browserHash": "94c9c18ed9b7c2e3966a1ecb53be131295344ba87da3a61b4606cc8f0421064b",
+      "diskHash": "",
+      "diskSize": 2119,
+      "diskLastModified": 1783904199749,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createProject.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c9eb95120e2ac3ccfbe3473cd1ee9cbae55f3a87de36a27a6b8c8fff62923616",
+      "diskHash": "",
+      "diskSize": 5618,
+      "diskLastModified": 1783904199749,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createProject.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createProject.ts",
+      "versionRef": "0",
+      "browserHash": "a9c18e335a1b134ec18080336bc1b93d54c1105e30d9aca5309a3066be7b609c",
+      "diskHash": "",
+      "diskSize": 2091,
+      "diskLastModified": 1783904199750,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d4478fece595bb07452153df3c025f7384733cc12c216355e3cc573f6c4ef7e4",
+      "diskHash": "",
+      "diskSize": 6758,
+      "diskLastModified": 1783904199750,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTask.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTask.ts",
+      "versionRef": "0",
+      "browserHash": "f48d4628f3464c15c598efc93e92cfc53f7aae118843553324dcf663074ddcff",
+      "diskHash": "",
+      "diskSize": 2269,
+      "diskLastModified": 1783904200048,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTimeLog.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTimeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "043636cba919a739ec5be0a05df4eddacb40432e6fb3293868cb4c7d4e364c08",
+      "diskHash": "",
+      "diskSize": 6311,
+      "diskLastModified": 1783904200048,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTimeLog.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/createTimeLog.ts",
+      "versionRef": "0",
+      "browserHash": "64cabb6bc0a6b718e1e2db4847da5947c30aa4e4633ede96f047a3d7b129f9d4",
+      "diskHash": "",
+      "diskSize": 1561,
+      "diskLastModified": 1783904200047,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateInvoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "65ea1afaf2072421c4d0c15cc944c2d159880676abde24f569021e4a6231fd1c",
+      "diskHash": "",
+      "diskSize": 8559,
+      "diskLastModified": 1783904200047,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateInvoice.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateInvoice.ts",
+      "versionRef": "0",
+      "browserHash": "fb5335b46c36e32f1f89ef4424908f69475cf7e6bbce0b8e743320694350a60a",
+      "diskHash": "",
+      "diskSize": 1815,
+      "diskLastModified": 1783904200047,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateStatusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3132c15be632467ea30028d8fdfbe44de827ccb08e11c62ab868d1932df43226",
+      "diskHash": "",
+      "diskSize": 7309,
+      "diskLastModified": 1783904200797,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateStatusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/generateStatusReport.ts",
+      "versionRef": "0",
+      "browserHash": "135bba7a607c4dca43afb52ad5562d33c2a2e881235b34250e39dfb108b20b82",
+      "diskHash": "",
+      "diskSize": 2010,
+      "diskLastModified": 1783904200797,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/issueInvoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/issueInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b4bc83962ded784e37ab37bc68965ab64bc481d8088d1ed0d9f400a0b2ce37be",
+      "diskHash": "",
+      "diskSize": 4865,
+      "diskLastModified": 1783904200797,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/issueInvoice.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/issueInvoice.ts",
+      "versionRef": "0",
+      "browserHash": "e3cc966c934c78a5a1c2c58e6726b9613e727991037980805173bc4b0813c751",
+      "diskHash": "",
+      "diskSize": 1753,
+      "diskLastModified": 1783904200798,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/reviewChangeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/reviewChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "fbef0a4091010e68e1aeff9b977ed4a7a7a824aae58a4a3ba5bcf3ca8e99f36b",
+      "diskHash": "",
+      "diskSize": 4433,
+      "diskLastModified": 1783904200798,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/reviewChangeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/reviewChangeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "2f5ea56aab2c212593f27b3b2cfb439434dc34cc1db30d64b8cb1c666acf9b62",
+      "diskHash": "",
+      "diskSize": 1300,
+      "diskLastModified": 1783904201359,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/sendChangeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/sendChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f036023fe3d0b5834f6e8c84da1e74d72635b89ab001b387b505695839527076",
+      "diskHash": "",
+      "diskSize": 4099,
+      "diskLastModified": 1783904201360,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/sendChangeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/sendChangeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "45891a51b62d6526ce0349a260016b930ba953d834b6934b5dc19fc80b3e9fe6",
+      "diskHash": "",
+      "diskSize": 1464,
+      "diskLastModified": 1783904201360,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/shareStatusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/shareStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f5f3e0b11ab0dc97ba8dbdad60ac317783f4c8147c268dee8a2d6303b6d6ea00",
+      "diskHash": "",
+      "diskSize": 4949,
+      "diskLastModified": 1783904201360,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/shareStatusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/shareStatusReport.ts",
+      "versionRef": "0",
+      "browserHash": "cafd7cff9e7bf5142187dfa469d81199aea1d2ba1c6fff85bc5b6fd4592ed1c2",
+      "diskHash": "",
+      "diskSize": 1592,
+      "diskLastModified": 1783904201360,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateClient.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateClient.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5101c5c29c5a4503eb03c3cf5351bffb80c5f91433b867c3239e4679c89ffc2d",
+      "diskHash": "",
+      "diskSize": 4968,
+      "diskLastModified": 1783904201650,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateClient.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateClient.ts",
+      "versionRef": "0",
+      "browserHash": "14bf35477fd2958260f911f68d76934dc8a6073daccb875273cc350d269c5685",
+      "diskHash": "",
+      "diskSize": 1670,
+      "diskLastModified": 1783904201650,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProject.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "0569a8698eba11e84d98dc3e477f141f98aefc6fe2aecb3a3eb578561a8595da",
+      "diskHash": "",
+      "diskSize": 4960,
+      "diskLastModified": 1783904201650,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProject.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProject.ts",
+      "versionRef": "0",
+      "browserHash": "ba2081b054af77e0e1b4b0a94aea46538459efd946ff9b2a30d356102dca4a26",
+      "diskHash": "",
+      "diskSize": 2715,
+      "diskLastModified": 1783904201650,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProjectStatus.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProjectStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6c6fb75a392a1b4ee97c548b8801d732edab64056fac0c9e5eca331301f3029b",
+      "diskHash": "",
+      "diskSize": 5138,
+      "diskLastModified": 1783904201650,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProjectStatus.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateProjectStatus.ts",
+      "versionRef": "0",
+      "browserHash": "0fb553a44a151ddfbc7793b75b7af8ca4d9728354879360c6b6b8c7e3602bc40",
+      "diskHash": "",
+      "diskSize": 1239,
+      "diskLastModified": 1783904201935,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "98c44d0e07bee32d2a3ec08b8ae9abc997e78311394539748c12a83a7cb65374",
+      "diskHash": "",
+      "diskSize": 5968,
+      "diskLastModified": 1783904201935,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTask.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTask.ts",
+      "versionRef": "0",
+      "browserHash": "2343ea0c11b653704455637ccf6246810cb50d3cd4c22d0eea34cb1e1f7356d4",
+      "diskHash": "",
+      "diskSize": 1757,
+      "diskLastModified": 1783904201935,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTaskStatus.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTaskStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b7cc1c8f90821a05faf12ad806491770fbcb3507f0f167a6336c530cf05025ea",
+      "diskHash": "",
+      "diskSize": 5433,
+      "diskLastModified": 1783904201935,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTaskStatus.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/updateTaskStatus.ts",
+      "versionRef": "0",
+      "browserHash": "917e5e15de56f453a7d837d0432ae3f9289aba28bc8a83829dbe373123939bce",
+      "diskHash": "",
+      "diskSize": 1432,
+      "diskLastModified": 1783904201935,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewDashboard.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewDashboard.defs.ts",
+      "versionRef": "0",
+      "browserHash": "0363b89a1cd3491ee0461fc1980bfbd901474bb59d7717cfcf22577587574ef6",
+      "diskHash": "",
+      "diskSize": 3698,
+      "diskLastModified": 1783904202234,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewDashboard.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewDashboard.ts",
+      "versionRef": "0",
+      "browserHash": "8d62dbd17725d6de9c2fd560a454b5c16785c77603d1e5e1d336e5431de1777f",
+      "diskHash": "",
+      "diskSize": 921,
+      "diskLastModified": 1783904202234,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewInvoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5e4f9bdb4132363d40c14ab6ed87cd41c08c42c974d421d014b6c5ea0d7c2603",
+      "diskHash": "",
+      "diskSize": 3023,
+      "diskLastModified": 1783904202235,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewInvoice.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewInvoice.ts",
+      "versionRef": "0",
+      "browserHash": "972248d00d9935b99e2f813b550493a28b7a5f04d4e44786df44b06d5ff98ede",
+      "diskHash": "",
+      "diskSize": 955,
+      "diskLastModified": 1783904202235,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewProject.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "75d3f83f0fb14dbbac822ab7cc49a64c66520810ede00d13dc24b1168e1890a1",
+      "diskHash": "",
+      "diskSize": 3638,
+      "diskLastModified": 1783904202235,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewProject.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewProject.ts",
+      "versionRef": "0",
+      "browserHash": "18303862bda43e8d633fa984765380bb963ba422e8117da5348d3d00729288da",
+      "diskHash": "",
+      "diskSize": 955,
+      "diskLastModified": 1783904202517,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewStatusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ffb70885c43b1084bbf575ef3e94bea9cce630a155754c12f66face95665b76f",
+      "diskHash": "",
+      "diskSize": 3490,
+      "diskLastModified": 1783904202517,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewStatusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/viewStatusReport.ts",
+      "versionRef": "0",
+      "browserHash": "b710c8d9e95f5f495dba151c6e0850b506801e6e3422d25c5338e88c6986b65c",
+      "diskHash": "",
+      "diskSize": 1035,
+      "diskLastModified": 1783904202517,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidMaterialUsage.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidMaterialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8a8eb67e1fe99543bcf7177cee968a326a81a485628b4f2f01fa444cf5cb48fd",
+      "diskHash": "",
+      "diskSize": 4372,
+      "diskLastModified": 1783904202518,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidMaterialUsage.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidMaterialUsage.ts",
+      "versionRef": "0",
+      "browserHash": "13de7d8022c7cd48bd5a6348ffc5d8b2d93b144eae24df7abb05b2fd7758eece",
+      "diskHash": "",
+      "diskSize": 1253,
+      "diskLastModified": 1783904202518,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidTimeLog.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidTimeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c5ea3a6b0fc9ddc043d5ba7610b5e598e07854b0259de8430063d7b1df29fb42",
+      "diskHash": "",
+      "diskSize": 4142,
+      "diskLastModified": 1783904202949,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidTimeLog.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/http/controllers/voidTimeLog.ts",
+      "versionRef": "0",
+      "browserHash": "1b0d2703f57927dbfb791c0b3296ba36172f8fd48ac0faf4dd4868eb1a98db3c",
+      "diskHash": "",
+      "diskSize": 1381,
+      "diskLastModified": 1783904202949,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e221f13fccdea91d820ada17a3e0c5e4f931d5aa8dc795b51c44de75e4fc87ab",
+      "diskHash": "",
+      "diskSize": 2598,
+      "diskLastModified": 1783904202949,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "a916c4f6bc885ed9289f17d6e5c441347750bd936fb2e437d550a16413dc39bd",
+      "diskHash": "",
+      "diskSize": 1291,
+      "diskLastModified": 1783904202949,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b817a8626ed6a05abcfaa75dffa358816040904605c15c65cb52c3f9b2e00224",
+      "diskHash": "",
+      "diskSize": 1910,
+      "diskLastModified": 1783904202949,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "625702712ac7872d81d39fa12ed8bb051047954f48ec2be96ccc6a490e59be91",
+      "diskHash": "",
+      "diskSize": 4470,
+      "diskLastModified": 1783904203254,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "61f30234e7b3ed500e3eacc2a357a7ff92da0c035de384302eca288be98358a8",
+      "diskHash": "",
+      "diskSize": 2835,
+      "diskLastModified": 1783904203254,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoice.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoice.ts",
+      "versionRef": "0",
+      "browserHash": "15fb9ff29e69ac6955a06fecfb414d026b0e2e97fe9c30d9ebefa984e65f43dc",
+      "diskHash": "",
+      "diskSize": 1271,
+      "diskLastModified": 1783904203254,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f5e49317ed1fdf17ac2ecf125b9d683f8f827d369367aedc3481201261211d10",
+      "diskHash": "",
+      "diskSize": 1939,
+      "diskLastModified": 1783904203255,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "3879fb287891689c646d736a678921e5eb51a65fa1e16237293a06d150ca6c77",
+      "diskHash": "",
+      "diskSize": 5306,
+      "diskLastModified": 1783904203255,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsage.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "42f980237a21f775263e2e942d301f87874f4c22959ad54f53510fd600165a34",
+      "diskHash": "",
+      "diskSize": 2922,
+      "diskLastModified": 1783904203566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsage.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsage.ts",
+      "versionRef": "0",
+      "browserHash": "99d0ae7818aa6bdf9a629ca3ac6073b4ad8e22042399ca7cb3caeee97acdd93e",
+      "diskHash": "",
+      "diskSize": 1384,
+      "diskLastModified": 1783904203566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d02c8afe225e81a88f9479480b6c55e7e1b1b8e828eb1ef054db5f0017248a2e",
+      "diskHash": "",
+      "diskSize": 1966,
+      "diskLastModified": 1783904203566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "6f84d7f3ed19412d0d52a9735db32a3fd6dd5f538f54b81e63febc840de3b051",
+      "diskHash": "",
+      "diskSize": 4130,
+      "diskLastModified": 1783904203566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/project.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/project.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a6a6dd78808b95dfb48e69d1631fb4aeb97d3799ecc650264bcddfb695725e1a",
+      "diskHash": "",
+      "diskSize": 2507,
+      "diskLastModified": 1783904203566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/project.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/project.ts",
+      "versionRef": "0",
+      "browserHash": "65a436e233d21ff6157336832365af256ab5ce82f32ab8cacebef36dbf07f5a6",
+      "diskHash": "",
+      "diskSize": 1193,
+      "diskLastModified": 1783904203972,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6f6be99f3fb1fa0546a0908c0288c9409ed52ad8371c7c05787c92adb273ed0c",
+      "diskHash": "",
+      "diskSize": 2000,
+      "diskLastModified": 1783904203972,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "bb9177415486f54bda413eded21f85cc4c597a25a442b8d508dcfabc1d443988",
+      "diskHash": "",
+      "diskSize": 4288,
+      "diskLastModified": 1783904203972,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/seeds.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/seeds.ts",
+      "versionRef": "0",
+      "browserHash": "56b3aa0948ae09ee17076611ce4b46d7d073d33e37138db2e694d4bfc967cb9c",
+      "diskHash": "",
+      "diskSize": 79749,
+      "diskLastModified": 1783904203972,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "18c93a067a4b3daa2f70c6685ffdebab5cff304bc6f9e88998d073fc1944781a",
+      "diskHash": "",
+      "diskSize": 2608,
+      "diskLastModified": 1783904203972,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReport.ts",
+      "versionRef": "0",
+      "browserHash": "22f6548bfbf6d9ba75d83964d80cce467eb44788fad68d45d442894444011a26",
+      "diskHash": "",
+      "diskSize": 1176,
+      "diskLastModified": 1783904204260,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7a5707dae6420276a942ae218df8c3ba2ad31d981dffda3a6abbce7a9fd9b304",
+      "diskHash": "",
+      "diskSize": 1924,
+      "diskLastModified": 1783904204260,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "e5674f97faba2f54ca545965621dc28e1c4163f774f62eb614bafe1a62cf1d98",
+      "diskHash": "",
+      "diskSize": 4983,
+      "diskLastModified": 1783904204260,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLog.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "67ceb5ebc70f0694e8df92f30bba331e5303429b46b43166ad1092eb4cdf5917",
+      "diskHash": "",
+      "diskSize": 2818,
+      "diskLastModified": 1783904204260,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLog.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLog.ts",
+      "versionRef": "0",
+      "browserHash": "64e400084d7c5f3fce6f1b370e2d1c1820ec807227efd375e4ce2a3d57662903",
+      "diskHash": "",
+      "diskSize": 1277,
+      "diskLastModified": 1783904204260,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "00f2c0e03c30945c0d5c9878222f6194b99962079e6a69b5bad0d569efad4b33",
+      "diskHash": "",
+      "diskSize": 1853,
+      "diskLastModified": 1783904204553,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "d3977ea9bd7d82a904af501bcbec93d6aeee2d497326cb26c42bbe6ac8a6d58d",
+      "diskHash": "",
+      "diskSize": 3261,
+      "diskLastModified": 1783904204553,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c14fd5fb36926516a17598c7364ec642412d10ec0e42be869a3d97ce39072f7f",
+      "diskHash": "",
+      "diskSize": 2874,
+      "diskLastModified": 1783904204553,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTask.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTask.ts",
+      "versionRef": "0",
+      "browserHash": "17382b3d351a3c68b11609efa9df81ee1d829cdbaf67d39fa8353075c15ea5a1",
+      "diskHash": "",
+      "diskSize": 1277,
+      "diskLastModified": 1783904204553,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b51420ed246fc074bf5810716861c0a3c558805aae409604527ff6f434d31aea",
+      "diskHash": "",
+      "diskSize": 1908,
+      "diskLastModified": 1783904204554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.ts": {
+      "path": "l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "d3d0d5810d54b1e698653e3ce3b476417187248ee9f1556b12eba01299f17618",
+      "diskHash": "",
+      "diskSize": 4940,
+      "diskLastModified": 1783904204836,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/changeOrderRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/changeOrderRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1529f15462335d6b39b319d82a68e9bb4ee9aeb3add06b105bfc7a2cf8e4f143",
+      "diskHash": "",
+      "diskSize": 2376,
+      "diskLastModified": 1783904204835,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/changeOrderRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/changeOrderRepository.ts",
+      "versionRef": "0",
+      "browserHash": "bc56c402374cc675334d1e64203cba2270d1c29e4d0b633e7fc700be956553ff",
+      "diskHash": "",
+      "diskSize": 1120,
+      "diskLastModified": 1783904204836,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/invoiceLineRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/invoiceLineRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "cb7985ac330c0a476b2e26e689daffcc616f874389418f2ba15ca14cda2d1431",
+      "diskHash": "",
+      "diskSize": 1831,
+      "diskLastModified": 1783904204836,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/invoiceLineRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/invoiceLineRepository.ts",
+      "versionRef": "0",
+      "browserHash": "0d8ada9cae55501ea176e3638a20ea772d58a400cb79534726ba17a54edd8c51",
+      "diskHash": "",
+      "diskSize": 649,
+      "diskLastModified": 1783901354703,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/invoiceRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/invoiceRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "54fdf4afa9bb01b263c1262a8a1c1d46ee81a87daf795d4482e9fb81fa3cee9e",
+      "diskHash": "",
+      "diskSize": 2545,
+      "diskLastModified": 1783904205303,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/invoiceRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/invoiceRepository.ts",
+      "versionRef": "0",
+      "browserHash": "667e79532fe46292b8d4da66cd4d774ca7de725e05df5b3d72eabdb9741b5964",
+      "diskHash": "",
+      "diskSize": 1422,
+      "diskLastModified": 1783904205303,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/materialUsageRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/materialUsageRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "80df5b4b1200cfc08af6d20f792020afafd6e2aacad9da83330b2b634b7132f1",
+      "diskHash": "",
+      "diskSize": 2321,
+      "diskLastModified": 1783904205303,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/materialUsageRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/materialUsageRepository.ts",
+      "versionRef": "0",
+      "browserHash": "51e068f54559f15875dd120a022dacd15b2672d37203c204d431f2b2d7f96f26",
+      "diskHash": "",
+      "diskSize": 1021,
+      "diskLastModified": 1783904205303,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/projectRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/projectRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "44ed238eeabb87be65cc4d27fe57fcc3664f31cf3b0b90c3f93eddba88baeeeb",
+      "diskHash": "",
+      "diskSize": 2268,
+      "diskLastModified": 1783904205303,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/projectRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/projectRepository.ts",
+      "versionRef": "0",
+      "browserHash": "d54ed7cf52997683fad6c78f24701329d9fbefcacbdb904e8d232372ef2f6e55",
+      "diskHash": "",
+      "diskSize": 629,
+      "diskLastModified": 1783904205616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/statusReportRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/statusReportRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "2f7752e54ca0a748bf0e61f73f5990f4964d19d4d8afe9368cca8c51a5c1b01b",
+      "diskHash": "",
+      "diskSize": 2441,
+      "diskLastModified": 1783904205616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/statusReportRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/statusReportRepository.ts",
+      "versionRef": "0",
+      "browserHash": "514a1fe7a9fb8afd213ab30d08310c63965b83177b219ecb10e1932fcfa9e5d4",
+      "diskHash": "",
+      "diskSize": 745,
+      "diskLastModified": 1783904205616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/timeLogRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/timeLogRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "295b5e6ea476cb63a24d4d5ebfd1c0c4736c82e8f3349b0ff29e22da92a80d7e",
+      "diskHash": "",
+      "diskSize": 2210,
+      "diskLastModified": 1783904205616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/timeLogRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/timeLogRepository.ts",
+      "versionRef": "0",
+      "browserHash": "519c28f9175a19d76881ae2b572fb3a0bfcfed46095fab4deddff6451fa42aeb",
+      "diskHash": "",
+      "diskSize": 928,
+      "diskLastModified": 1783904205616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/workTaskRepository.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/workTaskRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7b005f5a7990f578f391e2c6823a1269681fb741606075bf38e72caa3fc9147e",
+      "diskHash": "",
+      "diskSize": 2516,
+      "diskLastModified": 1783904205905,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/ports/workTaskRepository.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/ports/workTaskRepository.ts",
+      "versionRef": "0",
+      "browserHash": "43911a0dc23852be0a2e5f564feb8230ac09e86aa2b3e556c6900fea4b0e7add",
+      "diskHash": "",
+      "diskSize": 812,
+      "diskLastModified": 1783904205905,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/assignTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/assignTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "207e21c298c9eaa8deca45bcb92de212d72d9ea9ea1463640aace0bffc5a26da",
+      "diskHash": "",
+      "diskSize": 5721,
+      "diskLastModified": 1783904205905,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/assignTask.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/assignTask.ts",
+      "versionRef": "0",
+      "browserHash": "069e47c661ab17d7398c0cbcd90d6928560c5a9ff734e731a57b6d85d125eeb6",
+      "diskHash": "",
+      "diskSize": 4971,
+      "diskLastModified": 1783904205905,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/browseClients.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/browseClients.defs.ts",
+      "versionRef": "0",
+      "browserHash": "304d2665a8daa6e42e99572d7f1162553baac5bc68251237dad7bc97e4106b82",
+      "diskHash": "",
+      "diskSize": 4808,
+      "diskLastModified": 1783904205905,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/browseClients.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/browseClients.ts",
+      "versionRef": "0",
+      "browserHash": "66e95e46a2f24b43f458423fc9c247f574a2c403550cae2489187cca10e48261",
+      "diskHash": "",
+      "diskSize": 2807,
+      "diskLastModified": 1783904206193,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/browseTasks.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/browseTasks.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8c87dbd4e5fac849aeb00bb151b8393a22b770ee9f7319a970b4e1cb79cc2610",
+      "diskHash": "",
+      "diskSize": 5333,
+      "diskLastModified": 1783904206193,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/browseTasks.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/browseTasks.ts",
+      "versionRef": "0",
+      "browserHash": "bfb3903bd96c588f9c2b93ef4d623c9a1b4c17b0909154f74f7e99ba972eaa9e",
+      "diskHash": "",
+      "diskSize": 3305,
+      "diskLastModified": 1783904206194,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1d4d9a2ca171db688b9d9d8313fe5cd79c9c62457ca063c0b72d74d2924fa645",
+      "diskHash": "",
+      "diskSize": 5715,
+      "diskLastModified": 1783904206194,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "22cb8760b1125c2fcee7e15aac94b2abe79214af9003362cfa51a3c1680a6785",
+      "diskHash": "",
+      "diskSize": 4163,
+      "diskLastModified": 1783904206194,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createClient.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createClient.defs.ts",
+      "versionRef": "0",
+      "browserHash": "551f141b4b199b4fd02f39ebd9f3a555a8c821382d10219df74fe6353658e872",
+      "diskHash": "",
+      "diskSize": 5570,
+      "diskLastModified": 1783904206554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createClient.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createClient.ts",
+      "versionRef": "0",
+      "browserHash": "d8ea4b2e358b4dbd0f4d62e5150be5578b569f7fddd89c2e9df80318e645cf6f",
+      "diskHash": "",
+      "diskSize": 3171,
+      "diskLastModified": 1783904206554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9c03f8b081f592b9cfd01d68be4d31fea296dcd8bff4bebfb4599c74ac319e2a",
+      "diskHash": "",
+      "diskSize": 6292,
+      "diskLastModified": 1783904206554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.ts",
+      "versionRef": "0",
+      "browserHash": "7c1b6b04b4806ce5403ed66e0a0fd05209f3cf0f153bf6b9f30c5ff1912c2d15",
+      "diskHash": "",
+      "diskSize": 4031,
+      "diskLastModified": 1783904206554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createProject.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "56b8d158e65c696696e5843a73aae2995cccfc045b072968885cc22f1338a9b6",
+      "diskHash": "",
+      "diskSize": 5937,
+      "diskLastModified": 1783904206555,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createProject.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createProject.ts",
+      "versionRef": "0",
+      "browserHash": "476169293eb10c485db158ec6c14b01aec66485b729cc865b6b92f1716138580",
+      "diskHash": "",
+      "diskSize": 4688,
+      "diskLastModified": 1783904206835,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7759ea601cdb580e8b257602a9e9f1ddbd89feb568e39581374325469fd242d2",
+      "diskHash": "",
+      "diskSize": 6471,
+      "diskLastModified": 1783904206835,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createTask.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createTask.ts",
+      "versionRef": "0",
+      "browserHash": "b567c85267fe2a40973e65f189551a67896240bb5a12c6abdac636237ca7053c",
+      "diskHash": "",
+      "diskSize": 5091,
+      "diskLastModified": 1783904206835,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1bbf51775f9e2b1562a7d6da41be37a288e7222df19c4c73a0d831a3a4726d71",
+      "diskHash": "",
+      "diskSize": 6103,
+      "diskLastModified": 1783904206835,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.ts",
+      "versionRef": "0",
+      "browserHash": "8688bfa4228a229f73a3979c2891fdbe8f3ab3dc34f3bdb7263396770e782b6d",
+      "diskHash": "",
+      "diskSize": 5201,
+      "diskLastModified": 1783904206835,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/generateInvoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/generateInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ffad67c50df6cf7346ac48d248d1f1ef99cf020b560f83e89e189848f3635e9f",
+      "diskHash": "",
+      "diskSize": 7626,
+      "diskLastModified": 1783904207147,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/generateInvoice.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/generateInvoice.ts",
+      "versionRef": "0",
+      "browserHash": "9f29c2809fae8edd08742e1a7eb20f5dc66ecc657a7983e9f83984f9dd94cdca",
+      "diskHash": "",
+      "diskSize": 5615,
+      "diskLastModified": 1783904207147,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7a9304eaf26a3651a1916a2657625e3f7a34e0f32a281b1922cc3ac9ac57491e",
+      "diskHash": "",
+      "diskSize": 7541,
+      "diskLastModified": 1783904207147,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.ts",
+      "versionRef": "0",
+      "browserHash": "b72a54cfac64cf0d2edb692becc4ab3ad9d995c653b6ebf97bfbbd21ed0a3ead",
+      "diskHash": "",
+      "diskSize": 9937,
+      "diskLastModified": 1783904207147,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/issueInvoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/issueInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "09de87ec90ce41d20817814e519834682190da835b94d1077823c713f76d7036",
+      "diskHash": "",
+      "diskSize": 5357,
+      "diskLastModified": 1783904207147,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/issueInvoice.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/issueInvoice.ts",
+      "versionRef": "0",
+      "browserHash": "81d19885557372b2d85d8259cdcca13dcbb2f0b1b33e099fb41863b53834685f",
+      "diskHash": "",
+      "diskSize": 3974,
+      "diskLastModified": 1783904207446,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/reviewChangeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/reviewChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "4662f4854d08603761f7acdcdb3ee381cb12d31def8dff134c228ef842dd59ff",
+      "diskHash": "",
+      "diskSize": 5288,
+      "diskLastModified": 1783904207447,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/reviewChangeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/reviewChangeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "8784463bd882650ec8fd0bc3e0c64d7829f15fbced4d0fc1f31acd4c119401cc",
+      "diskHash": "",
+      "diskSize": 3857,
+      "diskLastModified": 1783904207446,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/sendChangeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/sendChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e084032956f2080aeb67d8637b469c9e8f919902e015f1c3cfed949a7f352160",
+      "diskHash": "",
+      "diskSize": 4088,
+      "diskLastModified": 1783904207447,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/sendChangeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/sendChangeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "aa10b742ce13692708846391e4aba5b8e6a820dd77e044169fafbcd70f504166",
+      "diskHash": "",
+      "diskSize": 3220,
+      "diskLastModified": 1783904207447,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/shareStatusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/shareStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f74415a7a4eef5f0404bbbcce58eb5a6ee7c6e5b7e34aa749e24eee8acf1d1c8",
+      "diskHash": "",
+      "diskSize": 4648,
+      "diskLastModified": 1783904207738,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/shareStatusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/shareStatusReport.ts",
+      "versionRef": "0",
+      "browserHash": "f1730d1d733d33be45da9496088893e82ef11c71f5ede0192898b4c24aa8bc05",
+      "diskHash": "",
+      "diskSize": 4185,
+      "diskLastModified": 1783904207738,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateClient.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateClient.defs.ts",
+      "versionRef": "0",
+      "browserHash": "cc6a5045754d9e187d7219f83f4587ffa9bfd8ff170d026b13dcbb50986976b1",
+      "diskHash": "",
+      "diskSize": 6187,
+      "diskLastModified": 1783904207738,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateClient.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateClient.ts",
+      "versionRef": "0",
+      "browserHash": "c75445443552f384d37bdf034e7ca5ba89efa99561a6df456bd267e0d1190006",
+      "diskHash": "",
+      "diskSize": 3597,
+      "diskLastModified": 1783904207739,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateProject.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a83ea69e8ac9085c9096f7b80cf39df57f536d910918cbcfc356785a414da1d0",
+      "diskHash": "",
+      "diskSize": 7004,
+      "diskLastModified": 1783904207739,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateProject.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateProject.ts",
+      "versionRef": "0",
+      "browserHash": "6fd5a26e5840270cebdcc3821ddf6eb0c8144c51043f1a17f2ac56218f241b24",
+      "diskHash": "",
+      "diskSize": 4814,
+      "diskLastModified": 1783904208040,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1ac6e99822c92cccf167511f350ba407773277addbebeb46cf5fb61b9065563c",
+      "diskHash": "",
+      "diskSize": 5768,
+      "diskLastModified": 1783904208040,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.ts",
+      "versionRef": "0",
+      "browserHash": "18a15077cdc5d50340e4d4e6f435b2b81ba621e11e839c306b7fd0038df0292a",
+      "diskHash": "",
+      "diskSize": 6070,
+      "diskLastModified": 1783904208040,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7a762d6596080bc18c88575e37a2fadfab6004707d8044ff1937459daadadc55",
+      "diskHash": "",
+      "diskSize": 8390,
+      "diskLastModified": 1783904208040,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateTask.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateTask.ts",
+      "versionRef": "0",
+      "browserHash": "d113b5bf3cabadeaf7870806fbb089c4f5344f0e683fd9bac53c61f73eb634ba",
+      "diskHash": "",
+      "diskSize": 4983,
+      "diskLastModified": 1783904208040,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateTaskStatus.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateTaskStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8fee8036a0d467abf3a2d5d0f74aae16b278bdb193ff71c4e1120d6c713a8884",
+      "diskHash": "",
+      "diskSize": 5004,
+      "diskLastModified": 1783904208480,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/updateTaskStatus.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/updateTaskStatus.ts",
+      "versionRef": "0",
+      "browserHash": "7eb57525ce80b1bbdcf6a3c16fb33643a2e7f1dc1e76dd586121d066f2255a1d",
+      "diskHash": "",
+      "diskSize": 4324,
+      "diskLastModified": 1783904208480,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6d99ec2e68b16b203341daf251c43394b0f10288ef14d13be623c8e5fbaeb315",
+      "diskHash": "",
+      "diskSize": 5255,
+      "diskLastModified": 1783904208481,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.ts",
+      "versionRef": "0",
+      "browserHash": "2ff8064be637a8688c16d70d984d1461e03d1dfda16332aa235c36e9aed16e45",
+      "diskHash": "",
+      "diskSize": 10119,
+      "diskLastModified": 1783904208480,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "cc361feaebbf929a165cc1705b694749e58ad7c039a9a09112007fd6e09e665d",
+      "diskHash": "",
+      "diskSize": 6192,
+      "diskLastModified": 1783904208481,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.ts",
+      "versionRef": "0",
+      "browserHash": "c9513274b8ef0ac578bbe7b4b530436dfffe759a4bc44507c335718f06dc2f14",
+      "diskHash": "",
+      "diskSize": 5276,
+      "diskLastModified": 1783904208789,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewProject.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "aed4dbd35b78713167025b9236dfac0d9e6d90b21fbf5fbb3612fedea2da27da",
+      "diskHash": "",
+      "diskSize": 12164,
+      "diskLastModified": 1783904208789,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewProject.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewProject.ts",
+      "versionRef": "0",
+      "browserHash": "b704e8eee6115bde74dc61b3cf7c23a2807e215a836e5965e21ba358d03589f6",
+      "diskHash": "",
+      "diskSize": 8885,
+      "diskLastModified": 1783904208789,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a128b5bc273eabbce14cc36efcbd2e11e0d311c0ebd5c7beb9ffa6b80a69f20a",
+      "diskHash": "",
+      "diskSize": 5244,
+      "diskLastModified": 1783904208790,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.ts",
+      "versionRef": "0",
+      "browserHash": "be5240612acde707d974d381f6d23706df2b100ce8d8fe906ffdf3869913465d",
+      "diskHash": "",
+      "diskSize": 3116,
+      "diskLastModified": 1783904208790,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7ce160a357ec90d0a6ce759de7dcdc28c98b08b0469719f35476ad715e119be2",
+      "diskHash": "",
+      "diskSize": 4302,
+      "diskLastModified": 1783904209074,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.ts",
+      "versionRef": "0",
+      "browserHash": "83197c12c6e8aa4c4980e9db31618f3eef72204ec1872af8bbb60f436cbc7eed",
+      "diskHash": "",
+      "diskSize": 4767,
+      "diskLastModified": 1783904209074,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "577a37ab4267ded65ae84d7e92c753eb741fc76ee071379ae18cfde7e9a9d41b",
+      "diskHash": "",
+      "diskSize": 3476,
+      "diskLastModified": 1783904209074,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.ts": {
+      "path": "l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.ts",
+      "versionRef": "0",
+      "browserHash": "04ca9d90bb41cb616917aea5d47da2da8dafadacce09baf30141624a09d7cec8",
+      "diskHash": "",
+      "diskSize": 2622,
+      "diskLastModified": 1783904209074,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/changeOrder.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/changeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6563babe77174e288229fe3ea0131d953c826924593c5d3bfe4c0368ccc1f437",
+      "diskHash": "",
+      "diskSize": 4658,
+      "diskLastModified": 1783904209074,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/changeOrder.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/changeOrder.ts",
+      "versionRef": "0",
+      "browserHash": "01f24173055348557c5fa4c005db0861120caf87cac0826d34d9b386a730d986",
+      "diskHash": "",
+      "diskSize": 3295,
+      "diskLastModified": 1783904209448,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/invoice.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/invoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "aeea2888f8d0cd7738955e22b59692a61ff20bb935dbb08d3bf20fff4d738947",
+      "diskHash": "",
+      "diskSize": 7435,
+      "diskLastModified": 1783904209448,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/invoice.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/invoice.ts",
+      "versionRef": "0",
+      "browserHash": "48b52325e87433ae5e21e263e266b08bf813620ed1ef0a3b964dbdea7913ff90",
+      "diskHash": "",
+      "diskSize": 4539,
+      "diskLastModified": 1783904209448,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/materialUsage.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/materialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7d10d1a5e3a2c0d4a7ea0a16539fe773b9eb893fa87f5889c3499496e11a7a22",
+      "diskHash": "",
+      "diskSize": 3515,
+      "diskLastModified": 1783904209448,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/materialUsage.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/materialUsage.ts",
+      "versionRef": "0",
+      "browserHash": "c79bdb22c7bff211dfe6c837fb417c72b18bac970e2503b22e810d9e0d7cf9ba",
+      "diskHash": "",
+      "diskSize": 1094,
+      "diskLastModified": 1783904209448,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/project.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/project.defs.ts",
+      "versionRef": "0",
+      "browserHash": "80580a9ddb75488071fbbafb19db50963474c17c8d178fa2b0f28b05be9ad5bd",
+      "diskHash": "",
+      "diskSize": 4187,
+      "diskLastModified": 1783904209807,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/project.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/project.ts",
+      "versionRef": "0",
+      "browserHash": "3c3ff276b3f1245ba2ce92b59de6256205299d65d56a816ffaf707f69f925e66",
+      "diskHash": "",
+      "diskSize": 2126,
+      "diskLastModified": 1783904209807,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/statusReport.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/statusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1ed330b4bf4f916e67b420b0db70e480b4293d902750c2d329ba76f25afff9c1",
+      "diskHash": "",
+      "diskSize": 3993,
+      "diskLastModified": 1783904209807,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/statusReport.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/statusReport.ts",
+      "versionRef": "0",
+      "browserHash": "307955b0e2651e3a97e34a8b704cbd2d10ece0270326a6ffdc861e54a9aa1065",
+      "diskHash": "",
+      "diskSize": 2050,
+      "diskLastModified": 1783904209807,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/timeLog.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/timeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "45ab980232012de9f067e9a3cde13a4c3fe4ef522128a8e6cf6f1418c1ff9e2e",
+      "diskHash": "",
+      "diskSize": 3005,
+      "diskLastModified": 1783904209807,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/timeLog.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/timeLog.ts",
+      "versionRef": "0",
+      "browserHash": "5e1e164e3512210d98f3fd3257125ffc61c5ab427698b909abaffb6763453f0e",
+      "diskHash": "",
+      "diskSize": 834,
+      "diskLastModified": 1783904210117,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/workTask.defs.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/workTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "20a48ec48333ee18c7fd3b31bab26a52aa13839b5d9cd708404f03b7fc134405",
+      "diskHash": "",
+      "diskSize": 4864,
+      "diskLastModified": 1783904210117,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/buildFlowFsm/layer_3_domain/entities/workTask.ts": {
+      "path": "l1/buildFlowFsm/layer_3_domain/entities/workTask.ts",
+      "versionRef": "0",
+      "browserHash": "19a9c5c54808b2c3b05eb78b39f4f94c8a65b7c85ee08574ac0ab16cc46360b4",
+      "diskHash": "",
+      "diskSize": 3472,
+      "diskLastModified": 1783904210117,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/changeOrderLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/changeOrderLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "52c6db7a751dd536821b68353695abf968b190b25405376100cb8618ca3d88b1",
+      "diskHash": "",
+      "diskSize": 165,
+      "diskLastModified": 1783904210117,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/clientChangeOrderReview.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/clientChangeOrderReview.json",
+      "versionRef": "0",
+      "browserHash": "1aba6683bb8109108defeac9b302e1e087282e41a9c34405520d549b726da266",
+      "diskHash": "",
+      "diskSize": 168,
+      "diskLastModified": 1783904210118,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/clientInvoiceView.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/clientInvoiceView.json",
+      "versionRef": "0",
+      "browserHash": "52ff3655a00c64f791fd97b8e6aeedb42cc33e54d4c594c0e1c70adffe72d18c",
+      "diskHash": "",
+      "diskSize": 162,
+      "diskLastModified": 1783904210525,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/clientManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/clientManagement.json",
+      "versionRef": "0",
+      "browserHash": "7ca386a0f23adf5c07fdde38f60bdb2da455f05b1cdb3b92ad6cb6fecdb1b8d0",
+      "diskHash": "",
+      "diskSize": 161,
+      "diskLastModified": 1783904210525,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/clientStatusReportView.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/clientStatusReportView.json",
+      "versionRef": "0",
+      "browserHash": "f5a16011490ba18eb00ce9d944782e085f98eabb8a0e9bd946b9998da8223129",
+      "diskHash": "",
+      "diskSize": 167,
+      "diskLastModified": 1783904210525,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/fieldWorkerWorkspace.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/fieldWorkerWorkspace.json",
+      "versionRef": "0",
+      "browserHash": "bfde43c0dd38fd03899135813e0b4f7c34002658179e37122316f7c326ec7ad6",
+      "diskHash": "",
+      "diskSize": 165,
+      "diskLastModified": 1783904210526,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/invoiceLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/invoiceLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "ec15a151ad742f65bf7d76bfed11332d27a1525a0f2d4f6e63cdbbce85d8f891",
+      "diskHash": "",
+      "diskSize": 161,
+      "diskLastModified": 1783904210526,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/pmMaterialUsageManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/pmMaterialUsageManagement.json",
+      "versionRef": "0",
+      "browserHash": "d9cd152d63817e0f65b4fbe9fbfc4f50b834cf9dd3d76764ada8e7a5e9b1c7ac",
+      "diskHash": "",
+      "diskSize": 170,
+      "diskLastModified": 1783904210544,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/pmTimeLogManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/pmTimeLogManagement.json",
+      "versionRef": "0",
+      "browserHash": "c6bc3167c935624334498cc633e817bbfc2c0debf0d216c000963a3845048734",
+      "diskHash": "",
+      "diskSize": 164,
+      "diskLastModified": 1783904210544,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/projectManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/projectManagement.json",
+      "versionRef": "0",
+      "browserHash": "e9f4c4ad3d7a063923b1b041c9998cb583086317dfc6e7545c74a063cadeb51c",
+      "diskHash": "",
+      "diskSize": 162,
+      "diskLastModified": 1783904210544,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/statusReportLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/statusReportLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "c11ac79119fd5c2075d034d9522a5eecc25dcc1b1f820dea404faf3c68a36876",
+      "diskHash": "",
+      "diskSize": 166,
+      "diskLastModified": 1783904210544,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-pages/workTaskLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-pages/workTaskLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "7a659d13241adad34eb64a0c3e3fe80c842776cc1e0db04bd93715bd05e27568",
+      "diskHash": "",
+      "diskSize": 162,
+      "diskLastModified": 1783904210544,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-create-report.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-create-report.json",
+      "versionRef": "0",
+      "browserHash": "9da2e3b026449a6c5345d4928a147ea7256e305c84159d4dd314e4537f9a0759",
+      "diskHash": "",
+      "diskSize": 1444,
+      "diskLastModified": 1783904210554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/changeOrderLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/changeOrderLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "4cceebd7f7c2b642980f58a66b899e3998f742e7cf90cdcdf41284bb70a10b1a",
+      "diskHash": "",
+      "diskSize": 171,
+      "diskLastModified": 1783904210554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/clientChangeOrderReview.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/clientChangeOrderReview.json",
+      "versionRef": "0",
+      "browserHash": "99aa005a26bfe143e9e520fda587a55dd6f058138e4dd6fbc348d94bba476a2b",
+      "diskHash": "",
+      "diskSize": 174,
+      "diskLastModified": 1783904210554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/clientInvoiceView.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/clientInvoiceView.json",
+      "versionRef": "0",
+      "browserHash": "1fdd412899067bf68cbb8e09517b64b3498b09ac35075f92fee268f5b2f6d889",
+      "diskHash": "",
+      "diskSize": 168,
+      "diskLastModified": 1783904210554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/clientManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/clientManagement.json",
+      "versionRef": "0",
+      "browserHash": "10a78f557bab23eff0988adfa251f17e010e8a8b15d35f093c44b1a8e2b1fc64",
+      "diskHash": "",
+      "diskSize": 167,
+      "diskLastModified": 1783904210554,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/clientStatusReportView.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/clientStatusReportView.json",
+      "versionRef": "0",
+      "browserHash": "5218505ded48be618b795636f6b1b64f889b13457dc7dc05d81c060de156bd6c",
+      "diskHash": "",
+      "diskSize": 173,
+      "diskLastModified": 1783904210559,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/fieldWorkerWorkspace.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/fieldWorkerWorkspace.json",
+      "versionRef": "0",
+      "browserHash": "966f54db80927040786618575b8deb72ec9905cd5c696b50ebe7474720072b03",
+      "diskHash": "",
+      "diskSize": 171,
+      "diskLastModified": 1783904210559,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/invoiceLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/invoiceLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "259aec55031535b95d51e364771fa946668cae1054e11b13a114328ef4c55116",
+      "diskHash": "",
+      "diskSize": 167,
+      "diskLastModified": 1783904210559,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/pmMaterialUsageManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/pmMaterialUsageManagement.json",
+      "versionRef": "0",
+      "browserHash": "6baaae7798257444639b2a5632759d00b5baaa8d3d99cfb54a42af745b76de77",
+      "diskHash": "",
+      "diskSize": 176,
+      "diskLastModified": 1783904210559,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/pmTimeLogManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/pmTimeLogManagement.json",
+      "versionRef": "0",
+      "browserHash": "69e93eca57f390486b367a8949277dc3f401bf98a759a7ce8ab99165a13789b1",
+      "diskHash": "",
+      "diskSize": 170,
+      "diskLastModified": 1783904210559,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/projectManagement.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/projectManagement.json",
+      "versionRef": "0",
+      "browserHash": "243227d4a4e8c0546415fc505863f018db64cc4379ac13e123c9cdc79a37d5da",
+      "diskHash": "",
+      "diskSize": 168,
+      "diskLastModified": 1783904210566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/statusReportLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/statusReportLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "96d90d2514c43e37ee9b04d4374e969669151fe8a4abdeed6a752b5b0b6f440c",
+      "diskHash": "",
+      "diskSize": 172,
+      "diskLastModified": 1783904210566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/trace/frontend-register-pages/workTaskLifecycle.json": {
+      "path": "l2/buildFlowFsm/trace/frontend-register-pages/workTaskLifecycle.json",
+      "versionRef": "0",
+      "browserHash": "b9f81e3abe6ba1bbe136a77c3342d6585076a60393167328dd8aaabb7c4509b3",
+      "diskHash": "",
+      "diskSize": 168,
+      "diskLastModified": 1783904210566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/changeOrderLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/changeOrderLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "71c488c07eb210bcbf20f385523d6739daa0b2578b2ae7f6db2953634c27f9ac",
+      "diskHash": "",
+      "diskSize": 5111,
+      "diskLastModified": 1783904210566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/changeOrderLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/changeOrderLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "26cac74050a4b28906363b3df3a7021243a2ca02388c55adddc3af1a467e890d",
+      "diskHash": "",
+      "diskSize": 1755,
+      "diskLastModified": 1783904210566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/changeOrderLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/changeOrderLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "d7d12896373105089870eb1c2483d3861d6e503ad1c67589b3739f51c6d782ce",
+      "diskHash": "",
+      "diskSize": 776,
+      "diskLastModified": 1783904211035,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientChangeOrderReview.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientChangeOrderReview.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5f634de45b006b2d70b2156c9b1ac5efad3f79eff92a7a963fd1e48f46390955",
+      "diskHash": "",
+      "diskSize": 3282,
+      "diskLastModified": 1783904211036,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientChangeOrderReview.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientChangeOrderReview.test.ts",
+      "versionRef": "0",
+      "browserHash": "2e78106ab39bb7377c0d2160b496cf64281118854b6d928515a64af12109f3ff",
+      "diskHash": "",
+      "diskSize": 1176,
+      "diskLastModified": 1783904211037,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientChangeOrderReview.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientChangeOrderReview.ts",
+      "versionRef": "0",
+      "browserHash": "566d3e160334d1605bf188b47ff6554a207fc9ae313ba832c5032f2a0058df5f",
+      "diskHash": "",
+      "diskSize": 526,
+      "diskLastModified": 1783904211036,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientInvoiceView.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientInvoiceView.defs.ts",
+      "versionRef": "0",
+      "browserHash": "dc5ba5270fa242aa077015e54a071f604aded695413101332c6d9aad456c2686",
+      "diskHash": "",
+      "diskSize": 3443,
+      "diskLastModified": 1783904211037,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientInvoiceView.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientInvoiceView.test.ts",
+      "versionRef": "0",
+      "browserHash": "68b6d1169a4f17ef6d7ac57e9f6f014bc9c72cf19f0571dbf8864794be63860c",
+      "diskHash": "",
+      "diskSize": 1370,
+      "diskLastModified": 1783904211326,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientInvoiceView.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientInvoiceView.ts",
+      "versionRef": "0",
+      "browserHash": "c92d3215450d053d109f57e76f79cc1898cff0e968b593a44e7d8ec2b36acf94",
+      "diskHash": "",
+      "diskSize": 596,
+      "diskLastModified": 1783904211325,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "fb07023156e092534980d51227a6747fc77ca3d6380e985d3745fac07999295e",
+      "diskHash": "",
+      "diskSize": 9584,
+      "diskLastModified": 1783904211326,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "bb46e452e2aa4cef957771d4552442cf3e8f0c54790a461b946f00fed7bd63ba",
+      "diskHash": "",
+      "diskSize": 2821,
+      "diskLastModified": 1783904211326,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientManagement.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientManagement.ts",
+      "versionRef": "0",
+      "browserHash": "1f5b2d86ff47c5cd556622dcf9d6b0fda10de1216c1122b571cccd6c92f55aa2",
+      "diskHash": "",
+      "diskSize": 1418,
+      "diskLastModified": 1783904211326,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientStatusReportView.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientStatusReportView.defs.ts",
+      "versionRef": "0",
+      "browserHash": "aceb8b505ca3de3a2b34382593a4c788f75fee60b4e10400dc1009d6561ce838",
+      "diskHash": "",
+      "diskSize": 3387,
+      "diskLastModified": 1783904211615,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientStatusReportView.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientStatusReportView.test.ts",
+      "versionRef": "0",
+      "browserHash": "dcab46bab48a2f907481d225a4f94760add980b3a9291979a108a5ab25900a3c",
+      "diskHash": "",
+      "diskSize": 1456,
+      "diskLastModified": 1783904211615,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/clientStatusReportView.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/clientStatusReportView.ts",
+      "versionRef": "0",
+      "browserHash": "feed4da72046d2f50084b684470c03a0ed691479d21e8a9a87207f82389ee93c",
+      "diskHash": "",
+      "diskSize": 617,
+      "diskLastModified": 1783904211614,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/fieldWorkerWorkspace.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/fieldWorkerWorkspace.defs.ts",
+      "versionRef": "0",
+      "browserHash": "278af5ae602eed18920f96734bb542e7c73a4357ff8384392afdf1bf0b5bff3a",
+      "diskHash": "",
+      "diskSize": 11557,
+      "diskLastModified": 1783904211615,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/fieldWorkerWorkspace.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/fieldWorkerWorkspace.test.ts",
+      "versionRef": "0",
+      "browserHash": "49bec009f0ab50016360882dca929672cab281bbebc2355a1359bd445c32d2a7",
+      "diskHash": "",
+      "diskSize": 3751,
+      "diskLastModified": 1783904211615,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/fieldWorkerWorkspace.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/fieldWorkerWorkspace.ts",
+      "versionRef": "0",
+      "browserHash": "99b19e34b4a472e2e14e5beb3fb613df273e6c99fee13161c0edba612444d77b",
+      "diskHash": "",
+      "diskSize": 1964,
+      "diskLastModified": 1783904211964,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/invoiceLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/invoiceLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d240ee3b68f4fe98b074317a23ae176bf1a0205859a8350f9dd4f4d85323d60a",
+      "diskHash": "",
+      "diskSize": 5705,
+      "diskLastModified": 1783904211965,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/invoiceLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/invoiceLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "dc5c1adc3fb6d1b9fb96081f80b0fa340a473b88d289ad9b1cce6096b185ac2c",
+      "diskHash": "",
+      "diskSize": 1737,
+      "diskLastModified": 1783904211965,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/invoiceLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/invoiceLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "3062c9f04fcfe2f57c15471c3512dda84ed00e6a9e37044c84c6182c2bb9c2db",
+      "diskHash": "",
+      "diskSize": 802,
+      "diskLastModified": 1783904211964,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/pmMaterialUsageManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/pmMaterialUsageManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f501a95f1583b344be72d757c953efe8da49845d2818bdb94786777ba33a7f9b",
+      "diskHash": "",
+      "diskSize": 2423,
+      "diskLastModified": 1783904211965,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/pmMaterialUsageManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/pmMaterialUsageManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "cd0ba6bf12a4a2a454830c8598c42350836a892a1328c63759458bcf730dbe6b",
+      "diskHash": "",
+      "diskSize": 1032,
+      "diskLastModified": 1783904212376,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/pmMaterialUsageManagement.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/pmMaterialUsageManagement.ts",
+      "versionRef": "0",
+      "browserHash": "ab661f8201d830886f347226597b60b339892d61bdba930fbb8af902c9f71869",
+      "diskHash": "",
+      "diskSize": 380,
+      "diskLastModified": 1783904212375,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/pmTimeLogManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/pmTimeLogManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "46c64b40d56d6afb9bedd20b4f3733ad937780b9f61eb7ab07753ee58aae4166",
+      "diskHash": "",
+      "diskSize": 2275,
+      "diskLastModified": 1783904212376,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/pmTimeLogManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/pmTimeLogManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "2481007c00675051d15b439e530537bad6cbdb96ce09207c7832d5d0c31704f9",
+      "diskHash": "",
+      "diskSize": 948,
+      "diskLastModified": 1783904212376,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/pmTimeLogManagement.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/pmTimeLogManagement.ts",
+      "versionRef": "0",
+      "browserHash": "f9645900b500d093d56c64a1dd9ef605e1618707d0f586ef131c3114bdaf2c83",
+      "diskHash": "",
+      "diskSize": 350,
+      "diskLastModified": 1783904212375,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/projectManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/projectManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "520a4b786898ae9cd541508471e53401f5869ff67988690b33409eeef1182421",
+      "diskHash": "",
+      "diskSize": 15741,
+      "diskLastModified": 1783904212655,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/projectManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/projectManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "0daaaff02ab5210e9594ef83872dcac3fa5761abb4b1bcca978d26ba800b7b87",
+      "diskHash": "",
+      "diskSize": 4701,
+      "diskLastModified": 1783904212656,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/projectManagement.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/projectManagement.ts",
+      "versionRef": "0",
+      "browserHash": "941afbac9387184bb85ed37d46e205e7b66004b5dd40fe6a79ee75ae479b6157",
+      "diskHash": "",
+      "diskSize": 2439,
+      "diskLastModified": 1783904212655,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/statusReportLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/statusReportLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8b0904033f59c44678c4d397fa0c2d9d72b55a56569ef1cd546a290837979e6d",
+      "diskHash": "",
+      "diskSize": 5459,
+      "diskLastModified": 1783904212656,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/statusReportLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/statusReportLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "2265e351c4ca56a6afd006eabdf119c3d616ed1e116e950c71a197b5073bd99a",
+      "diskHash": "",
+      "diskSize": 1824,
+      "diskLastModified": 1783904212656,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/statusReportLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/statusReportLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "bda3c7e911ad27486e9ebb6fc627c25b65029765c263d422d438c97ed7a536ba",
+      "diskHash": "",
+      "diskSize": 804,
+      "diskLastModified": 1783904213284,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/workTaskLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/workTaskLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d3c36be87bc0ce0ebdd4cb957c1d9f7b52333a602179e7842aa2b369870453fa",
+      "diskHash": "",
+      "diskSize": 11265,
+      "diskLastModified": 1783904213285,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/workTaskLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/workTaskLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "db00e62042ff2e34baaace89a8919130a2e802d370982943066dbc6fa8c501bf",
+      "diskHash": "",
+      "diskSize": 2727,
+      "diskLastModified": 1783904213285,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/contracts/workTaskLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/contracts/workTaskLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "59bc9636ca26d0d3f3a4dda849b83444382dfe08474db4ac9a25fa77c4f3172c",
+      "diskHash": "",
+      "diskSize": 1555,
+      "diskLastModified": 1783904213284,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/changeOrderLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/changeOrderLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "fa06fd1944fd5c8a946322ddbe3af23e388834e8968e4f537ad91fed57d2be4b",
+      "diskHash": "",
+      "diskSize": 25605,
+      "diskLastModified": 1783904213285,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/changeOrderLifecycle.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/changeOrderLifecycle.html",
+      "versionRef": "0",
+      "browserHash": "db04706300a253e06a48c6ab6e20fcec63a72bc62e25a88e9cf65988e46323b2",
+      "diskHash": "",
+      "diskSize": 139,
+      "diskLastModified": 1783904213707,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/changeOrderLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/changeOrderLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "5e00edbf5f26159f93def300a224a5495890101cfb800103adb5f4c775f74976",
+      "diskHash": "",
+      "diskSize": 18079,
+      "diskLastModified": 1783904213706,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientChangeOrderReview.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientChangeOrderReview.defs.ts",
+      "versionRef": "0",
+      "browserHash": "38ae26694296ef3cc18a2d4592537fff3f46c694362ba5fcd6929c7802587411",
+      "diskHash": "",
+      "diskSize": 15180,
+      "diskLastModified": 1783904213707,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientChangeOrderReview.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientChangeOrderReview.html",
+      "versionRef": "0",
+      "browserHash": "59933e60772afa92820c7240f6757e8d3dbaa721b3304c8d50b9553477d144a2",
+      "diskHash": "",
+      "diskSize": 147,
+      "diskLastModified": 1783904213707,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientChangeOrderReview.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientChangeOrderReview.ts",
+      "versionRef": "0",
+      "browserHash": "82f3ae0dc3b8a27b091dabac61cf9b69c99319489afa541dd36261a812b25c7c",
+      "diskHash": "",
+      "diskSize": 9330,
+      "diskLastModified": 1783904213706,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientInvoiceView.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientInvoiceView.defs.ts",
+      "versionRef": "0",
+      "browserHash": "99330ca4a8cd65c92ee1165179dcd3a091b41b31d79c0ee22ec0094a7f21d258",
+      "diskHash": "",
+      "diskSize": 19821,
+      "diskLastModified": 1783904214009,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientInvoiceView.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientInvoiceView.html",
+      "versionRef": "0",
+      "browserHash": "3e15e95ff5e88293375f9e93b47993d616b23d7dd49f4c7cb1ea56dc7929242e",
+      "diskHash": "",
+      "diskSize": 133,
+      "diskLastModified": 1783904214010,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientInvoiceView.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientInvoiceView.ts",
+      "versionRef": "0",
+      "browserHash": "2927d40d4a3fb1c968c92aee5a3495387dd4b9a2e3711bc46bb78666ef1a1212",
+      "diskHash": "",
+      "diskSize": 11447,
+      "diskLastModified": 1783904214008,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3c9eadcc8a0aed3e5206104a5b85c2e4a63101ea7a08766365cb77ee1e52135f",
+      "diskHash": "",
+      "diskSize": 29325,
+      "diskLastModified": 1783904214010,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientManagement.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientManagement.html",
+      "versionRef": "0",
+      "browserHash": "277d7d2032593a1901015c8916f5cbd314a096f0f4b1b9ed344e8e1d608ecb54",
+      "diskHash": "",
+      "diskSize": 129,
+      "diskLastModified": 1783904214010,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientManagement.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientManagement.ts",
+      "versionRef": "0",
+      "browserHash": "56f7459a9afd9d0a22cfca022fed96e65eadb5e140f178fb0145f71271e1341e",
+      "diskHash": "",
+      "diskSize": 26792,
+      "diskLastModified": 1783904214297,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientStatusReportView.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientStatusReportView.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5b94b5d312e3287c28cd4425cb440604b6de7a090611ea34d9fcfb22cf2067cc",
+      "diskHash": "",
+      "diskSize": 13785,
+      "diskLastModified": 1783904214298,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientStatusReportView.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientStatusReportView.html",
+      "versionRef": "0",
+      "browserHash": "ed676be0ec1514602d86329eef24b592eb8707824a302f1516595db31016fe74",
+      "diskHash": "",
+      "diskSize": 145,
+      "diskLastModified": 1783904214298,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/clientStatusReportView.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/clientStatusReportView.ts",
+      "versionRef": "0",
+      "browserHash": "8fddc8264389d7ac248007e90d360d9067544549713387a555e4f74015327dea",
+      "diskHash": "",
+      "diskSize": 8381,
+      "diskLastModified": 1783904214298,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/fieldWorkerWorkspace.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/fieldWorkerWorkspace.defs.ts",
+      "versionRef": "0",
+      "browserHash": "36f050addb460253e2385203b57325f7a8b81e6919ce2764493053146ef3cbdb",
+      "diskHash": "",
+      "diskSize": 29874,
+      "diskLastModified": 1783904214298,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/fieldWorkerWorkspace.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/fieldWorkerWorkspace.html",
+      "versionRef": "0",
+      "browserHash": "c8790860d374881921581074a692b8f0330a31e11c378fa95a9b4ff5b5729638",
+      "diskHash": "",
+      "diskSize": 139,
+      "diskLastModified": 1783904214726,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/fieldWorkerWorkspace.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/fieldWorkerWorkspace.ts",
+      "versionRef": "0",
+      "browserHash": "3fa86831db2e73b3263887fb11ee12445dd8e0883597557333d3a781907cafde",
+      "diskHash": "",
+      "diskSize": 27137,
+      "diskLastModified": 1783904214725,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/invoiceLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/invoiceLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "38aa8bfc91ecac5dbd68ed20b7b1200369afb23bf727a85f8b6e4d818ecc3a30",
+      "diskHash": "",
+      "diskSize": 31238,
+      "diskLastModified": 1783904214726,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/invoiceLifecycle.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/invoiceLifecycle.html",
+      "versionRef": "0",
+      "browserHash": "ac82a66b286bf5cf872338b9a73d41b96d19fda2da78e4b4bd19db665c8937b3",
+      "diskHash": "",
+      "diskSize": 129,
+      "diskLastModified": 1783904214726,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/invoiceLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/invoiceLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "2801469f623d8093913108d155e2c4f5eb10d0452bbfda5e493f1aa4c4efb81d",
+      "diskHash": "",
+      "diskSize": 29950,
+      "diskLastModified": 1783904214726,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/pmMaterialUsageManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/pmMaterialUsageManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "88206da9920127e0665783cdc0f772ea32492de99282f68fb65e4f57977a1027",
+      "diskHash": "",
+      "diskSize": 13210,
+      "diskLastModified": 1783904215037,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/pmMaterialUsageManagement.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/pmMaterialUsageManagement.html",
+      "versionRef": "0",
+      "browserHash": "da4e30fefb0a4982d6bf0a6ee48b4bf02a62a092f7417c3c5508d35137b61bc9",
+      "diskHash": "",
+      "diskSize": 151,
+      "diskLastModified": 1783904215037,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/pmMaterialUsageManagement.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/pmMaterialUsageManagement.ts",
+      "versionRef": "0",
+      "browserHash": "0f218e32d030e02d637ed8dbbe835008448d03370d219e9048a5b0b916fb48d3",
+      "diskHash": "",
+      "diskSize": 12638,
+      "diskLastModified": 1783904215036,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/pmTimeLogManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/pmTimeLogManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a21d54b2b103c30a089b6c4b4e51e8715d3e74300810543163c6df1aea9022a9",
+      "diskHash": "",
+      "diskSize": 11740,
+      "diskLastModified": 1783904215037,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/pmTimeLogManagement.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/pmTimeLogManagement.html",
+      "versionRef": "0",
+      "browserHash": "ea7235e41af81b32ef6f16cfaee4df2320a2df496f14894c0d4a2478c12004ba",
+      "diskHash": "",
+      "diskSize": 139,
+      "diskLastModified": 1783904215037,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/pmTimeLogManagement.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/pmTimeLogManagement.ts",
+      "versionRef": "0",
+      "browserHash": "188bb95824b3bc2c08b3bf298707cafa5b1a13a09698d15b244a2704493b54b4",
+      "diskHash": "",
+      "diskSize": 7840,
+      "diskLastModified": 1783904215321,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/projectManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/projectManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "30eb612376deb58c345a5c454a689d7a547f57d5c993e5ea3ee55553f3d409b3",
+      "diskHash": "",
+      "diskSize": 42719,
+      "diskLastModified": 1783904215322,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/projectManagement.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/projectManagement.html",
+      "versionRef": "0",
+      "browserHash": "387f94f7dbbdeb6bd7f8566cb0de777b13bb83e557d7d29ba198ab85a1711869",
+      "diskHash": "",
+      "diskSize": 131,
+      "diskLastModified": 1783904215322,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/projectManagement.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/projectManagement.ts",
+      "versionRef": "0",
+      "browserHash": "5646cf8df6b82b2b3f984c64ea073f549251f0db0a4d44855b96d4fb5a382acf",
+      "diskHash": "",
+      "diskSize": 31306,
+      "diskLastModified": 1783904215321,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/statusReportLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/statusReportLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f7112e8a671bb6ab9553dfde7fb7c8592f62b74a722c8e1c66a43128ee18e43e",
+      "diskHash": "",
+      "diskSize": 24481,
+      "diskLastModified": 1783904215322,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/statusReportLifecycle.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/statusReportLifecycle.html",
+      "versionRef": "0",
+      "browserHash": "99aaabc721cc3bb1ca65a34f33856ab78f7281eccad5d4819347b2c0026c7212",
+      "diskHash": "",
+      "diskSize": 141,
+      "diskLastModified": 1783904215607,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/statusReportLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/statusReportLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "bc6c1028e14428f1a9238a99f7eccdc0b398dd891858f9f681384b3c43811129",
+      "diskHash": "",
+      "diskSize": 16223,
+      "diskLastModified": 1783904215606,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/workTaskLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/workTaskLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "29c8e2c81e5741f990efda01b6843bb24950ab190d7aeb59ce569bb8e62e8422",
+      "diskHash": "",
+      "diskSize": 37438,
+      "diskLastModified": 1783904215607,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/workTaskLifecycle.html": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/workTaskLifecycle.html",
+      "versionRef": "0",
+      "browserHash": "229987f223902c6eea2fe959f76d01bf4422a948840c2e87da8d3f046339346e",
+      "diskHash": "",
+      "diskSize": 133,
+      "diskLastModified": 1783904215607,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/desktop/page11/workTaskLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/desktop/page11/workTaskLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "a6fbd842265bdc9eaa819b59bec88a52d911ee9bfd8cc849dd035b286deeff37",
+      "diskHash": "",
+      "diskSize": 21948,
+      "diskLastModified": 1783904215607,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/changeOrderLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/changeOrderLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3a4d47e10a14a00ac32bfc1c621fd004210cb5f9060b2c28821eedbd7bb130e8",
+      "diskHash": "",
+      "diskSize": 14888,
+      "diskLastModified": 1783904215975,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/changeOrderLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/changeOrderLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "57dc7d937b78ae6e51de8202afbadd5fc79f0182feee22560b55db4bb65250c0",
+      "diskHash": "",
+      "diskSize": 4522,
+      "diskLastModified": 1783904215975,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/changeOrderLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/shared/changeOrderLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "789562510ee3dfe8f0ec0777e2010b0b1f6aef37a4a7a978ce2b07ece55d1783",
+      "diskHash": "",
+      "diskSize": 14876,
+      "diskLastModified": 1783904215974,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientChangeOrderReview.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientChangeOrderReview.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b6b710c4febc24d999085a76cbc27a65663b1d7ecfcdcf075fc69f4fc30207be",
+      "diskHash": "",
+      "diskSize": 11369,
+      "diskLastModified": 1783904215975,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientChangeOrderReview.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientChangeOrderReview.test.ts",
+      "versionRef": "0",
+      "browserHash": "84008f379c64607cbc3264b2e3b263ffdf9c267047a1d989ac3a4d1ae0ac3480",
+      "diskHash": "",
+      "diskSize": 3616,
+      "diskLastModified": 1783904215975,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientChangeOrderReview.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientChangeOrderReview.ts",
+      "versionRef": "0",
+      "browserHash": "aa505d1ee0da83e3a0af7b73ce681f703f01ffef68be23976d20339d612bbc78",
+      "diskHash": "",
+      "diskSize": 8463,
+      "diskLastModified": 1783904216278,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientInvoiceView.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientInvoiceView.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8f08876886cc68646902583364485ba272c63b01031de8c7199e33a4c9df35f8",
+      "diskHash": "",
+      "diskSize": 8395,
+      "diskLastModified": 1783904216278,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientInvoiceView.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientInvoiceView.test.ts",
+      "versionRef": "0",
+      "browserHash": "c1afcfa14de3ff2214f9e1d391dfbe7a2585b1c6367f5da8dd21c4ec81a11eb6",
+      "diskHash": "",
+      "diskSize": 2216,
+      "diskLastModified": 1783904216278,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientInvoiceView.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientInvoiceView.ts",
+      "versionRef": "0",
+      "browserHash": "ae398ae34c468c4f7f01527aabfa8af52e10626dbbe6b291e01230f091d381f1",
+      "diskHash": "",
+      "diskSize": 9900,
+      "diskLastModified": 1783904216277,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "61e1fffa1538b740053fc6e1e82533f1aee400107e824dc874248a32039240c6",
+      "diskHash": "",
+      "diskSize": 22310,
+      "diskLastModified": 1783904216278,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "86a833c7f85825884a4e4a6b92d9a4f0b9d3ff74c5ae1ab055e71ddaa0a28d9f",
+      "diskHash": "",
+      "diskSize": 8822,
+      "diskLastModified": 1783904216567,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientManagement.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientManagement.ts",
+      "versionRef": "0",
+      "browserHash": "46dc3e06100fd4f84356e0e5a1177e4b6148f09b54f2fbbe9d36eb2ccb9ca3e3",
+      "diskHash": "",
+      "diskSize": 16633,
+      "diskLastModified": 1783904216566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientStatusReportView.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientStatusReportView.defs.ts",
+      "versionRef": "0",
+      "browserHash": "75437122f1ddc6ea7bccb9b1a19c255abfba2cd06ddf9ca1a223ccf034ec0034",
+      "diskHash": "",
+      "diskSize": 6477,
+      "diskLastModified": 1783904216567,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientStatusReportView.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientStatusReportView.test.ts",
+      "versionRef": "0",
+      "browserHash": "b93bafd19916f0ec2d67921a775a9185e643c6beab3981ffd54553271c85fb50",
+      "diskHash": "",
+      "diskSize": 1818,
+      "diskLastModified": 1783904216567,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/clientStatusReportView.ts": {
+      "path": "l2/buildFlowFsm/web/shared/clientStatusReportView.ts",
+      "versionRef": "0",
+      "browserHash": "422492bc294041765d8c1f67ccda1f804761ae28f2084fb0c3fe435096b56c2b",
+      "diskHash": "",
+      "diskSize": 6642,
+      "diskLastModified": 1783904216566,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/fieldWorkerWorkspace.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/fieldWorkerWorkspace.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d35feb9a89862d1b9dbb0bbb78bba8f93a695f3d3be64ab5fa20aa3674d35cb0",
+      "diskHash": "",
+      "diskSize": 24248,
+      "diskLastModified": 1783904216852,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/fieldWorkerWorkspace.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/fieldWorkerWorkspace.test.ts",
+      "versionRef": "0",
+      "browserHash": "077189c7710e90bd93351b0d0d1da8ce93e131869dcf5167eade0cefbd818a9c",
+      "diskHash": "",
+      "diskSize": 8128,
+      "diskLastModified": 1783904216853,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/fieldWorkerWorkspace.ts": {
+      "path": "l2/buildFlowFsm/web/shared/fieldWorkerWorkspace.ts",
+      "versionRef": "0",
+      "browserHash": "91630dd465652a666fc136e8a2db96c048f8951421f4ef2b22682dc6b9a7c93a",
+      "diskHash": "",
+      "diskSize": 19794,
+      "diskLastModified": 1783904216852,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/invoiceLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/invoiceLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5966d2bba140349f91815277bdfc9f0195a22ef3999e4682e9d88ddecdda7689",
+      "diskHash": "",
+      "diskSize": 13438,
+      "diskLastModified": 1783904216853,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/invoiceLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/invoiceLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "2dc77dcb1f20262c31c18789fbd473241f2b496659a4bc827566757628049771",
+      "diskHash": "",
+      "diskSize": 4032,
+      "diskLastModified": 1783904216853,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/invoiceLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/shared/invoiceLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "efb4d2ba0222f77e2fa161cb79357e137c1d161c8869c73be95ae942a7269ec2",
+      "diskHash": "",
+      "diskSize": 12601,
+      "diskLastModified": 1783904217139,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/pmMaterialUsageManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/pmMaterialUsageManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "786dedfb17ff71f997acf0a20bb3be183850ce2cc853fe6dff097f2427eeab30",
+      "diskHash": "",
+      "diskSize": 9466,
+      "diskLastModified": 1783904217139,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/pmMaterialUsageManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/pmMaterialUsageManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "c75a8fa3029a712796a2bc80c66561593d2ef67e108f87b37d3b236050da86e8",
+      "diskHash": "",
+      "diskSize": 3084,
+      "diskLastModified": 1783904217139,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/pmMaterialUsageManagement.ts": {
+      "path": "l2/buildFlowFsm/web/shared/pmMaterialUsageManagement.ts",
+      "versionRef": "0",
+      "browserHash": "55f67b3bc86e46f3f9f864fa89afe5f715bf2ad1418c42b748781eb5746b7fc3",
+      "diskHash": "",
+      "diskSize": 7696,
+      "diskLastModified": 1783904217139,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/pmTimeLogManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/pmTimeLogManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "912f2229a02f12407d3e8e0607584f19914fc0238c1f40976ca3973bf9e9eb3f",
+      "diskHash": "",
+      "diskSize": 7862,
+      "diskLastModified": 1783904217139,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/pmTimeLogManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/pmTimeLogManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "0cfaa45f6c490aeb93a9a8039d4a232ae7eae316b9cec235c46f8ea3832b4594",
+      "diskHash": "",
+      "diskSize": 2609,
+      "diskLastModified": 1783904217426,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/pmTimeLogManagement.ts": {
+      "path": "l2/buildFlowFsm/web/shared/pmTimeLogManagement.ts",
+      "versionRef": "0",
+      "browserHash": "85d2b66a4966d63801a5454ad654e907202c70f4dde306c43afe24119ae66e08",
+      "diskHash": "",
+      "diskSize": 7337,
+      "diskLastModified": 1783904217426,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/projectManagement.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/projectManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "2d5edf4bfc95bebe2eb01a0dc28049cd542168017f0669f6cb4741a63e4b687b",
+      "diskHash": "",
+      "diskSize": 31486,
+      "diskLastModified": 1783904217427,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/projectManagement.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/projectManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "355ef7695a8f31ff40195ade377308962039229612f54f68cf5a9808d891a182",
+      "diskHash": "",
+      "diskSize": 11124,
+      "diskLastModified": 1783904217427,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/projectManagement.ts": {
+      "path": "l2/buildFlowFsm/web/shared/projectManagement.ts",
+      "versionRef": "0",
+      "browserHash": "2f4b70fe46ad9975cc7a55e51c35cc186af595311cc64072b15e552d11e7ac87",
+      "diskHash": "",
+      "diskSize": 24729,
+      "diskLastModified": 1783904217426,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/statusReportLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/statusReportLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6834c6805380b438fe0490cf475c92f675079f1f02b9d6a136aee413c8fbe694",
+      "diskHash": "",
+      "diskSize": 14638,
+      "diskLastModified": 1783904217712,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/statusReportLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/statusReportLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "32ee72885d810c0221e126087078fbbdb1113c03956d2c47588a935088af4ce5",
+      "diskHash": "",
+      "diskSize": 4715,
+      "diskLastModified": 1783904217712,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/statusReportLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/shared/statusReportLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "eff5de535be751f574947a7f22f7ca48ece254a3a0307148a861f1fad1879d3a",
+      "diskHash": "",
+      "diskSize": 14539,
+      "diskLastModified": 1783904217712,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/workTaskLifecycle.defs.ts": {
+      "path": "l2/buildFlowFsm/web/shared/workTaskLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "44fd6e9dfc48ae5213d6f080e9c6ccda738fd2b26432a69bddedbc643c00b9f8",
+      "diskHash": "",
+      "diskSize": 27900,
+      "diskLastModified": 1783904217712,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/workTaskLifecycle.test.ts": {
+      "path": "l2/buildFlowFsm/web/shared/workTaskLifecycle.test.ts",
+      "versionRef": "0",
+      "browserHash": "f41123abe79da11dac4f6665509e0f285288dbebac08b37cc0ffea15ebbb08f8",
+      "diskHash": "",
+      "diskSize": 10962,
+      "diskLastModified": 1783904217712,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/buildFlowFsm/web/shared/workTaskLifecycle.ts": {
+      "path": "l2/buildFlowFsm/web/shared/workTaskLifecycle.ts",
+      "versionRef": "0",
+      "browserHash": "c893975d97167ddae5e98710834513569a432f7eeb9b41341a76d16d787b6c08",
+      "diskHash": "",
+      "diskSize": 22976,
+      "diskLastModified": 1783904218083,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/designSystem.ts": {
+      "path": "l2/designSystem.ts",
+      "versionRef": "4050a460c61b9b30384992332060ebeec51b00ef",
+      "browserHash": "75edef944540d094efe5ed1b2f9b67a4994309086eb765b928450ae16710eb44",
+      "diskHash": "",
+      "diskSize": 16155,
+      "diskLastModified": 1783881157721,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/project.ts": {
+      "path": "l2/project.ts",
+      "versionRef": "3f14ee00543fa7ef80c2b27f496a28e947e01ffc",
+      "browserHash": "d7226a2b463c9e0a32caabb9158bf93663a5915ff4fdb6d9aea195c1beda4962",
+      "diskHash": "",
+      "diskSize": 315,
+      "diskLastModified": 1783881157721,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/actors/buildFlowFsmActors.defs.ts": {
+      "path": "l4/actors/buildFlowFsmActors.defs.ts",
+      "versionRef": "0",
+      "browserHash": "4ce92d0dd8ff005414a58e641646a8ddca97cd78cdf4717fa1bdf88dac5cb209",
+      "diskHash": "",
+      "diskSize": 1391,
+      "diskLastModified": 1783904218083,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/journeys/buildFlowFsmJourneys.defs.ts": {
+      "path": "l4/buildFlowFsm/journeys/buildFlowFsmJourneys.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6d42efa6107afcb7fee81795f720fee21d796cab197451fcecd398146851ef35",
+      "diskHash": "",
+      "diskSize": 9199,
+      "diskLastModified": 1783904218084,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/module.defs.ts": {
+      "path": "l4/buildFlowFsm/module.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ead7429c63c5d7ee3f4ac052cd52116d7cec64f91936d60b5f1960a10963a975",
+      "diskHash": "",
+      "diskSize": 9288,
+      "diskLastModified": 1783904218372,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/ChangeOrder.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/ChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "01d0fc6c302fecb5b83019837322a82b18f491b26fd6bc8bcf56258741e5f7d5",
+      "diskHash": "",
+      "diskSize": 3307,
+      "diskLastModified": 1783904218373,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/Client.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/Client.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ad82f14ae0184d8ce1ecc61b773d4b754c99faef019f3f52d43dc2cb43d54216",
+      "diskHash": "",
+      "diskSize": 2008,
+      "diskLastModified": 1783904218373,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/Invoice.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/Invoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "53ad9a067b4edd0720a4d81e7cb8ea453328c565bbabb5d25c7ca223ee80d5da",
+      "diskHash": "",
+      "diskSize": 3491,
+      "diskLastModified": 1783904218373,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/InvoiceLine.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/InvoiceLine.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1423b5399ef16a58db5bea892a596c959ae1ef33e4d09a239d2fa221829fe268",
+      "diskHash": "",
+      "diskSize": 2619,
+      "diskLastModified": 1783904218373,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/MaterialUsage.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/MaterialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "08706d481fe2021ce1643c783dc16f1c41b77a43ee8d3a7216f575869a541dd1",
+      "diskHash": "",
+      "diskSize": 2794,
+      "diskLastModified": 1783904218715,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/Project.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/Project.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9292666de802b03189be427fe5c65b0fc181b82cd12109f90c9f289d997ad07f",
+      "diskHash": "",
+      "diskSize": 3073,
+      "diskLastModified": 1783904218715,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/StatusReport.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/StatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3c420bf71b35a0ceaa910b19b54f9549f77d06d9a34a61517c9b40df74d25de0",
+      "diskHash": "",
+      "diskSize": 3066,
+      "diskLastModified": 1783904218716,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/TimeLog.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/TimeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "17d8c9599d68f853c236392b985582106098901ac78d086a58a0a7484006cf61",
+      "diskHash": "",
+      "diskSize": 2357,
+      "diskLastModified": 1783904218716,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/ontology/WorkTask.defs.ts": {
+      "path": "l4/buildFlowFsm/ontology/WorkTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "763980bef706c12971ff2f5a0169ea7acc9704a605d265e9b6224bad5acba1bf",
+      "diskHash": "",
+      "diskSize": 3538,
+      "diskLastModified": 1783904218716,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e1-draft.json": {
+      "path": "l4/buildFlowFsm/pipeline/e1-draft.json",
+      "versionRef": "0",
+      "browserHash": "97e4dee1af4738ace8c0d325818b3a5ffdb6edc808ef54acef6cfa3c4176b06f",
+      "diskHash": "",
+      "diskSize": 5912,
+      "diskLastModified": 1783904219003,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e1-draft.md": {
+      "path": "l4/buildFlowFsm/pipeline/e1-draft.md",
+      "versionRef": "0",
+      "browserHash": "5db19a4dc827f7b8f1446631b7e2ded989788aa7c5880a2232b457f0ed8e8852",
+      "diskHash": "",
+      "diskSize": 3815,
+      "diskLastModified": 1783904219003,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e2-journeys-audit.json": {
+      "path": "l4/buildFlowFsm/pipeline/e2-journeys-audit.json",
+      "versionRef": "0",
+      "browserHash": "6766146d5884036ef49a98d198e8bf15cb10eaeef8c5db6e89bd7452f51e5b4f",
+      "diskHash": "",
+      "diskSize": 29816,
+      "diskLastModified": 1783904219003,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e2-journeys.json": {
+      "path": "l4/buildFlowFsm/pipeline/e2-journeys.json",
+      "versionRef": "0",
+      "browserHash": "cc72e10e53c34923f7e9dc79f679e23ca5a29ac9d3c10b2d7dd042a0c76ee7ad",
+      "diskHash": "",
+      "diskSize": 25189,
+      "diskLastModified": 1783904219003,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e2-journeys.md": {
+      "path": "l4/buildFlowFsm/pipeline/e2-journeys.md",
+      "versionRef": "0",
+      "browserHash": "77115d09f7e4af836c5cdac09a078cb8cc653634005c4ef9b86670be21e2d9c6",
+      "diskHash": "",
+      "diskSize": 686,
+      "diskLastModified": 1783904219003,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e3-model.json": {
+      "path": "l4/buildFlowFsm/pipeline/e3-model.json",
+      "versionRef": "0",
+      "browserHash": "561fd54db8726aee1c8659d70cf3512269172eed2420bea86977be97d1e8a8c7",
+      "diskHash": "",
+      "diskSize": 9333,
+      "diskLastModified": 1783904219016,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e3-ontology.md": {
+      "path": "l4/buildFlowFsm/pipeline/e3-ontology.md",
+      "versionRef": "0",
+      "browserHash": "dfaed3bd1ca131f05c01566a496129dae39b23dfce8071ebdfdac4bc6b6f0069",
+      "diskHash": "",
+      "diskSize": 14706,
+      "diskLastModified": 1783904219017,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e4-actors-rules.json": {
+      "path": "l4/buildFlowFsm/pipeline/e4-actors-rules.json",
+      "versionRef": "0",
+      "browserHash": "d708302b50c113543d299d4a2f4fb41e74dd51030938b5f942b99935959c5bcd",
+      "diskHash": "",
+      "diskSize": 13011,
+      "diskLastModified": 1783904219016,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e4-actors-rules.md": {
+      "path": "l4/buildFlowFsm/pipeline/e4-actors-rules.md",
+      "versionRef": "0",
+      "browserHash": "0d056af0cc27b73c026f5745dcad9c6da145842d6f2297d1ab3ba09f74c1199e",
+      "diskHash": "",
+      "diskSize": 10011,
+      "diskLastModified": 1783904219016,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e5-behavior.md": {
+      "path": "l4/buildFlowFsm/pipeline/e5-behavior.md",
+      "versionRef": "0",
+      "browserHash": "8f67b757f5dce03180e5e0c035e4fb49b6f800e48ace6c40b324900b035f0054",
+      "diskHash": "",
+      "diskSize": 4499,
+      "diskLastModified": 1783904219017,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e5-classification.json": {
+      "path": "l4/buildFlowFsm/pipeline/e5-classification.json",
+      "versionRef": "0",
+      "browserHash": "2b1f3b020e03f946dd8ffa8fd1371b9ce4b95a1b24a41174db68922250f8a5b4",
+      "diskHash": "",
+      "diskSize": 9587,
+      "diskLastModified": 1783904219429,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e6-journey-map.md": {
+      "path": "l4/buildFlowFsm/pipeline/e6-journey-map.md",
+      "versionRef": "0",
+      "browserHash": "ab8b3c78b263d936d92ddc1f8293cb5b177375a5f4be0a4aa9f2897ca1af9310",
+      "diskHash": "",
+      "diskSize": 5979,
+      "diskLastModified": 1783904219429,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/e7-validation.md": {
+      "path": "l4/buildFlowFsm/pipeline/e7-validation.md",
+      "versionRef": "0",
+      "browserHash": "32f4ff8338c5ad2b7af22a6d8718082cb817788a4c6190e381c4f87574cffd79",
+      "diskHash": "",
+      "diskSize": 1064,
+      "diskLastModified": 1783904219430,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/pipeline.json": {
+      "path": "l4/buildFlowFsm/pipeline/pipeline.json",
+      "versionRef": "0",
+      "browserHash": "0217bf9b16a3187d2ea419b20e9f69280dd3d70dc0af83296d949a4306dcdd9d",
+      "diskHash": "",
+      "diskSize": 3866,
+      "diskLastModified": 1783904219430,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e1Draft-agentNs3Draft-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e1Draft-agentNs3Draft-01.json",
+      "versionRef": "0",
+      "browserHash": "e48c305b01e315ffa040e9b52a7da8d9b38511c89dec9a29e5e754e6d85b7110",
+      "diskHash": "",
+      "diskSize": 14035,
+      "diskLastModified": 1783904219430,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e2Journeys-agentNs3Journeys-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e2Journeys-agentNs3Journeys-01.json",
+      "versionRef": "0",
+      "browserHash": "1d4ed2e4cc7b6d2b2b9ba90ab708924f95991ffc3316684ce8f7c86d9221ab0a",
+      "diskHash": "",
+      "diskSize": 57894,
+      "diskLastModified": 1783904219734,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityChangeOrder-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityChangeOrder-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "1c62e80b00a0f8758d3b4d9e90fb779f5ef4c653b7615e568a0e27691ba250e5",
+      "diskHash": "",
+      "diskSize": 7654,
+      "diskLastModified": 1783904219734,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityClient-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityClient-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "caf17245ea99cb8891f5b0bd98e57c7916124d8ddb2dcf39e3af206a480d05d9",
+      "diskHash": "",
+      "diskSize": 4571,
+      "diskLastModified": 1783904219734,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityInvoice-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityInvoice-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "45594dd0cbb9599bb335cdeb40badb2920d3dd13876d44885c624ea4b6caa4bf",
+      "diskHash": "",
+      "diskSize": 8132,
+      "diskLastModified": 1783904219734,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityInvoiceLine-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityInvoiceLine-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "1e2e223b92750a9af692fabb981a52b64569d13aac8909a325ce79069e22134e",
+      "diskHash": "",
+      "diskSize": 5988,
+      "diskLastModified": 1783904219735,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityMaterialUsage-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityMaterialUsage-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "68a4738e31ba79843806be7a4e314a906ba5b235d5085905525f15aabbac652f",
+      "diskHash": "",
+      "diskSize": 6518,
+      "diskLastModified": 1783904219744,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityProject-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityProject-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "1fd7d7f34f0118af23c7027b65bc16a5e374ea771707e900ea0350dac1e0c87f",
+      "diskHash": "",
+      "diskSize": 7116,
+      "diskLastModified": 1783904219745,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityStatusReport-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityStatusReport-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "ca817182bdb63f66c518c5e2d9c4a3796cc2401e9000166c24a62bc3a6d39b26",
+      "diskHash": "",
+      "diskSize": 7017,
+      "diskLastModified": 1783904219745,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityTimeLog-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityTimeLog-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "c49812f18e3bebba1641de78d50d79363c1b18528d35fcaed9876ade04ecb0cc",
+      "diskHash": "",
+      "diskSize": 5444,
+      "diskLastModified": 1783904219745,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3EntityWorkTask-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3EntityWorkTask-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "7e4458a19b5a27f22273eeb20edf3a2a59af4d74ff32dcf7b73d1dd56382bfe4",
+      "diskHash": "",
+      "diskSize": 8251,
+      "diskLastModified": 1783904219745,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e3Ontology-agentNs3Ontology-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e3Ontology-agentNs3Ontology-01.json",
+      "versionRef": "0",
+      "browserHash": "4cfb6f4d0d6e9d14d75652223a80802498f72f4d76888775af1af56cb4531cfa",
+      "diskHash": "",
+      "diskSize": 24063,
+      "diskLastModified": 1783904219752,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e4ActorsRulesRefs-agentNs3ActorsRules-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e4ActorsRulesRefs-agentNs3ActorsRules-01.json",
+      "versionRef": "0",
+      "browserHash": "8669e7d7c599ce727133e7f172d98216fe23b7aee70e5f96eb63b1cb4f6a83e8",
+      "diskHash": "",
+      "diskSize": 32024,
+      "diskLastModified": 1783904219752,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationAssignTask-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationAssignTask-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "c76eafba93f42d9b65d48817ea3a6a3558f079802a0afbe1a39762ebdc6d0140",
+      "diskHash": "",
+      "diskSize": 9170,
+      "diskLastModified": 1783904219752,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationBrowseClients-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationBrowseClients-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "0f946afa5e5debb172987cd22e8675a867a0965942522a57beb69f1bfe74ea25",
+      "diskHash": "",
+      "diskSize": 5816,
+      "diskLastModified": 1783904219752,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationBrowseTasks-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationBrowseTasks-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "5242f5b06ea4376adeb2552e8b0a06de67425bc0e2957c2f3d09ee1de4b10b2e",
+      "diskHash": "",
+      "diskSize": 6586,
+      "diskLastModified": 1783904219752,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationCreateChangeOrder-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationCreateChangeOrder-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "279963b6175e1c20bce0c1f142bc18d234c768c61a25bd4c433e1072ad5aa476",
+      "diskHash": "",
+      "diskSize": 13027,
+      "diskLastModified": 1783904219984,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationCreateChangeOrder-agentNs3Behavior-02.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationCreateChangeOrder-agentNs3Behavior-02.json",
+      "versionRef": "0",
+      "browserHash": "e39b8ab90f5ccb6e7d535ab240e9851d1bb7f7d029b3f4bca2f8772fbdb6ebb8",
+      "diskHash": "",
+      "diskSize": 12161,
+      "diskLastModified": 1783904219984,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationCreateClient-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationCreateClient-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "8ad12d946e95e1c6c0a6a3bc4d7132bf299f103d0ca4902bb94ea694dbb5354f",
+      "diskHash": "",
+      "diskSize": 11789,
+      "diskLastModified": 1783904219984,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationCreateMaterialUsage-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationCreateMaterialUsage-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "87eed5811a03ca791604e2e2bdb35115d9e104173dd22b7872269c54e712d345",
+      "diskHash": "",
+      "diskSize": 12840,
+      "diskLastModified": 1783904219984,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationCreateProject-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationCreateProject-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "8ebbc2e4f82e4cdf4bf80cc33a8bc98442214eea47c5d5ff554ff16a9af91384",
+      "diskHash": "",
+      "diskSize": 12364,
+      "diskLastModified": 1783904219984,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationCreateTask-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationCreateTask-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "fc6ecca74f1c8d6307f5b6af711b72df3a796f821797de8b4c7a0f01130392bf",
+      "diskHash": "",
+      "diskSize": 14186,
+      "diskLastModified": 1783904219994,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationCreateTimeLog-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationCreateTimeLog-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "880ffe60aabc8edf2b7ae480bcde5a21b98d3e964a8b5750cb11173c2961b9ea",
+      "diskHash": "",
+      "diskSize": 13381,
+      "diskLastModified": 1783904219994,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationGenerateInvoice-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationGenerateInvoice-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "408a2b26c9c8025474737bee8310547236b4e03a97130240271b6658dbe112f3",
+      "diskHash": "",
+      "diskSize": 19402,
+      "diskLastModified": 1783904219994,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationGenerateInvoice-agentNs3Behavior-02.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationGenerateInvoice-agentNs3Behavior-02.json",
+      "versionRef": "0",
+      "browserHash": "ae1d08d34423c9931c530e1e86d628d315dd014e6701c18b2d52a0570ce2d44a",
+      "diskHash": "",
+      "diskSize": 17614,
+      "diskLastModified": 1783904219994,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationGenerateStatusReport-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationGenerateStatusReport-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "5d351cf0118395d7888c7aaea9fe148e5504f9129e9bce04bef3188f6213689a",
+      "diskHash": "",
+      "diskSize": 15532,
+      "diskLastModified": 1783904219994,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationIssueInvoice-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationIssueInvoice-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "212a63d7cafee1f4b8edbe18825070825d437b6a35065a2cab966648ba62382b",
+      "diskHash": "",
+      "diskSize": 10983,
+      "diskLastModified": 1783904220001,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationReviewChangeOrder-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationReviewChangeOrder-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "e2728f69db676c9b829c5e06054835b63c013d5937fa492b310a02475930f9e6",
+      "diskHash": "",
+      "diskSize": 9971,
+      "diskLastModified": 1783904220002,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationSendChangeOrder-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationSendChangeOrder-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "eb7d43b44cd2eff43a7fe4a1fe490ac50d97a64ca0cc6773fc0e5d61eb9eb85f",
+      "diskHash": "",
+      "diskSize": 9011,
+      "diskLastModified": 1783904220001,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationShareStatusReport-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationShareStatusReport-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "c2cf576b7c35d5a5a2779d59c6451afaf2ce64de05adc110eda4b09129353aa0",
+      "diskHash": "",
+      "diskSize": 10710,
+      "diskLastModified": 1783904220002,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateClient-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateClient-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "78498ff8a2963191e4773bbdeee5f9a858906674be691e963aac4180b55e6d05",
+      "diskHash": "",
+      "diskSize": 10151,
+      "diskLastModified": 1783904220002,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateProject-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateProject-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "bbc02fa3966157ae9ba920a54eaf8688db89ca376f26f77edd6c0a29f115d74c",
+      "diskHash": "",
+      "diskSize": 10946,
+      "diskLastModified": 1783904220011,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateProjectStatus-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateProjectStatus-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "e94b33f3d4ce32aaa0443efbe8a09cebaa28f8207239436f5eeac1e3676da23c",
+      "diskHash": "",
+      "diskSize": 11344,
+      "diskLastModified": 1783904220011,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateTask-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateTask-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "968ff6d0788f9fd4b6e1e10d0cd56ab3e64497c5c64f563336143ba1a1601a3b",
+      "diskHash": "",
+      "diskSize": 13115,
+      "diskLastModified": 1783904220011,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateTaskStatus-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationUpdateTaskStatus-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "7f9a24dc6cf52a78ae1ebcb9b96e52d2269785f499662b4f388c754c5dbe760c",
+      "diskHash": "",
+      "diskSize": 11253,
+      "diskLastModified": 1783904220011,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationViewDashboard-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationViewDashboard-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "cd1d427f7bc20b8e2599953805514fb380c4df3a16e9b19feab5f6d921183933",
+      "diskHash": "",
+      "diskSize": 8840,
+      "diskLastModified": 1783904220011,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationViewInvoice-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationViewInvoice-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "56663495f77b8e81eadf7f2bb98fed5acc5b06eabf43d1410a850df6c49d7c09",
+      "diskHash": "",
+      "diskSize": 6920,
+      "diskLastModified": 1783904220018,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationViewProject-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationViewProject-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "bc871364195aac330fd4b27076db5e9e8990dc39c0d15d942a1deffd223e488e",
+      "diskHash": "",
+      "diskSize": 10267,
+      "diskLastModified": 1783904220018,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationViewStatusReport-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationViewStatusReport-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "51437f7c83165239f4ed75a443ebfbcccb3dd518c1c23f81d202ca19efdce08e",
+      "diskHash": "",
+      "diskSize": 7406,
+      "diskLastModified": 1783904220019,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationVoidMaterialUsage-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationVoidMaterialUsage-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "a01fed1ac3c7ddc52545c5afbb35ac961b6d1d9eef38d9cdb9de33b989ce36c2",
+      "diskHash": "",
+      "diskSize": 9692,
+      "diskLastModified": 1783904220019,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5OperationVoidTimeLog-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5OperationVoidTimeLog-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "108d8616b74531bcaa824906910a266fe0aba571f15879eb5df3b5fff32d15c2",
+      "diskHash": "",
+      "diskSize": 8991,
+      "diskLastModified": 1783904220019,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5WorkflowChangeOrderLifecycle-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5WorkflowChangeOrderLifecycle-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "8cc14e149ae42ef1a65fbe0da78913b31cf7b839285abda896704bc84e0216eb",
+      "diskHash": "",
+      "diskSize": 5793,
+      "diskLastModified": 1783904220027,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5WorkflowInvoiceLifecycle-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5WorkflowInvoiceLifecycle-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "608764ca0c6fc57ad9b13ef2a908242eb0b9d5b936bdefd6552e499def2c15f9",
+      "diskHash": "",
+      "diskSize": 4782,
+      "diskLastModified": 1783904220027,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5WorkflowProjectLifecycle-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5WorkflowProjectLifecycle-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "4f2f2a3da65229d2a9282cde9b0e1004fab1f2b96506b38a753c3d1b118d65ce",
+      "diskHash": "",
+      "diskSize": 5124,
+      "diskLastModified": 1783904220027,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5WorkflowsOperations-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5WorkflowsOperations-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "2e406fabf574881f2eb3eee0c956a8f2e9e1d137821dabc03292502a0b3cc28b",
+      "diskHash": "",
+      "diskSize": 25524,
+      "diskLastModified": 1783904220027,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5WorkflowsOperations-agentNs3Behavior-02.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5WorkflowsOperations-agentNs3Behavior-02.json",
+      "versionRef": "0",
+      "browserHash": "d82a2fbf7403587f426069ef5e847a536026fc4689dbb54fb0f6d7630c929bd5",
+      "diskHash": "",
+      "diskSize": 27104,
+      "diskLastModified": 1783904220027,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5WorkflowStatusReportLifecycle-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5WorkflowStatusReportLifecycle-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "d636e503120ab17d4f9bff39ad5423999fbb59cf61f7d24938fa02906a526de7",
+      "diskHash": "",
+      "diskSize": 4931,
+      "diskLastModified": 1783904220035,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e5WorkflowWorkTaskLifecycle-agentNs3Behavior-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e5WorkflowWorkTaskLifecycle-agentNs3Behavior-01.json",
+      "versionRef": "0",
+      "browserHash": "6e549654291b71d037f573c730bb3afb946790f1ac65a6e0db08306fa960e7ae",
+      "diskHash": "",
+      "diskSize": 6373,
+      "diskLastModified": 1783904220035,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e6JourneyMap-agentNs3JourneyMap-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e6JourneyMap-agentNs3JourneyMap-01.json",
+      "versionRef": "0",
+      "browserHash": "f129bca2ac8ac5e99cd403cab625195fc79bb4fb3ced62b828c3ae8343a4e12e",
+      "diskHash": "",
+      "diskSize": 24786,
+      "diskLastModified": 1783904220035,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/buildFlowFsm/pipeline/trace/e7ValidationSummary-agentNs3Validation-01.json": {
+      "path": "l4/buildFlowFsm/pipeline/trace/e7ValidationSummary-agentNs3Validation-01.json",
+      "versionRef": "0",
+      "browserHash": "f78be463e59681f23000337436e49713e74cd7a101f49242e93f2dd9057374cc",
+      "diskHash": "",
+      "diskSize": 837,
+      "diskLastModified": 1783904220035,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/assignTask.defs.ts": {
+      "path": "l4/operations/assignTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "cdccf2b88405bf988e5ff08d4700ba032085cec729c497150177afe23011d3cf",
+      "diskHash": "",
+      "diskSize": 4244,
+      "diskLastModified": 1783904220035,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/browseClients.defs.ts": {
+      "path": "l4/operations/browseClients.defs.ts",
+      "versionRef": "0",
+      "browserHash": "18de9281458f2c5342cbf1ff891a8dfc7f5d34b52b013e75bd3a59d575e7cd8d",
+      "diskHash": "",
+      "diskSize": 2748,
+      "diskLastModified": 1783904220464,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/browseTasks.defs.ts": {
+      "path": "l4/operations/browseTasks.defs.ts",
+      "versionRef": "0",
+      "browserHash": "4fad1dccb9a8544f0a8d14f1253c8c9ea52c086801d72ea3a371f293065d14fe",
+      "diskHash": "",
+      "diskSize": 3111,
+      "diskLastModified": 1783904220464,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/createChangeOrder.defs.ts": {
+      "path": "l4/operations/createChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b196ad5a6e47bc0b026b68de8078c665203b406ed30a6c4c4ee0d69389dfefe2",
+      "diskHash": "",
+      "diskSize": 5560,
+      "diskLastModified": 1783904220464,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/createClient.defs.ts": {
+      "path": "l4/operations/createClient.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a0e0388d235d7baf6e85747b7555cf76ce76c0e6d3d4cb7f665320d254efe9d1",
+      "diskHash": "",
+      "diskSize": 5380,
+      "diskLastModified": 1783904220464,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/createMaterialUsage.defs.ts": {
+      "path": "l4/operations/createMaterialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d365f4d2856403d35bba94e221fcf8c9bbb1578681a98361488525aaeea2e520",
+      "diskHash": "",
+      "diskSize": 5877,
+      "diskLastModified": 1783904220464,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/createProject.defs.ts": {
+      "path": "l4/operations/createProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8782e9204bc5b7b589ffe545b57bbe94b5445e9067e824a1a09148a33d9be20c",
+      "diskHash": "",
+      "diskSize": 5633,
+      "diskLastModified": 1783904220769,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/createTask.defs.ts": {
+      "path": "l4/operations/createTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "39b9f1bd3cd03be9c8c972e88538b9b03f7b2788051a1736af4d68e836b21457",
+      "diskHash": "",
+      "diskSize": 6417,
+      "diskLastModified": 1783904220769,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/createTimeLog.defs.ts": {
+      "path": "l4/operations/createTimeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f6c02dd5dda4904892e5dfe3178625f3e853b16541e6a73553e84a9c0c25ad3f",
+      "diskHash": "",
+      "diskSize": 6111,
+      "diskLastModified": 1783904220769,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/generateInvoice.defs.ts": {
+      "path": "l4/operations/generateInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9f0edc4b5fce4ddb5f2ab188edcbb7d2541b4d046e446439bd810a700d12c29b",
+      "diskHash": "",
+      "diskSize": 7945,
+      "diskLastModified": 1783904220769,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/generateStatusReport.defs.ts": {
+      "path": "l4/operations/generateStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "50d0d5e4c0553e490e0efdb6fe75e43db747ce1f70cee3eb77accdf48f0dca06",
+      "diskHash": "",
+      "diskSize": 7148,
+      "diskLastModified": 1783904220769,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/issueInvoice.defs.ts": {
+      "path": "l4/operations/issueInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5ffacb9c6a0e3759598c88127dc335a087c69e64c0eb1c33ba834171d1281224",
+      "diskHash": "",
+      "diskSize": 5064,
+      "diskLastModified": 1783904221066,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/reviewChangeOrder.defs.ts": {
+      "path": "l4/operations/reviewChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "18c9130592de18e186589dccfec521959b2a29e0eb217e6ebd61067f28e4ccca",
+      "diskHash": "",
+      "diskSize": 4671,
+      "diskLastModified": 1783904221066,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/sendChangeOrder.defs.ts": {
+      "path": "l4/operations/sendChangeOrder.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e6d38aaaff76b9e55cdabfe9fab9db42c112b9c00c39e300e53b538638569e53",
+      "diskHash": "",
+      "diskSize": 4223,
+      "diskLastModified": 1783904221066,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/shareStatusReport.defs.ts": {
+      "path": "l4/operations/shareStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "62c2d7a21fe8f43fbba5993e361c8b1dc1b84571731f233ecd6c722a2a92f055",
+      "diskHash": "",
+      "diskSize": 4868,
+      "diskLastModified": 1783904221066,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/updateClient.defs.ts": {
+      "path": "l4/operations/updateClient.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ca1da27ccecefb7f3551b1bdd19a446aa241922d1c69f24ad8a4b7cf83a42f63",
+      "diskHash": "",
+      "diskSize": 4633,
+      "diskLastModified": 1783904221066,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/updateProject.defs.ts": {
+      "path": "l4/operations/updateProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9d683585241ed3417aaadd35dcff08da282d1a08a82f6b2bc7d1c053255a9e0d",
+      "diskHash": "",
+      "diskSize": 5001,
+      "diskLastModified": 1783904221367,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/updateProjectStatus.defs.ts": {
+      "path": "l4/operations/updateProjectStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "07f280d21de7aa03c6eb7002d39d319f29c0bb9d77ebbbbce0f9042fc2782b31",
+      "diskHash": "",
+      "diskSize": 5239,
+      "diskLastModified": 1783904221367,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/updateTask.defs.ts": {
+      "path": "l4/operations/updateTask.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6770ed835d99e8e98b66a721a102802411fc78fc0811853c02572b8cb2bdbdd0",
+      "diskHash": "",
+      "diskSize": 5976,
+      "diskLastModified": 1783904221367,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/updateTaskStatus.defs.ts": {
+      "path": "l4/operations/updateTaskStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "24624fd4d5547238a6c4f026d0850900413d31ddf358282c0bf0e7aa60e1b1dc",
+      "diskHash": "",
+      "diskSize": 5180,
+      "diskLastModified": 1783904221367,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/viewDashboard.defs.ts": {
+      "path": "l4/operations/viewDashboard.defs.ts",
+      "versionRef": "0",
+      "browserHash": "127a8c278849bb5b1cb24de571769dbc1394135515329f56add32d724839b5e3",
+      "diskHash": "",
+      "diskSize": 4125,
+      "diskLastModified": 1783904221367,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/viewInvoice.defs.ts": {
+      "path": "l4/operations/viewInvoice.defs.ts",
+      "versionRef": "0",
+      "browserHash": "4f81bca1381ac4e3ca80d10eddeb5fe3ea859b93375c3d0549e4f1b51097131c",
+      "diskHash": "",
+      "diskSize": 3241,
+      "diskLastModified": 1783904221667,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/viewProject.defs.ts": {
+      "path": "l4/operations/viewProject.defs.ts",
+      "versionRef": "0",
+      "browserHash": "239a4250b960efcb337fa8dd880bcc94c5b0ffef0cae7172b11322033643eb81",
+      "diskHash": "",
+      "diskSize": 4816,
+      "diskLastModified": 1783904221667,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/viewStatusReport.defs.ts": {
+      "path": "l4/operations/viewStatusReport.defs.ts",
+      "versionRef": "0",
+      "browserHash": "2a8b21e6a0b25a4e0a104b6dff19ea392d994d98d2fdfeda46760d0a5f617cd3",
+      "diskHash": "",
+      "diskSize": 3512,
+      "diskLastModified": 1783904221668,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/voidMaterialUsage.defs.ts": {
+      "path": "l4/operations/voidMaterialUsage.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a0436c87c2336789cf0a02d4206734a9c7b687d27ad19ac565da3c9702f73161",
+      "diskHash": "",
+      "diskSize": 4544,
+      "diskLastModified": 1783904221668,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/operations/voidTimeLog.defs.ts": {
+      "path": "l4/operations/voidTimeLog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9596d721690ed3e988050c66eb38b1da6a806b00c8bdc53d4ca3064352f76d2e",
+      "diskHash": "",
+      "diskSize": 4167,
+      "diskLastModified": 1783904221668,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/rules/buildFlowFsmRules.defs.ts": {
+      "path": "l4/rules/buildFlowFsmRules.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8bd88b10dc2face13b8acadfc958b91553056163b44b485cbd50719a9b9bcf11",
+      "diskHash": "",
+      "diskSize": 8549,
+      "diskLastModified": 1783904222017,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/trace/behavior-health-report.json": {
+      "path": "l4/trace/behavior-health-report.json",
+      "versionRef": "0",
+      "browserHash": "51ad02290cfb6accc9bf3ae4c27dbe73c9f71f5c73b1532c6b1b22f29f3dde45",
+      "diskHash": "",
+      "diskSize": 694,
+      "diskLastModified": 1783904222018,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/trace/cb-health-report.json": {
+      "path": "l4/trace/cb-health-report.json",
+      "versionRef": "0",
+      "browserHash": "ca925e694a6f9ca59998507d3f94108d488a8f163ed907d65d23af9d2edb9920",
+      "diskHash": "",
+      "diskSize": 4709,
+      "diskLastModified": 1783904222018,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/trace/cb-repair-state.json": {
+      "path": "l4/trace/cb-repair-state.json",
+      "versionRef": "0",
+      "browserHash": "f99f00a8680022bf86b8f1b834d5e599982ac79dbb4cd63d6b0f8ae2b62ee3be",
+      "diskHash": "",
+      "diskSize": 27648,
+      "diskLastModified": 1783904222018,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/workflows/changeOrderLifecycle.defs.ts": {
+      "path": "l4/workflows/changeOrderLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "0fa307e8a6620ae171c1228b1fb0cba671afaf3bdee67656181050f4dd68d02b",
+      "diskHash": "",
+      "diskSize": 2724,
+      "diskLastModified": 1783904222018,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/workflows/invoiceLifecycle.defs.ts": {
+      "path": "l4/workflows/invoiceLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "0328a67edf08075f87b82a5c3fb1ddf129c6afc82a8d4ef2ddf70a2bda2e6d71",
+      "diskHash": "",
+      "diskSize": 2286,
+      "diskLastModified": 1783904222309,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/workflows/projectLifecycle.defs.ts": {
+      "path": "l4/workflows/projectLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c811f3643027b42c32cbbd41d71ca49c0c3e758eab8e91aa55ba5ed12ad0185f",
+      "diskHash": "",
+      "diskSize": 2372,
+      "diskLastModified": 1783904222309,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/workflows/statusReportLifecycle.defs.ts": {
+      "path": "l4/workflows/statusReportLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3ecb8030019776522f49f1697845cc83364baab519711ed842252116299ca1d1",
+      "diskHash": "",
+      "diskSize": 2382,
+      "diskLastModified": 1783904222309,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/workflows/workTaskLifecycle.defs.ts": {
+      "path": "l4/workflows/workTaskLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "90e4ad0c27d4d0fcc0ea2be55605e28e1532e98dae0f5c5be6c662a05afec4d2",
+      "diskHash": "",
+      "diskSize": 2942,
+      "diskLastModified": 1783904222309,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/buildFlowFsm/process.defs.ts": {
+      "path": "l5/buildFlowFsm/process.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ad131e7721c8e575a3d3463933a4585b45ea631046ba3f5638dad095ca8c485b",
+      "diskHash": "",
+      "diskSize": 1664,
+      "diskLastModified": 1783904222310,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/buildFlowFsm/todoBackend.defs.ts": {
+      "path": "l5/buildFlowFsm/todoBackend.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9aed0933a6db71e8218f3c09d0d9a6980165d7cefd302966ae47cc1f17e8efc4",
+      "diskHash": "",
+      "diskSize": 11903,
+      "diskLastModified": 1783904222602,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/buildFlowFsm/todoFrontend.defs.ts": {
+      "path": "l5/buildFlowFsm/todoFrontend.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9e38164d370bd6e437012416d23c3f850bc717ea5dcd0a9f34630ec91c2a44b5",
+      "diskHash": "",
+      "diskSize": 11721,
+      "diskLastModified": 1783904222602,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/project.json": {
+      "path": "l5/project.json",
+      "versionRef": "18bf36d06995cb3cb3c351ff49555fa9559d986b",
+      "browserHash": "9271d1e284a7eb7d871c91848b25ab74940b5aa24b48c4cb55c39db8af9ed454",
+      "diskHash": "",
+      "diskSize": 88760,
+      "diskLastModified": 1783904222602,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/runtimeConfig.ts": {
+      "path": "l5/runtimeConfig.ts",
+      "versionRef": "0",
+      "browserHash": "0d7f11532b3743d8557b853294eb52fea0c331e1024dd5665b33e3eda1350dd4",
+      "diskHash": "",
+      "diskSize": 12332,
+      "diskLastModified": 1783902602285,
+      "lastDirection": "fs-to-browser"
+    }
+  }
+}

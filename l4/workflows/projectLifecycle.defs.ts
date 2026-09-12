@@ -1,0 +1,81 @@
+/// <mls fileReference="_102048_/l4/workflows/projectLifecycle.defs.ts" enhancement="_blank"/>
+
+export const workflowProjectLifecycle = {
+  "workflowId": "projectLifecycle",
+  "title": "Project Lifecycle",
+  "executionMode": "sequential",
+  "trigger": "Company admin creates a new project with budget and timeline details.",
+  "actors": [
+    "companyAdmin"
+  ],
+  "states": [
+    "draft",
+    "active",
+    "completed",
+    "cancelled"
+  ],
+  "transitions": [
+    {
+      "from": "draft",
+      "to": "active",
+      "on": "updateProjectStatus",
+      "by": "companyAdmin",
+      "guard": "Project must be linked to a client before it can be activated"
+    },
+    {
+      "from": "active",
+      "to": "completed",
+      "on": "updateProjectStatus",
+      "by": "companyAdmin"
+    },
+    {
+      "from": "active",
+      "to": "cancelled",
+      "on": "updateProjectStatus",
+      "by": "companyAdmin"
+    },
+    {
+      "from": "draft",
+      "to": "cancelled",
+      "on": "updateProjectStatus",
+      "by": "companyAdmin"
+    }
+  ],
+  "operationIds": [
+    "createProject",
+    "updateProjectStatus"
+  ],
+  "entities": [
+    "Project",
+    "Client"
+  ],
+  "rulesApplied": [
+    "projectBudgetPositive",
+    "projectDateRangeValid",
+    "projectRequiresClient",
+    "dashboardShowsActiveOnly"
+  ],
+  "story": {
+    "actor": "companyAdmin",
+    "goal": "Set up a new construction or remodeling project so the team can start planning work and tracking costs.",
+    "steps": [
+      "Enter the project name, select or create the client, and fill in the site address so the project is properly identified and linked to the right customer.",
+      "Set the project budget in USD and the planned start and end dates so that job costing and timeline tracking have a baseline to compare against.",
+      "Activate the project so it appears on the dashboard and the project manager can begin adding tasks."
+    ],
+    "outcome": "A new project exists with a client, address, budget, timeline, and active status, ready for task planning and cost tracking."
+  },
+  "pageId": "projectLifecycle",
+  "capabilities": [
+    {
+      "capabilityId": "projectLifecycle",
+      "title": "Project Lifecycle",
+      "actor": "companyAdmin",
+      "priority": "now"
+    }
+  ],
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default workflowProjectLifecycle;

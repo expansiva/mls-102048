@@ -1,0 +1,136 @@
+/// <mls fileReference="_102048_/l4/operations/updateClient.defs.ts" enhancement="_blank"/>
+
+export const operationUpdateClient = {
+  "operationId": "updateClient",
+  "title": "Edit client details",
+  "actor": "companyAdmin",
+  "entity": "Client",
+  "kind": "update",
+  "reads": [
+    "Client"
+  ],
+  "writes": [
+    "Client"
+  ],
+  "rulesApplied": [
+    "clientAccessViaLinksOrAuth"
+  ],
+  "story": {
+    "actor": "companyAdmin",
+    "goal": "Update an existing client's contact details, billing address, and portal access setting so project information and invoices reach the right person.",
+    "steps": [
+      "The admin opens a client record from the client list.",
+      "The admin edits the client's name, company name, email, phone, billing address, and portal access toggle.",
+      "The admin confirms the changes and the system persists the updated fields with a refreshed updatedAt timestamp."
+    ],
+    "outcome": "The client record is updated with the new details and the updatedAt timestamp reflects the modification time."
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "Client",
+    "keyField": "Client.clientId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "Client.clientId",
+      "Client.name",
+      "Client.companyName",
+      "Client.email",
+      "Client.phone",
+      "Client.portalAccessEnabled",
+      "Client.billingAddress",
+      "Client.updatedAt"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "clientId",
+      "fieldRef": "Client.clientId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "The identifier of the client record being edited."
+    },
+    {
+      "inputId": "name",
+      "fieldRef": "Client.name",
+      "required": true,
+      "source": "userInput",
+      "description": "Full name of the client contact person."
+    },
+    {
+      "inputId": "companyName",
+      "fieldRef": "Client.companyName",
+      "required": false,
+      "source": "userInput",
+      "description": "Legal name of the client's organization, if applicable."
+    },
+    {
+      "inputId": "email",
+      "fieldRef": "Client.email",
+      "required": true,
+      "source": "userInput",
+      "description": "Primary email address used to send shareable project links and invoices."
+    },
+    {
+      "inputId": "phone",
+      "fieldRef": "Client.phone",
+      "required": false,
+      "source": "userInput",
+      "description": "Contact phone number for the client."
+    },
+    {
+      "inputId": "portalAccessEnabled",
+      "fieldRef": "Client.portalAccessEnabled",
+      "required": true,
+      "source": "userInput",
+      "description": "Toggle indicating whether the client may log in to the portal using platform authentication."
+    },
+    {
+      "inputId": "billingAddress",
+      "fieldRef": "Client.billingAddress",
+      "required": false,
+      "source": "userInput",
+      "description": "Postal address used on informational invoices sent to the client."
+    },
+    {
+      "inputId": "updatedAt",
+      "fieldRef": "Client.updatedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp set to the current time when the client record is modified."
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "Client.clientId",
+      "source": "selectedEntity",
+      "originRef": "Client.clientId",
+      "description": "The clientId of the client record currently selected in the admin's workspace, resolved from the selected entity context."
+    },
+    {
+      "targetRef": "Client.updatedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "The server-side current timestamp applied at the moment the update is persisted."
+    }
+  ],
+  "acceptanceAssertions": [
+    "After confirmation the client record exists with the submitted name, email, and portalAccessEnabled values.",
+    "After confirmation the client's updatedAt timestamp is refreshed to the current server time.",
+    "If portalAccessEnabled is set to true, the client may access project information via platform authentication per the clientAccessViaLinksOrAuth rule.",
+    "The clientId of the updated record matches the selected client and is not changed by the operation."
+  ],
+  "pageId": "updateClient",
+  "commandName": "updateClient",
+  "bffName": "buildFlowFsm.updateClient.updateClient",
+  "capability": {
+    "capabilityId": "updateClient",
+    "title": "Edit client details",
+    "actor": "companyAdmin",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationUpdateClient;

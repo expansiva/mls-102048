@@ -1,0 +1,116 @@
+/// <mls fileReference="_102048_/l4/operations/assignTask.defs.ts" enhancement="_blank"/>
+
+export const operationAssignTask = {
+  "operationId": "assignTask",
+  "title": "Assign worker and due date to task",
+  "actor": "projectManager",
+  "entity": "WorkTask",
+  "kind": "update",
+  "reads": [
+    "WorkTask",
+    "Project"
+  ],
+  "writes": [
+    "WorkTask"
+  ],
+  "rulesApplied": [
+    "taskRequiresWorkerAssignment",
+    "taskDueDateWithinProject"
+  ],
+  "story": {
+    "actor": "projectManager",
+    "goal": "Assign a field worker and set a due date on a work task so responsibility is clear and the timeline can be tracked.",
+    "steps": [
+      "The project manager selects a draft or existing work task from the project task list.",
+      "The project manager chooses a field worker from the available workers and sets a due date.",
+      "The system validates that the due date falls within the parent project's start and end dates.",
+      "The system updates the task with the assigned worker, worker display name, due date, and transitions status to 'assigned'."
+    ],
+    "outcome": "The work task is assigned to the chosen field worker with a valid due date and status 'assigned', making it eligible for execution by the field worker."
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "WorkTask",
+    "keyField": "WorkTask.workTaskId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "WorkTask.workTaskId",
+      "WorkTask.title",
+      "WorkTask.status",
+      "WorkTask.assignedWorkerId",
+      "WorkTask.assignedWorkerName",
+      "WorkTask.dueDate"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "workTaskId",
+      "fieldRef": "WorkTask.workTaskId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "The work task to assign a worker and due date to."
+    },
+    {
+      "inputId": "assignedWorkerId",
+      "fieldRef": "WorkTask.assignedWorkerId",
+      "required": true,
+      "source": "userInput",
+      "description": "Identifier of the field worker selected to perform this task."
+    },
+    {
+      "inputId": "assignedWorkerName",
+      "fieldRef": "WorkTask.assignedWorkerName",
+      "required": true,
+      "source": "userInput",
+      "description": "Display name of the selected field worker, denormalized onto the task."
+    },
+    {
+      "inputId": "dueDate",
+      "fieldRef": "WorkTask.dueDate",
+      "required": true,
+      "source": "userInput",
+      "description": "Deadline by which the task should be completed."
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "WorkTask.workTaskId",
+      "source": "selectedEntity",
+      "originRef": "WorkTask.workTaskId",
+      "description": "The work task currently selected by the project manager in the task list view is resolved from the selection context."
+    },
+    {
+      "targetRef": "WorkTask.updatedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "The server sets the current timestamp as updatedAt when the task assignment is persisted."
+    },
+    {
+      "targetRef": "WorkTask.projectId",
+      "source": "selectedEntity",
+      "originRef": "WorkTask.projectId",
+      "description": "The parent project id is read from the selected work task to validate the due date against the project date range."
+    }
+  ],
+  "acceptanceAssertions": [
+    "After assignment the WorkTask exists with status 'assigned'.",
+    "After assignment the WorkTask has assignedWorkerId and assignedWorkerName populated with the chosen field worker.",
+    "After assignment the WorkTask.dueDate falls within the parent Project's start and end dates.",
+    "The WorkTask cannot be assigned if its current status is 'completed' or 'cancelled'.",
+    "After assignment the WorkTask.updatedAt reflects the time the assignment was applied."
+  ],
+  "pageId": "workTaskLifecycle",
+  "commandName": "assignTask",
+  "bffName": "buildFlowFsm.workTaskLifecycle.assignTask",
+  "capability": {
+    "capabilityId": "workTaskLifecycle",
+    "title": "Work Task Lifecycle",
+    "actor": "projectManager",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationAssignTask;

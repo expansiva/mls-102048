@@ -1,0 +1,159 @@
+/// <mls fileReference="_102048_/l4/operations/createProject.defs.ts" enhancement="_blank"/>
+
+export const operationCreateProject = {
+  "operationId": "createProject",
+  "title": "Create a new project",
+  "actor": "companyAdmin",
+  "entity": "Project",
+  "kind": "create",
+  "reads": [
+    "Client",
+    "Project"
+  ],
+  "writes": [
+    "Project"
+  ],
+  "rulesApplied": [
+    "projectBudgetPositive",
+    "projectDateRangeValid",
+    "projectRequiresClient"
+  ],
+  "story": {
+    "actor": "companyAdmin",
+    "goal": "Create a new construction or remodeling project with client, site address, budget, schedule, and lifecycle status so the project manager can begin planning tasks.",
+    "steps": [
+      "The admin enters the project name, selects an existing client, and fills in the site address.",
+      "The admin sets the project budget in USD and the planned start and end dates.",
+      "The admin sets the project status (draft or active) and confirms creation.",
+      "The system validates the budget is positive, the date range is valid, and the client exists, then persists the project record with a generated id and timestamps."
+    ],
+    "outcome": "A new project record is created with all required fields, linked to the selected client, and ready for task planning and cost tracking."
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "Project",
+    "keyField": "Project.projectId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "Project.projectId",
+      "Project.name",
+      "Project.status",
+      "Project.createdAt"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "name",
+      "fieldRef": "Project.name",
+      "required": true,
+      "source": "userInput",
+      "description": "Project name or title shown on dashboards and reports"
+    },
+    {
+      "inputId": "clientId",
+      "fieldRef": "Project.clientId",
+      "required": true,
+      "source": "userInput",
+      "description": "Reference to the client who owns this project; selected from existing clients"
+    },
+    {
+      "inputId": "siteAddress",
+      "fieldRef": "Project.siteAddress",
+      "required": true,
+      "source": "userInput",
+      "description": "Physical address of the construction or remodeling site"
+    },
+    {
+      "inputId": "budget",
+      "fieldRef": "Project.budget",
+      "required": true,
+      "source": "userInput",
+      "description": "Approved project budget in USD; must be a positive amount"
+    },
+    {
+      "inputId": "startDate",
+      "fieldRef": "Project.startDate",
+      "required": true,
+      "source": "userInput",
+      "description": "Planned project start date"
+    },
+    {
+      "inputId": "endDate",
+      "fieldRef": "Project.endDate",
+      "required": true,
+      "source": "userInput",
+      "description": "Planned project end date; must be on or after the start date"
+    },
+    {
+      "inputId": "status",
+      "fieldRef": "Project.status",
+      "required": true,
+      "source": "userInput",
+      "description": "Initial lifecycle status of the project; admin can set to draft or active"
+    },
+    {
+      "inputId": "projectId",
+      "fieldRef": "Project.projectId",
+      "required": true,
+      "source": "systemDefault",
+      "description": "System-generated unique identifier for the project"
+    },
+    {
+      "inputId": "createdAt",
+      "fieldRef": "Project.createdAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp when the project record is created"
+    },
+    {
+      "inputId": "updatedAt",
+      "fieldRef": "Project.updatedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp when the project record is last updated; set equal to createdAt on creation"
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "Project.projectId",
+      "source": "systemDefault",
+      "originRef": "systemDefault.uuid",
+      "description": "The backend generates a new UUID for the project identifier at creation time"
+    },
+    {
+      "targetRef": "Project.createdAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "The backend sets the creation timestamp to the current server time when the project record is persisted"
+    },
+    {
+      "targetRef": "Project.updatedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "The backend sets the last-updated timestamp to the current server time when the project record is persisted"
+    }
+  ],
+  "acceptanceAssertions": [
+    "After creation the project exists with the provided name, siteAddress, budget, startDate, and endDate values.",
+    "The project budget is a positive amount greater than zero in USD.",
+    "The project start date is on or before the project end date.",
+    "The project is linked to a valid existing client via clientId.",
+    "If the project status is set to active, the linked client must exist and the project appears on the dashboard.",
+    "The project record has a system-generated projectId and non-null createdAt and updatedAt timestamps.",
+    "If the project status is set to draft, the project does not appear on the dashboard until it is later activated."
+  ],
+  "pageId": "projectLifecycle",
+  "commandName": "createProject",
+  "bffName": "buildFlowFsm.projectLifecycle.createProject",
+  "capability": {
+    "capabilityId": "projectLifecycle",
+    "title": "Project Lifecycle",
+    "actor": "companyAdmin",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationCreateProject;

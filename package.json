@@ -1,19 +1,14 @@
 {
-  "name": "102048",
+  "name": "mls-102048",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
+  "private": true,
   "scripts": {
-    "publish": "node ../scripts/runPublishMlsBase.mjs 102048 remote --sites",
-    "publish:local": "node ../scripts/runPublishMlsBase.mjs 102048 local",
-    "buildCI": "node ../scripts/buildCI/buildCI.mjs 102048"
+    "publish": "node ../scripts/publishGit.mjs 102048 remote --git-url=https://102048.collabcodes.com",
+    "publish:git": "node ../scripts/publishGit.mjs 102048 local",
+    "publish:remote": "node ../scripts/publishGit.mjs 102048 remote --git-url=https://102048.collabcodes.com"
   },
   "actionDependencies": {
-    "mls-ci": "git+https://github.com/expansiva/mls-ci.git",
-    "mls-102020": "git+https://github.com/expansiva/mls-102020.git",
-    "mls-102025": "git+https://github.com/expansiva/mls-102025.git",
-    "mls-102027": "git+https://github.com/expansiva/mls-102027.git"
+    "mls-100554": "git+https://github.com/expansiva/mls-100554.git",
+    "mls-102020": "git+https://github.com/expansiva/mls-102020.git"
   }
- 
 }

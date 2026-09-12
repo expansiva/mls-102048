@@ -1,0 +1,313 @@
+{
+  "savedAt": "2026-07-12T13:18:03.105Z",
+  "stepId": "e5-operation-createChangeOrder",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "createChangeOrder",
+      "title": "Create a change order",
+      "actor": "projectManager",
+      "entity": "ChangeOrder",
+      "kind": "create",
+      "reads": [
+        "Project",
+        "ChangeOrder"
+      ],
+      "writes": [
+        "ChangeOrder"
+      ],
+      "rulesApplied": [
+        "changeOrderRequiresProject",
+        "changeOrderInAppApproval",
+        "approvedChangeOrdersOnly"
+      ],
+      "story": {
+        "actor": "projectManager",
+        "goal": "Document a scope change on a project with a cost impact so it can be sent to the client for in-app approval.",
+        "steps": [
+          "The project manager selects a project and opens the change order creation form.",
+          "The project manager enters a title, a detailed scope description, and the cost amount.",
+          "The system validates that the project exists and creates the change order in draft status with a generated id and timestamps.",
+          "The change order is saved and ready to be sent to the client for in-app approval."
+        ],
+        "outcome": "A new change order record exists in draft status, linked to the selected project, with title, scope description, and cost amount captured."
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "ChangeOrder",
+        "keyField": "ChangeOrder.changeOrderId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "ChangeOrder.changeOrderId",
+          "ChangeOrder.projectId",
+          "ChangeOrder.title",
+          "ChangeOrder.scopeDescription",
+          "ChangeOrder.amount",
+          "ChangeOrder.status",
+          "ChangeOrder.createdAt"
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "title",
+          "fieldRef": "ChangeOrder.title",
+          "required": true,
+          "source": "userInput",
+          "description": "Short title summarizing the scope change."
+        },
+        {
+          "inputId": "scopeDescription",
+          "fieldRef": "ChangeOrder.scopeDescription",
+          "required": true,
+          "source": "userInput",
+          "description": "Detailed description of the scope change being requested."
+        },
+        {
+          "inputId": "amount",
+          "fieldRef": "ChangeOrder.amount",
+          "required": true,
+          "source": "userInput",
+          "description": "Cost impact of the change order in USD."
+        },
+        {
+          "inputId": "projectId",
+          "fieldRef": "ChangeOrder.projectId",
+          "required": true,
+          "source": "selectedEntity",
+          "description": "The project this change order belongs to, resolved from the currently selected project."
+        },
+        {
+          "inputId": "changeOrderId",
+          "fieldRef": "ChangeOrder.changeOrderId",
+          "required": true,
+          "source": "systemDefault",
+          "description": "System-generated unique identifier for the new change order."
+        },
+        {
+          "inputId": "status",
+          "fieldRef": "ChangeOrder.status",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Initial status set to draft upon creation."
+        },
+        {
+          "inputId": "createdAt",
+          "fieldRef": "ChangeOrder.createdAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp when the change order record is created."
+        },
+        {
+          "inputId": "updatedAt",
+          "fieldRef": "ChangeOrder.updatedAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Timestamp of the last modification, set to creation time initially."
+        }
+      ],
+      "contextResolution": [
+        {
+          "targetRef": "ChangeOrder.projectId",
+          "source": "selectedEntity",
+          "originRef": "Project.projectId",
+          "description": "The backend resolves projectId from the currently selected project in the workspace, validating that the project exists before creating the change order."
+        },
+        {
+          "targetRef": "ChangeOrder.changeOrderId",
+          "source": "systemDefault",
+          "originRef": "systemDefault.uuid",
+          "description": "The backend generates a new UUID for the change order record at creation time."
+        },
+        {
+          "targetRef": "ChangeOrder.status",
+          "source": "systemDefault",
+          "originRef": "systemDefault",
+          "description": "The backend sets the initial status to 'draft' as the default for newly created change orders."
+        },
+        {
+          "targetRef": "ChangeOrder.createdAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "The backend sets createdAt to the current server timestamp at creation time."
+        },
+        {
+          "targetRef": "ChangeOrder.updatedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "The backend sets updatedAt to the current server timestamp at creation time."
+        }
+      ],
+      "acceptanceAssertions": [
+        "After creation the change order exists with status 'draft'.",
+        "The change order is linked to a valid project via projectId.",
+        "The change order has a non-empty title, scopeDescription, and a positive amount.",
+        "The change order does not affect job costing or invoicing because its status is 'draft', not 'approved'.",
+        "No e-signature is required for the change order; it uses in-app approval status workflow.",
+        "A standalone change order without a project association cannot be created."
+      ]
+    },
+    "gate": {
+      "ok": false,
+      "artifact": {
+        "operationId": "createChangeOrder",
+        "title": "Create a change order",
+        "actor": "projectManager",
+        "entity": "ChangeOrder",
+        "kind": "create",
+        "reads": [
+          "Project",
+          "ChangeOrder"
+        ],
+        "writes": [
+          "ChangeOrder"
+        ],
+        "rulesApplied": [
+          "changeOrderRequiresProject",
+          "changeOrderInAppApproval",
+          "approvedChangeOrdersOnly"
+        ],
+        "story": {
+          "actor": "projectManager",
+          "goal": "Document a scope change on a project with a cost impact so it can be sent to the client for in-app approval.",
+          "steps": [
+            "The project manager selects a project and opens the change order creation form.",
+            "The project manager enters a title, a detailed scope description, and the cost amount.",
+            "The system validates that the project exists and creates the change order in draft status with a generated id and timestamps.",
+            "The change order is saved and ready to be sent to the client for in-app approval."
+          ],
+          "outcome": "A new change order record exists in draft status, linked to the selected project, with title, scope description, and cost amount captured."
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "ChangeOrder",
+          "keyField": "ChangeOrder.changeOrderId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "ChangeOrder.changeOrderId",
+            "ChangeOrder.projectId",
+            "ChangeOrder.title",
+            "ChangeOrder.scopeDescription",
+            "ChangeOrder.amount",
+            "ChangeOrder.status",
+            "ChangeOrder.createdAt"
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "title",
+            "fieldRef": "ChangeOrder.title",
+            "required": true,
+            "source": "userInput",
+            "description": "Short title summarizing the scope change."
+          },
+          {
+            "inputId": "scopeDescription",
+            "fieldRef": "ChangeOrder.scopeDescription",
+            "required": true,
+            "source": "userInput",
+            "description": "Detailed description of the scope change being requested."
+          },
+          {
+            "inputId": "amount",
+            "fieldRef": "ChangeOrder.amount",
+            "required": true,
+            "source": "userInput",
+            "description": "Cost impact of the change order in USD."
+          },
+          {
+            "inputId": "projectId",
+            "fieldRef": "ChangeOrder.projectId",
+            "required": true,
+            "source": "selectedEntity",
+            "description": "The project this change order belongs to, resolved from the currently selected project."
+          },
+          {
+            "inputId": "changeOrderId",
+            "fieldRef": "ChangeOrder.changeOrderId",
+            "required": true,
+            "source": "systemDefault",
+            "description": "System-generated unique identifier for the new change order."
+          },
+          {
+            "inputId": "status",
+            "fieldRef": "ChangeOrder.status",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Initial status set to draft upon creation."
+          },
+          {
+            "inputId": "createdAt",
+            "fieldRef": "ChangeOrder.createdAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp when the change order record is created."
+          },
+          {
+            "inputId": "updatedAt",
+            "fieldRef": "ChangeOrder.updatedAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Timestamp of the last modification, set to creation time initially."
+          }
+        ],
+        "contextResolution": [
+          {
+            "targetRef": "ChangeOrder.projectId",
+            "source": "selectedEntity",
+            "originRef": "Project.projectId",
+            "description": "The backend resolves projectId from the currently selected project in the workspace, validating that the project exists before creating the change order."
+          },
+          {
+            "targetRef": "ChangeOrder.changeOrderId",
+            "source": "systemDefault",
+            "originRef": "systemDefault.uuid",
+            "description": "The backend generates a new UUID for the change order record at creation time."
+          },
+          {
+            "targetRef": "ChangeOrder.status",
+            "source": "systemDefault",
+            "originRef": "systemDefault",
+            "description": "The backend sets the initial status to 'draft' as the default for newly created change orders."
+          },
+          {
+            "targetRef": "ChangeOrder.createdAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "The backend sets createdAt to the current server timestamp at creation time."
+          },
+          {
+            "targetRef": "ChangeOrder.updatedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "The backend sets updatedAt to the current server timestamp at creation time."
+          }
+        ],
+        "acceptanceAssertions": [
+          "After creation the change order exists with status 'draft'.",
+          "The change order is linked to a valid project via projectId.",
+          "The change order has a non-empty title, scopeDescription, and a positive amount.",
+          "The change order does not affect job costing or invoicing because its status is 'draft', not 'approved'.",
+          "No e-signature is required for the change order; it uses in-app approval status workflow.",
+          "A standalone change order without a project association cannot be created."
+        ]
+      },
+      "errors": [
+        {
+          "severity": "error",
+          "code": "operation.context.origin.invalid",
+          "message": "operation createChangeOrder: systemDefault originRef \"systemDefault\" must be one of systemDefault.now, systemDefault.uuid, systemDefault.locale",
+          "path": "ChangeOrder.status"
+        }
+      ],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "retryContext": "operation.context.origin.invalid ChangeOrder.status: operation createChangeOrder: systemDefault originRef \"systemDefault\" must be one of systemDefault.now, systemDefault.uuid, systemDefault.locale"
+    },
+    "retryContext": "operation.context.origin.invalid ChangeOrder.status: operation createChangeOrder: systemDefault originRef \"systemDefault\" must be one of systemDefault.now, systemDefault.uuid, systemDefault.locale"
+  },
+  "error": "operation.context.origin.invalid: operation createChangeOrder: systemDefault originRef \"systemDefault\" must be one of systemDefault.now, systemDefault.uuid, systemDefault.locale"
+}

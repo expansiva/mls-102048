@@ -1,0 +1,112 @@
+/// <mls fileReference="_102048_/l4/operations/voidTimeLog.defs.ts" enhancement="_blank"/>
+
+export const operationVoidTimeLog = {
+  "operationId": "voidTimeLog",
+  "title": "Void a time log",
+  "actor": "projectManager",
+  "entity": "TimeLog",
+  "kind": "update",
+  "reads": [
+    "TimeLog"
+  ],
+  "writes": [
+    "TimeLog"
+  ],
+  "rulesApplied": [
+    "timeLogRequiresTaskAndWorker"
+  ],
+  "story": {
+    "actor": "projectManager",
+    "goal": "Void a posted time log entry that was recorded in error so that its hours and labor cost no longer count toward job costing while preserving the audit trail.",
+    "steps": [
+      "The project manager selects a posted time log entry from the task's time log list.",
+      "The system loads the time log and confirms its current status is 'posted'.",
+      "The project manager enters a void reason and confirms the void action.",
+      "The system sets the time log status to 'voided', records the voidedAt timestamp and the void reason, leaving all original fields (task, worker, hours, rate) intact for audit."
+    ],
+    "outcome": "The time log is marked as voided; its hours and labor cost are excluded from budget vs actual calculations while the original record remains for audit purposes."
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "TimeLog",
+    "keyField": "TimeLog.timeLogId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "TimeLog.timeLogId",
+      "TimeLog.status",
+      "TimeLog.voidedAt",
+      "TimeLog.voidReason"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "timeLogId",
+      "fieldRef": "TimeLog.timeLogId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "The identifier of the posted time log entry to be voided."
+    },
+    {
+      "inputId": "voidReason",
+      "fieldRef": "TimeLog.voidReason",
+      "required": true,
+      "source": "userInput",
+      "description": "Text reason explaining why the time log is being voided."
+    },
+    {
+      "inputId": "voidedAt",
+      "fieldRef": "TimeLog.voidedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp recording when the void action was performed."
+    },
+    {
+      "inputId": "actorId",
+      "fieldRef": "TimeLog.timeLogId",
+      "required": true,
+      "source": "actorSession",
+      "description": "The project manager performing the void, recorded for audit purposes."
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "TimeLog.timeLogId",
+      "source": "selectedEntity",
+      "originRef": "TimeLog.timeLogId",
+      "description": "The time log selected by the project manager from the task's time log list; the backend resolves it from the currently selected entity in the workspace context."
+    },
+    {
+      "targetRef": "TimeLog.voidedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "The backend sets voidedAt to the current server timestamp at the moment the void command is processed."
+    },
+    {
+      "targetRef": "actorSession.actorId",
+      "source": "actorSession",
+      "originRef": "actorSession.actorId",
+      "description": "The backend resolves the acting project manager's id from the authenticated session for audit attribution."
+    }
+  ],
+  "acceptanceAssertions": [
+    "After voiding, the time log exists with status 'voided'.",
+    "After voiding, the time log has a non-null voidedAt timestamp set to the current server time.",
+    "After voiding, the time log has a non-empty voidReason matching the value provided by the project manager.",
+    "A time log whose status is not 'posted' cannot be voided.",
+    "After voiding, the time log retains its original workTaskId and workerId linkage so the audit record remains complete."
+  ],
+  "pageId": "voidTimeLog",
+  "commandName": "voidTimeLog",
+  "bffName": "buildFlowFsm.voidTimeLog.voidTimeLog",
+  "capability": {
+    "capabilityId": "voidTimeLog",
+    "title": "Void a time log",
+    "actor": "projectManager",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationVoidTimeLog;

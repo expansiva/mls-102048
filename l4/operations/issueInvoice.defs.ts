@@ -1,0 +1,134 @@
+/// <mls fileReference="_102048_/l4/operations/issueInvoice.defs.ts" enhancement="_blank"/>
+
+export const operationIssueInvoice = {
+  "operationId": "issueInvoice",
+  "title": "Issue and send invoice to client",
+  "actor": "companyAdmin",
+  "entity": "Invoice",
+  "kind": "update",
+  "reads": [
+    "Invoice",
+    "Client"
+  ],
+  "writes": [
+    "Invoice"
+  ],
+  "rulesApplied": [
+    "invoiceCalculation",
+    "allFiguresUsdNoTax",
+    "approvedChangeOrdersOnly",
+    "invoiceIsInformational"
+  ],
+  "story": {
+    "actor": "companyAdmin",
+    "goal": "Issue a draft invoice and deliver it to the client via a shareable link or email so the client can review and pay.",
+    "steps": [
+      "The admin selects a draft invoice that has been reviewed for accuracy.",
+      "The admin optionally provides a client email address for delivery.",
+      "The system generates a shareable link, sets the invoice status to issued, records the issuedAt timestamp, and delivers the invoice to the client.",
+      "The invoice serves as an informational billing summary — no payment processing is initiated."
+    ],
+    "outcome": "The invoice transitions from draft to issued, a shareable link is available, and the client can receive and review the billing summary."
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "Invoice",
+    "keyField": "Invoice.invoiceId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "Invoice.invoiceId",
+      "Invoice.status",
+      "Invoice.totalAmount",
+      "Invoice.shareLink",
+      "Invoice.clientEmail",
+      "Invoice.issuedAt"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "invoiceId",
+      "fieldRef": "Invoice.invoiceId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "The draft invoice to be issued and sent to the client."
+    },
+    {
+      "inputId": "clientEmail",
+      "fieldRef": "Invoice.clientEmail",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional email address to deliver the invoice to the client; if omitted, only the shareable link is generated."
+    },
+    {
+      "inputId": "actorId",
+      "fieldRef": "Invoice.invoiceId",
+      "required": true,
+      "source": "actorSession",
+      "description": "The company admin issuing the invoice, used for audit and authorization."
+    },
+    {
+      "inputId": "issuedAt",
+      "fieldRef": "Invoice.issuedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp recorded when the invoice is issued."
+    },
+    {
+      "inputId": "shareLink",
+      "fieldRef": "Invoice.shareLink",
+      "required": true,
+      "source": "systemDefault",
+      "description": "System-generated shareable link for delivering the invoice to the client."
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "Invoice.invoiceId",
+      "source": "selectedEntity",
+      "originRef": "Invoice.invoiceId",
+      "description": "The invoice selected by the admin from the billing summary screen; resolved from the currently selected entity in the workspace."
+    },
+    {
+      "targetRef": "Invoice.invoiceId",
+      "source": "actorSession",
+      "originRef": "actorSession.actorId",
+      "description": "The authenticated company admin issuing the invoice, resolved from the active session for authorization and audit."
+    },
+    {
+      "targetRef": "Invoice.issuedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "The current server timestamp captured at the moment the invoice is issued."
+    },
+    {
+      "targetRef": "Invoice.shareLink",
+      "source": "systemDefault",
+      "originRef": "systemDefault.uuid",
+      "description": "A system-generated unique token used to build the shareable link for the client to access the invoice."
+    }
+  ],
+  "acceptanceAssertions": [
+    "After confirmation the invoice exists with status 'issued' and the previous status was 'draft'.",
+    "The invoice.issuedAt field is populated with the current timestamp.",
+    "A non-empty Invoice.shareLink is generated and stored on the invoice record.",
+    "If a clientEmail is provided, it is stored on Invoice.clientEmail and used for delivery.",
+    "The Invoice.totalAmount equals Invoice.laborCost plus Invoice.materialCost plus Invoice.changeOrderAmount.",
+    "All monetary figures on the invoice are in USD and no tax is computed or displayed.",
+    "Only approved change orders are reflected in the invoice totals — pending or rejected change orders are excluded.",
+    "No payment processing or payment gateway interaction is initiated; the invoice is informational only."
+  ],
+  "pageId": "invoiceLifecycle",
+  "commandName": "issueInvoice",
+  "bffName": "buildFlowFsm.invoiceLifecycle.issueInvoice",
+  "capability": {
+    "capabilityId": "invoiceLifecycle",
+    "title": "Invoice Lifecycle",
+    "actor": "companyAdmin",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationIssueInvoice;
